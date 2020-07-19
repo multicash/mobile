@@ -1,0 +1,53 @@
+<template>
+  <section class="flex-grow" title="Wallets">
+    <scroll-view :style="{overflow: 'visible'}" horizontal :showsHorizontalScrollIndicator="false">
+      <view class="wallets">
+        <wallet-card
+          v-for="(wallet, i) in wallets"
+          :key="wallet.name"
+          :wallet="wallet"
+          :style="{ marginRight: (i === wallets.length - 1) ? 0 : 20 }"
+        />
+      </view>
+    </scroll-view>
+  </section>
+</template>
+
+<style>
+  .flex-grow {
+    flex: 1;
+  }
+
+  .wallets {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1;
+  }
+</style>
+
+<script>
+  import Section from './Section'
+  import Spacer from './Spacer'
+  import WalletCard from './WalletCard'
+
+  export default {
+    name: 'WalletsSection',
+    components: {WalletCard, Spacer, Section},
+
+    data () {
+      return {
+        wallets: [
+          {
+            name: 'Main Account',
+            amount: 10505.44
+          },
+          {
+            name: 'Savings Account',
+            amount: 1430705.78
+          }
+        ]
+      }
+    }
+  }
+</script>
