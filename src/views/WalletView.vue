@@ -6,19 +6,19 @@
       has-close-button
       @on-dismiss="dismiss"
     />
-    <view class="wallet-container">
+    <view-background>
       <text class="wallet-amount">
         {{ wallet.amount }}
       </text>
-    </view>
+
+      <rounded-button>
+        <text>Hello World</text>
+      </rounded-button>
+    </view-background>
   </view>
 </template>
 
 <style>
-  .wallet-container {
-    padding: 20px;
-  }
-
   .wallet-amount {
     font-size: 30px;
     font-weight: bold;
@@ -27,10 +27,12 @@
 
 <script>
   import ModalNavigation from '../components/ModalNavigation'
+  import RoundedButton from '../components/RoundedButton'
+  import ViewBackground from '../components/ViewBackground'
 
   export default {
     name: 'WalletView',
-    components: {ModalNavigation},
+    components: {ViewBackground, RoundedButton, ModalNavigation},
     props: {
       wallet: {
         type: Object,

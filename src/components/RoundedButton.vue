@@ -1,10 +1,10 @@
 <template>
   <view
-    class="round-button-outer"
+    class="rounded-button-outer"
     :style="{ shadowOffset: { width: -3, height: -3 }}"
   >
     <touchable-opacity
-      class="round-button"
+      class="rounded-button"
       :on-press="dismiss"
       :style="{ shadowOffset: { width: 3, height: 3 }}"
     >
@@ -14,30 +14,32 @@
 </template>
 
 <style>
-  .round-button-outer {
+  .rounded-button-outer {
     border-radius: 18px;
-    shadow-color: white;
+    shadow-color: #f4ecec;
     shadow-radius: 3px;
     shadow-opacity: 1;
   }
 
-  .round-button {
-    background-color: #e4e4ec;
-    width: 36px;
+  .rounded-button {
+    background-color: white;
+    min-width: 36px;
     height: 36px;
     border-radius: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
     shadow-color: #c0c0ff;
     shadow-radius: 3px;
-    shadow-opacity: 1;
+    shadow-opacity: 0.5;
   }
 </style>
 
 <script>
   export default {
-    name: 'RoundButton',
+    name: 'RoundedButton',
 
     methods: {
       dismiss () {
