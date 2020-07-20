@@ -5,46 +5,39 @@
         {{ title }}
       </text>
     </view>
-    <touchable-opacity
+    <round-button
       v-if="hasCloseButton"
-      class="modal-navigation-close-button"
-      :on-press="dismiss"
+      @on-dismiss="dismiss"
     >
       <text>X</text>
-    </touchable-opacity>
+    </round-button>
   </view>
 </template>
 
 <style>
   .modal-navigation {
-    background-color: white;
+    background-color: #ededf3;
     display: flex;
     padding: 20px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    shadow-color: black;
-    shadow-radius: 15px;
-    shadow-opacity: 0.05;
+    shadow-color: rgba(30, 30, 74, 1);
+    shadow-radius: 10;
+    shadow-opacity: 0.3;
   }
 
   .modal-navigation-title {
     font-weight: 600;
-    font-size: 15px;
-  }
-
-  .modal-navigation-close-button {
-    background-color: lightgrey;
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
+    font-size: 18px;
   }
 </style>
 
 <script>
+  import RoundButton from './RoundButton'
   export default {
     name: 'ModalNavigation',
-
+    components: {RoundButton},
     props: {
       title: {
         type: String,

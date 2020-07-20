@@ -1,5 +1,9 @@
 <template>
-  <touchable-opacity class="action-button" :active-opacity="0.6">
+  <touchable-opacity
+    class="action-button"
+    :active-opacity="0.6"
+    :style="{ shadowOffset: { width: 3, height: 3 }}"
+  >
     <image
       v-if="icon"
       class="action-button-icon"
@@ -19,9 +23,9 @@
     height: 150px;
     background-color: white;
     border-radius: 20px;
-    shadow-color: black;
-    shadow-radius: 15px;
-    shadow-opacity: 0.05;
+    shadow-color: #c0c0ff;
+    shadow-radius: 10px;
+    shadow-opacity: 0.5;
     justify-content: center;
     align-items: center;
     padding: 30px;
@@ -52,7 +56,6 @@
         default: null
       },
       icon: {
-        type: String,
         default: null
       }
     }

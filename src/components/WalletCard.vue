@@ -43,9 +43,9 @@
     min-width: 250px;
     background-color: white;
     border-radius: 20px;
-    shadow-color: black;
-    shadow-radius: 15px;
-    shadow-opacity: 0.05;
+    shadow-color: #c0c0ff;
+    shadow-radius: 10px;
+    shadow-opacity: 0.5;
     padding: 20px;
   }
 
