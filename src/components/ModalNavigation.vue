@@ -10,7 +10,7 @@
       class="modal-navigation-close-button"
       :on-press="dismiss"
     >
-<!--      <svg-uri :width="25" :height="25" :source="require('./../assets/close.svg')"/>-->
+      <text>X</text>
     </touchable-opacity>
   </view>
 </template>
