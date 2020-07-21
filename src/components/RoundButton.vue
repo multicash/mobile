@@ -5,7 +5,7 @@
   >
     <touchable-opacity
       class="round-button"
-      :on-press="dismiss"
+      :on-press="pressed"
       :style="{ shadowOffset: { width: 3, height: 3 }}"
     >
       <slot/>
@@ -41,8 +41,8 @@
     name: 'RoundButton',
 
     methods: {
-      dismiss () {
-        this.$emit('on-dismiss')
+      pressed () {
+        this.$emit('on-press')
       }
     }
   }

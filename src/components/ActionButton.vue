@@ -3,6 +3,7 @@
     class="action-button"
     :active-opacity="0.6"
     :style="{ shadowOffset: { width: 3, height: 3 }}"
+    :on-press="() => $emit('on-press')"
   >
     <image
       v-if="icon"

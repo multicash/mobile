@@ -1,10 +1,28 @@
 <template>
   <section title="Actions">
     <view class="actions">
-      <action-button title="Pay" :icon="require('./../assets/send.png')"/>
+      <action-button
+        title="Pay"
+        :icon="require('./../assets/send.png')"
+        @on-press="payModalVisible = true"
+      />
+
+      <view-modal :visible.sync="payModalVisible">
+        <pay-view/>
+      </view-modal>
+
       <spacer/>
-      <action-button title="Receive" :icon="require('./../assets/receive.png')"/>
+
+      <action-button
+        title="Receive"
+        :icon="require('./../assets/receive.png')"
+        @on-press="receiveModalVisible = true"
+      />
     </view>
+
+    <view-modal :visible.sync="receiveModalVisible">
+      <receive-view />
+    </view-modal>
   </section>
 </template>
 
@@ -20,9 +38,20 @@
   import Spacer from './Spacer'
   import Section from './Section'
   import ActionButton from './ActionButton'
+  import PayView from '../views/PayView'
+  import ReceiveView from '../views/ReceiveView'
+  import ViewModal from './ViewModal'
 
   export default {
     name: 'ActionsSection',
-    components: {ActionButton, Section, Spacer}
+
+    components: {ViewModal, ReceiveView, PayView, ActionButton, Section, Spacer},
+
+    data () {
+      return {
+        payModalVisible: false,
+        receiveModalVisible: false,
+      }
+    }
   }
 </script>

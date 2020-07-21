@@ -7,7 +7,7 @@
     </view>
     <round-button
       v-if="hasCloseButton"
-      @on-dismiss="dismiss"
+      @on-press="$emit('on-dismiss')"
     >
       <icon name="close" />
     </round-button>
@@ -46,12 +46,6 @@
       hasCloseButton: {
         type: Boolean,
         default: true
-      }
-    },
-
-    methods: {
-      dismiss () {
-        this.$emit('on-dismiss')
       }
     }
   }

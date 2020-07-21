@@ -5,9 +5,7 @@
       horizontal
       :showsHorizontalScrollIndicator="false"
     >
-      <view
-        :style="{ display: 'flex', margin: 30, flexDirection: 'row' }"
-      >
+      <view class="wallets-container">
         <wallet-card
           v-for="(wallet, i) in wallets"
           :key="wallet.name"
@@ -31,6 +29,12 @@
   .wallets {
     display: flex;
     margin: -30px;
+  }
+
+  .wallets-container {
+    display: flex;
+    margin: 30px;
+    flex-direction: row;
   }
 </style>
 

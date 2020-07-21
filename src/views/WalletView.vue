@@ -4,7 +4,7 @@
     <modal-navigation
       :title="wallet.name"
       has-close-button
-      @on-dismiss="dismiss"
+      @on-dismiss="$parent.$emit('update:visible', false)"
     />
     <view-background>
       <text class="wallet-amount">
@@ -37,15 +37,6 @@
       wallet: {
         type: Object,
         required: true
-      },
-      onDismiss: {
-        type: Function,
-        required: true
-      }
-    },
-    methods: {
-      dismiss () {
-        this.onDismiss()
       }
     }
   }

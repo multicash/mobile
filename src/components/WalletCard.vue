@@ -2,7 +2,7 @@
   <touchable-opacity
     class="wallet-card"
     :active-opacity="0.6"
-    :on-press="openModal"
+    :on-press="() => modalVisible = true"
     :style="{shadowOffset: {width: 3, height: 3}}"
   >
     <text
@@ -20,18 +20,9 @@
       {{ wallet.amount }}
     </text>
 
-    <modal
-      animation-type="slide"
-      presentation-style="formSheet"
-      :visible="modalVisible"
-      :on-request-close="closedModal"
-      :on-dismiss="closedModal"
-    >
-      <wallet-view
-        :wallet="wallet"
-        :on-dismiss="closedModal"
-      />
-    </modal>
+    <view-modal :visible.sync="modalVisible">
+      <wallet-view :wallet="wallet"/>
+    </view-modal>
 
   </touchable-opacity>
 </template>
@@ -65,10 +56,11 @@
 
 <script>
   import WalletView from '../views/WalletView'
+  import ViewModal from './ViewModal'
 
   export default {
     name: 'WalletCard',
-    components: {WalletView},
+    components: {ViewModal, WalletView},
 
     props: {
       wallet: {
@@ -80,16 +72,6 @@
     data () {
       return {
         modalVisible: false
-      }
-    },
-
-    methods: {
-      openModal () {
-        this.modalVisible = true
-      },
-
-      closedModal () {
-        this.modalVisible = false
       }
     }
   }
