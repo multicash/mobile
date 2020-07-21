@@ -24,16 +24,18 @@
     background-color: white;
     border-radius: 20px;
     shadow-color: #c0c0ff;
-    shadow-radius: 10px;
+    shadow-radius: 5px;
     shadow-opacity: 0.5;
+    elevation: 10;
     justify-content: center;
     align-items: center;
     padding: 30px;
   }
 
   .action-button-icon {
-    width: 40px;
-    height: 40px;
+    width: 55px;
+    height: 55px;
+    resize-mode: contain;
   }
 
   .action-button-title {

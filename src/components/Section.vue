@@ -14,8 +14,8 @@
   }
 
   .section-title {
-    font-size: 16;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: bold;
     margin-bottom: 10px;
   }
 </style>

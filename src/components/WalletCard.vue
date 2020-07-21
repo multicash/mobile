@@ -3,6 +3,7 @@
     class="wallet-card"
     :active-opacity="0.6"
     :on-press="openModal"
+    :style="{shadowOffset: {width: 3, height: 3}}"
   >
     <text
       class="wallet-card-name"
@@ -44,8 +45,9 @@
     background-color: white;
     border-radius: 20px;
     shadow-color: #c0c0ff;
-    shadow-radius: 10px;
+    shadow-radius: 5px;
     shadow-opacity: 0.5;
+    elevation: 10;
     padding: 20px;
   }
 

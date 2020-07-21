@@ -1,12 +1,21 @@
 <template>
   <section class="flex-grow" title="Wallets">
-    <scroll-view :style="{overflow: 'visible'}" horizontal :showsHorizontalScrollIndicator="false">
-      <view class="wallets">
+    <scroll-view
+      class="wallets"
+      horizontal
+      :showsHorizontalScrollIndicator="false"
+    >
+      <view
+        :style="{ display: 'flex', margin: 30, flexDirection: 'row' }"
+      >
         <wallet-card
           v-for="(wallet, i) in wallets"
           :key="wallet.name"
           :wallet="wallet"
-          :style="{ marginRight: (i === wallets.length - 1) ? 0 : 20 }"
+          :style="{
+            marginRight: (i === wallets.length - 1) ? 0 : 20,
+          }"
+          containerContentStyle="space-between"
         />
       </view>
     </scroll-view>
@@ -16,13 +25,12 @@
 <style>
   .flex-grow {
     flex: 1;
+    width: 100%;
   }
 
   .wallets {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex: 1;
+    margin: -30px;
   }
 </style>
 

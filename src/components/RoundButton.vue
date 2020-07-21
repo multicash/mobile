@@ -19,6 +19,7 @@
     shadow-color: white;
     shadow-radius: 3px;
     shadow-opacity: 1;
+    elevation: 10;
   }
 
   .round-button {
