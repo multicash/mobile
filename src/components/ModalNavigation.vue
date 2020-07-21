@@ -9,7 +9,7 @@
       v-if="hasCloseButton"
       @on-dismiss="dismiss"
     >
-      <text>X</text>
+      <icon name="close" />
     </round-button>
   </view>
 </template>

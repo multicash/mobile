@@ -20,6 +20,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* MultiCashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MultiCashTests.m */; };
 		2F4127D0A5B8948C50D03613 /* libPods-MultiCash.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFAFCD92818C036A2CEF4E67 /* libPods-MultiCash.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8A68F399689746F09A9D7C7A /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96B3B1D55EF2427F921139D9 /* Ionicons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,12 +62,14 @@
 		4584B25B82C539CF18EDD5CA /* libPods-MultiCash-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MultiCash-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MultiCash/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87FF7F299C62EDCCD11B9909 /* Pods-MultiCash-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiCash-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-MultiCash-tvOSTests/Pods-MultiCash-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A3E9106C24C72987006E15A3 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = "../node_modules/react-native-ionicons/fonts"; sourceTree = "<group>"; };
 		CD255679DA77E5F6DE3937B6 /* libPods-MultiCash-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MultiCash-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E57C7CE164F1829740D30BCF /* Pods-MultiCash-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiCash-tvOS.release.xcconfig"; path = "Target Support Files/Pods-MultiCash-tvOS/Pods-MultiCash-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		E9029B2DC89174BEED381E4D /* Pods-MultiCash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiCash.debug.xcconfig"; path = "Target Support Files/Pods-MultiCash/Pods-MultiCash.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EFAFCD92818C036A2CEF4E67 /* libPods-MultiCash.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MultiCash.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		96B3B1D55EF2427F921139D9 /* Ionicons.ttf */ = {isa = PBXFileReference; name = "Ionicons.ttf"; path = "../node_modules/react-native-ionicons/fonts/Ionicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +137,6 @@
 				87FF7F299C62EDCCD11B9909 /* Pods-MultiCash-tvOSTests.debug.xcconfig */,
 				2C8AB672A18237C8D320487C /* Pods-MultiCash-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -175,12 +177,14 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				A3E9106C24C72987006E15A3 /* fonts */,
 				13B07FAE1A68108700A75B9A /* MultiCash */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* MultiCashTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				0D470DD0F337C8C0D01C7910 /* Pods */,
+				ECC398861CD8477B91217AA6 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -197,6 +201,15 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		ECC398861CD8477B91217AA6 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				96B3B1D55EF2427F921139D9 /* Ionicons.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -342,6 +355,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				8A68F399689746F09A9D7C7A /* Ionicons.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +389,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
