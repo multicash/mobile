@@ -15,10 +15,7 @@ jobs:
       - name: Xcode version
         run: /usr/bin/xcodebuild -version
       - name: CocoaPods install
-        run: |
-          sudo gem install cocoapods
-          cd ios/ 
-          pod install
+        run: sudo gem install cocoapods && cd ./ios && pod install
       - name: Xcodebuild Action
         uses: sersoft-gmbh/xcodebuild-action@v1.1
         with:
