@@ -19,5 +19,5 @@ jobs:
         with:
           project: ./ios/MultiCash.xcodeproj
           scheme: MultiCash
-          destination: platform=iphoneos
+          destination: platform=iOS
           action: build
