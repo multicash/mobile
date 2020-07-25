@@ -1,0 +1,24 @@
+name: IOS
+
+on:
+  # Trigger the workflow on push
+  # but only for the master branch
+  push:
+    branches:
+      - master
+jobs:
+  Build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_11.3.app
+      - name: Xcode version
+        run: /usr/bin/xcodebuild -version
+      - name: Xcodebuild Action
+        uses: sersoft-gmbh/xcodebuild-action@v1.1
+        with:
+          project: MultiCash.xcodeproj
+          scheme: MultiCash
+          destination: platform=iphoneos
+          action: build
