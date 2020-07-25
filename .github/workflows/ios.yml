@@ -14,6 +14,11 @@ jobs:
         run: sudo xcode-select -switch /Applications/Xcode_11.3.app
       - name: Xcode version
         run: /usr/bin/xcodebuild -version
+      - name: CocoaPods install
+        run: |
+          sudo gem install cocoapods
+          cd ios/ 
+          pod install
       - name: Xcodebuild Action
         uses: sersoft-gmbh/xcodebuild-action@v1.1
         with:
