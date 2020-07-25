@@ -19,5 +19,5 @@ jobs:
         with:
           project: ./ios/MultiCash.xcodeproj
           scheme: MultiCash
-          destination: platform=iOS Simulator, id=0D24478B-82CF-4448-A245-1F88C71C9927
+          destination: id=0D24478B-82CF-4448-A245-1F88C71C9927
           action: build
