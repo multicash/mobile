@@ -55,6 +55,12 @@ buck-out/
 
 # Bundle artifact
 *.jsbundle
+ios/assets
+
+# android artifacts
+android/assets
+android/drawable-mdpi
+android/raw
 
 # CocoaPods
 /ios/Pods/
