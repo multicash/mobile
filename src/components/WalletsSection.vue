@@ -51,11 +51,13 @@ export default {
       wallets: [
         {
           name: 'Main Account',
-          amount: 10505.44
+          amount: 10505.44,
+          icon: 'wallet'
         },
         {
           name: 'Savings Account',
-          amount: 1430705.78
+          amount: 1430705.78,
+          icon: 'gift'
         }
       ]
     }

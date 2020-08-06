@@ -5,20 +5,39 @@
     :on-press="() => modalVisible = true"
     :style="{shadowOffset: {width: 3, height: 3}}"
   >
-    <text
-      class="wallet-card-name"
-      adjusts-font-size-to-fit
-      :minimumFontScale="0.01"
-    >
-      {{ wallet.name }}
-    </text>
-    <text
-      class="wallet-card-amount"
-      adjusts-font-size-to-fit
-      :minimumFontScale="0.01"
-    >
-      {{ wallet.amount }}
-    </text>
+    <view class="wallet-card-header">
+      <icon :name="wallet.icon" :size="30"/>
+
+      <text
+        class="wallet-card-name"
+        adjusts-font-size-to-fit
+        :minimumFontScale="0.01"
+      >
+        {{ wallet.name }}
+      </text>
+    </view>
+
+    <view class="money-view">
+      <text
+        class="wallet-card-amount"
+        adjusts-font-size-to-fit
+        :minimumFontScale="0.01"
+      >
+        {{ wallet.amount }}
+      </text>
+      <text :style="{ marginLeft: 10 }">MXC</text>
+    </view>
+
+    <view class="money-view">
+      <text :style="{ marginRight: 5, color: '#931A5A' }">€</text>
+      <text
+        class="wallet-card-fiat-amount"
+        adjusts-font-size-to-fit
+        :minimumFontScale="0.01"
+      >
+        {{ wallet.amount / 200 }}
+      </text>
+    </view>
 
     <view-modal :visible.sync="modalVisible">
       <wallet-view :wallet="wallet"/>
@@ -42,15 +61,35 @@
     padding: 20px;
   }
 
+  .wallet-card-header {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 10px;
+  }
+
   .wallet-card-name {
+    margin-left: 10px;
     font-size: 15px;
     font-weight: 600;
     line-height: 30px;
   }
 
+  .money-view {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
   .wallet-card-amount {
     font-size: 35px;
     font-weight: bold;
+  }
+
+  .wallet-card-fiat-amount {
+    color: #931A5A;
+    font-size: 15px;
+    font-weight: 600;
   }
 </style>
 

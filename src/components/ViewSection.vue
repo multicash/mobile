@@ -1,6 +1,10 @@
 <template>
   <view class="section">
-    <text v-if="title !== ''" class="section-title">
+    <text
+      v-if="title !== ''"
+      class="section-title"
+      :style="{ color: titleColor }"
+    >
       {{ title }}
     </text>
     <slot />
@@ -28,6 +32,11 @@ export default {
     title: {
       type: String,
       default: ''
+    },
+
+    titleColor: {
+      type: String,
+      default: 'black'
     }
   }
 }

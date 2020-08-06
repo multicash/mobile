@@ -1,14 +1,16 @@
 <template>
   <styled-view-background class="container">
     <view class="navigation">
-      <round-button @on-press="settingsModalVisible = true">
+      <round-button @on-press="settingsModalVisible = true" transparent-shadow>
         <icon name="cog" />
       </round-button>
     </view>
     <view class="content">
-      <view-section>
-        <text class="title">Hi friend!</text>
-        <text class="subtitle">Today is a beautiful day to use MultiCash!</text>
+      <view-section class="logo-section">
+        <image
+          :source="require('../assets/logo-light.png')"
+          class="logo-image"
+        />
       </view-section>
       <actions-section/>
       <wallets-section/>
@@ -45,12 +47,16 @@
     flex: 1;
   }
 
-  .title {
-    font-size: 30px;
+  .logo-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .subtitle {
-    font-size: 16px;
+  .logo-image {
+    resize-mode: contain;
+    height: 60px;
+    width: 100%;
   }
 </style>
 
