@@ -50,17 +50,17 @@
 </style>
 
 <script>
-  export default {
-    name: 'ActionButton',
+export default {
+  name: 'ActionButton',
 
-    props: {
-      title: {
-        type: String,
-        default: null
-      },
-      icon: {
-        default: null
-      }
+  props: {
+    title: {
+      type: String,
+      default: null
+    },
+    icon: {
+      default: null
     }
   }
+}
 </script>

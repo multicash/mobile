@@ -26,18 +26,18 @@
 </style>
 
 <script>
-  import ModalNavigation from '../components/ModalNavigation'
-  import RoundedButton from '../components/RoundedButton'
-  import ViewBackground from '../components/ViewBackground'
+import ModalNavigation from '../components/ModalNavigation'
+import RoundedButton from '../components/RoundedButton'
+import ViewBackground from '../components/ViewBackground'
 
-  export default {
-    name: 'WalletView',
-    components: {ViewBackground, RoundedButton, ModalNavigation},
-    props: {
-      wallet: {
-        type: Object,
-        required: true
-      }
+export default {
+  name: 'WalletView',
+  components: { ViewBackground, RoundedButton, ModalNavigation },
+  props: {
+    wallet: {
+      type: Object,
+      required: true
     }
   }
+}
 </script>

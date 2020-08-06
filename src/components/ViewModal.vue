@@ -11,14 +11,14 @@
 </template>
 
 <script>
-  export default {
-    name: 'ViewModal',
+export default {
+  name: 'ViewModal',
 
-    props: {
-      visible: {
-        type: Boolean,
-        required: true
-      }
+  props: {
+    visible: {
+      type: Boolean,
+      required: true
     }
   }
+}
 </script>

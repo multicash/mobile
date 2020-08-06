@@ -55,24 +55,24 @@
 </style>
 
 <script>
-  import WalletView from '../views/WalletView'
-  import ViewModal from './ViewModal'
+import WalletView from '../views/WalletView'
+import ViewModal from './ViewModal'
 
-  export default {
-    name: 'WalletCard',
-    components: {ViewModal, WalletView},
+export default {
+  name: 'WalletCard',
+  components: { ViewModal, WalletView },
 
-    props: {
-      wallet: {
-        type: Object,
-        required: true
-      }
-    },
+  props: {
+    wallet: {
+      type: Object,
+      required: true
+    }
+  },
 
-    data () {
-      return {
-        modalVisible: false
-      }
+  data () {
+    return {
+      modalVisible: false
     }
   }
+}
 </script>

@@ -46,13 +46,13 @@
 </style>
 
 <script>
-  export default {
-    name: 'RoundedButton',
+export default {
+  name: 'RoundedButton',
 
-    methods: {
-      dismiss () {
-        this.$emit('on-dismiss')
-      }
+  methods: {
+    dismiss () {
+      this.$emit('on-dismiss')
     }
   }
+}
 </script>

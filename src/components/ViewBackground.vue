@@ -14,7 +14,7 @@
 </style>
 
 <script>
-  export default {
-    name: 'ViewBackground'
-  }
+export default {
+  name: 'ViewBackground'
+}
 </script>

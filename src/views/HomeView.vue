@@ -6,10 +6,10 @@
       </round-button>
     </view>
     <view class="content">
-      <section>
+      <view-section>
         <text class="title">Hi friend!</text>
         <text class="subtitle">Today is a beautiful day to use MultiCash!</text>
-      </section>
+      </view-section>
       <actions-section/>
       <wallets-section/>
     </view>
@@ -55,23 +55,23 @@
 </style>
 
 <script>
-  import Section from './../components/Section'
-  import WalletsSection from './../components/WalletsSection'
-  import ActionsSection from './../components/ActionsSection'
-  import StyledViewBackground from '../components/StyledViewBackground'
-  import RoundButton from '../components/RoundButton'
-  import SettingsView from './SettingsView'
-  import ViewModal from '../components/ViewModal'
+import ViewSection from './../components/ViewSection'
+import WalletsSection from './../components/WalletsSection'
+import ActionsSection from './../components/ActionsSection'
+import StyledViewBackground from '../components/StyledViewBackground'
+import RoundButton from '../components/RoundButton'
+import SettingsView from './SettingsView'
+import ViewModal from '../components/ViewModal'
 
-  export default {
-    name: 'HomeView',
+export default {
+  name: 'HomeView',
 
-    components: {ViewModal, SettingsView, RoundButton, StyledViewBackground, WalletsSection, ActionsSection, Section},
+  components: { ViewModal, SettingsView, RoundButton, StyledViewBackground, WalletsSection, ActionsSection, ViewSection },
 
-    data () {
-      return {
-        settingsModalVisible: false,
-      }
+  data () {
+    return {
+      settingsModalVisible: false
     }
   }
+}
 </script>

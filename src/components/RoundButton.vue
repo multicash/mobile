@@ -37,13 +37,13 @@
 </style>
 
 <script>
-  export default {
-    name: 'RoundButton',
+export default {
+  name: 'RoundButton',
 
-    methods: {
-      pressed () {
-        this.$emit('on-press')
-      }
+  methods: {
+    pressed () {
+      this.$emit('on-press')
     }
   }
+}
 </script>

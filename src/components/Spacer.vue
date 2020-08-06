@@ -9,7 +9,7 @@
 </style>
 
 <script>
-  export default {
-    name: 'Spacer'
-  }
+export default {
+  name: 'Spacer'
+}
 </script>

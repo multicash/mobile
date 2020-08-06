@@ -1,5 +1,5 @@
 <template>
-  <section class="flex-grow" title="Wallets">
+  <view-section class="flex-grow" title="Wallets">
     <scroll-view
       class="wallets"
       horizontal
@@ -17,7 +17,7 @@
         />
       </view>
     </scroll-view>
-  </section>
+  </view-section>
 </template>
 
 <style>
@@ -39,27 +39,26 @@
 </style>
 
 <script>
-  import Section from './Section'
-  import Spacer from './Spacer'
-  import WalletCard from './WalletCard'
+import ViewSection from './ViewSection'
+import WalletCard from './WalletCard'
 
-  export default {
-    name: 'WalletsSection',
-    components: {WalletCard, Spacer, Section},
+export default {
+  name: 'WalletsSection',
+  components: { WalletCard, ViewSection },
 
-    data () {
-      return {
-        wallets: [
-          {
-            name: 'Main Account',
-            amount: 10505.44
-          },
-          {
-            name: 'Savings Account',
-            amount: 1430705.78
-          }
-        ]
-      }
+  data () {
+    return {
+      wallets: [
+        {
+          name: 'Main Account',
+          amount: 10505.44
+        },
+        {
+          name: 'Savings Account',
+          amount: 1430705.78
+        }
+      ]
     }
   }
+}
 </script>

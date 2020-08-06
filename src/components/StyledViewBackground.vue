@@ -28,7 +28,7 @@
 </style>
 
 <script>
-  export default {
-    name: 'StyledViewBackground'
-  }
+export default {
+  name: 'StyledViewBackground'
+}
 </script>

@@ -34,19 +34,19 @@
 </style>
 
 <script>
-  import RoundButton from './RoundButton'
-  export default {
-    name: 'ModalNavigation',
-    components: {RoundButton},
-    props: {
-      title: {
-        type: String,
-        default: null
-      },
-      hasCloseButton: {
-        type: Boolean,
-        default: true
-      }
+import RoundButton from './RoundButton'
+export default {
+  name: 'ModalNavigation',
+  components: { RoundButton },
+  props: {
+    title: {
+      type: String,
+      default: null
+    },
+    hasCloseButton: {
+      type: Boolean,
+      default: true
     }
   }
+}
 </script>

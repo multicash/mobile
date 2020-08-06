@@ -21,14 +21,14 @@
 </style>
 
 <script>
-  export default {
-    name: 'Section',
+export default {
+  name: 'ViewSection',
 
-    props: {
-      title: {
-        type: String,
-        default: ''
-      }
+  props: {
+    title: {
+      type: String,
+      default: ''
     }
   }
+}
 </script>

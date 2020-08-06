@@ -12,12 +12,12 @@
 </style>
 
 <script>
-  import ViewBackground from '../components/ViewBackground'
-  import ModalNavigation from '../components/ModalNavigation'
+import ViewBackground from '../components/ViewBackground'
+import ModalNavigation from '../components/ModalNavigation'
 
-  export default {
-    name: 'SettingsView',
+export default {
+  name: 'SettingsView',
 
-    components: {ModalNavigation, ViewBackground}
-  }
+  components: { ModalNavigation, ViewBackground }
+}
 </script>

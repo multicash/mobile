@@ -1,5 +1,5 @@
 <template>
-  <section title="Actions">
+  <view-section title="Actions">
     <view class="actions">
       <action-button
         title="Pay"
@@ -23,7 +23,7 @@
     <view-modal :visible.sync="receiveModalVisible">
       <receive-view />
     </view-modal>
-  </section>
+  </view-section>
 </template>
 
 <style>
@@ -35,23 +35,23 @@
 </style>
 
 <script>
-  import Spacer from './Spacer'
-  import Section from './Section'
-  import ActionButton from './ActionButton'
-  import PayView from '../views/PayView'
-  import ReceiveView from '../views/ReceiveView'
-  import ViewModal from './ViewModal'
+import Spacer from './Spacer'
+import ViewSection from './ViewSection'
+import ActionButton from './ActionButton'
+import PayView from '../views/PayView'
+import ReceiveView from '../views/ReceiveView'
+import ViewModal from './ViewModal'
 
-  export default {
-    name: 'ActionsSection',
+export default {
+  name: 'ActionsSection',
 
-    components: {ViewModal, ReceiveView, PayView, ActionButton, Section, Spacer},
+  components: { ViewModal, ReceiveView, PayView, ActionButton, ViewSection, Spacer },
 
-    data () {
-      return {
-        payModalVisible: false,
-        receiveModalVisible: false,
-      }
+  data () {
+    return {
+      payModalVisible: false,
+      receiveModalVisible: false
     }
   }
+}
 </script>
