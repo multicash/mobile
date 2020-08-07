@@ -1,28 +1,14 @@
 <template>
-  <view class="section">
+  <view :style="styles.section">
     <text
       v-if="title !== ''"
-      class="section-title"
-      :style="{ color: titleColor }"
+      :style="styles.sectionTitle"
     >
       {{ title }}
     </text>
     <slot />
   </view>
 </template>
-
-<style>
-  .section {
-    display: flex;
-    margin-vertical: 20px;
-  }
-
-  .section-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-</style>
 
 <script>
 export default {
@@ -36,7 +22,28 @@ export default {
 
     titleColor: {
       type: String,
-      default: 'black'
+      default: null
+    }
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme, this.titleColor)
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme, titleColor) => {
+  return {
+    section: {
+      display: 'flex',
+      marginVertical: 20
+    },
+    sectionTitle: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginBottom: 10,
+      color: titleColor || isDarkScheme ? 'white' : 'black'
     }
   }
 }

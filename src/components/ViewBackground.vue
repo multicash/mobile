@@ -1,20 +1,28 @@
 <template>
-  <view class="view-background">
+  <view :style="styles.viewBackground">
     <slot/>
   </view>
 </template>
 
-<style>
-  .view-background {
-    height: 100%;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-</style>
-
 <script>
 export default {
-  name: 'ViewBackground'
+  name: 'ViewBackground',
+
+  computed: {
+    styles () {
+      return stylesStore()
+    }
+  }
+}
+
+const stylesStore = () => {
+  return {
+    viewBackground: {
+      height: '100%',
+      padding: 20,
+      display: 'flex',
+      flexDirection: 'column'
+    }
+  }
 }
 </script>

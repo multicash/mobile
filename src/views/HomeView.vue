@@ -1,15 +1,15 @@
 <template>
-  <styled-view-background class="container">
-    <view class="navigation">
+  <styled-view-background :style="styles.container">
+    <view :style="styles.navigation">
       <round-button @on-press="settingsModalVisible = true" transparent-shadow>
-        <icon name="cog" />
+        <icon name="cog"/>
       </round-button>
     </view>
-    <view class="content">
-      <view-section class="logo-section">
+    <view :style="styles.content">
+      <view-section :style="styles.logoSection">
         <image
           :source="require('../assets/logo-light.png')"
-          class="logo-image"
+          :style="styles.logoImage"
         />
       </view-section>
       <actions-section/>
@@ -21,44 +21,6 @@
     </view-modal>
   </styled-view-background>
 </template>
-
-<style>
-  .container {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .navigation {
-    flex: 0;
-    align-items: flex-end;
-    padding-top: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-bottom: -10px;
-  }
-
-  .content {
-    display: flex;
-    background-color: transparent;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 10px;
-    padding-top: 0px;
-    flex: 1;
-  }
-
-  .logo-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .logo-image {
-    resize-mode: contain;
-    height: 60px;
-    width: 100%;
-  }
-</style>
 
 <script>
 import ViewSection from './../components/ViewSection'
@@ -78,6 +40,53 @@ export default {
     return {
       settingsModalVisible: false
     }
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    }
   }
 }
+
+const stylesStore = (isDarkScheme) => {
+  return {
+    container: {
+      display: 'flex',
+      flexDirection: 'row'
+    },
+
+    navigation: {
+      flex: 0,
+      alignItems: 'flex-end',
+      paddingTop: 10,
+      paddingLeft: 30,
+      paddingRight: 30,
+      marginBottom: -10
+    },
+
+    content: {
+      display: 'flex',
+      backgroundColor: 'transparent',
+      paddingLeft: 30,
+      paddingRight: 30,
+      paddingBottom: 10,
+      paddingTop: 0,
+      flex: 1
+    },
+
+    logoSection: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+
+    logoImage: {
+      resizeMode: 'contain',
+      height: 60,
+      width: '100%'
+    }
+  }
+}
+
 </script>

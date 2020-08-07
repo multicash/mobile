@@ -1,15 +1,14 @@
 <template>
   <touchable-opacity
-    class="wallet-card"
     :active-opacity="0.6"
     :on-press="() => modalVisible = true"
-    :style="{shadowOffset: {width: 3, height: 3}}"
+    :style="styles.walletCard"
   >
-    <view class="wallet-card-header">
-      <icon :name="wallet.icon" :size="30"/>
+    <view :style="styles.walletCardHeader">
+      <icon :name="wallet.icon" :size="30" :style="styles.walletCardIcon"/>
 
       <text
-        class="wallet-card-name"
+        :style="styles.walletCardName"
         adjusts-font-size-to-fit
         :minimumFontScale="0.01"
       >
@@ -17,21 +16,21 @@
       </text>
     </view>
 
-    <view class="money-view">
+    <view :style="styles.moneyView">
       <text
-        class="wallet-card-amount"
+        :style="styles.walletCardAmount"
         adjusts-font-size-to-fit
         :minimumFontScale="0.01"
       >
         {{ wallet.amount }}
       </text>
-      <text :style="{ marginLeft: 10 }">MXC</text>
+      <text :style="styles.walletCardAmountSign">MXC</text>
     </view>
 
-    <view class="money-view">
-      <text :style="{ marginRight: 5, color: '#931A5A' }">€</text>
+    <view :style="styles.moneyView">
+      <text :style="styles.walletCardFiatSign">€</text>
       <text
-        class="wallet-card-fiat-amount"
+        :style="styles.walletCardFiatAmount"
         adjusts-font-size-to-fit
         :minimumFontScale="0.01"
       >
@@ -46,71 +45,81 @@
   </touchable-opacity>
 </template>
 
-<style>
-  .wallet-card {
-    display: flex;
-    flex: 1;
-    height: 100%;
-    min-width: 250px;
-    background-color: white;
-    border-radius: 20px;
-    shadow-color: #c0c0ff;
-    shadow-radius: 5px;
-    shadow-opacity: 0.5;
-    elevation: 10;
-    padding: 20px;
-  }
-
-  .wallet-card-header {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    margin-bottom: 10px;
-  }
-
-  .wallet-card-name {
-    margin-left: 10px;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 30px;
-  }
-
-  .money-view {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .wallet-card-amount {
-    font-size: 35px;
-    font-weight: bold;
-  }
-
-  .wallet-card-fiat-amount {
-    color: #931A5A;
-    font-size: 15px;
-    font-weight: 600;
-  }
-</style>
-
 <script>
 import WalletView from '../views/WalletView'
 import ViewModal from './ViewModal'
+import { cards, text } from './../styles/index'
 
 export default {
   name: 'WalletCard',
+
   components: { ViewModal, WalletView },
+
+  data () {
+    return {
+      modalVisible: false
+    }
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    }
+  },
 
   props: {
     wallet: {
       type: Object,
       required: true
     }
-  },
+  }
+}
 
-  data () {
-    return {
-      modalVisible: false
+const stylesStore = (isDarkScheme) => {
+  return {
+    walletCard: {
+      ...cards(isDarkScheme),
+      height: '100%',
+      minWidth: 250
+    },
+    walletCardHeader: {
+      display: 'flex',
+      alignItems: 'center',
+      flexDirection: 'row',
+      marginBottom: 10
+    },
+    walletCardIcon: {
+      color: text(isDarkScheme).color
+    },
+    walletCardName: {
+      marginLeft: 10,
+      fontSize: 15,
+      fontWeight: '600',
+      color: text(isDarkScheme).color,
+      lineHeight: 30
+    },
+    moneyView: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center'
+    },
+    walletCardAmountSign: {
+      marginLeft: 10,
+      color: text(isDarkScheme).color
+    },
+    walletCardAmount: {
+      color: text(isDarkScheme).color,
+      fontSize: 35,
+      fontWeight: 'bold'
+    },
+    walletCardFiatSign: {
+      marginRight: 5,
+      color: isDarkScheme ? '#b95c8b' : '#931A5A'
+    },
+    walletCardFiatAmount: {
+      color: isDarkScheme ? '#b95c8b' : '#931A5A',
+      fontSize: 15,
+      fontWeight: '600'
     }
   }
 }

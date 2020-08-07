@@ -1,55 +1,24 @@
 <template>
   <touchable-opacity
-    class="action-button"
+    :style="styles.actionButton"
     :active-opacity="0.6"
-    :style="{ shadowOffset: { width: 3, height: 3 }}"
     :on-press="() => $emit('on-press')"
   >
     <image
       v-if="icon"
-      class="action-button-icon"
+      :style="styles.actionButtonIcon"
       :source="icon"
     />
-    <view v-if="icon && title" class="action-button-gap"/>
-    <text v-if="title" class="action-button-title">
+    <view v-if="icon && title" :style="styles.actionButtonGap"/>
+    <text v-if="title" :style="styles.actionButtonTitle">
       {{ title }}
     </text>
   </touchable-opacity>
 </template>
 
-<style>
-  .action-button {
-    display: flex;
-    flex: 1;
-    height: 150px;
-    background-color: white;
-    border-radius: 20px;
-    shadow-color: #c0c0ff;
-    shadow-radius: 5px;
-    shadow-opacity: 0.5;
-    elevation: 10;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-  }
-
-  .action-button-icon {
-    width: 55px;
-    height: 55px;
-    resize-mode: contain;
-  }
-
-  .action-button-title {
-    font-size: 17px;
-    font-weight: 600;
-  }
-
-  .action-button-gap {
-    height: 20px;
-  }
-</style>
-
 <script>
+import { cards } from './../styles'
+
 export default {
   name: 'ActionButton',
 
@@ -60,6 +29,40 @@ export default {
     },
     icon: {
       default: null
+    }
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme) => {
+  return {
+    actionButton: {
+      ...cards(isDarkScheme),
+      height: 150,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 30
+    },
+
+    actionButtonIcon: {
+      width: 55,
+      height: 55,
+      resizeMode: 'contain'
+    },
+
+    actionButtonTitle: {
+      color: isDarkScheme ? 'white' : 'black',
+      fontSize: 17,
+      fontWeight: '600'
+    },
+
+    actionButtonGap: {
+      height: 20
     }
   }
 }

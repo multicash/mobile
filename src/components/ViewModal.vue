@@ -6,7 +6,11 @@
     :on-request-close="() => $emit('update:visible', false)"
     :on-dismiss="() => $emit('update:visible', false)"
   >
-    <slot/>
+    <view
+      :style="styles.modal"
+    >
+      <slot/>
+    </view>
   </modal>
 </template>
 
@@ -18,6 +22,20 @@ export default {
     visible: {
       type: Boolean,
       required: true
+    }
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme) => {
+  return {
+    modal: {
+      backgroundColor: isDarkScheme ? 'black' : 'white'
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
-  <view class="modal-navigation">
+  <view :style="styles.modalNavigation">
     <view>
-      <text v-if="title" class="modal-navigation-title">
+      <text v-if="title" :style="styles.modalNavigationTitle">
         {{ title }}
       </text>
     </view>
@@ -14,30 +14,15 @@
   </view>
 </template>
 
-<style>
-  .modal-navigation {
-    background-color: #ededf3;
-    display: flex;
-    padding: 20px;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    shadow-color: rgba(30, 30, 74, 1);
-    shadow-radius: 10;
-    shadow-opacity: 0.3;
-  }
-
-  .modal-navigation-title {
-    font-weight: 600;
-    font-size: 18px;
-  }
-</style>
-
 <script>
 import RoundButton from './RoundButton'
+import { text } from './../styles'
+
 export default {
   name: 'ModalNavigation',
+
   components: { RoundButton },
+
   props: {
     title: {
       type: String,
@@ -46,6 +31,34 @@ export default {
     hasCloseButton: {
       type: Boolean,
       default: true
+    }
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme) => {
+  return {
+    modalNavigation: {
+      backgroundColor: isDarkScheme ? '#0c0c0c' : '#ededf3',
+      display: 'flex',
+      padding: 20,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      shadowColor: isDarkScheme ? '#85578f' : '#1E1E4A',
+      shadowRadius: 10,
+      shadowOpacity: 0.3
+    },
+
+    modalNavigationTitle: {
+      color: text(isDarkScheme).color,
+      fontWeight: '600',
+      fontSize: 18
     }
   }
 }
