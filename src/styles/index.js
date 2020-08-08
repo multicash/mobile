@@ -17,3 +17,17 @@ export const text = (isDarkTheme) => {
     color: isDarkTheme ? 'white' : 'black'
   }
 }
+
+export const subtitle = (isDarkTheme) => {
+  return {
+    fontWeight: '600',
+    color: isDarkTheme ? '#8386a0' : '#8386a0'
+  }
+}
+
+export const sectionTitle = (isDarkTheme) => {
+  return {
+    fontWeight: '600',
+    color: isDarkTheme ? '#aeb0c1' : '#303034'
+  }
+}

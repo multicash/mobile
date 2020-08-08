@@ -2,7 +2,7 @@
   <styled-view-background :style="styles.container">
     <view :style="styles.navigation">
       <round-button @on-press="settingsModalVisible = true" transparent-shadow>
-        <icon name="cog"/>
+        <icon name="settings-outline"/>
       </round-button>
     </view>
     <view :style="styles.content">

@@ -6,7 +6,9 @@
       :style="styles.roundButton"
       :on-press="pressed"
     >
-      <slot/>
+      <view :style="styles.content">
+        <slot/>
+      </view>
     </touchable-opacity>
   </view>
 </template>
@@ -58,6 +60,15 @@ const stylesStore = (isDarkScheme, transparentShadow) => {
       shadowRadius: 3,
       shadowOffset: { width: 3, height: 3 },
       shadowOpacity: transparentShadow ? 0.4 : 1
+    },
+
+    content: {
+      width: 36,
+      height: 36,
+      backgroundColor: 'transparent',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
     }
   }
 }

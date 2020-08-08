@@ -24,7 +24,7 @@
       >
         {{ wallet.amount }}
       </text>
-      <text :style="styles.walletCardAmountSign">MXC</text>
+      <text :style="styles.walletCardAmountSign">MCX</text>
     </view>
 
     <view :style="styles.moneyView">
