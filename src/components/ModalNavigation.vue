@@ -49,16 +49,13 @@ const stylesStore = (isDarkScheme) => {
       padding: 20,
       flexDirection: 'row',
       justifyContent: 'space-between',
-      alignItems: 'center',
-      shadowColor: isDarkScheme ? 'black' : '#1E1E4A',
-      shadowRadius: 10,
-      shadowOpacity: 0.3
+      alignItems: 'center'
     },
 
     modalNavigationTitle: {
       color: text(isDarkScheme).color,
-      fontWeight: '600',
-      fontSize: 18
+      fontWeight: 'bold',
+      fontSize: 25
     }
   }
 }

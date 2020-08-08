@@ -8,7 +8,9 @@
     />
     <view-background>
       <card>
-        <text>Pay</text>
+        <text :style="{color: 'white'}">
+          Lets send all of our money to someone!
+        </text>
       </card>
     </view-background>
   </view>

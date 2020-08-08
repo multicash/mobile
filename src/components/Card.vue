@@ -4,10 +4,6 @@
   </view>
 </template>
 
-<style>
-
-</style>
-
 <script>
 import { cards } from './../styles'
 
@@ -24,7 +20,11 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     card: {
-      ...cards(isDarkScheme)
+      ...cards(isDarkScheme),
+      backgroundColor: isDarkScheme ? '#464955' : '#f1f1f1',
+      shadowOpacity: 0.1,
+      elevation: 1,
+      borderRadius: 10
     }
   }
 }
