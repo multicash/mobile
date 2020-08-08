@@ -1,7 +1,7 @@
 <template>
   <image-background
     :style="styles.background"
-    :source="isDarkScheme ? null : require('./../assets/background-light.png')"
+    :source="isDarkScheme ? undefined : require('./../assets/background-light.png')"
   >
     <image-background
       :imageStyle="styles.headerStyle"
@@ -29,7 +29,7 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     background: {
-      backgroundColor: isDarkScheme ? '#0c0c0c' : 'white',
+      backgroundColor: isDarkScheme ? '#0f0f11' : 'white',
       resizeMode: 'stretch'
     },
     headerStyle: {

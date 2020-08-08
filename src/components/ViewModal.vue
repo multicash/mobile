@@ -35,7 +35,7 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     modal: {
-      backgroundColor: isDarkScheme ? 'black' : 'white'
+      backgroundColor: isDarkScheme ? '#0f0f11' : 'white'
     }
   }
 }

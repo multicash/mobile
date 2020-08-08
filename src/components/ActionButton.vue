@@ -43,6 +43,7 @@ const stylesStore = (isDarkScheme) => {
   return {
     actionButton: {
       ...cards(isDarkScheme),
+      flex: 1,
       height: 150,
       justifyContent: 'center',
       alignItems: 'center',

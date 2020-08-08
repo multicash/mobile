@@ -79,6 +79,7 @@ const stylesStore = (isDarkScheme) => {
   return {
     walletCard: {
       ...cards(isDarkScheme),
+      flex: 1,
       height: '100%',
       minWidth: 250
     },

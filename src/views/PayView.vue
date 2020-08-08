@@ -7,7 +7,9 @@
       @on-dismiss="$parent.$emit('update:visible', false)"
     />
     <view-background>
-      <text>Pay</text>
+      <card>
+        <text>Pay</text>
+      </card>
     </view-background>
   </view>
 </template>
@@ -19,10 +21,11 @@
 <script>
 import ViewBackground from '../components/ViewBackground'
 import ModalNavigation from '../components/ModalNavigation'
+import Card from '../components/Card'
 
 export default {
   name: 'PayView',
 
-  components: { ModalNavigation, ViewBackground }
+  components: { Card, ModalNavigation, ViewBackground }
 }
 </script>

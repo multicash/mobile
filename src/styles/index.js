@@ -1,9 +1,8 @@
 export const cards = (isDarkScheme) => {
   return {
     display: 'flex',
-    flex: 1,
-    backgroundColor: isDarkScheme ? 'black' : 'white',
-    shadowColor: isDarkScheme ? '#270333' : '#c0c0ff',
+    backgroundColor: isDarkScheme ? '#2c2e36' : 'white',
+    shadowColor: isDarkScheme ? 'black' : '#c0c0ff',
     shadowRadius: 5,
     shadowOpacity: 0.5,
     shadowOffset: { width: 3, height: 3 },

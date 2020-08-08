@@ -39,7 +39,7 @@ const stylesStore = (isDarkScheme, transparentShadow) => {
   return {
     roundButtonOuter: {
       borderRadius: 18,
-      shadowColor: isDarkScheme ? '#313171' : 'white',
+      shadowColor: isDarkScheme ? '#494971' : 'white',
       shadowRadius: 3,
       elevation: 10,
       shadowOffset: { width: -3, height: -3 },

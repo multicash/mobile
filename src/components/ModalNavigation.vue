@@ -44,13 +44,13 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     modalNavigation: {
-      backgroundColor: isDarkScheme ? '#0c0c0c' : '#ededf3',
+      backgroundColor: isDarkScheme ? '#2c2e36' : '#ededf3',
       display: 'flex',
       padding: 20,
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      shadowColor: isDarkScheme ? '#85578f' : '#1E1E4A',
+      shadowColor: isDarkScheme ? 'black' : '#1E1E4A',
       shadowRadius: 10,
       shadowOpacity: 0.3
     },
