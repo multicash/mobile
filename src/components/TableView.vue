@@ -3,12 +3,12 @@
     :style="styles.safeArea"
   >
     <section-list
-      :style="styles.list"
       :sections="sections"
       :keyExtractor="(item, index) => item + index"
       :renderItem="(item) => renderList(item)"
       :renderSectionHeader="({ section }) => renderSectionHeader(section)"
       :stickySectionHeadersEnabled="false"
+      :ListHeaderComponent="() => header(isDarkScheme)"
     />
   </safe-area-view>
 </template>
@@ -32,6 +32,10 @@ export default {
     sections: {
       type: Array,
       required: true
+    },
+    header: {
+      type: Function,
+      default: undefined
     }
   },
 
@@ -66,9 +70,7 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     safeArea: {
-      flex: 1
-    },
-    list: {
+      flex: 1,
       backgroundColor: isDarkScheme ? 'transparent' : '#ededf3'
     },
     header: {
