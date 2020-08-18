@@ -8,7 +8,7 @@
     />
     <view-background>
       <card>
-        <text :style="{color: 'white'}">
+        <text :style="{color: this.isDarkScheme ? 'white' : 'black' }">
           Lets send all of our money to someone!
         </text>
       </card>

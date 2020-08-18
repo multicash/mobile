@@ -2,10 +2,10 @@
   <styled-view-background :style="styles.container">
     <view :style="styles.navigation">
       <round-button :style="{ marginRight: 10 }" transparent-shadow>
-        <icon name="person-outline"/>
+        <icon name="people"/>
       </round-button>
       <round-button @on-press="settingsModalVisible = true" transparent-shadow>
-        <icon name="settings-outline"/>
+        <icon name="toggle"/>
       </round-button>
     </view>
     <view :style="styles.content">

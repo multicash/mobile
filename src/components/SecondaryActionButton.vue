@@ -41,8 +41,12 @@ const stylesStore = (isDarkScheme) => {
   return {
     actionButton: {
       ...cards(isDarkScheme),
-      backgroundColor: 'transparent',
-      padding: 0
+      backgroundColor: isDarkScheme ? 'black' : 'white',
+      borderRadius: 10,
+      paddingVertical: 5,
+      paddingHorizontal: 10,
+      shadowOpacity: 0,
+      elevation: 0
     },
 
     actionButtonContainer: {

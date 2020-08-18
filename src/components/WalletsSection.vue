@@ -93,7 +93,7 @@ const stylesStore = (isDarkScheme) => {
     },
 
     actionButton: {
-      marginRight: 20
+      marginRight: 10
     }
   }
 }
