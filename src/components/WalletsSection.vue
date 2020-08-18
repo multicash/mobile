@@ -1,11 +1,13 @@
 <template>
-  <view-section class="flex-grow" title="Wallets">
+  <view-section :style="styles.flexGrow" title="Wallets">
     <scroll-view
-      class="wallets"
+      :style="styles.wallets"
       horizontal
       :showsHorizontalScrollIndicator="false"
     >
-      <view class="wallets-container">
+      <view
+        :style="styles.walletsContainer"
+      >
         <wallet-card
           v-for="(wallet, i) in wallets"
           :key="wallet.name"
@@ -17,34 +19,31 @@
         />
       </view>
     </scroll-view>
+
+    <view :style="styles.actionsContainer">
+      <secondary-action-button
+        icon="albums-outline"
+        title=""
+        :style="styles.actionButton"
+      />
+      <secondary-action-button
+        icon="add-outline"
+        title="Add"
+        :style="styles.actionButton"
+      />
+    </view>
   </view-section>
 </template>
-
-<style>
-  .flex-grow {
-    flex: 1;
-    width: 100%;
-  }
-
-  .wallets {
-    display: flex;
-    margin: -30px;
-  }
-
-  .wallets-container {
-    display: flex;
-    margin: 30px;
-    flex-direction: row;
-  }
-</style>
 
 <script>
 import ViewSection from './ViewSection'
 import WalletCard from './WalletCard'
+import SecondaryActionButton from './SecondaryActionButton'
 
 export default {
   name: 'WalletsSection',
-  components: { WalletCard, ViewSection },
+
+  components: { SecondaryActionButton, WalletCard, ViewSection },
 
   data () {
     return {
@@ -60,6 +59,41 @@ export default {
           icon: 'gift'
         }
       ]
+    }
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme) => {
+  return {
+    flexGrow: {
+      flex: 1,
+      width: '100%'
+    },
+
+    wallets: {
+      display: 'flex',
+      margin: -30
+    },
+
+    walletsContainer: {
+      display: 'flex',
+      margin: 30,
+      flexDirection: 'row'
+    },
+
+    actionsContainer: {
+      flexDirection: 'row',
+      marginTop: 20
+    },
+
+    actionButton: {
+      marginRight: 20
     }
   }
 }

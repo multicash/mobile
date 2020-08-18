@@ -1,6 +1,9 @@
 <template>
   <styled-view-background :style="styles.container">
     <view :style="styles.navigation">
+      <round-button :style="{ marginRight: 10 }" transparent-shadow>
+        <icon name="person-outline"/>
+      </round-button>
       <round-button @on-press="settingsModalVisible = true" transparent-shadow>
         <icon name="settings-outline"/>
       </round-button>
@@ -34,7 +37,15 @@ import ViewModal from '../components/ViewModal'
 export default {
   name: 'HomeView',
 
-  components: { ViewModal, SettingsView, RoundButton, StyledViewBackground, WalletsSection, ActionsSection, ViewSection },
+  components: {
+    ViewModal,
+    SettingsView,
+    RoundButton,
+    StyledViewBackground,
+    WalletsSection,
+    ActionsSection,
+    ViewSection
+  },
 
   data () {
     return {
@@ -58,7 +69,8 @@ const stylesStore = (isDarkScheme) => {
 
     navigation: {
       flex: 0,
-      alignItems: 'flex-end',
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
       paddingTop: 10,
       paddingLeft: 30,
       paddingRight: 30,
@@ -83,7 +95,8 @@ const stylesStore = (isDarkScheme) => {
 
     logoImage: {
       resizeMode: 'contain',
-      height: 60,
+      height: 50,
+      marginVertical: 5,
       width: '100%'
     }
   }

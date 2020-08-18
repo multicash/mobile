@@ -18,11 +18,11 @@
         :icon="require('./../assets/receive.png')"
         @on-press="receiveModalVisible = true"
       />
-    </view>
 
-    <view-modal :visible.sync="receiveModalVisible">
-      <receive-view />
-    </view-modal>
+      <view-modal :visible.sync="receiveModalVisible">
+        <receive-view />
+      </view-modal>
+    </view>
   </view-section>
 </template>
 

@@ -6,7 +6,7 @@
     <touchable-opacity
       class="rounded-button"
       :on-press="dismiss"
-      :style="{ shadowOffset: { width: 3, height: 3 }}"
+      :style="{ shadowOffset: { width: 3, height: 3 }, flexDirection: 'row'}"
     >
       <slot>
         <text>{{ title }}</text>
