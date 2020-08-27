@@ -1,28 +1,97 @@
 <template>
   <view :style="{ flex: 1 }">
     <modal-navigation
-      title="Recipient"
+      title="Choose recipient"
       has-back-button
       @on-dismiss="navigation.goBack()"
     />
-    <view-background
-      :style="{ alignItems: 'center' }"
-    >
-      <text>Recipient</text>
-      <rounded-button @on-press="navigation.goBack()" title="Back"></rounded-button>
-    </view-background>
+    <table-view :sections="data" type="small"/>
   </view>
 </template>
 
 <script>
-import RoundedButton from '@/components/RoundedButton'
 import ModalNavigation from '@/components/ModalNavigation'
-import ViewBackground from '@/components/ViewBackground'
+import TableView from '@/components/TableView'
 
 export default {
   name: 'RecipientScreen',
 
-  components: { ViewBackground, ModalNavigation, RoundedButton },
+  components: { TableView, ModalNavigation },
+
+  data () {
+    return {
+      data: [
+        {
+          data: [
+            {
+              title: 'My wallets',
+              leftIcon: { name: 'wallet', size: 40 },
+              navigate: () => {
+                this.navigation.navigate('wallets')
+              }
+            },
+            {
+              title: 'Enter recipient address/tag',
+              leftIcon: { name: 'barcode-outline', size: 40 },
+              navigate: () => {
+                this.navigation.navigate('confirm', { amount: 10 })
+              }
+            }
+          ]
+        },
+        {
+          title: 'Recent',
+          data: [
+            {
+              title: 'Swen van Zanten',
+              subtitle: '@swenvanzanten',
+              leftIcon: { name: 'person-circle', size: 40 },
+              navigate: () => {
+                this.navigation.navigate('confirm', { amount: 10 })
+              }
+            },
+            {
+              title: 'Sunerok',
+              subtitle: '@justinvendetta',
+              leftIcon: { name: 'person-circle', color: 'yellow', size: 40 },
+              navigate: () => {
+                this.navigation.navigate('confirm', { amount: 10 })
+              }
+            }
+          ]
+        },
+        {
+          title: 'Favorites',
+          data: [
+            {
+              title: 'CryptoRekt',
+              subtitle: '@cr',
+              leftIcon: { name: 'person-circle', color: 'green', size: 40 },
+              navigate: () => {
+                this.navigation.navigate('confirm', { amount: 10 })
+              }
+            },
+            {
+              title: 'sandersvoice',
+              subtitle: '@sandersvoice',
+              leftIcon: { name: 'person-circle', color: 'orange', size: 40 },
+              navigate: () => {
+                this.navigation.navigate('confirm', { amount: 10 })
+              }
+            },
+            {
+              title: 'Michael',
+              subtitle: '@michael',
+              leftIcon: { name: 'person-circle', color: '#ba8348', size: 40 },
+              navigate: () => {
+                this.navigation.navigate('confirm', { amount: 10 })
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
 
   props: {
     navigation: {

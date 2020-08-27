@@ -2,7 +2,7 @@
   <view
     :style="styles.container"
   >
-    <modal-navigation title="Settings" @on-dismiss="$parent.$emit('update:visible', false)"/>
+    <modal-navigation title="Settings" has-close-button @on-dismiss="$parent.$emit('update:visible', false)"/>
     <table-view :sections="data" :header="renderTableHeader"/>
   </view>
 </template>

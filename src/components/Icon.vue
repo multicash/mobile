@@ -32,7 +32,7 @@ export default {
 
   computed: {
     defaultColor () {
-      return this.color || this.isDarkScheme ? 'white' : 'black'
+      return this.color ? this.color : (this.isDarkScheme ? 'white' : 'black')
     }
   }
 }

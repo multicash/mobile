@@ -8,7 +8,7 @@
       :renderItem="(item) => renderList(item)"
       :renderSectionHeader="({ section }) => renderSectionHeader(section)"
       :stickySectionHeadersEnabled="false"
-      :ListHeaderComponent="() => header(isDarkScheme)"
+      :ListHeaderComponent="renderListHeader"
     />
   </safe-area-view>
 </template>
@@ -36,12 +36,16 @@ export default {
     header: {
       type: Function,
       default: undefined
+    },
+    type: {
+      type: String,
+      default: 'medium'
     }
   },
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme)
+      return stylesStore(this.isDarkScheme, this.type)
     }
   },
 
@@ -55,26 +59,43 @@ export default {
         key={item.index}
         title={ item.item.title || undefined }
         subtitle={ item.item.subtitle || undefined }
-        leftIcon={ item.item.leftIcon ? { ...item.item.leftIcon, type: 'ionicon', color: this.styles.itemLeftIcon.color } : undefined }
-        rightIcon={ item.item.rightIcon ? { ...item.item.rightIcon, type: 'ionicon', color: this.styles.itemRightIcon.color } : undefined }
+        leftIcon={ item.item.leftIcon ? { type: 'ionicon', color: this.styles.itemLeftIcon.color, ...item.item.leftIcon } : undefined }
+        rightIcon={ item.item.rightIcon ? { type: 'ionicon', color: this.styles.itemRightIcon.color, ...item.item.rightIcon } : undefined }
         chevron
+        onPress={ () => this.onPress(item) }
       />)
     },
 
     renderSectionHeader (section) {
       return (<Text style={this.styles.header}>{ section.title }</Text>)
+    },
+
+    renderListHeader () {
+      if (this.header) {
+        return this.header(this.isDarkScheme)
+      }
+
+      return null
+    },
+
+    onPress (item) {
+      this.$emit('on-press', item)
+
+      if (item.item.navigate) {
+        item.item.navigate()
+      }
     }
   }
 }
 
-const stylesStore = (isDarkScheme) => {
+const stylesStore = (isDarkScheme, type) => {
   return {
     safeArea: {
       flex: 1,
       backgroundColor: isDarkScheme ? 'transparent' : '#ededf3'
     },
     header: {
-      paddingTop: 30,
+      paddingTop: type === 'small' ? 15 : 30,
       paddingLeft: 10,
       paddingRight: 10,
       paddingBottom: 10,

@@ -33,7 +33,7 @@
           v-if="amountNumber > 0"
           title="Recipient"
           :style="styles.recipientButton"
-          @on-press="selectRecipient"
+          @on-press="navigation.navigate('recipient')"
         />
       </view>
     </view-background>
@@ -81,12 +81,6 @@ export default {
 
     amountNumber () {
       return parseFloat(this.amount) || 0
-    }
-  },
-
-  methods: {
-    selectRecipient () {
-      this.navigation.navigate('Recipient')
     }
   }
 }

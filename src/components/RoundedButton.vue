@@ -51,7 +51,7 @@ const stylesStore = (isDarkScheme, innerStyle) => {
       borderRadius: 10,
       shadowColor: isDarkScheme ? '#494971' : 'white',
       shadowRadius: 3,
-      shadowOpacity: 1,
+      shadowOpacity: 0.2,
       shadowOffset: { width: -3, height: -3 },
       elevation: 10
     },
