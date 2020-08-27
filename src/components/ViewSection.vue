@@ -1,11 +1,13 @@
 <template>
   <view :style="styles.section">
-    <text
-      v-if="title !== ''"
-      :style="styles.sectionTitle"
-    >
-      {{ title }}
-    </text>
+    <slot name="title">
+      <text
+        v-if="title !== ''"
+        :style="styles.sectionTitle"
+      >
+        {{ title }}
+      </text>
+    </slot>
     <slot />
   </view>
 </template>

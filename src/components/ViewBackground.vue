@@ -18,9 +18,8 @@ export default {
 const stylesStore = () => {
   return {
     viewBackground: {
-      height: '100%',
+      flex: 1,
       padding: 20,
-      display: 'flex',
       flexDirection: 'column'
     }
   }

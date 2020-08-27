@@ -21,7 +21,7 @@
 import React from 'react'
 import { Text } from 'react-native'
 import { ListItem } from 'react-native-elements'
-import { text, subtitle, sectionTitle } from '../styles'
+import { text, subtitle, sectionTitle } from '@/styles'
 
 console.log(React.version)
 

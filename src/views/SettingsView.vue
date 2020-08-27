@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import ModalNavigation from '../components/ModalNavigation'
-import TableView from '../components/TableView'
-import TableHeaderView from '../react/components/TableHeaderView'
+import ModalNavigation from '@/components/ModalNavigation'
+import TableView from '@/components/TableView'
+import TableHeaderView from '@/react/components/TableHeaderView'
 
 export default {
   name: 'SettingsView',

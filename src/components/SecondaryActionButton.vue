@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { cards, text } from './../styles'
+import { cards, text } from '@/styles'
 
 export default {
   name: 'SecondaryActionButton',

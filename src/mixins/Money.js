@@ -1,5 +1,7 @@
 import Vue from 'vue-native-core'
-import constants from '../utils/constants'
+import constants from '@/utils/constants'
+import Intl from 'intl'
+import 'intl/locale-data/jsonp/en'
 
 Vue.mixin({
   methods: {

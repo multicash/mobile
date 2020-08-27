@@ -6,6 +6,7 @@
     :on-request-close="() => $emit('update:visible', false)"
     :on-dismiss="() => $emit('update:visible', false)"
   >
+    <status-bar bar-style="light-content" />
     <view
       :style="styles.modal"
     >
@@ -35,7 +36,8 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     modal: {
-      backgroundColor: isDarkScheme ? '#222429' : 'white'
+      flex: 1,
+      backgroundColor: isDarkScheme ? '#222429' : '#ededf3'
     }
   }
 }

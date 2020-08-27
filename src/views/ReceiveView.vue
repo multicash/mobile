@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view :style="{ flex: 1 }">
     <status-bar bar-style="light-content" />
     <modal-navigation
       title="Receive"

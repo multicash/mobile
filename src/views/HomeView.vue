@@ -26,13 +26,13 @@
 </template>
 
 <script>
-import ViewSection from './../components/ViewSection'
-import WalletsSection from './../components/WalletsSection'
-import ActionsSection from './../components/ActionsSection'
-import StyledViewBackground from '../components/StyledViewBackground'
-import RoundButton from '../components/RoundButton'
-import SettingsView from './SettingsView'
-import ViewModal from '../components/ViewModal'
+import ViewSection from '@/components/ViewSection'
+import WalletsSection from '@/components/WalletsSection'
+import ActionsSection from '@/components/ActionsSection'
+import StyledViewBackground from '@/components/StyledViewBackground'
+import RoundButton from '@/components/RoundButton'
+import SettingsView from '@/views/SettingsView'
+import ViewModal from '@/components/ViewModal'
 
 export default {
   name: 'HomeView',

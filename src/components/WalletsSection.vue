@@ -36,9 +36,9 @@
 </template>
 
 <script>
-import ViewSection from './ViewSection'
-import WalletCard from './WalletCard'
-import SecondaryActionButton from './SecondaryActionButton'
+import ViewSection from '@/components/ViewSection'
+import WalletCard from '@/components/WalletCard'
+import SecondaryActionButton from '@/components/SecondaryActionButton'
 
 export default {
   name: 'WalletsSection',

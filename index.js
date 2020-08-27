@@ -3,12 +3,12 @@
  */
 
 import { AppRegistry } from 'react-native'
-import App from './src/App'
+import App from '@/App'
 import Vue from 'vue-native-core'
 import { name as appName } from './app.json'
-import Icon from './src/components/Icon'
-import './src/mixins/ColorScheme'
-import './src/mixins/Money'
+import Icon from '@/components/Icon'
+import '@/mixins/ColorScheme'
+import '@/mixins/Money'
 
 Vue.component('icon', Icon)
 

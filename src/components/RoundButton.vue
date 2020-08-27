@@ -5,6 +5,7 @@
     <touchable-opacity
       :style="styles.roundButton"
       :on-press="pressed"
+      :active-opacity="0.6"
     >
       <view :style="styles.content">
         <slot/>

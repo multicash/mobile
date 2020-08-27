@@ -1,22 +1,23 @@
 <template>
   <view :style="styles.modalNavigation">
+    <round-button
+      v-if="hasCloseButton || hasBackButton"
+      @on-press="$emit('on-dismiss')"
+    >
+      <icon v-if="hasCloseButton" name="close" />
+      <icon v-if="hasBackButton" name="chevron-back" />
+    </round-button>
     <view>
       <text v-if="title" :style="styles.modalNavigationTitle">
         {{ title }}
       </text>
     </view>
-    <round-button
-      v-if="hasCloseButton"
-      @on-press="$emit('on-dismiss')"
-    >
-      <icon name="close" />
-    </round-button>
   </view>
 </template>
 
 <script>
-import RoundButton from './RoundButton'
-import { text } from './../styles'
+import RoundButton from '@/components/RoundButton'
+import { text } from '@/styles'
 
 export default {
   name: 'ModalNavigation',
@@ -30,7 +31,11 @@ export default {
     },
     hasCloseButton: {
       type: Boolean,
-      default: true
+      default: false
+    },
+    hasBackButton: {
+      type: Boolean,
+      default: false
     }
   },
 

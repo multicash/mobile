@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view :style="{ flex: 1 }">
     <status-bar bar-style="light-content" />
     <modal-navigation
       :title="wallet.name"
@@ -11,9 +11,7 @@
         {{ wallet.amount }}
       </text>
 
-      <rounded-button>
-        <text>Hello World</text>
-      </rounded-button>
+      <rounded-button title="Hello World" />
     </view-background>
   </view>
 </template>

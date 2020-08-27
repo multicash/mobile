@@ -1,11 +1,11 @@
 <template>
   <image-background
     :style="styles.background"
-    :source="isDarkScheme ? undefined : require('./../assets/background-light.png')"
+    :source="isDarkScheme ? undefined : require('@/assets/background-light.png')"
   >
     <image-background
       :imageStyle="styles.headerStyle"
-     :source="require('./../assets/background-header.png')"
+     :source="require('@/assets/background-header.png')"
     >
       <status-bar bar-style="light-content" />
       <safe-area-view :style="styles.safeArea">

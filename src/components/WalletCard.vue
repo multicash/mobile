@@ -46,9 +46,9 @@
 </template>
 
 <script>
-import WalletView from '../views/WalletView'
-import ViewModal from './ViewModal'
-import { cards, text } from './../styles/index'
+import WalletView from '@/views/WalletView'
+import ViewModal from '@/components/ViewModal'
+import { cards, text } from '@/styles/index'
 
 export default {
   name: 'WalletCard',

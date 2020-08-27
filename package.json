@@ -11,6 +11,7 @@
     "android": "react-native run-android"
   },
   "dependencies": {
+    "intl": "^1.2.5",
     "react": "^16.13.1",
     "react-native": "^0.63.1",
     "react-native-elements": "^2.1.0",
@@ -33,6 +34,7 @@
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/eslint-config-typescript": "^5.0.2",
     "babel-jest": "^26.1.0",
+    "babel-plugin-root-import": "^6.5.0",
     "eslint": "^7.6.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-node": "^11.1.0",

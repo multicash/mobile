@@ -3,7 +3,7 @@
     <view class="actions">
       <action-button
         title="Pay"
-        :icon="require('./../assets/send.png')"
+        :icon="require('@/assets/send.png')"
         @on-press="payModalVisible = true"
       />
 
@@ -15,7 +15,7 @@
 
       <action-button
         title="Receive"
-        :icon="require('./../assets/receive.png')"
+        :icon="require('@/assets/receive.png')"
         @on-press="receiveModalVisible = true"
       />
 
@@ -35,12 +35,12 @@
 </style>
 
 <script>
-import Spacer from './Spacer'
-import ViewSection from './ViewSection'
-import ActionButton from './ActionButton'
-import PayView from '../views/PayView'
-import ReceiveView from '../views/ReceiveView'
-import ViewModal from './ViewModal'
+import Spacer from '@/components/Spacer'
+import ViewSection from '@/components/ViewSection'
+import ActionButton from '@/components/ActionButton'
+import PayView from '@/views/pay/PayView'
+import ReceiveView from '@/views/ReceiveView'
+import ViewModal from '@/components/ViewModal'
 
 export default {
   name: 'ActionsSection',
