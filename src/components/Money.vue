@@ -15,7 +15,7 @@ export default {
     },
     currency: {
       type: String,
-      default: 'XVG'
+      default: 'MCX'
     },
     crypto: {
       type: Boolean,

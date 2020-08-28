@@ -13,16 +13,19 @@ Vue.mixin({
     },
 
     getFormattedCrypto: (amount: number, lang: string, coin: any) => {
-      return new Intl.NumberFormat(lang, {
-        style: 'currency',
-        currency: coin
+      const formattedAmount = new Intl.NumberFormat(lang, {
+        style: 'decimal',
+        minimumFractionDigits: 2
       }).format(amount)
+
+      return `${formattedAmount} ${coin}`
     },
 
     formatAmountFromSatoshis: (satoshis: number, lang: string) => {
       return new Intl.NumberFormat(lang, {
         style: 'currency',
-        currency: 'XVG'
+        currency: 'MCX',
+        minimumFractionDigits: 2
       }).format(satoshis / 10 ** constants.decimalPerSatoshi)
     }
   }

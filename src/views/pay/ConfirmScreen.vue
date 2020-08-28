@@ -9,24 +9,12 @@
       :style="{ alignItems: 'center' }"
     >
       <view :style="styles.headerContainer">
-        <view :style="styles.iconContainer">
-          <view :style="styles.iconCircle">
-            <icon name="wallet" :size="40" color="#2ab779"/>
-          </view>
-          <text :style="styles.walletTitle">Main Account</text>
-          <text :style="styles.walletAmount">50,444.44 MCX</text>
-        </view>
+        <source-icon title="Main Account" :amount="50444440000" icon="wallet" icon-color="#2ab779"/>
         <icon name="arrow-forward-outline" :size="50"/>
-        <view :style="styles.iconContainer">
-          <view :style="styles.iconCircle">
-            <icon name="gift" :size="40" color="#952aaa"/>
-          </view>
-          <text :style="styles.walletTitle">Savings Account</text>
-          <text :style="styles.walletAmount"> </text>
-        </view>
+        <source-icon title="Savings Account" icon="gift" icon-color="#952aaa"/>
       </view>
 
-      <text :style="styles.amount">{{ navigation.state.params.amount + '.00 MCX' || '' }}</text>
+      <money crypto :amount="navigation.state.params.amount * 1000000" :style="styles.amount"/>
 
       <rounded-button
         title="Send payment"
@@ -45,11 +33,13 @@
 import ModalNavigation from '@/components/ModalNavigation'
 import ViewBackground from '@/components/ViewBackground'
 import RoundedButton from '@/components/RoundedButton'
+import SourceIcon from '@/components/SourceIcon'
+import Money from '@/components/Money'
 
 export default {
   name: 'ConfirmScreen',
 
-  components: { RoundedButton, ViewBackground, ModalNavigation },
+  components: { Money, SourceIcon, RoundedButton, ViewBackground, ModalNavigation },
 
   props: {
     navigation: {
@@ -74,37 +64,11 @@ const stylesStore = (isDarkScheme) => {
       paddingHorizontal: 20
     },
 
-    iconContainer: {
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-
-    iconCircle: {
-      height: 64,
-      width: 64,
-      borderRadius: 32,
-      backgroundColor: isDarkScheme ? '#494949' : '#bbbbbb',
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingLeft: 3,
-      marginBottom: 10
-    },
-
     amount: {
       fontSize: 40,
       color: '#a014c1',
       fontWeight: '600',
       padding: 30
-    },
-
-    walletTitle: {
-      color: isDarkScheme ? 'white' : 'black',
-      fontSize: 12
-    },
-
-    walletAmount: {
-      color: isDarkScheme ? '#a7a7a7' : '#727272',
-      fontSize: 12
     },
 
     sendPaymentButton: {

@@ -25,7 +25,7 @@ export default {
           data: [
             {
               title: 'Main Account',
-              subtitle: '10,505.44 MCX',
+              subtitle: this.getFormattedCrypto(10505.44, 'en', 'MCX'),
               leftIcon: { name: 'wallet', color: '#2ab779', size: 40 },
               navigate: () => {
                 this.navigation.navigate('confirm', { amount: 10 })
@@ -33,7 +33,7 @@ export default {
             },
             {
               title: 'Savings Account',
-              subtitle: '1.430.705.78 MCX',
+              subtitle: this.getFormattedCrypto(1430705.78, 'en', 'MCX'),
               leftIcon: { name: 'gift', color: '#952aaa', size: 40 },
               navigate: () => {
                 this.navigation.navigate('confirm', { amount: 10 })
