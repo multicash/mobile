@@ -1,22 +1,23 @@
 <template>
-  <view :style="{ flex: 1 }">
+  <view-background no-padding>
     <modal-navigation
       title="Choose recipient"
       has-back-button
       @on-dismiss="navigation.goBack()"
     />
     <table-view :sections="data" type="small"/>
-  </view>
+  </view-background>
 </template>
 
 <script>
 import ModalNavigation from '@/components/ModalNavigation'
 import TableView from '@/components/TableView'
+import ViewBackground from '@/components/ViewBackground'
 
 export default {
   name: 'RecipientScreen',
 
-  components: { TableView, ModalNavigation },
+  components: { ViewBackground, TableView, ModalNavigation },
 
   data () {
     return {

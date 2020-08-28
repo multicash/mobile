@@ -24,6 +24,7 @@
       <text-input
         :style="styles.descriptionTextInput"
         placeholder="Description"
+        :placeholder-text-color="isDarkScheme ? '#d8d8d8' : '#606060'"
       />
     </view-background>
   </view>
@@ -78,7 +79,7 @@ const stylesStore = (isDarkScheme) => {
 
     descriptionTextInput: {
       color: isDarkScheme ? 'white' : 'black',
-      backgroundColor: isDarkScheme ? '#2e2e36' : '#dfdfdf',
+      backgroundColor: isDarkScheme ? '#2e2e36' : '#d0d7e1',
       borderRadius: 5,
       width: '100%',
       height: 50,

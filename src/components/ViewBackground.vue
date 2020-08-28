@@ -8,19 +8,27 @@
 export default {
   name: 'ViewBackground',
 
+  props: {
+    noPadding: {
+      type: Boolean,
+      default: false
+    }
+  },
+
   computed: {
     styles () {
-      return stylesStore()
+      return stylesStore(this.isDarkScheme, this.noPadding)
     }
   }
 }
 
-const stylesStore = () => {
+const stylesStore = (isDarkScheme, noPadding) => {
   return {
     viewBackground: {
       flex: 1,
-      padding: 20,
-      flexDirection: 'column'
+      padding: noPadding ? 0 : 20,
+      flexDirection: 'column',
+      backgroundColor: isDarkScheme ? '#222429' : '#ededf3'
     }
   }
 }

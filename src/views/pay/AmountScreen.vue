@@ -11,6 +11,9 @@
       <view
         :style="styles.container"
       >
+        <view :style="styles.sourceContainer">
+          <selector name="From wallet" value="Main Account" @on-press="selectSourceWallet"/>
+        </view>
         <view :style="styles.inputContainer">
           <text :style="styles.title">How much?</text>
           <view :style="styles.amountContainer">
@@ -46,12 +49,13 @@ import ModalNavigation from '@/components/ModalNavigation'
 import Money from '@/components/Money'
 import RoundedButton from '@/components/RoundedButton'
 import Spacer from '@/components/Spacer'
+import Selector from '@/components/Selector'
 import { Platform, Keyboard } from 'react-native'
 
 export default {
   name: 'AmountScreen',
 
-  components: { Spacer, RoundedButton, Money, ModalNavigation, ViewBackground },
+  components: { Spacer, Selector, RoundedButton, Money, ModalNavigation, ViewBackground },
 
   data () {
     return {
@@ -82,6 +86,12 @@ export default {
     amountNumber () {
       return parseFloat(this.amount) || 0
     }
+  },
+
+  methods: {
+    selectSourceWallet () {
+      alert('Nice')
+    }
   }
 }
 
@@ -90,14 +100,15 @@ const stylesStore = (isDarkScheme, keyboardHeight) => {
     container: {
       flex: 1,
       width: '100%',
-      marginBottom: Platform.OS === 'ios' ? keyboardHeight : 0,
-      justifyContent: 'center',
-      alignItems: 'center'
+      marginBottom: Platform.OS === 'ios' ? keyboardHeight : 0
+    },
+
+    sourceContainer: {
+      marginBottom: 50
     },
 
     inputContainer: {
       flex: 1,
-      justifyContent: 'center',
       alignItems: 'center'
     },
 

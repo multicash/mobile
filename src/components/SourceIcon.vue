@@ -53,7 +53,7 @@ const stylesStore = (isDarkScheme) => {
       height: 64,
       width: 64,
       borderRadius: 32,
-      backgroundColor: isDarkScheme ? '#494949' : '#bbbbbb',
+      backgroundColor: isDarkScheme ? '#494949' : '#d6d5d5',
       justifyContent: 'center',
       alignItems: 'center',
       paddingLeft: 3,

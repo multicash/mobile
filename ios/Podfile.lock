@@ -298,9 +298,9 @@ PODS:
     - React-jsi (= 0.63.1)
   - RNGestureHandler (1.7.0):
     - React
-  - RNReanimated (1.10.1):
+  - RNReanimated (1.13.0):
     - React
-  - RNScreens (2.9.0):
+  - RNScreens (2.10.1):
     - React
   - RNVectorIcons (7.0.0):
     - React
@@ -476,12 +476,12 @@ SPEC CHECKSUMS:
   React-RCTVibration: f3a9123c244f35c40d3c9f3ec3f0b9e5717bb292
   ReactCommon: 2905859f84a94a381bb0d8dd3921ccb1a0047cb8
   RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
-  RNReanimated: c2bb7438b57a3d987bb2e4e6e4bca94787e30b02
-  RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
+  RNReanimated: 89f5e0a04d1dd52fbf27e7e7030d8f80a646a3fc
+  RNScreens: b748efec66e095134c7166ca333b628cd7e6f3e2
   RNVectorIcons: da6fe858f5a65d7bbc3379540a889b0b12aa5976
   Yoga: d5bd05a2b6b94c52323745c2c2b64557c8c66f64
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 8473eac31b43119a09f636976185696dd0cf0d9c
+PODFILE CHECKSUM: 9de62c29d71b2f6a6b63a8e6c8d0ad9b3a1da9ae
 
 COCOAPODS: 1.9.3
