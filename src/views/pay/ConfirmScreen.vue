@@ -9,9 +9,16 @@
       :style="{ alignItems: 'center' }"
     >
       <view :style="styles.headerContainer">
-        <source-icon title="Main Account" :amount="50444440000" icon="wallet" icon-color="#2ab779"/>
+        <source-icon
+          title="Main Account"
+          :amount="50444440000"
+          :image="require('@/assets/walletIcons/wallet.png')"
+        />
         <icon name="arrow-forward-outline" :size="50"/>
-        <source-icon title="Savings Account" icon="gift" icon-color="#952aaa"/>
+        <source-icon
+          title="Savings Account"
+          :image="require('@/assets/walletIcons/money_box.png')"
+        />
       </view>
 
       <money crypto :amount="navigation.state.params.amount * 1000000" :style="styles.amount"/>
@@ -19,6 +26,7 @@
       <rounded-button
         title="Send payment"
         :style="styles.sendPaymentButton"
+        @on-press="navigation.navigate('pay')"
       />
 
       <text-input

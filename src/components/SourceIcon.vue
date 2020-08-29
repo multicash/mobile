@@ -1,7 +1,8 @@
 <template>
   <view :style="styles.iconContainer">
     <view :style="styles.iconCircle">
-      <icon :name="icon" :size="40" :color="iconColor"/>
+      <icon v-if="icon" :name="icon" :size="40" :color="iconColor"/>
+      <image v-if="image" :source="image" :style="styles.image"/>
     </view>
     <text :style="styles.walletTitle">{{ title }}</text>
     <money v-if="amount" :style="styles.walletAmount" :amount="amount" crypto/>
@@ -16,8 +17,14 @@ export default {
   name: 'SourceIcon',
   components: { Money },
   props: {
+    image: {
+      type: String,
+      default: null
+    },
+
     icon: {
-      type: String
+      type: String,
+      default: null
     },
 
     iconColor: {
@@ -58,6 +65,12 @@ const stylesStore = (isDarkScheme) => {
       alignItems: 'center',
       paddingLeft: 3,
       marginBottom: 10
+    },
+
+    image: {
+      width: 40,
+      height: 40,
+      resizeMode: 'contain'
     },
 
     walletTitle: {

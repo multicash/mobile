@@ -12,7 +12,11 @@
         :style="styles.container"
       >
         <view :style="styles.sourceContainer">
-          <selector name="From wallet" value="Main Account" @on-press="selectSourceWallet"/>
+          <selector
+            name="From wallet"
+            :value="sourceWallet"
+            @on-press="selectSourceWallet"
+          />
         </view>
         <view :style="styles.inputContainer">
           <text :style="styles.title">How much?</text>
@@ -60,6 +64,7 @@ export default {
   data () {
     return {
       amount: '',
+      sourceWallet: 'Main Account',
       keyboardHeight: 0
     }
   },
@@ -90,7 +95,12 @@ export default {
 
   methods: {
     selectSourceWallet () {
-      alert('Nice')
+      this.navigation.navigate('wallets', {
+        goBack: true,
+        resolve: (value) => {
+          this.sourceWallet = value.name
+        }
+      })
     }
   }
 }

@@ -8,13 +8,15 @@ import AmountScreen from '@/views/pay/AmountScreen'
 import RecipientScreen from '@/views/pay/RecipientScreen'
 import WalletsScreen from '@/views/pay/WalletsScreen'
 import ConfirmScreen from '@/views/pay/ConfirmScreen'
+import PayingScreen from '@/views/pay/PayingScreen'
 
 const StackNavigator = createStackNavigator(
   {
     amount: AmountScreen,
     recipient: RecipientScreen,
     wallets: WalletsScreen,
-    confirm: ConfirmScreen
+    confirm: ConfirmScreen,
+    pay: PayingScreen
   },
   {
     initialRouteName: 'amount',

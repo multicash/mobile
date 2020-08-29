@@ -28,7 +28,7 @@ export default {
               title: 'My wallets',
               leftIcon: { name: 'wallet', size: 40 },
               navigate: () => {
-                this.navigation.navigate('wallets')
+                this.navigation.navigate('wallets', { navigate: 'confirm' })
               }
             },
             {

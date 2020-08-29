@@ -67,7 +67,12 @@ export default {
 
   methods: {
     renderTableHeader (isDarkScheme) {
-      return TableHeaderView(isDarkScheme, undefined, 'Manage your MultiCash settings', require('./../assets/settings.png'))
+      return TableHeaderView(
+        isDarkScheme,
+        undefined,
+        'Manage your MultiCash settings',
+        require('@/assets/settings.png')
+      )
     }
   }
 }
