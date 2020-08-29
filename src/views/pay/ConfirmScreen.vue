@@ -12,16 +12,27 @@
         <source-icon
           title="Main Account"
           :amount="50444440000"
-          :image="require('@/assets/walletIcons/wallet.png')"
+          image="wallet"
         />
         <icon name="arrow-forward-outline" :size="50"/>
         <source-icon
           title="Savings Account"
-          :image="require('@/assets/walletIcons/money_box.png')"
+          image="moneyBox"
         />
       </view>
 
-      <money crypto :amount="navigation.state.params.amount * 1000000" :style="styles.amount"/>
+      <view :style="styles.amountContainer">
+        <money
+          crypto
+          :amount="navigation.state.params.amount * 1000000"
+          :style="styles.amount"
+        />
+        <money
+          convert
+          :amount="parseFloat(navigation.state.params.amount) || 0"
+          :style="styles.calculatedAmount"
+        />
+      </view>
 
       <rounded-button
         title="Send payment"
@@ -29,11 +40,7 @@
         @on-press="navigation.navigate('pay')"
       />
 
-      <text-input
-        :style="styles.descriptionTextInput"
-        placeholder="Description"
-        :placeholder-text-color="isDarkScheme ? '#d8d8d8' : '#606060'"
-      />
+      <rounded-text-input title="Description" placeholder="Why this payment?" />
     </view-background>
   </view>
 </template>
@@ -44,11 +51,12 @@ import ViewBackground from '@/components/ViewBackground'
 import RoundedButton from '@/components/RoundedButton'
 import SourceIcon from '@/components/SourceIcon'
 import Money from '@/components/Money'
+import RoundedTextInput from '@/components/RoundedTextInput'
 
 export default {
   name: 'ConfirmScreen',
 
-  components: { Money, SourceIcon, RoundedButton, ViewBackground, ModalNavigation },
+  components: { RoundedTextInput, Money, SourceIcon, RoundedButton, ViewBackground, ModalNavigation },
 
   props: {
     navigation: {
@@ -73,25 +81,26 @@ const stylesStore = (isDarkScheme) => {
       paddingHorizontal: 20
     },
 
+    amountContainer: {
+      padding: 30,
+      alignItems: 'center'
+    },
+
     amount: {
       fontSize: 40,
       color: '#a014c1',
-      fontWeight: '600',
-      padding: 30
+      fontWeight: '600'
+    },
+
+    calculatedAmount: {
+      color: isDarkScheme ? '#8374b2' : '#4d3f70',
+      fontSize: 20,
+      fontWeight: 'bold'
     },
 
     sendPaymentButton: {
       width: '100%',
       marginBottom: 10
-    },
-
-    descriptionTextInput: {
-      color: isDarkScheme ? 'white' : 'black',
-      backgroundColor: isDarkScheme ? '#2e2e36' : '#d0d7e1',
-      borderRadius: 5,
-      width: '100%',
-      height: 50,
-      padding: 10
     }
   }
 }

@@ -35,7 +35,7 @@ export default {
               title: 'Enter recipient address/tag',
               leftIcon: { name: 'barcode-outline', size: 40 },
               navigate: () => {
-                this.navigation.navigate('confirm', { amount: 10 })
+                this.navigation.navigate('enterRecipient')
               }
             }
           ]

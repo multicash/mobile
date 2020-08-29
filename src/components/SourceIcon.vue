@@ -2,7 +2,7 @@
   <view :style="styles.iconContainer">
     <view :style="styles.iconCircle">
       <icon v-if="icon" :name="icon" :size="40" :color="iconColor"/>
-      <image v-if="image" :source="image" :style="styles.image"/>
+      <wallet-icon v-if="image" :icon="image" :size="40"/>
     </view>
     <text :style="styles.walletTitle">{{ title }}</text>
     <money v-if="amount" :style="styles.walletAmount" :amount="amount" crypto/>
@@ -12,10 +12,13 @@
 
 <script>
 import Money from '@/components/Money'
+import WalletIcon from '@/components/WalletIcon'
 
 export default {
   name: 'SourceIcon',
-  components: { Money },
+
+  components: { WalletIcon, Money },
+
   props: {
     image: {
       type: String,
@@ -44,12 +47,12 @@ export default {
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme)
+      return stylesStore(this.isDarkScheme, !!this.image)
     }
   }
 }
 
-const stylesStore = (isDarkScheme) => {
+const stylesStore = (isDarkScheme, usesImage) => {
   return {
     iconContainer: {
       justifyContent: 'center',
@@ -63,14 +66,8 @@ const stylesStore = (isDarkScheme) => {
       backgroundColor: isDarkScheme ? '#494949' : '#d6d5d5',
       justifyContent: 'center',
       alignItems: 'center',
-      paddingLeft: 3,
+      paddingLeft: usesImage ? 0 : 3,
       marginBottom: 10
-    },
-
-    image: {
-      width: 40,
-      height: 40,
-      resizeMode: 'contain'
     },
 
     walletTitle: {

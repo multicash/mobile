@@ -5,7 +5,7 @@
     :style="styles.walletCard"
   >
     <view :style="styles.walletCardHeader">
-      <icon :name="wallet.icon" :size="30" :style="styles.walletCardIcon"/>
+      <wallet-icon :icon="wallet.icon" :size="30"/>
 
       <text
         :style="styles.walletCardName"
@@ -49,11 +49,12 @@
 import WalletView from '@/views/WalletView'
 import ViewModal from '@/components/ViewModal'
 import { cards, text } from '@/styles/index'
+import WalletIcon from '@/components/WalletIcon'
 
 export default {
   name: 'WalletCard',
 
-  components: { ViewModal, WalletView },
+  components: { WalletIcon, ViewModal, WalletView },
 
   data () {
     return {
@@ -88,9 +89,6 @@ const stylesStore = (isDarkScheme) => {
       alignItems: 'center',
       flexDirection: 'row',
       marginBottom: 10
-    },
-    walletCardIcon: {
-      color: text(isDarkScheme).color
     },
     walletCardName: {
       marginLeft: 10,
