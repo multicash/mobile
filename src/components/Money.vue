@@ -1,5 +1,9 @@
 <template>
-  <text>{{ amountFormatted }}</text>
+  <text
+    :minimumFontScale="0.01"
+    :adjustsFontSizeToFit="true"
+    :numberOfLines="1"
+  >{{ amountFormatted }}</text>
 </template>
 
 <script>

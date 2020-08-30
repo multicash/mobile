@@ -46,7 +46,7 @@ export default {
             {
               title: 'Swen van Zanten',
               subtitle: '@swenvanzanten',
-              leftIcon: { name: 'person-circle', size: 40 },
+              leftIcon: { name: 'person-circle', color: '#c807a9', size: 40 },
               navigate: () => {
                 this.navigation.navigate('confirm', { amount: 10 })
               }
@@ -54,7 +54,7 @@ export default {
             {
               title: 'Sunerok',
               subtitle: '@justinvendetta',
-              leftIcon: { name: 'person-circle', color: 'yellow', size: 40 },
+              leftIcon: { name: 'person-circle', color: '#00ffb2', size: 40 },
               navigate: () => {
                 this.navigation.navigate('confirm', { amount: 10 })
               }
@@ -67,7 +67,7 @@ export default {
             {
               title: 'CryptoRekt',
               subtitle: '@cr',
-              leftIcon: { name: 'person-circle', color: 'green', size: 40 },
+              leftIcon: { name: 'person-circle', color: '#a7fb00', size: 40 },
               navigate: () => {
                 this.navigation.navigate('confirm', { amount: 10 })
               }
@@ -75,7 +75,7 @@ export default {
             {
               title: 'sandersvoice',
               subtitle: '@sandersvoice',
-              leftIcon: { name: 'person-circle', color: 'orange', size: 40 },
+              leftIcon: { name: 'person-circle', color: '#3b28f3', size: 40 },
               navigate: () => {
                 this.navigation.navigate('confirm', { amount: 10 })
               }
@@ -83,7 +83,7 @@ export default {
             {
               title: 'Michael',
               subtitle: '@michael',
-              leftIcon: { name: 'person-circle', color: '#ba8348', size: 40 },
+              leftIcon: { name: 'person-circle', color: '#eaee18', size: 40 },
               navigate: () => {
                 this.navigation.navigate('confirm', { amount: 10 })
               }

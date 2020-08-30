@@ -19,7 +19,7 @@
       />
 
       <view :style="styles.addFavoritesContainer">
-        <text>Add to favorites</text>
+        <text :style="styles.addFavoritesText">Add to favorites</text>
         <switch v-model="addToFavorites"/>
       </view>
 
@@ -52,18 +52,22 @@ export default {
 
   computed: {
     styles () {
-      return stylesStore()
+      return stylesStore(this.isDarkScheme)
     }
   }
 }
 
-const stylesStore = () => {
+const stylesStore = (isDarkScheme) => {
   return {
     addFavoritesContainer: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
       marginBottom: 20
+    },
+
+    addFavoritesText: {
+      color: isDarkScheme ? 'white' : 'black'
     }
   }
 }

@@ -4,7 +4,7 @@
     <text-input
       :style="styles.textInput"
       :placeholder="placeholder"
-      :placeholder-text-color="isDarkScheme ? '#606060' : '#7f7f7f'"
+      :placeholder-text-color="isDarkScheme ? '#848484' : '#7f7f7f'"
     />
   </view>
 </template>
@@ -38,20 +38,21 @@ const stylesStore = (isDarkScheme) => {
       backgroundColor: isDarkScheme ? '#2e2e36' : '#d0d7e1',
       borderRadius: 5,
       width: '100%',
-      height: 50,
+      height: 60,
       padding: 10,
       justifyContent: 'center'
     },
 
     title: {
-      color: isDarkScheme ? '#6b47e1' : '#4c00ff',
-      fontSize: 10,
+      color: isDarkScheme ? '#9176e6' : '#4c00ff',
+      fontSize: 12,
       marginBottom: 2
     },
 
     textInput: {
       color: isDarkScheme ? 'white' : 'black',
-      width: '100%'
+      width: '100%',
+      fontSize: 18
     }
   }
 }

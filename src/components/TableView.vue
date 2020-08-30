@@ -40,12 +40,16 @@ export default {
     type: {
       type: String,
       default: 'medium'
+    },
+    grouped: {
+      type: Boolean,
+      default: true
     }
   },
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme, this.type)
+      return stylesStore(this.isDarkScheme, this.type, this.grouped)
     }
   },
 
@@ -61,7 +65,7 @@ export default {
         subtitle={ item.item.subtitle || undefined }
         leftIcon={ item.item.leftIcon ? { type: 'ionicon', color: this.styles.itemLeftIcon.color, ...item.item.leftIcon } : undefined }
         rightIcon={ item.item.rightIcon ? { type: 'ionicon', color: this.styles.itemRightIcon.color, ...item.item.rightIcon } : undefined }
-        leftAvatar={ item.item.leftAvatar ? { ...item.item.leftAvatar } : undefined }
+        leftAvatar={ item.item.leftAvatar ? { placeholderStyle: { backgroundColor: 'transparent' }, ...item.item.leftAvatar } : undefined }
         chevron
         onPress={ () => this.onPress(item) }
       />)
@@ -89,17 +93,18 @@ export default {
   }
 }
 
-const stylesStore = (isDarkScheme, type) => {
+const stylesStore = (isDarkScheme, type, grouped) => {
   return {
     safeArea: {
       flex: 1,
-      backgroundColor: isDarkScheme ? 'transparent' : '#ededf3'
+      backgroundColor: grouped ? (isDarkScheme ? 'transparent' : '#ededf3') : (isDarkScheme ? '#2c2e36' : 'white')
     },
     header: {
-      paddingTop: type === 'small' ? 15 : 30,
+      backgroundColor: grouped ? 'transparent' : (isDarkScheme ? '#222429' : '#ededf3'),
+      paddingTop: grouped ? (type === 'small' ? 15 : 30) : 5,
       paddingLeft: 10,
       paddingRight: 10,
-      paddingBottom: 10,
+      paddingBottom: grouped ? 10 : 5,
       ...sectionTitle(isDarkScheme)
     },
     item: {

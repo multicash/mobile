@@ -14,7 +14,7 @@ export const cards = (isDarkScheme) => {
 
 export const text = (isDarkTheme) => {
   return {
-    color: isDarkTheme ? 'white' : 'black'
+    color: isDarkTheme ? '#ffffff' : '#000000'
   }
 }
 

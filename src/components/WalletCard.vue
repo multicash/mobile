@@ -17,25 +17,19 @@
     </view>
 
     <view :style="styles.moneyView">
-      <text
+      <money
+        crypto
+        :amount="wallet.amount * 1000000"
         :style="styles.walletCardAmount"
-        adjusts-font-size-to-fit
-        :minimumFontScale="0.01"
-      >
-        {{ wallet.amount }}
-      </text>
-      <text :style="styles.walletCardAmountSign">MCX</text>
+      />
     </view>
 
     <view :style="styles.moneyView">
-      <text :style="styles.walletCardFiatSign">€</text>
-      <text
+      <money
+        convert
+        :amount="wallet.amount"
         :style="styles.walletCardFiatAmount"
-        adjusts-font-size-to-fit
-        :minimumFontScale="0.01"
-      >
-        {{ wallet.amount / 200 }}
-      </text>
+      />
     </view>
 
     <view-modal :visible.sync="modalVisible">
@@ -46,15 +40,16 @@
 </template>
 
 <script>
-import WalletView from '@/views/WalletView'
+import WalletView from '@/views/wallet/WalletView'
 import ViewModal from '@/components/ViewModal'
 import { cards, text } from '@/styles/index'
 import WalletIcon from '@/components/WalletIcon'
+import Money from '@/components/Money'
 
 export default {
   name: 'WalletCard',
 
-  components: { WalletIcon, ViewModal, WalletView },
+  components: { Money, WalletIcon, ViewModal, WalletView },
 
   data () {
     return {
@@ -82,7 +77,7 @@ const stylesStore = (isDarkScheme) => {
       ...cards(isDarkScheme),
       flex: 1,
       height: '100%',
-      minWidth: 250
+      width: 250
     },
     walletCardHeader: {
       display: 'flex',
@@ -102,18 +97,11 @@ const stylesStore = (isDarkScheme) => {
       flexDirection: 'row',
       alignItems: 'center'
     },
-    walletCardAmountSign: {
-      marginLeft: 10,
-      color: text(isDarkScheme).color
-    },
     walletCardAmount: {
       color: text(isDarkScheme).color,
       fontSize: 35,
-      fontWeight: 'bold'
-    },
-    walletCardFiatSign: {
-      marginRight: 5,
-      color: isDarkScheme ? '#b95c8b' : '#931A5A'
+      fontWeight: 'bold',
+      width: '100%'
     },
     walletCardFiatAmount: {
       color: isDarkScheme ? '#b95c8b' : '#931A5A',
