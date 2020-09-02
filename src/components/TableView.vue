@@ -108,7 +108,7 @@ const stylesStore = (isDarkScheme, type, grouped) => {
       ...sectionTitle(isDarkScheme)
     },
     item: {
-      borderBottomColor: isDarkScheme ? '#505155' : '#d7d7d7',
+      borderBottomColor: isDarkScheme ? '#505155' : '#dfe1ee',
       borderBottomWidth: 0.75
     },
     itemContent: {

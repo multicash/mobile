@@ -54,7 +54,12 @@ const stylesStore = (isDarkScheme) => {
       padding: 20,
       flexDirection: 'row',
       justifyContent: 'space-between',
-      alignItems: 'center'
+      alignItems: 'center',
+      shadowBlur: 10,
+      shadowRadius: 10,
+      shadowOpacity: 0.2,
+      shadowColor: '#000000',
+      zIndex: 1
     },
 
     modalNavigationTitle: {
