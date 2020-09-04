@@ -12,6 +12,7 @@
         {{ title }}
       </text>
     </view>
+    <slot name="right"/>
   </view>
 </template>
 
