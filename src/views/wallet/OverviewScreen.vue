@@ -100,7 +100,7 @@ import Money from '@/components/Money'
 import RoundButton from '@/components/RoundButton'
 import ViewModal from '@/components/ViewModal'
 import PayView from '@/views/pay/PayView'
-import ReceiveView from '@/views/ReceiveView'
+import ReceiveView from '@/views/receive/ReceiveView'
 
 export default {
   name: 'OverviewScreen',
