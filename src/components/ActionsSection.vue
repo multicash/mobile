@@ -38,8 +38,8 @@
 import Spacer from '@/components/Spacer'
 import ViewSection from '@/components/ViewSection'
 import ActionButton from '@/components/ActionButton'
-import PayView from '@/views/pay/PayView'
-import ReceiveView from '@/views/receive/ReceiveView'
+import PayView from '@/views/PayView'
+import ReceiveView from '@/views/ReceiveView'
 import ViewModal from '@/components/ViewModal'
 
 export default {

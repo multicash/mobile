@@ -12,8 +12,12 @@
     <scroll-view :style="{ backgroundColor: isDarkScheme ? '#222429' : '#ededf3' }">
       <view-background v-if="wallet">
         <view :style="styles.nameContainer">
-          <wallet-icon :icon="wallet.icon" :size="60"/>
-          <text :style="styles.name">{{ wallet.name }}</text>
+          <wallet-icon :icon="wallet.icon" :size="40"/>
+          <view :style="{ marginLeft: 10 }">
+            <text :style="styles.name">{{ wallet.name }}</text>
+            <text :style="styles.tag">{{ wallet.tag }}</text>
+            <text :style="styles.address">{{ wallet.address }}</text>
+          </view>
         </view>
 
         <view :style="styles.amountContainer">
@@ -99,8 +103,8 @@ import WalletIcon from '@/components/WalletIcon'
 import Money from '@/components/Money'
 import RoundButton from '@/components/RoundButton'
 import ViewModal from '@/components/ViewModal'
-import PayView from '@/views/pay/PayView'
-import ReceiveView from '@/views/receive/ReceiveView'
+import PayView from '@/views/PayView'
+import ReceiveView from '@/views/ReceiveView'
 
 export default {
   name: 'OverviewScreen',
@@ -195,15 +199,15 @@ const stylesStore = (isDarkScheme) => {
     name: {
       color: isDarkScheme ? 'white' : 'black',
       fontWeight: 'bold',
-      fontSize: 25,
-      marginLeft: 10
+      fontSize: 20
     },
 
     amountContainer: {
       backgroundColor: isDarkScheme ? '#2c2e36' : 'white',
       borderRadius: 10,
-      padding: 20,
-      marginBottom: 20
+      padding: 15,
+      marginBottom: 20,
+      overflow: 'hidden'
     },
 
     amount: {
@@ -216,6 +220,21 @@ const stylesStore = (isDarkScheme) => {
       color: isDarkScheme ? '#b95c8b' : '#931A5A',
       fontSize: 15,
       fontWeight: '600'
+    },
+
+    addressTitle: {
+      color: isDarkScheme ? '#ffffff' : 'black',
+      fontSize: 11
+    },
+
+    tag: {
+      color: isDarkScheme ? '#ffffff' : 'black'
+    },
+
+    address: {
+      fontSize: 11,
+      fontWeight: 'bold',
+      color: isDarkScheme ? '#6d6de3' : '#1b2483'
     },
 
     actionsContainer: {

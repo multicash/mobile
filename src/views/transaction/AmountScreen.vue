@@ -13,6 +13,7 @@
       >
         <view :style="styles.sourceContainer">
           <selector
+            v-if="!navigation.state.params.isReceive"
             name="From wallet"
             :value="sourceWallet"
             @on-press="selectSourceWallet"

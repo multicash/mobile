@@ -45,20 +45,10 @@ export default {
 
   components: { SecondaryActionButton, WalletCard, ViewSection },
 
-  data () {
-    return {
-      wallets: [
-        {
-          name: 'Main Account',
-          amount: 10505.44,
-          icon: 'wallet'
-        },
-        {
-          name: 'Savings Account',
-          amount: 1430705.78,
-          icon: 'gift'
-        }
-      ]
+  props: {
+    wallets: {
+      type: Array,
+      required: true
     }
   },
 

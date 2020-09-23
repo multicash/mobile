@@ -58,12 +58,12 @@ const stylesStore = (isDarkScheme) => {
       width: 14,
       height: 14,
       marginRight: 5,
-      color: isDarkScheme ? '#8374b2' : '#4d3f70'
+      color: isDarkScheme ? 'white' : 'black'
     },
 
     title: {
       fontSize: 11,
-      color: isDarkScheme ? '#8374b2' : '#4d3f70'
+      color: isDarkScheme ? 'white' : 'black'
     },
 
     value: {

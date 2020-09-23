@@ -16,7 +16,7 @@
         />
       </view-section>
       <actions-section/>
-      <wallets-section/>
+      <wallets-section :wallets="wallets"/>
     </view>
 
     <view-modal :visible.sync="settingsModalVisible">
@@ -50,6 +50,13 @@ export default {
   data () {
     return {
       settingsModalVisible: false
+    }
+  },
+
+  props: {
+    wallets: {
+      type: Array,
+      required: true
     }
   },
 

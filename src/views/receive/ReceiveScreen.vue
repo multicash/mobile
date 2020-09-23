@@ -20,7 +20,7 @@
         <view :style="styles.qrCodeBox">
           <view :style="styles.qrCode">
             <qr-code
-              value="multicash:M2109dk01kwsk1k2e230u3jdaojdsaojd98asDSjdais0jd0?tag=@SwenVanZanten"
+              value="multicash:M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De?tag=@SwenVanZanten"
               color="#522cdb"
               :size="200"
             />
@@ -30,7 +30,7 @@
 
       <view :style="styles.addressContainer">
         <text :style="styles.tag">@SwenVanZanten</text>
-        <text :style="styles.address">M2109dk01kwsk1k2e230u3jdaojdsaojd98asDSjdais0jd0</text>
+        <address-label address="M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De"/>
       </view>
 
       <view :style="styles.variablesContainer">
@@ -47,11 +47,13 @@ import ViewBackground from '@/components/ViewBackground'
 import ModalNavigation from '@/components/ModalNavigation'
 import Selector from '@/components/Selector'
 import RoundedTextInput from '@/components/RoundedTextInput'
+import AddressLabel from '@/components/AddressLabel'
 
 export default {
   name: 'ReceiveView',
 
   components: {
+    AddressLabel,
     RoundedTextInput,
     Selector,
     ModalNavigation,
@@ -127,11 +129,6 @@ const stylesStore = (isDarkScheme) => {
       fontSize: 20,
       color: isDarkScheme ? '#8b36df' : '#8b36df',
       marginBottom: 5
-    },
-
-    address: {
-      fontSize: 10,
-      color: isDarkScheme ? '#dadada' : 'black'
     },
 
     variablesContainer: {}

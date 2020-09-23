@@ -32,7 +32,7 @@ const stylesStore = (isDarkScheme) => {
     },
 
     title: {
-      color: isDarkScheme ? '#8374b2' : '#4d3f70',
+      color: isDarkScheme ? 'white' : 'black',
       fontWeight: '600',
       fontSize: 13
     }

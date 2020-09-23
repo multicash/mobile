@@ -120,7 +120,7 @@ const stylesStore = (isDarkScheme) => {
     },
 
     detailsContainer: {
-      backgroundColor: isDarkScheme ? 'black' : 'white',
+      backgroundColor: isDarkScheme ? '#191a20' : 'white',
       borderRadius: 15,
       padding: 20
     },
