@@ -10,6 +10,7 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 import HomeView from '@/views/HomeView'
 import SettingsView from '@/views/SettingsView'
 import ContactsOverviewView from '@/views/contacts/OverviewView'
+import ContactView from '@/views/contacts/ContactView'
 import AmountView from '@/views/transaction/AmountView'
 import WalletsView from '@/views/transaction/WalletsView'
 import RecipientView from '@/views/transaction/RecipientView'
@@ -32,6 +33,10 @@ const Contacts = () => {
       <Stack.Screen
         name="overview"
         component={ContactsOverviewView}
+      />
+      <Stack.Screen
+        name="contact"
+        component={ContactView}
       />
     </Stack.Navigator>
   )
