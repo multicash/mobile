@@ -6,7 +6,9 @@
   >
     <view>
       <text :style="styles.name">{{ name }}</text>
-      <text :style="styles.value">{{ value }}</text>
+      <slot name="value">
+        <text :style="styles.value">{{ value }}</text>
+      </slot>
     </view>
     <icon name="chevron-down-outline" />
   </touchable-opacity>

@@ -26,11 +26,13 @@
         icon="albums-outline"
         title=""
         :style="styles.actionButton"
+        @on-press="$emit('order-wallets')"
       />
       <secondary-action-button
         icon="add-outline"
         title="Add"
         :style="styles.actionButton"
+        @on-press="$emit('add-wallet')"
       />
     </view>
   </view-section>

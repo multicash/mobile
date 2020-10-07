@@ -7,7 +7,7 @@
     >
       <round-button
         slot="right"
-        @on-press="navigation.navigate('settings', { wallet })"
+        @on-press="navigation.navigate('contact')"
       >
         <icon name="person-add" :size="20"/>
       </round-button>

@@ -26,6 +26,8 @@
       <wallets-section
         :wallets="wallets"
         @wallet-selected="navigation.navigate('wallet', { screen: 'overview', params: { wallet: arguments[0] } })"
+        @order-wallets="navigation.navigate('orderWallets')"
+        @add-wallet="navigation.navigate('add')"
       />
     </view>
   </styled-view-background>

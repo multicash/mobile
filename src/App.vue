@@ -21,6 +21,8 @@ import PayingView from '@/views/transaction/PayingView'
 import OverviewView from '@/views/wallet/OverviewView'
 import WalletSettingsView from '@/views/wallet/SettingsView'
 import TransactionView from '@/views/wallet/TransactionView'
+import OrderWalletsView from '@/views/wallet/OrderWalletsView'
+import AddView from '@/views/wallet/AddView'
 
 const Stack = createStackNavigator()
 
@@ -173,6 +175,14 @@ const AppNavigator = () => {
         <Stack.Screen
           name="wallet"
           component={Wallet}
+        />
+        <Stack.Screen
+          name="orderWallets"
+          component={OrderWalletsView}
+        />
+        <Stack.Screen
+          name="add"
+          component={AddView}
         />
       </Stack.Navigator>
     </NavigationContainer>
