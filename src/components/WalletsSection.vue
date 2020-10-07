@@ -16,6 +16,7 @@
             marginRight: (i === wallets.length - 1) ? 0 : 20,
           }"
           containerContentStyle="space-between"
+          @wallet-selected="$emit('wallet-selected', arguments[0])"
         />
       </view>
     </scroll-view>

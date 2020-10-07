@@ -1,10 +1,14 @@
 <template>
   <styled-view-background :style="styles.container">
     <view :style="styles.navigation">
-      <round-button :style="{ marginRight: 10 }" transparent-shadow>
+      <round-button
+        :style="{ marginRight: 10 }"
+        transparent-shadow
+        @on-press="navigation.navigate('contacts')"
+      >
         <icon name="people"/>
       </round-button>
-      <round-button @on-press="settingsModalVisible = true" transparent-shadow>
+      <round-button @on-press="navigation.navigate('settings')" transparent-shadow>
         <icon name="toggle"/>
       </round-button>
     </view>
@@ -15,13 +19,15 @@
           :style="styles.logoImage"
         />
       </view-section>
-      <actions-section/>
-      <wallets-section :wallets="wallets"/>
+      <actions-section
+        @pay="navigation.navigate('pay')"
+        @receive="navigation.navigate('receive')"
+      />
+      <wallets-section
+        :wallets="wallets"
+        @wallet-selected="navigation.navigate('wallet', { screen: 'overview', params: { wallet: arguments[0] } })"
+      />
     </view>
-
-    <view-modal :visible.sync="settingsModalVisible">
-      <settings-view/>
-    </view-modal>
   </styled-view-background>
 </template>
 
@@ -31,15 +37,11 @@ import WalletsSection from '@/components/WalletsSection'
 import ActionsSection from '@/components/ActionsSection'
 import StyledViewBackground from '@/components/StyledViewBackground'
 import RoundButton from '@/components/RoundButton'
-import SettingsView from '@/views/SettingsView'
-import ViewModal from '@/components/ViewModal'
 
 export default {
   name: 'HomeView',
 
   components: {
-    ViewModal,
-    SettingsView,
     RoundButton,
     StyledViewBackground,
     WalletsSection,
@@ -49,14 +51,22 @@ export default {
 
   data () {
     return {
-      settingsModalVisible: false
-    }
-  },
-
-  props: {
-    wallets: {
-      type: Array,
-      required: true
+      wallets: [
+        {
+          name: 'Main Account',
+          amount: 10505.44,
+          icon: 'wallet',
+          tag: '@SwenVanZanten',
+          address: 'M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De'
+        },
+        {
+          name: 'Savings Account',
+          amount: 1430705.78,
+          icon: 'gift',
+          tag: '@SwenSaving',
+          address: 'M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De'
+        }
+      ]
     }
   },
 
@@ -70,7 +80,6 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     container: {
-      display: 'flex',
       flexDirection: 'row'
     },
 

@@ -3,7 +3,7 @@
     <modal-navigation
       title="Amount"
       has-close-button
-      @on-dismiss="$parent.$parent.$emit('update:visible', false)"
+      @on-dismiss="navigation.goBack()"
     />
     <view-background
       :style="{ alignItems: 'center' }"
@@ -13,7 +13,7 @@
       >
         <view :style="styles.sourceContainer">
           <selector
-            v-if="!navigation.state.params.isReceive"
+            v-if="!route.params.isReceive"
             name="From wallet"
             :value="sourceWallet"
             @on-press="selectSourceWallet"
@@ -41,7 +41,7 @@
           v-if="amountNumber > 0"
           title="Recipient"
           :style="styles.recipientButton"
-          @on-press="navigation.navigate('recipient')"
+          @on-press="confirm"
         />
       </view>
     </view-background>
@@ -58,7 +58,7 @@ import Selector from '@/components/Selector'
 import { Platform, Keyboard } from 'react-native'
 
 export default {
-  name: 'AmountScreen',
+  name: 'AmountView',
 
   components: { Spacer, Selector, RoundedButton, Money, ModalNavigation, ViewBackground },
 
@@ -67,12 +67,6 @@ export default {
       amount: '',
       sourceWallet: 'Main Account',
       keyboardHeight: 0
-    }
-  },
-
-  props: {
-    navigation: {
-      type: Object
     }
   },
 
@@ -102,6 +96,10 @@ export default {
           this.sourceWallet = value.name
         }
       })
+    },
+
+    confirm () {
+      this.navigation.navigate('recipient', { amount: this.amount, ...this.route.params })
     }
   }
 }

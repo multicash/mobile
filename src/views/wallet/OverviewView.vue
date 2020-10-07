@@ -3,7 +3,7 @@
     <status-bar bar-style="light-content" />
     <modal-navigation
       has-close-button
-      @on-dismiss="$parent.$parent.$emit('update:visible', false)"
+      @on-dismiss="navigation.goBack()"
     >
       <round-button slot="right" @on-press="navigation.navigate('settings', { wallet })">
         <icon name="ellipsis-horizontal"/>
@@ -34,15 +34,25 @@
         </view>
 
         <view :style="styles.actionsContainer">
-          <rounded-button title="Pay" :style="{ flex: 1 }" @on-press="payModalVisible = true"/>
-          <rounded-button title="Receive" :style="{ marginLeft: 10, flex: 1 }" @on-press="receiveModalVisible = true"/>
+          <rounded-button
+            title="Pay"
+            icon="caret-up-outline"
+            :style="{ flex: 1 }"
+            @on-press="navigation.navigate('pay', { screen: 'amount', params: { wallet: wallet }})"
+          />
+          <rounded-button
+            title="Receive"
+            icon="caret-down-outline"
+            :style="{ marginLeft: 10, flex: 1 }"
+            @on-press="navigation.navigate('receive', { screen: 'amount', params: { wallet: wallet }})"
+          />
         </view>
 
         <text :style="styles.transactionsTitle">Last transactions</text>
         <view :style="styles.transactionsContainer">
           <view
             v-for="transaction in transactions"
-            :key="transaction.title"
+            :key="JSON.stringify(transaction)"
           >
             <touchable-opacity
               :style="styles.item"
@@ -83,14 +93,6 @@
         </view>
       </view-background>
     </scroll-view>
-
-    <view-modal :visible.sync="payModalVisible">
-      <pay-view/>
-    </view-modal>
-
-    <view-modal :visible.sync="receiveModalVisible">
-      <receive-view />
-    </view-modal>
   </view>
 </template>
 
@@ -102,17 +104,11 @@ import ViewBackground from '@/components/ViewBackground'
 import WalletIcon from '@/components/WalletIcon'
 import Money from '@/components/Money'
 import RoundButton from '@/components/RoundButton'
-import ViewModal from '@/components/ViewModal'
-import PayView from '@/views/PayView'
-import ReceiveView from '@/views/ReceiveView'
 
 export default {
-  name: 'OverviewScreen',
+  name: 'OverviewView',
 
   components: {
-    ReceiveView,
-    PayView,
-    ViewModal,
     RoundButton,
     Money,
     WalletIcon,
@@ -123,8 +119,6 @@ export default {
 
   data () {
     return {
-      payModalVisible: false,
-      receiveModalVisible: false,
       transactions: [
         {
           title: '@sunerok',
@@ -163,20 +157,17 @@ export default {
     }
   },
 
-  props: {
-    wallet: {
-      type: Object,
-      default: null
-    },
-
-    navigation: {
-      type: Object
-    }
-  },
-
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
+    },
+
+    wallet () {
+      if (!(this.route.params && this.route.params.wallet)) {
+        return null
+      }
+
+      return this.route.params.wallet
     }
   },
 

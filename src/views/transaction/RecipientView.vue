@@ -15,7 +15,7 @@ import TableView from '@/components/TableView'
 import ViewBackground from '@/components/ViewBackground'
 
 export default {
-  name: 'RecipientScreen',
+  name: 'RecipientView',
 
   components: { ViewBackground, TableView, ModalNavigation },
 
@@ -28,14 +28,20 @@ export default {
               title: 'My wallets',
               leftIcon: { name: 'wallet', size: 40 },
               navigate: () => {
-                this.navigation.navigate('wallets', { navigate: 'confirm' })
+                this.navigation.navigate('wallets', { navigate: 'confirm', ...this.route.params })
               }
             },
-            {
+            this.route.params.isReceive ? {
+              title: 'Share QR code',
+              leftIcon: { name: 'qr-code-outline', size: 40 },
+              navigate: () => {
+                this.navigation.navigate('qr', this.route.params)
+              }
+            } : {
               title: 'Enter recipient address/tag',
               leftIcon: { name: 'barcode-outline', size: 40 },
               navigate: () => {
-                this.navigation.navigate('enterRecipient')
+                this.navigation.navigate('enterRecipient', this.route.params)
               }
             }
           ]
@@ -48,7 +54,7 @@ export default {
               subtitle: '@swenvanzanten',
               leftIcon: { name: 'person-circle', color: '#c807a9', size: 40 },
               navigate: () => {
-                this.navigation.navigate('confirm', { amount: 10 })
+                this.navigation.navigate('confirm', this.route.params)
               }
             },
             {
@@ -56,7 +62,7 @@ export default {
               subtitle: '@justinvendetta',
               leftIcon: { name: 'person-circle', color: '#00ffb2', size: 40 },
               navigate: () => {
-                this.navigation.navigate('confirm', { amount: 10 })
+                this.navigation.navigate('confirm', this.route.params)
               }
             }
           ]
@@ -69,7 +75,7 @@ export default {
               subtitle: '@cr',
               leftIcon: { name: 'person-circle', color: '#a7fb00', size: 40 },
               navigate: () => {
-                this.navigation.navigate('confirm', { amount: 10 })
+                this.navigation.navigate('confirm', this.route.params)
               }
             },
             {
@@ -77,7 +83,7 @@ export default {
               subtitle: '@sandersvoice',
               leftIcon: { name: 'person-circle', color: '#3b28f3', size: 40 },
               navigate: () => {
-                this.navigation.navigate('confirm', { amount: 10 })
+                this.navigation.navigate('confirm', this.route.params)
               }
             },
             {
@@ -85,18 +91,12 @@ export default {
               subtitle: '@michael',
               leftIcon: { name: 'person-circle', color: '#eaee18', size: 40 },
               navigate: () => {
-                this.navigation.navigate('confirm', { amount: 10 })
+                this.navigation.navigate('confirm', this.route.params)
               }
             }
           ]
         }
       ]
-    }
-  },
-
-  props: {
-    navigation: {
-      type: Object
     }
   }
 }

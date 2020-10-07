@@ -15,7 +15,7 @@ import TableView from '@/components/TableView'
 import ViewBackground from '@/components/ViewBackground'
 
 export default {
-  name: 'WalletsScreen',
+  name: 'WalletsView',
 
   components: { ViewBackground, TableView, ModalNavigation },
 
@@ -42,23 +42,17 @@ export default {
     }
   },
 
-  props: {
-    navigation: {
-      type: Object
-    }
-  },
-
   methods: {
     navigate (wallet) {
-      if (this.navigation.state.params.navigate) {
+      if (this.route.params.navigate) {
         this.navigation.navigate(
-          this.navigation.state.params.navigate,
+          this.route.params.navigate,
           wallet
         )
       }
 
-      if (this.navigation.state.params.goBack) {
-        this.navigation.state.params.resolve(wallet)
+      if (this.route.params.goBack) {
+        this.route.params.resolve(wallet)
         this.navigation.goBack()
       }
     }

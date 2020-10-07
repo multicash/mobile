@@ -1,21 +1,20 @@
 <template>
-  <view
-    :style="styles.container"
-  >
-    <modal-navigation title="Settings" has-close-button @on-dismiss="$parent.$emit('update:visible', false)"/>
+  <view-background no-padding>
+    <modal-navigation title="Settings" has-close-button @on-dismiss="navigation.goBack()"/>
     <table-view :sections="data" :header="renderTableHeader"/>
-  </view>
+  </view-background>
 </template>
 
 <script>
 import ModalNavigation from '@/components/ModalNavigation'
 import TableView from '@/components/TableView'
 import TableHeaderView from '@/react/components/TableHeaderView'
+import ViewBackground from '@/components/ViewBackground'
 
 export default {
   name: 'SettingsView',
 
-  components: { TableView, ModalNavigation },
+  components: { ViewBackground, TableView, ModalNavigation },
 
   data () {
     return {
@@ -26,7 +25,10 @@ export default {
             {
               title: 'Currency',
               subtitle: 'All fiat amounts will be displayed in this currency',
-              leftIcon: { name: 'cash-outline' }
+              leftIcon: { name: 'cash-outline' },
+              navigate: () => {
+                this.navigation.navigate('contacts', { world: 'hello' })
+              }
             },
             {
               title: 'Change PIN',
@@ -79,10 +81,6 @@ export default {
 
 const stylesStore = (isDarkScheme) => {
   return {
-    container: {
-      height: '100%'
-    },
-
     actionButtonIcon: {
       width: 55,
       height: 55,

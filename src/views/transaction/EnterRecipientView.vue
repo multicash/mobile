@@ -34,19 +34,13 @@ import ModalNavigation from '@/components/ModalNavigation'
 import RoundedButton from '@/components/RoundedButton'
 import RoundedTextInput from '@/components/RoundedTextInput'
 export default {
-  name: 'EnterRecipientScreen',
+  name: 'EnterRecipientView',
 
   components: { RoundedTextInput, RoundedButton, ModalNavigation, ViewBackground },
 
   data () {
     return {
       addToFavorites: false
-    }
-  },
-
-  props: {
-    navigation: {
-      type: Object
     }
   },
 

@@ -22,7 +22,7 @@
 import ViewBackground from '@/components/ViewBackground'
 
 export default {
-  name: 'PayingScreen',
+  name: 'PayingView',
 
   components: { ViewBackground },
 
@@ -37,7 +37,9 @@ export default {
       this.done = true
 
       setTimeout(() => {
-        this.$parent.$parent.$emit('update:visible', false)
+        const screenName = this.route.params.wallet ? 'wallet' : 'home'
+
+        this.navigation.navigate(screenName)
       }, 2000)
     }, 2000)
   },

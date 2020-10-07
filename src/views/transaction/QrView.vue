@@ -2,9 +2,9 @@
   <view :style="{ flex: 1 }">
     <status-bar bar-style="light-content" />
     <modal-navigation
-      title="Receive"
-      has-close-button
-      @on-dismiss="$parent.$parent.$emit('update:visible', false)"
+      title="Share QR"
+      has-back-button
+      @on-dismiss="navigation.goBack()"
     />
     <view-background>
 
@@ -16,11 +16,20 @@
         />
       </view>
 
+      <view :style="styles.variablesContainer">
+        <rounded-text-input
+          title="Description"
+          placeholder="Why this payment?"
+          :value="label"
+          @input="label = $event"
+        />
+      </view>
+
       <view :style="styles.qrCodeContainer">
         <view :style="styles.qrCodeBox">
           <view :style="styles.qrCode">
             <qr-code
-              value="multicash:M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De?tag=@SwenVanZanten"
+              :value="qrValue"
               color="#522cdb"
               :size="200"
             />
@@ -28,15 +37,25 @@
         </view>
       </view>
 
-      <view :style="styles.addressContainer">
-        <text :style="styles.tag">@SwenVanZanten</text>
-        <address-label address="M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De"/>
+      <view :style="styles.amountContainer">
+        <money
+          crypto
+          :amount="route.params.amount * 1000000"
+          :style="styles.amount"
+        />
+        <money
+          convert
+          :amount="parseFloat(route.params.amount) || 0"
+          :style="styles.calculatedAmount"
+        />
       </view>
 
-      <view :style="styles.variablesContainer">
-        <rounded-text-input title="Amount" placeholder="Request an specific amount" :style="{ marginBottom: 10 }"/>
-        <rounded-text-input title="Description" placeholder="Why this payment?" />
-      </view>
+      <rounded-button
+        title="Share"
+        icon="share-outline"
+        :style="styles.shareButton"
+        @on-press="showShareSheet"
+      />
 
     </view-background>
   </view>
@@ -47,13 +66,15 @@ import ViewBackground from '@/components/ViewBackground'
 import ModalNavigation from '@/components/ModalNavigation'
 import Selector from '@/components/Selector'
 import RoundedTextInput from '@/components/RoundedTextInput'
-import AddressLabel from '@/components/AddressLabel'
+import Money from '@/components/Money'
+import RoundedButton from '@/components/RoundedButton'
 
 export default {
-  name: 'ReceiveView',
+  name: 'QrView',
 
   components: {
-    AddressLabel,
+    RoundedButton,
+    Money,
     RoundedTextInput,
     Selector,
     ModalNavigation,
@@ -62,19 +83,24 @@ export default {
 
   data () {
     return {
-      targetWallet: 'Main Account'
-    }
-  },
-
-  props: {
-    navigation: {
-      type: Object
+      targetWallet: 'Main Account',
+      label: ''
     }
   },
 
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
+    },
+
+    qrValue () {
+      let value = 'multicash:M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De?tag=@SwenVanZanten&amount=' + this.route.params.amount
+
+      if (this.label !== '') {
+        value += '&label=' + this.label
+      }
+
+      return value
     }
   },
 
@@ -86,6 +112,10 @@ export default {
           this.targetWallet = value.name
         }
       })
+    },
+
+    showShareSheet () {
+      alert('Show a share sheet')
     }
   }
 }
@@ -94,7 +124,7 @@ const stylesStore = (isDarkScheme) => {
   return {
 
     sourceContainer: {
-      marginBottom: 30
+      marginBottom: 10
     },
 
     qrCodeContainer: {
@@ -118,20 +148,31 @@ const stylesStore = (isDarkScheme) => {
       width: 200
     },
 
-    addressContainer: {
+    amountContainer: {
       marginVertical: 30,
-      justifyContent: 'center',
       alignItems: 'center'
     },
 
-    tag: {
-      fontWeight: 'bold',
-      fontSize: 20,
-      color: isDarkScheme ? '#8b36df' : '#8b36df',
-      marginBottom: 5
+    amount: {
+      fontSize: 40,
+      color: '#a014c1',
+      fontWeight: '600'
     },
 
-    variablesContainer: {}
+    calculatedAmount: {
+      color: isDarkScheme ? '#8374b2' : '#4d3f70',
+      fontSize: 20,
+      fontWeight: 'bold'
+    },
+
+    variablesContainer: {
+      marginBottom: 30
+    },
+
+    shareButton: {
+      height: 50,
+      width: '100%'
+    }
   }
 }
 </script>

@@ -2,6 +2,8 @@
   <view :style="styles.container">
     <text v-if="title" :style="styles.title">{{ title }}</text>
     <text-input
+      :onChangeText="onChangeText"
+      :value="value"
       :style="styles.textInput"
       :placeholder="placeholder"
       :placeholder-text-color="isDarkScheme ? '#848484' : '#7f7f7f'"
@@ -14,6 +16,11 @@ export default {
   name: 'RoundedTextInput',
 
   props: {
+    value: {
+      type: String,
+      default: null
+    },
+
     placeholder: {
       type: String,
       default: ''
@@ -28,6 +35,12 @@ export default {
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
+    }
+  },
+
+  methods: {
+    onChangeText (text) {
+      this.$emit('input', text)
     }
   }
 }

@@ -6,6 +6,13 @@
       :active-opacity="0.6"
     >
       <slot>
+        <icon
+          v-if="icon"
+          :style="styles.roundedButtonIcon"
+          :name="icon"
+          :color="isDarkScheme ? '#6d6de3' : '#1e1e4d'"
+          :size="20"
+        />
         <text :style="styles.roundedButtonText">{{ title }}</text>
       </slot>
     </touchable-opacity>
@@ -24,6 +31,11 @@ export default {
 
   props: {
     title: {
+      type: String,
+      default: null
+    },
+
+    icon: {
       type: String,
       default: null
     },
@@ -71,6 +83,10 @@ const stylesStore = (isDarkScheme, innerStyle) => {
       shadowOpacity: 0.5,
       shadowOffset: { width: 3, height: 3 },
       flexDirection: 'row'
+    },
+
+    roundedButtonIcon: {
+      marginRight: 10
     },
 
     roundedButtonText: {

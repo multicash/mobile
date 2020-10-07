@@ -4,24 +4,16 @@
       <action-button
         title="Pay"
         :icon="require('@/assets/send.png')"
-        @on-press="payModalVisible = true"
+        @on-press="$emit('pay')"
       />
-
-      <view-modal :visible.sync="payModalVisible">
-        <pay-view/>
-      </view-modal>
 
       <spacer/>
 
       <action-button
         title="Receive"
         :icon="require('@/assets/receive.png')"
-        @on-press="receiveModalVisible = true"
+        @on-press="$emit('receive')"
       />
-
-      <view-modal :visible.sync="receiveModalVisible">
-        <receive-view />
-      </view-modal>
     </view>
   </view-section>
 </template>
@@ -38,20 +30,14 @@
 import Spacer from '@/components/Spacer'
 import ViewSection from '@/components/ViewSection'
 import ActionButton from '@/components/ActionButton'
-import PayView from '@/views/PayView'
-import ReceiveView from '@/views/ReceiveView'
-import ViewModal from '@/components/ViewModal'
 
 export default {
   name: 'ActionsSection',
 
-  components: { ViewModal, ReceiveView, PayView, ActionButton, ViewSection, Spacer },
-
-  data () {
-    return {
-      payModalVisible: false,
-      receiveModalVisible: false
-    }
+  components: {
+    ActionButton,
+    ViewSection,
+    Spacer
   }
 }
 </script>

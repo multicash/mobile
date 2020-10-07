@@ -10,6 +10,7 @@ import Icon from '@/components/Icon'
 import QRCode from 'react-native-qrcode-svg'
 import '@/mixins/ColorScheme'
 import '@/mixins/Money'
+import '@/mixins/Router'
 
 Vue.component('icon', Icon)
 Vue.component('qr-code', QRCode)

@@ -26,12 +26,12 @@
       <view :style="styles.amountContainer">
         <money
           crypto
-          :amount="navigation.state.params.transaction.amount"
+          :amount="route.params.transaction.amount"
           :style="styles.amount"
         />
         <money
           convert
-          :amount="navigation.state.params.transaction.amount / 1000000"
+          :amount="route.params.transaction.amount / 1000000"
           :style="styles.calculatedAmount"
         />
       </view>
@@ -61,7 +61,7 @@ import DetailListTitle from '@/components/DetailListTitle'
 import LinkButton from '@/components/LinkButton'
 
 export default {
-  name: 'TransactionScreen',
+  name: 'TransactionView',
 
   components: {
     LinkButton,
@@ -72,12 +72,6 @@ export default {
     SourceIcon,
     ViewBackground,
     ModalNavigation
-  },
-
-  props: {
-    navigation: {
-      type: Object
-    }
   },
 
   computed: {

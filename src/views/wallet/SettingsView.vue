@@ -1,6 +1,5 @@
 <template>
-  <view :style="{ flex: 1 }">
-    <status-bar bar-style="light-content" />
+  <view-background no-padding>
     <modal-navigation
       title="Settings"
       has-back-button
@@ -8,17 +7,18 @@
     >
     </modal-navigation>
     <table-view :sections="data"/>
-  </view>
+  </view-background>
 </template>
 
 <script>
 import ModalNavigation from '@/components/ModalNavigation'
 import TableView from '@/components/TableView'
+import ViewBackground from '@/components/ViewBackground'
 
 export default {
-  name: 'SettingsScreen',
+  name: 'SettingsView',
 
-  components: { TableView, ModalNavigation },
+  components: { TableView, ModalNavigation, ViewBackground },
 
   data () {
     return {
@@ -64,12 +64,6 @@ export default {
           ]
         }
       ]
-    }
-  },
-
-  props: {
-    navigation: {
-      type: Object
     }
   }
 }

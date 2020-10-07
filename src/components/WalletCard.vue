@@ -1,7 +1,7 @@
 <template>
   <touchable-opacity
     :active-opacity="0.6"
-    :on-press="() => modalVisible = true"
+    :on-press="() => $emit('wallet-selected', wallet)"
     :style="styles.walletCard"
   >
     <view :style="styles.walletCardHeader">
@@ -31,17 +31,10 @@
         :style="styles.walletCardFiatAmount"
       />
     </view>
-
-    <view-modal :visible.sync="modalVisible">
-      <wallet-view :wallet="wallet"/>
-    </view-modal>
-
   </touchable-opacity>
 </template>
 
 <script>
-import WalletView from '@/views/wallet/WalletView'
-import ViewModal from '@/components/ViewModal'
 import { cards, text } from '@/styles/index'
 import WalletIcon from '@/components/WalletIcon'
 import Money from '@/components/Money'
@@ -49,13 +42,7 @@ import Money from '@/components/Money'
 export default {
   name: 'WalletCard',
 
-  components: { Money, WalletIcon, ViewModal, WalletView },
-
-  data () {
-    return {
-      modalVisible: false
-    }
-  },
+  components: { Money, WalletIcon },
 
   computed: {
     styles () {

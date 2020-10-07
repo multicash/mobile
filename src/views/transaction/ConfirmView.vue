@@ -1,7 +1,7 @@
 <template>
   <view :style="{ flex: 1 }">
     <modal-navigation
-      title="New payment"
+      :title="route.params.isReceive ? 'New request' : 'New payment'"
       has-back-button
       @on-dismiss="navigation.goBack()"
     />
@@ -14,7 +14,10 @@
           :amount="50444440000"
           image="wallet"
         />
-        <icon name="arrow-forward-outline" :size="50"/>
+        <icon
+          :name="route.params.isReceive ? 'arrow-back-outline' : 'arrow-forward-outline'"
+          :size="50"
+        />
         <source-icon
           title="Savings Account"
           image="moneyBox"
@@ -24,20 +27,20 @@
       <view :style="styles.amountContainer">
         <money
           crypto
-          :amount="navigation.state.params.amount * 1000000"
+          :amount="route.params.amount * 1000000"
           :style="styles.amount"
         />
         <money
           convert
-          :amount="parseFloat(navigation.state.params.amount) || 0"
+          :amount="parseFloat(route.params.amount) || 0"
           :style="styles.calculatedAmount"
         />
       </view>
 
       <rounded-button
-        title="Send payment"
+        :title="route.params.isReceive ? 'Share request' : 'Send payment'"
         :style="styles.sendPaymentButton"
-        @on-press="navigation.navigate('pay')"
+        @on-press="navigation.navigate('paying', route.params)"
       />
 
       <rounded-text-input title="Description" placeholder="Why this payment?" />
@@ -54,15 +57,9 @@ import Money from '@/components/Money'
 import RoundedTextInput from '@/components/RoundedTextInput'
 
 export default {
-  name: 'ConfirmScreen',
+  name: 'ConfirmView',
 
   components: { RoundedTextInput, Money, SourceIcon, RoundedButton, ViewBackground, ModalNavigation },
-
-  props: {
-    navigation: {
-      type: Object
-    }
-  },
 
   computed: {
     styles () {
