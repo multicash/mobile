@@ -7,6 +7,7 @@ import * as React from 'react'
 import { Platform } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import HomeView from '@/views/HomeView'
 import SettingsView from '@/views/SettingsView'
 import ContactsOverviewView from '@/views/contacts/OverviewView'
@@ -138,54 +139,56 @@ const Wallet = () => {
 
 const AppNavigator = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="home"
-        screenOptions={{
-          headerShown: false,
-          gestureEnabled: true,
-          cardOverlayEnabled: true,
-          ...Platform.select({
-            ios: TransitionPresets.ModalPresentationIOS,
-            default: TransitionPresets.FadeFromBottomAndroid
-          })
-        }}
-        headerMode="none"
-      >
-        <Stack.Screen
-          name="home"
-          component={HomeView}
-        />
-        <Stack.Screen
-          name="settings"
-          component={SettingsView}
-        />
-        <Stack.Screen
-          name="contacts"
-          component={Contacts}
-        />
-        <Stack.Screen
-          name="pay"
-          component={Pay}
-        />
-        <Stack.Screen
-          name="receive"
-          component={Receive}
-        />
-        <Stack.Screen
-          name="wallet"
-          component={Wallet}
-        />
-        <Stack.Screen
-          name="orderWallets"
-          component={OrderWalletsView}
-        />
-        <Stack.Screen
-          name="add"
-          component={AddView}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="home"
+          screenOptions={{
+            headerShown: false,
+            gestureEnabled: true,
+            cardOverlayEnabled: true,
+            ...Platform.select({
+              ios: TransitionPresets.ModalPresentationIOS,
+              default: TransitionPresets.FadeFromBottomAndroid
+            })
+          }}
+          headerMode="none"
+        >
+          <Stack.Screen
+            name="home"
+            component={HomeView}
+          />
+          <Stack.Screen
+            name="settings"
+            component={SettingsView}
+          />
+          <Stack.Screen
+            name="contacts"
+            component={Contacts}
+          />
+          <Stack.Screen
+            name="pay"
+            component={Pay}
+          />
+          <Stack.Screen
+            name="receive"
+            component={Receive}
+          />
+          <Stack.Screen
+            name="wallet"
+            component={Wallet}
+          />
+          <Stack.Screen
+            name="orderWallets"
+            component={OrderWalletsView}
+          />
+          <Stack.Screen
+            name="add"
+            component={AddView}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   )
 }
 

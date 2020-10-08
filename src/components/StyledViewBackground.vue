@@ -16,8 +16,14 @@
 </template>
 
 <script>
+import { SafeAreaView } from 'react-native-safe-area-context'
+
 export default {
   name: 'StyledViewBackground',
+
+  components: {
+    SafeAreaView
+  },
 
   computed: {
     styles () {

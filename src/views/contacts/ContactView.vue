@@ -2,7 +2,7 @@
   <view :style="{ flex: 1 }">
     <modal-navigation
       title="Contact"
-      has-close-button
+      has-back-button
       @on-dismiss="navigation.goBack()"
     >
       <round-button

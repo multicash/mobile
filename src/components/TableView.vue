@@ -73,7 +73,7 @@ export default {
     },
 
     renderSectionHeader (section) {
-      return section.title ? (<Text style={this.styles.header}>{ section.title }</Text>) : null
+      return this.grouped || section.title ? (<Text style={this.styles.header}>{ section.title }</Text>) : null
     },
 
     renderListHeader () {
