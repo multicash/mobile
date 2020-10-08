@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import constants from '@/utils/constants'
+import constants from '@/support/constants'
 
 export default {
   name: 'money',

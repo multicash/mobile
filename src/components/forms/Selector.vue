@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Icon from '@/components/Icon'
+import Icon from '@/components/icons/Icon'
 
 export default {
   name: 'Selector',

@@ -51,14 +51,14 @@
 </template>
 
 <script>
-import ModalNavigation from '@/components/ModalNavigation'
-import ViewBackground from '@/components/ViewBackground'
-import SourceIcon from '@/components/SourceIcon'
-import Money from '@/components/Money'
-import DetailList from '@/components/DetailList'
-import DetailListItem from '@/components/DetailListItem'
-import DetailListTitle from '@/components/DetailListTitle'
-import LinkButton from '@/components/LinkButton'
+import ModalNavigation from '@/components/navigations/ModalNavigation'
+import ViewBackground from '@/components/views/ViewBackground'
+import SourceIcon from '@/components/icons/SourceIcon'
+import Money from '@/components/labels/Money'
+import DetailList from '@/components/lists/DetailList'
+import DetailListItem from '@/components/lists/DetailListItem'
+import DetailListTitle from '@/components/lists/DetailListTitle'
+import LinkButton from '@/components/buttons/LinkButton'
 
 export default {
   name: 'TransactionView',

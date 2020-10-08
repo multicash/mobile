@@ -14,30 +14,30 @@
     <view-background>
       <selector name="Icon">
         <view slot="value" :style="styles.iconContainer">
-          <icon name="person-circle" color="grey" :size="40" />
+          <icon :name="icon.name" :color="icon.color" :size="40" />
           <spacer />
-          <text :style="styles.iconText">Chosen icon</text>
+          <text :style="styles.iconText">{{ icon.name }}</text>
         </view>
       </selector>
 
       <spacer />
 
-      <RoundedTextInput title="Name" placeholder="Martin"/>
+      <rounded-text-input title="Name" placeholder="Martin" :value="name" @input="name = $event"/>
 
       <spacer />
 
-      <RoundedTextInput title="Tag/Address" placeholder="@lutherKing"/>
+      <rounded-text-input title="Tag/Address" placeholder="@lutherKing" :value="tag" @input="tag = $event"/>
     </view-background>
   </view>
 </template>
 
 <script>
-import ViewBackground from '@/components/ViewBackground'
-import ModalNavigation from '@/components/ModalNavigation'
-import RoundedTextInput from '@/components/RoundedTextInput'
-import Spacer from '@/components/Spacer'
-import RoundButton from '@/components/RoundButton'
-import Selector from '@/components/Selector'
+import ViewBackground from '@/components/views/ViewBackground'
+import ModalNavigation from '@/components/navigations/ModalNavigation'
+import RoundedTextInput from '@/components/forms/RoundedTextInput'
+import Spacer from '@/components/views/Spacer'
+import RoundButton from '@/components/buttons/RoundButton'
+import Selector from '@/components/forms/Selector'
 
 export default {
   name: 'ContactView',
@@ -51,9 +51,29 @@ export default {
     ViewBackground
   },
 
+  data () {
+    return {
+      name: '',
+      tag: '',
+      icon: {
+        name: 'person-circle',
+        color: 'grey'
+      }
+    }
+  },
+
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
+    }
+  },
+
+  created () {
+    if (this.route.params && this.route.params.contact) {
+      this.name = this.route.params.contact.name
+      this.tag = this.route.params.contact.tag
+      this.icon.name = this.route.params.contact.icon.name
+      this.icon.color = this.route.params.contact.icon.color
     }
   }
 }

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import RoundButton from '@/components/RoundButton'
+import RoundButton from '@/components/buttons/RoundButton'
 import { text } from '@/styles'
 
 export default {

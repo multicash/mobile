@@ -49,12 +49,12 @@
 </template>
 
 <script>
-import ViewBackground from '@/components/ViewBackground'
-import ModalNavigation from '@/components/ModalNavigation'
-import Money from '@/components/Money'
-import RoundedButton from '@/components/RoundedButton'
-import Spacer from '@/components/Spacer'
-import Selector from '@/components/Selector'
+import ViewBackground from '@/components/views/ViewBackground'
+import ModalNavigation from '@/components/navigations/ModalNavigation'
+import Money from '@/components/labels/Money'
+import RoundedButton from '@/components/buttons/RoundedButton'
+import Spacer from '@/components/views/Spacer'
+import Selector from '@/components/forms/Selector'
 import { Platform, Keyboard } from 'react-native'
 
 export default {

@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import ViewBackground from '@/components/ViewBackground'
-import ModalNavigation from '@/components/ModalNavigation'
+import ViewBackground from '@/components/views/ViewBackground'
+import ModalNavigation from '@/components/navigations/ModalNavigation'
 
 export default {
   name: 'AddView',

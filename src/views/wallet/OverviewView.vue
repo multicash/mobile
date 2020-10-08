@@ -98,12 +98,12 @@
 
 <script>
 import { subtitle, text } from '@/styles'
-import ModalNavigation from '@/components/ModalNavigation'
-import RoundedButton from '@/components/RoundedButton'
-import ViewBackground from '@/components/ViewBackground'
-import WalletIcon from '@/components/WalletIcon'
-import Money from '@/components/Money'
-import RoundButton from '@/components/RoundButton'
+import ModalNavigation from '@/components/navigations/ModalNavigation'
+import RoundedButton from '@/components/buttons/RoundedButton'
+import ViewBackground from '@/components/views/ViewBackground'
+import WalletIcon from '@/components/icons/WalletIcon'
+import Money from '@/components/labels/Money'
+import RoundButton from '@/components/buttons/RoundButton'
 
 export default {
   name: 'OverviewView',

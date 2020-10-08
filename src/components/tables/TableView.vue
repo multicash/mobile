@@ -67,7 +67,7 @@ export default {
         leftIcon={ item.item.leftIcon ? { type: 'ionicon', color: this.styles.itemLeftIcon.color, ...item.item.leftIcon } : undefined }
         rightIcon={ item.item.rightIcon ? { type: 'ionicon', color: this.styles.itemRightIcon.color, ...item.item.rightIcon } : undefined }
         leftAvatar={ item.item.leftAvatar ? { placeholderStyle: { backgroundColor: 'transparent' }, ...item.item.leftAvatar } : undefined }
-        chevron
+        chevron={ item.item.navigate !== undefined }
         onPress={ () => this.onPress(item) }
       />)
     },

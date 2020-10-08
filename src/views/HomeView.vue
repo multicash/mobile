@@ -26,7 +26,7 @@
       <wallets-section
         :wallets="wallets"
         @wallet-selected="navigation.navigate('wallet', { screen: 'overview', params: { wallet: arguments[0] } })"
-        @order-wallets="navigation.navigate('orderWallets')"
+        @order-wallets="navigation.navigate('orderWallets', { wallets })"
         @add-wallet="navigation.navigate('add')"
       />
     </view>
@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import ViewSection from '@/components/ViewSection'
-import WalletsSection from '@/components/WalletsSection'
-import ActionsSection from '@/components/ActionsSection'
-import StyledViewBackground from '@/components/StyledViewBackground'
-import RoundButton from '@/components/RoundButton'
+import ViewSection from '@/components/views/ViewSection'
+import WalletsSection from '@/components/sections/WalletsSection'
+import ActionsSection from '@/components/sections/ActionsSection'
+import StyledViewBackground from '@/components/views/StyledViewBackground'
+import RoundButton from '@/components/buttons/RoundButton'
 
 export default {
   name: 'HomeView',

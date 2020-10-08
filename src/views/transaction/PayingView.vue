@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import ViewBackground from '@/components/ViewBackground'
+import ViewBackground from '@/components/views/ViewBackground'
 
 export default {
   name: 'PayingView',

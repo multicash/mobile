@@ -12,15 +12,15 @@
         <icon name="person-add" :size="20"/>
       </round-button>
     </modal-navigation>
-    <table-view :sections="data" :grouped="false"/>
+    <table-view :sections="contactsList" :grouped="false"/>
   </view-background>
 </template>
 
 <script>
-import ViewBackground from '@/components/ViewBackground'
-import ModalNavigation from '@/components/ModalNavigation'
-import TableView from '@/components/TableView'
-import RoundButton from '@/components/RoundButton'
+import ViewBackground from '@/components/views/ViewBackground'
+import ModalNavigation from '@/components/navigations/ModalNavigation'
+import TableView from '@/components/tables/TableView'
+import RoundButton from '@/components/buttons/RoundButton'
 
 export default {
   name: 'OverviewView',
@@ -34,50 +34,50 @@ export default {
 
   data () {
     return {
-      data: [
+      contacts: [
         {
-          data: [
-            {
-              title: 'CryptoRekt',
-              subtitle: '@cr',
-              leftIcon: { name: 'person-circle', color: '#a7fb00', size: 40 },
+          name: 'CryptoRekt',
+          tag: '@cr',
+          icon: { name: 'person-circle', color: '#a7fb00' }
+        },
+        {
+          name: 'Michael',
+          tag: '@michael',
+          icon: { name: 'cloud-circle', color: '#eaee18' }
+        },
+        {
+          name: 'sandersvoice',
+          tag: '@sandersvoice',
+          icon: { name: 'person-circle', color: '#3b28f3' }
+        },
+        {
+          name: 'Sunerok',
+          tag: '@justinvendetta',
+          icon: { name: 'navigate-circle', color: '#00ffb2' }
+        },
+        {
+          name: 'Swen van Zanten',
+          tag: '@swenvanzanten',
+          icon: { name: 'planet', color: '#c807a9' }
+        }
+      ]
+    }
+  },
+
+  computed: {
+    contactsList () {
+      return [
+        {
+          data: this.contacts.map(contact => {
+            return {
+              title: contact.name,
+              subtitle: contact.tag,
+              leftIcon: { name: contact.icon.name, color: contact.icon.color, size: 40 },
               navigate: () => {
-                this.navigation.navigate('contact')
-              }
-            },
-            {
-              title: 'Michael',
-              subtitle: '@michael',
-              leftIcon: { name: 'person-circle', color: '#eaee18', size: 40 },
-              navigate: () => {
-                this.navigation.navigate('contact')
-              }
-            },
-            {
-              title: 'sandersvoice',
-              subtitle: '@sandersvoice',
-              leftIcon: { name: 'person-circle', color: '#3b28f3', size: 40 },
-              navigate: () => {
-                this.navigation.navigate('contact')
-              }
-            },
-            {
-              title: 'Sunerok',
-              subtitle: '@justinvendetta',
-              leftIcon: { name: 'person-circle', color: '#00ffb2', size: 40 },
-              navigate: () => {
-                this.navigation.navigate('contact')
-              }
-            },
-            {
-              title: 'Swen van Zanten',
-              subtitle: '@swenvanzanten',
-              leftIcon: { name: 'person-circle', color: '#c807a9', size: 40 },
-              navigate: () => {
-                this.navigation.navigate('contact')
+                this.navigation.navigate('contact', { contact })
               }
             }
-          ]
+          })
         }
       ]
     }

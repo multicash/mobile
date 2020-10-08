@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import ModalNavigation from '@/components/ModalNavigation'
-import TableView from '@/components/TableView'
+import ModalNavigation from '@/components/navigations/ModalNavigation'
+import TableView from '@/components/tables/TableView'
 import TableHeaderView from '@/react/components/TableHeaderView'
-import ViewBackground from '@/components/ViewBackground'
+import ViewBackground from '@/components/views/ViewBackground'
 
 export default {
   name: 'SettingsView',

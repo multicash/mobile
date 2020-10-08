@@ -35,9 +35,9 @@
 </template>
 
 <script>
-import { cards, text } from '@/styles/index'
-import WalletIcon from '@/components/WalletIcon'
-import Money from '@/components/Money'
+import { cards, text } from '@/styles'
+import WalletIcon from '@/components/icons/WalletIcon'
+import Money from '@/components/labels/Money'
 
 export default {
   name: 'WalletCard',

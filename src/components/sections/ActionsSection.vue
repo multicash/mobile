@@ -27,9 +27,9 @@
 </style>
 
 <script>
-import Spacer from '@/components/Spacer'
-import ViewSection from '@/components/ViewSection'
-import ActionButton from '@/components/ActionButton'
+import Spacer from '@/components/views/Spacer'
+import ViewSection from '@/components/views/ViewSection'
+import ActionButton from '@/components/buttons/ActionButton'
 
 export default {
   name: 'ActionsSection',

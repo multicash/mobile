@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import Money from '@/components/Money'
-import WalletIcon from '@/components/WalletIcon'
+import Money from '@/components/labels/Money'
+import WalletIcon from '@/components/icons/WalletIcon'
 
 export default {
   name: 'SourceIcon',
