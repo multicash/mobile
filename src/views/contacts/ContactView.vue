@@ -32,24 +32,8 @@
 </template>
 
 <script>
-import ViewBackground from '@/components/views/ViewBackground'
-import ModalNavigation from '@/components/navigations/ModalNavigation'
-import RoundedTextInput from '@/components/forms/RoundedTextInput'
-import Spacer from '@/components/views/Spacer'
-import RoundButton from '@/components/buttons/RoundButton'
-import Selector from '@/components/forms/Selector'
-
 export default {
   name: 'ContactView',
-
-  components: {
-    Selector,
-    RoundButton,
-    Spacer,
-    RoundedTextInput,
-    ModalNavigation,
-    ViewBackground
-  },
 
   data () {
     return {

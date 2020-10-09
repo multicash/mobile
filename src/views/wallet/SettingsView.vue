@@ -11,14 +11,8 @@
 </template>
 
 <script>
-import ModalNavigation from '@/components/navigations/ModalNavigation'
-import TableView from '@/components/tables/TableView'
-import ViewBackground from '@/components/views/ViewBackground'
-
 export default {
   name: 'SettingsView',
-
-  components: { TableView, ModalNavigation, ViewBackground },
 
   data () {
     return {
@@ -29,12 +23,18 @@ export default {
             {
               title: 'Name',
               subtitle: 'The wallets name is needed because you can have multiple wallets inside this awesome application!',
-              leftIcon: { name: 'wallet' }
+              leftIcon: { name: 'wallet' },
+              navigate: () => {
+                this.navigation.navigate('name', { wallet: this.route.params.wallet })
+              }
             },
             {
               title: 'Icon',
               subtitle: 'Choose an icon that fits the purpose of this wallet perfectly',
-              leftIcon: { name: 'color-palette' }
+              leftIcon: { name: 'color-palette' },
+              navigate: () => {
+                this.navigation.navigate('icon', { wallet: this.route.params.wallet })
+              }
             }
           ]
         },
@@ -44,12 +44,18 @@ export default {
             {
               title: 'Paper key',
               subtitle: 'The paper key enables you to restore this wallet. If you lose it you can never recover it and you\'ll loose access to your XVG. So make absolutely sure to keep it very safe.',
-              leftIcon: { name: 'key' }
+              leftIcon: { name: 'key' },
+              navigate: () => {
+                this.navigation.navigate('paperKey', { wallet: this.route.params.wallet })
+              }
             },
             {
               title: 'Export your wallet',
               subtitle: 'Creating an extra backup of your wallet credentials can be a smart thing to do. Either store it safely on a removable drive or another secure place.',
-              leftIcon: { name: 'download' }
+              leftIcon: { name: 'download' },
+              navigate: () => {
+                this.navigation.navigate('export', { wallet: this.route.params.wallet })
+              }
             }
           ]
         },

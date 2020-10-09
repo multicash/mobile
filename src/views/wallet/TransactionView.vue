@@ -51,28 +51,8 @@
 </template>
 
 <script>
-import ModalNavigation from '@/components/navigations/ModalNavigation'
-import ViewBackground from '@/components/views/ViewBackground'
-import SourceIcon from '@/components/icons/SourceIcon'
-import Money from '@/components/labels/Money'
-import DetailList from '@/components/lists/DetailList'
-import DetailListItem from '@/components/lists/DetailListItem'
-import DetailListTitle from '@/components/lists/DetailListTitle'
-import LinkButton from '@/components/buttons/LinkButton'
-
 export default {
   name: 'TransactionView',
-
-  components: {
-    LinkButton,
-    DetailListTitle,
-    DetailListItem,
-    DetailList,
-    Money,
-    SourceIcon,
-    ViewBackground,
-    ModalNavigation
-  },
 
   computed: {
     styles () {

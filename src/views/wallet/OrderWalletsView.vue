@@ -10,19 +10,10 @@
 </template>
 
 <script>
-import ViewBackground from '@/components/views/ViewBackground'
-import ModalNavigation from '@/components/navigations/ModalNavigation'
-import TableView from '@/components/tables/TableView'
 import { resolveIcon } from '@/support/walletIcons'
 
 export default {
   name: 'OrderWalletsView',
-
-  components: {
-    TableView,
-    ModalNavigation,
-    ViewBackground
-  },
 
   data () {
     return {

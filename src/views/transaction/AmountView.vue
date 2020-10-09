@@ -49,18 +49,10 @@
 </template>
 
 <script>
-import ViewBackground from '@/components/views/ViewBackground'
-import ModalNavigation from '@/components/navigations/ModalNavigation'
-import Money from '@/components/labels/Money'
-import RoundedButton from '@/components/buttons/RoundedButton'
-import Spacer from '@/components/views/Spacer'
-import Selector from '@/components/forms/Selector'
 import { Platform, Keyboard } from 'react-native'
 
 export default {
   name: 'AmountView',
-
-  components: { Spacer, Selector, RoundedButton, Money, ModalNavigation, ViewBackground },
 
   data () {
     return {

@@ -34,22 +34,8 @@
 </template>
 
 <script>
-import ViewSection from '@/components/views/ViewSection'
-import WalletsSection from '@/components/sections/WalletsSection'
-import ActionsSection from '@/components/sections/ActionsSection'
-import StyledViewBackground from '@/components/views/StyledViewBackground'
-import RoundButton from '@/components/buttons/RoundButton'
-
 export default {
   name: 'HomeView',
-
-  components: {
-    RoundButton,
-    StyledViewBackground,
-    WalletsSection,
-    ActionsSection,
-    ViewSection
-  },
 
   data () {
     return {

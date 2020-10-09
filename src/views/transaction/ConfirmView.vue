@@ -49,17 +49,8 @@
 </template>
 
 <script>
-import ModalNavigation from '@/components/navigations/ModalNavigation'
-import ViewBackground from '@/components/views/ViewBackground'
-import RoundedButton from '@/components/buttons/RoundedButton'
-import SourceIcon from '@/components/icons/SourceIcon'
-import Money from '@/components/labels/Money'
-import RoundedTextInput from '@/components/forms/RoundedTextInput'
-
 export default {
   name: 'ConfirmView',
-
-  components: { RoundedTextInput, Money, SourceIcon, RoundedButton, ViewBackground, ModalNavigation },
 
   computed: {
     styles () {

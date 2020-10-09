@@ -17,20 +17,8 @@
 </template>
 
 <script>
-import ViewBackground from '@/components/views/ViewBackground'
-import ModalNavigation from '@/components/navigations/ModalNavigation'
-import TableView from '@/components/tables/TableView'
-import RoundButton from '@/components/buttons/RoundButton'
-
 export default {
   name: 'OverviewView',
-
-  components: {
-    RoundButton,
-    TableView,
-    ModalNavigation,
-    ViewBackground
-  },
 
   data () {
     return {

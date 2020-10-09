@@ -22,6 +22,10 @@ import PayingView from '@/views/transaction/PayingView'
 import OverviewView from '@/views/wallet/OverviewView'
 import WalletSettingsView from '@/views/wallet/SettingsView'
 import TransactionView from '@/views/wallet/TransactionView'
+import NameView from '@/views/wallet/NameView'
+import IconView from '@/views/wallet/IconView'
+import PaperKeyView from '@/views/wallet/PaperKeyView'
+import ExportView from '@/views/wallet/ExportView'
 import OrderWalletsView from '@/views/wallet/OrderWalletsView'
 import AddView from '@/views/wallet/AddView'
 
@@ -132,6 +136,22 @@ const Wallet = () => {
       <Stack.Screen
         name="transaction"
         component={TransactionView}
+      />
+      <Stack.Screen
+        name="name"
+        component={NameView}
+      />
+      <Stack.Screen
+        name="icon"
+        component={IconView}
+      />
+      <Stack.Screen
+        name="paperKey"
+        component={PaperKeyView}
+      />
+      <Stack.Screen
+        name="export"
+        component={ExportView}
       />
     </Stack.Navigator>
   )

@@ -27,17 +27,7 @@
 </style>
 
 <script>
-import Spacer from '@/components/views/Spacer'
-import ViewSection from '@/components/views/ViewSection'
-import ActionButton from '@/components/buttons/ActionButton'
-
 export default {
-  name: 'ActionsSection',
-
-  components: {
-    ActionButton,
-    ViewSection,
-    Spacer
-  }
+  name: 'ActionsSection'
 }
 </script>

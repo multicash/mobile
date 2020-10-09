@@ -62,24 +62,8 @@
 </template>
 
 <script>
-import ViewBackground from '@/components/views/ViewBackground'
-import ModalNavigation from '@/components/navigations/ModalNavigation'
-import Selector from '@/components/forms/Selector'
-import RoundedTextInput from '@/components/forms/RoundedTextInput'
-import Money from '@/components/labels/Money'
-import RoundedButton from '@/components/buttons/RoundedButton'
-
 export default {
   name: 'QrView',
-
-  components: {
-    RoundedButton,
-    Money,
-    RoundedTextInput,
-    Selector,
-    ModalNavigation,
-    ViewBackground
-  },
 
   data () {
     return {

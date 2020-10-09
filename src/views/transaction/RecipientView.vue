@@ -10,14 +10,8 @@
 </template>
 
 <script>
-import ModalNavigation from '@/components/navigations/ModalNavigation'
-import TableView from '@/components/tables/TableView'
-import ViewBackground from '@/components/views/ViewBackground'
-
 export default {
   name: 'RecipientView',
-
-  components: { ViewBackground, TableView, ModalNavigation },
 
   data () {
     return {

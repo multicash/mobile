@@ -29,14 +29,8 @@
 </template>
 
 <script>
-import ViewBackground from '@/components/views/ViewBackground'
-import ModalNavigation from '@/components/navigations/ModalNavigation'
-import RoundedButton from '@/components/buttons/RoundedButton'
-import RoundedTextInput from '@/components/forms/RoundedTextInput'
 export default {
   name: 'EnterRecipientView',
-
-  components: { RoundedTextInput, RoundedButton, ModalNavigation, ViewBackground },
 
   data () {
     return {

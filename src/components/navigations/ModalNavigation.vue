@@ -17,13 +17,10 @@
 </template>
 
 <script>
-import RoundButton from '@/components/buttons/RoundButton'
 import { text } from '@/styles'
 
 export default {
   name: 'ModalNavigation',
-
-  components: { RoundButton },
 
   props: {
     title: {
