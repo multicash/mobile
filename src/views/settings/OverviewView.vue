@@ -20,7 +20,7 @@ export default {
             {
               title: 'Currency',
               subtitle: 'All fiat amounts will be displayed in this currency',
-              leftIcon: { name: 'cash-outline' },
+              leftIcon: { name: 'cash' },
               navigate: () => {
                 this.navigation.navigate('currency')
               }
@@ -28,7 +28,7 @@ export default {
             {
               title: 'Change PIN',
               subtitle: 'Change the PIN used for securing your wallets by MultiCash',
-              leftIcon: { name: 'lock-closed-outline' },
+              leftIcon: { name: 'lock-closed' },
               navigate: () => {
                 this.navigation.navigate('changePin')
               }
@@ -49,7 +49,7 @@ export default {
             {
               title: 'Support',
               subtitle: 'Let us help you when you run into trouble with MultiCash',
-              leftIcon: { name: 'help-buoy-outline' },
+              leftIcon: { name: 'help-buoy' },
               navigate: () => {
                 this.navigation.navigate('support')
               }

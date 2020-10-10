@@ -15,7 +15,7 @@
 <script>
 import React from 'react'
 import { View, Text } from 'react-native'
-import { ListItem } from 'react-native-elements'
+import { ListItem, Avatar, Icon } from 'react-native-elements'
 import { text, subtitle, sectionTitle } from '@/styles'
 
 console.log(React.version)
@@ -56,20 +56,67 @@ export default {
 
   methods: {
     renderList (item) {
-      return (<ListItem
-        style={item.section.data.length - 1 === item.index ? undefined : this.styles.item}
-        containerStyle={this.styles.itemContent}
-        titleStyle={this.styles.itemTitle}
-        subtitleStyle={this.styles.itemSubtitle}
-        key={item.index}
-        title={ item.item.title || undefined }
-        subtitle={ item.item.subtitle || undefined }
-        leftIcon={ item.item.leftIcon ? { type: 'ionicon', color: this.styles.itemLeftIcon.color, ...item.item.leftIcon } : undefined }
-        rightIcon={ item.item.rightIcon ? { type: 'ionicon', color: this.styles.itemRightIcon.color, ...item.item.rightIcon } : undefined }
-        leftAvatar={ item.item.leftAvatar ? { placeholderStyle: { backgroundColor: 'transparent' }, ...item.item.leftAvatar } : undefined }
-        chevron={ item.item.navigate !== undefined }
-        onPress={ () => this.onPress(item) }
-      />)
+      return (
+        <ListItem
+          style={item.section.data.length - 1 === item.index ? undefined : this.styles.item}
+          containerStyle={this.styles.itemContent}
+          key={item.index}
+          onPress={ () => this.onPress(item) }
+        >
+          {item.item.leftAvatar &&
+          <Avatar
+            source={item.item.leftAvatar.source}
+            size={item.item.leftAvatar.size || 40}
+            rounded={item.item.leftAvatar.rounded || true}
+            placeholderStyle={{ backgroundColor: 'transparent' }}
+          />
+          }
+
+          {item.item.leftIcon &&
+          <Icon
+            type="ionicon"
+            name={item.item.leftIcon.name}
+            color={item.item.leftIcon.color || this.styles.itemLeftIcon.color}
+            size={item.item.leftIcon.size || 24}
+          />
+          }
+
+          <ListItem.Content>
+            {item.item.title &&
+            <ListItem.Title style={this.styles.itemTitle}>{item.item.title || undefined}</ListItem.Title>
+            }
+            {item.item.subtitle &&
+            <ListItem.Subtitle style={this.styles.itemSubtitle}>{item.item.subtitle || undefined}</ListItem.Subtitle>
+            }
+          </ListItem.Content>
+
+          {item.item.rightIcon &&
+          <Icon
+            type="ionicon"
+            name={item.item.rightIcon.name}
+            color={item.item.rightIcon.color || this.styles.itemRightIcon.color}
+            size={item.item.rightIcon.size || 24}
+          />
+          }
+
+          {item.item.navigate !== undefined &&
+          <ListItem.Chevron
+            type="ionicon"
+            name="chevron-forward"
+            size={20}
+          />
+          }
+
+          {item.item.checked &&
+          <ListItem.Chevron
+            color={this.styles.checkedChevron.color}
+            name="checkmark-circle"
+            type="ionicon"
+            size={25}
+          />
+          }
+        </ListItem>
+      )
     },
 
     renderSectionHeader (section) {
@@ -137,6 +184,9 @@ const stylesStore = (isDarkScheme, type, grouped) => {
     },
     itemRightIcon: {
       color: isDarkScheme ? 'white' : 'black'
+    },
+    checkedChevron: {
+      color: isDarkScheme ? '#a96cf5' : '#7200ff'
     }
   }
 }
