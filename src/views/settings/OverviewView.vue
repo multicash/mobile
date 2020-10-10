@@ -6,8 +6,10 @@
 </template>
 
 <script>
+import TableHeaderView from '@/react/components/TableHeaderView'
+
 export default {
-  name: 'SettingsView',
+  name: 'OverviewView',
 
   data () {
     return {
@@ -20,18 +22,24 @@ export default {
               subtitle: 'All fiat amounts will be displayed in this currency',
               leftIcon: { name: 'cash-outline' },
               navigate: () => {
-                this.navigation.navigate('contacts', { world: 'hello' })
+                this.navigation.navigate('currency')
               }
             },
             {
               title: 'Change PIN',
               subtitle: 'Change the PIN used for securing your wallets by MultiCash',
-              leftIcon: { name: 'lock-closed-outline' }
+              leftIcon: { name: 'lock-closed-outline' },
+              navigate: () => {
+                this.navigation.navigate('changePin')
+              }
             },
             {
               title: 'Biometric Authentication',
               subtitle: 'Manage how MultiCash works with biometric authentication',
-              leftIcon: { name: 'finger-print' }
+              leftIcon: { name: 'finger-print' },
+              navigate: () => {
+                this.navigation.navigate('biometricAuthentication')
+              }
             }
           ]
         },
@@ -41,7 +49,10 @@ export default {
             {
               title: 'Support',
               subtitle: 'Let us help you when you run into trouble with MultiCash',
-              leftIcon: { name: 'help-buoy-outline' }
+              leftIcon: { name: 'help-buoy-outline' },
+              navigate: () => {
+                this.navigation.navigate('support')
+              }
             },
             {
               title: 'Rate MultiCash',

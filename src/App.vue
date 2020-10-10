@@ -9,7 +9,11 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import HomeView from '@/views/HomeView'
-import SettingsView from '@/views/SettingsView'
+import SettingsOverviewView from '@/views/settings/OverviewView'
+import BiometricAuthenticationView from '@/views/settings/BiometricAuthenticationView'
+import ChangePinView from '@/views/settings/ChangePinView'
+import CurrencyView from '@/views/settings/CurrencyView'
+import SupportView from '@/views/settings/SupportView'
 import ContactsOverviewView from '@/views/contacts/OverviewView'
 import ContactView from '@/views/contacts/ContactView'
 import AmountView from '@/views/transaction/AmountView'
@@ -30,6 +34,36 @@ import OrderWalletsView from '@/views/wallet/OrderWalletsView'
 import AddView from '@/views/wallet/AddView'
 
 const Stack = createStackNavigator()
+
+const Settings = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="overview"
+      headerMode="none"
+    >
+      <Stack.Screen
+        name="overview"
+        component={SettingsOverviewView}
+      />
+      <Stack.Screen
+        name="biometricAuthentication"
+        component={BiometricAuthenticationView}
+      />
+      <Stack.Screen
+        name="changePin"
+        component={ChangePinView}
+      />
+      <Stack.Screen
+        name="currency"
+        component={CurrencyView}
+      />
+      <Stack.Screen
+        name="support"
+        component={SupportView}
+      />
+    </Stack.Navigator>
+  )
+}
 
 const Contacts = () => {
   return (
@@ -180,7 +214,7 @@ const AppNavigator = () => {
           />
           <Stack.Screen
             name="settings"
-            component={SettingsView}
+            component={Settings}
           />
           <Stack.Screen
             name="contacts"
