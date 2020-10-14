@@ -5,6 +5,7 @@
     <touchable-opacity
       :style="styles.roundButton"
       :on-press="pressed"
+      :on-long-press="pressedLong"
       :active-opacity="0.6"
     >
       <view :style="styles.content">
@@ -34,6 +35,10 @@ export default {
   methods: {
     pressed () {
       this.$emit('on-press')
+    },
+
+    pressedLong () {
+      this.$emit('on-long-press')
     }
   }
 }

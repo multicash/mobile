@@ -5,10 +5,15 @@
         :style="{ marginRight: 10 }"
         transparent-shadow
         @on-press="navigation.navigate('contacts')"
+        @on-long-press="updateIsAuthenticated(false)"
       >
         <icon name="people"/>
       </round-button>
-      <round-button @on-press="navigation.navigate('settings')" transparent-shadow>
+      <round-button
+        transparent-shadow
+        @on-press="navigation.navigate('settings')"
+        @on-long-press="updateIsAuthenticated(false) && updateIsSetup(false)"
+      >
         <icon name="toggle"/>
       </round-button>
     </view>
@@ -34,6 +39,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'HomeView',
 
@@ -62,6 +69,10 @@ export default {
     styles () {
       return stylesStore(this.isDarkScheme)
     }
+  },
+
+  methods: {
+    ...mapActions(['updateIsAuthenticated', 'updateIsSetup'])
   }
 }
 

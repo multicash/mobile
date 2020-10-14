@@ -82,7 +82,7 @@ export default {
 
   computed: {
     currenciesList () {
-      const selectedCurrency = this.route.params ? this.route.params.currencyCode : 'EUR'
+      const selectedCurrency = this.route.params ? this.route.params.currencyCode : null
 
       return [
         {

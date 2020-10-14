@@ -2,7 +2,7 @@
   <view :style="styles.detailListItemContainer">
     <view :style="styles.detailListItemLeftContainer">
       <slot name="icon">
-        <icon v-if="icon" :name="icon" :style="styles.icon" size="14"/>
+        <icon v-if="icon" :name="icon" :style="styles.icon" :size="14"/>
       </slot>
       <slot name="title">
         <text :style="styles.title">{{ title }}</text>
