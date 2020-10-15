@@ -37,6 +37,8 @@
 			</dict>
 		</dict>
 	</dict>
+  <key>NSFaceIDUsageDescription</key>
+  <string>MultiCash uses Face ID to unlock the application</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>
 	<key>UIAppFonts</key>

@@ -20,7 +20,7 @@
     <view :style="styles.content">
       <view-section :style="styles.logoSection">
         <image
-          :source="require('../assets/logo-light.png')"
+          :source="require('@/assets/logo-light.png')"
           :style="styles.logoImage"
         />
       </view-section>

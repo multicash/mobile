@@ -6,6 +6,9 @@ import Icon from '@/components/icons/Icon'
 import SourceIcon from '@/components/icons/SourceIcon'
 import WalletIcon from '@/components/icons/WalletIcon'
 
+import PinKeyboard from '@/components/keyboards/PinKeyboard'
+import KeyboardKey from '@/components/keyboards/KeyboardKey'
+
 import ActionButton from '@/components/buttons/ActionButton'
 import LinkButton from '@/components/buttons/LinkButton'
 import RoundButton from '@/components/buttons/RoundButton'
@@ -49,6 +52,9 @@ Vue.component('selector', Selector)
 Vue.component('icon', Icon)
 Vue.component('source-icon', SourceIcon)
 Vue.component('wallet-icon', WalletIcon)
+
+Vue.component('pin-keyboard', PinKeyboard)
+Vue.component('keyboard-key', KeyboardKey)
 
 Vue.component('money', Money)
 

@@ -1,11 +1,16 @@
 <template>
   <view-background no-padding>
+    <status-bar :bar-style="isDarkScheme ? 'light-content' : 'dark-content'" />
+
     <safe-area-view :style="styles.container">
 
       <view :style="styles.pinContainer">
-        <text :style="styles.title">Enter your PIN</text>
+        <image
+          :source="require('@/assets/pin.png')"
+          :style="styles.logoImage"
+        />
 
-        <icon name="finger-print" v-if="help" />
+        <text :style="styles.title">Enter your PIN</text>
 
         <view :style="styles.digitDotsContainer">
           <view
@@ -19,37 +24,22 @@
         </view>
       </view>
 
-      <view :style="styles.keyboardContainer">
-
-        <view
-          v-for="(characters, i) in keyboardCharacters"
-          :key="i"
-          :style="styles.keyboardRow"
-        >
-          <touchable-opacity
-            v-for="character in characters"
-            :key="character"
-            :style="styles.keyboardKey"
-            :on-press="() => keyDown(character)"
-          >
-            <icon v-if="character === 'auth'" name="finger-print" />
-            <icon v-else-if="character === 'del'" name="backspace" />
-            <text v-else :style="styles.keyboardCharater">{{ character }}</text>
-          </touchable-opacity>
-        </view>
-
-      </view>
+      <pin-keyboard
+        v-model="pin"
+        :biometry-type="biometryType"
+        :max-length="pinLength"
+        @input="pinUpdated"
+        @auth-requested="authRequested"
+      />
 
     </safe-area-view>
   </view-background>
 </template>
 
 <script>
+import ReactNativeBiometrics from 'react-native-biometrics'
 import { mapActions } from 'vuex'
 import { SafeAreaView } from 'react-native-safe-area-context'
-
-const AUTH_CHARACTER = 'auth'
-const DEL_CHARACTER = 'del'
 
 export default {
   components: { SafeAreaView },
@@ -58,15 +48,8 @@ export default {
     return {
       pinLength: 4,
       pin: [],
-
-      help: false,
-
-      keyboardCharacters: [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
-        [AUTH_CHARACTER, 0, DEL_CHARACTER]
-      ]
+      biometricsAvailable: false,
+      biometryType: null
     }
   },
 
@@ -82,34 +65,44 @@ export default {
 
   created () {
     this.pin = Array(this.pinLength)
+
+    ReactNativeBiometrics.isSensorAvailable()
+      .then(({ available, biometryType }) => {
+        this.biometricsAvailable = available
+        this.biometryType = biometryType
+      })
+      .catch(e => {
+        console.error(e)
+      })
   },
 
   methods: {
     ...mapActions(['updateIsAuthenticated']),
 
-    keyDown (charater) {
-      const index = Object.keys(this.pin).length
-
-      if (DEL_CHARACTER === charater) {
-        delete this.pin[index - 1]
-        this.$forceUpdate()
-        return
-      }
-
-      if (AUTH_CHARACTER === charater) {
-        return
-      }
-
-      if (index >= this.pinLength) {
-        return
-      }
-
-      this.pin[index] = charater
+    pinUpdated () {
       this.$forceUpdate()
 
       if (this.pinLength === this.pin.filter(v => v !== undefined).length) {
         this.authenticate()
       }
+    },
+
+    authRequested () {
+      if (!this.biometricsAvailable) {
+        return
+      }
+
+      ReactNativeBiometrics.simplePrompt({ promptMessage: 'Unlock MultiCash' })
+        .then(({ success }) => {
+          if (success) {
+            this.pin = [0, 1, 2, 3]
+            this.authenticate()
+          }
+        })
+        .catch(e => {
+          console.log('biometrics failed')
+          console.error(e)
+        })
     },
 
     authenticate () {
@@ -135,8 +128,16 @@ const stylesStore = (isDarkScheme) => {
 
     pinContainer: {
       flex: 1,
+      width: '100%',
       justifyContent: 'center',
       alignItems: 'center'
+    },
+
+    logoImage: {
+      resizeMode: 'contain',
+      height: 75,
+      width: '100%',
+      marginBottom: 30
     },
 
     title: {
@@ -162,35 +163,6 @@ const stylesStore = (isDarkScheme) => {
       width: 20,
       height: 20,
       borderRadius: 10
-    },
-
-    keyboardContainer: {
-      flex: 1,
-      width: '100%',
-      maxWidth: 300,
-      marginHorizontal: 50
-    },
-
-    keyboardRow: {
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    },
-
-    keyboardKey: {
-      flex: 0.3,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: isDarkScheme ? '#2b2e33' : '#ffffff',
-      height: '80%',
-      borderRadius: 300
-    },
-
-    keyboardCharater: {
-      fontWeight: '600',
-      fontSize: 18,
-      color: isDarkScheme ? 'white' : 'black'
     }
   }
 }
