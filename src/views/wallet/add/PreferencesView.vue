@@ -1,0 +1,79 @@
+<template>
+  <view :style="{ flex: 1 }">
+    <modal-navigation
+      title="Preferences"
+      has-back-button
+      @on-dismiss="navigation.goBack()"
+    />
+    <view-background>
+
+      <text :style="styles.description">Choose a wallet name for this wallet to recognize it among your other wallets.</text>
+      <rounded-text-input title="Wallet name" placeholder="Main account" :value="name" @input="name = $event"/>
+
+      <spacer />
+
+      <text :style="styles.description">Choose a wallet tag which will be shareable and will enable other MultiCash user to easily recognize your account from many of their other friends and contacts.</text>
+      <rounded-text-input title="Wallet tag" placeholder="@myWalletTag" :value="tag" @input="tag = $event"/>
+
+      <spacer />
+
+      <text :style="styles.description">Make your wallet even more recognizable by choosing a wallet icon.</text>
+      <selector name="Icon">
+        <view slot="value" :style="styles.iconContainer">
+          <wallet-icon :icon="icon.name" />
+          <spacer />
+          <text :style="styles.iconText">{{ icon.name }}</text>
+        </view>
+      </selector>
+
+      <spacer :style="{ flex: 1 }" />
+
+      <rounded-button title="Proceed" @on-press="navigation.navigate('restoreKey')" />
+      <spacer />
+
+    </view-background>
+  </view>
+</template>
+
+<script>
+export default {
+  name: 'PreferencesView',
+
+  data () {
+    return {
+      name: '',
+      tag: '',
+      icon: {
+        name: 'moneyBox'
+      }
+    }
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme) => {
+  return {
+    description: {
+      color: isDarkScheme ? '#c0c0c0' : '#343434',
+      marginBottom: 10,
+      marginHorizontal: 5,
+      fontSize: 12
+    },
+
+    iconContainer: {
+      padding: 10,
+      flexDirection: 'row',
+      alignItems: 'center'
+    },
+
+    iconText: {
+      color: isDarkScheme ? 'white' : 'black'
+    }
+  }
+}
+</script>

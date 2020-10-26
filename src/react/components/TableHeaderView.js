@@ -7,8 +7,8 @@ export default (isDarkScheme, title, subtitle, image) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{ title }</Text>
       <Image style={styles.image} source={image}/>
+      <Text style={styles.title}>{ title }</Text>
       <Text style={styles.subtitle}>{ subtitle }</Text>
     </View>
   )
@@ -31,13 +31,15 @@ const stylesStore = (isDarkScheme) => {
     subtitle: {
       fontSize: 12,
       color: isDarkScheme ? '#b3aabe' : '#72677b',
-      marginVertical: 5
+      marginVertical: 5,
+      textAlign: 'center'
     },
     image: {
       width: 100,
       height: 100,
       resizeMode: 'contain',
-      marginVertical: 5
+      marginTop: 20,
+      marginBottom: 5
     }
   }
 }

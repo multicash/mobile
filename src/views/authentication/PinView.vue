@@ -1,5 +1,11 @@
 <template>
   <view-background no-padding>
+    <modal-navigation
+      v-if="hasAuthenticatedAction"
+      has-close-button
+      @on-dismiss="navigation.goBack()"
+    />
+
     <status-bar :bar-style="isDarkScheme ? 'light-content' : 'dark-content'" />
 
     <safe-area-view :style="styles.container">
@@ -60,6 +66,10 @@ export default {
 
     styles () {
       return stylesStore(this.isDarkScheme)
+    },
+
+    hasAuthenticatedAction () {
+      return this.route.params && this.route.params.authenticated && typeof this.route.params.authenticated === 'function'
     }
   },
 
@@ -107,12 +117,16 @@ export default {
 
     authenticate () {
       if (this.pin.join('') === '0123') {
-        this.updateIsAuthenticated(true)
-      } else {
-        alert('The correct PIN is 0123 :)')
+        if (this.hasAuthenticatedAction) {
+          return this.route.params.authenticated()
+        }
 
-        this.pin = Array(4)
+        return this.updateIsAuthenticated(true)
       }
+
+      alert('The correct PIN is 0123 :)')
+
+      this.pin = Array(4)
     }
   }
 }

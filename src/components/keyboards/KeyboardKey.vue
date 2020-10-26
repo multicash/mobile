@@ -30,7 +30,7 @@ const stylesStore = (isDarkScheme) => {
       alignItems: 'center',
       backgroundColor: isDarkScheme ? '#2b2e33' : '#ffffff',
       height: '80%',
-      borderRadius: 300
+      borderRadius: 100
     },
 
     keyboardCharater: {

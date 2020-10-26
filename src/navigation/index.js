@@ -40,10 +40,15 @@ import WalletSettingsView from '@/views/wallet/SettingsView'
 import TransactionView from '@/views/wallet/TransactionView'
 import NameView from '@/views/wallet/NameView'
 import IconView from '@/views/wallet/IconView'
-import PaperKeyView from '@/views/wallet/PaperKeyView'
+import RestoreKeyView from '@/views/wallet/RestoreKeyView'
 import ExportView from '@/views/wallet/ExportView'
 import OrderWalletsView from '@/views/wallet/OrderWalletsView'
+
+// Add wallet views
 import AddView from '@/views/wallet/AddView'
+import AddPreferencesView from '@/views/wallet/add/PreferencesView'
+import AddRestoreKeyView from '@/views/wallet/add/RestoreKeyView'
+import AddImportView from '@/views/wallet/add/ImportView'
 
 const Stack = createStackNavigator()
 
@@ -192,12 +197,38 @@ const Wallet = () => {
         component={IconView}
       />
       <Stack.Screen
-        name="paperKey"
-        component={PaperKeyView}
+        name="restoreKey"
+        component={RestoreKeyView}
       />
       <Stack.Screen
         name="export"
         component={ExportView}
+      />
+    </Stack.Navigator>
+  )
+}
+
+const Add = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="overview"
+      headerMode="none"
+    >
+      <Stack.Screen
+        name="add"
+        component={AddView}
+      />
+      <Stack.Screen
+        name="preferences"
+        component={AddPreferencesView}
+      />
+      <Stack.Screen
+        name="restoreKey"
+        component={AddRestoreKeyView}
+      />
+      <Stack.Screen
+        name="import"
+        component={AddImportView}
       />
     </Stack.Navigator>
   )
@@ -250,7 +281,11 @@ export const AppNavigator = () => {
           />
           <Stack.Screen
             name="add"
-            component={AddView}
+            component={Add}
+          />
+          <Stack.Screen
+            name="pin"
+            component={AuthenticationPinView}
           />
         </Stack.Navigator>
       </NavigationContainer>

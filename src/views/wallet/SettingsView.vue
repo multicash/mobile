@@ -4,8 +4,7 @@
       title="Settings"
       has-back-button
       @on-dismiss="navigation.goBack()"
-    >
-    </modal-navigation>
+    />
     <table-view :sections="data"/>
   </view-background>
 </template>
@@ -42,11 +41,11 @@ export default {
           title: 'Credentials',
           data: [
             {
-              title: 'Paper key',
-              subtitle: 'The paper key enables you to restore this wallet. If you lose it you can never recover it and you\'ll loose access to your XVG. So make absolutely sure to keep it very safe.',
+              title: 'Restore key',
+              subtitle: 'The restore key enables you to restore this wallet. If you lose it you can never recover it and you\'ll loose access to your XVG. So make absolutely sure to keep it very safe.',
               leftIcon: { name: 'key' },
               navigate: () => {
-                this.navigation.navigate('paperKey', { wallet: this.route.params.wallet })
+                this.navigation.navigate('restoreKey', { wallet: this.route.params.wallet })
               }
             },
             {
@@ -64,7 +63,7 @@ export default {
           data: [
             {
               title: 'Delete',
-              subtitle: 'This will delete your wallet from this application. Your wallet can still be restored by using your paper key and pass phrase. Please make absolutely sure you\'ve written down your paper key and know your pass phrase. Remember that your paper key + pass phrase is the only way to restore your current wallet.',
+              subtitle: 'This will delete your wallet from this application. Your wallet can still be restored by using your restore key and pass phrase. Please make absolutely sure you\'ve written down your restore key and know your pass phrase. Remember that your restore key + pass phrase is the only way to restore your current wallet.',
               leftIcon: { name: 'trash' }
             }
           ]

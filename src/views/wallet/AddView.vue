@@ -5,11 +5,63 @@
       has-close-button
       @on-dismiss="navigation.goBack()"
     />
+
+    <table-view :sections="data" :header="renderTableHeader"/>
+
   </view-background>
 </template>
 
 <script>
+import TableHeaderView from '@/react/components/TableHeaderView'
+
 export default {
-  name: 'AddView'
+  name: 'AddView',
+
+  data () {
+    return {
+      data: [
+        {
+          title: 'Ways to add a wallet',
+          data: [
+            {
+              title: 'Create a new wallet',
+              subtitle: 'Never used MultiCash before? This is the one for you!',
+              leftIcon: { name: 'star', color: '#ffb900', size: 30 },
+              navigate: () => {
+                this.navigation.navigate('preferences', { restore: false })
+              }
+            },
+            {
+              title: 'Restore an existing wallet',
+              subtitle: 'Are you restoring your mobile device or did you reinstall the MultiCash app? Restore your already created wallet here.',
+              leftIcon: { name: 'wallet', color: '#89e100', size: 30 },
+              navigate: () => {
+                this.navigation.navigate('preferences', { restore: false })
+              }
+            },
+            {
+              title: 'Import an existing wallet',
+              subtitle: 'Did you previously export your wallet? Import and restore your wallet using this option.',
+              leftIcon: { name: 'save', color: '#00ccde', size: 30 },
+              navigate: () => {
+                this.navigation.navigate('import')
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  methods: {
+    renderTableHeader (isDarkScheme) {
+      return TableHeaderView(
+        isDarkScheme,
+        'Add wallet',
+        "Add a new or an existing wallet to MultiCash\nand use money like it's supposed to!",
+        require('@/assets/wallet.png')
+      )
+    }
+  }
 }
 </script>
