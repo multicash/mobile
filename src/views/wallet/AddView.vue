@@ -36,7 +36,7 @@ export default {
               subtitle: 'Are you restoring your mobile device or did you reinstall the MultiCash app? Restore your already created wallet here.',
               leftIcon: { name: 'wallet', color: '#89e100', size: 30 },
               navigate: () => {
-                this.navigation.navigate('preferences', { restore: false })
+                this.navigation.navigate('preferences', { restore: true })
               }
             },
             {

@@ -12,10 +12,12 @@
 
       <spacer />
 
-      <text :style="styles.description">Choose a wallet tag which will be shareable and will enable other MultiCash user to easily recognize your account from many of their other friends and contacts.</text>
-      <rounded-text-input title="Wallet tag" placeholder="@myWalletTag" :value="tag" @input="tag = $event"/>
+      <view v-if="!route.params.restore">
+        <text :style="styles.description">Choose a wallet tag which will be shareable and enables other MultiCash users to easily recognize your account.</text>
+        <rounded-text-input title="Wallet tag" placeholder="@myWalletTag" :value="tag" @input="tag = $event"/>
 
-      <spacer />
+        <spacer />
+      </view>
 
       <text :style="styles.description">Make your wallet even more recognizable by choosing a wallet icon.</text>
       <selector name="Icon">
@@ -28,7 +30,7 @@
 
       <spacer :style="{ flex: 1 }" />
 
-      <rounded-button title="Proceed" @on-press="navigation.navigate('restoreKey')" />
+      <rounded-button title="Proceed" @on-press="navigation.navigate(route.params.restore ? 'enterRestoreKey' : 'restoreKey')" />
       <spacer />
 
     </view-background>

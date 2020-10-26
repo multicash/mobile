@@ -48,7 +48,10 @@ import OrderWalletsView from '@/views/wallet/OrderWalletsView'
 import AddView from '@/views/wallet/AddView'
 import AddPreferencesView from '@/views/wallet/add/PreferencesView'
 import AddRestoreKeyView from '@/views/wallet/add/RestoreKeyView'
+import AddEnterRestoreKeyView from '@/views/wallet/add/EnterRestoreKeyView'
 import AddImportView from '@/views/wallet/add/ImportView'
+import AddConfirmView from '@/views/wallet/add/ConfirmView'
+import AddCreateView from '@/views/wallet/add/CreateView'
 
 const Stack = createStackNavigator()
 
@@ -227,8 +230,20 @@ const Add = () => {
         component={AddRestoreKeyView}
       />
       <Stack.Screen
+        name="enterRestoreKey"
+        component={AddEnterRestoreKeyView}
+      />
+      <Stack.Screen
         name="import"
         component={AddImportView}
+      />
+      <Stack.Screen
+        name="confirm"
+        component={AddConfirmView}
+      />
+      <Stack.Screen
+        name="create"
+        component={AddCreateView}
       />
     </Stack.Navigator>
   )

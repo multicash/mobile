@@ -26,6 +26,8 @@ import DetailListTitle from '@/components/lists/DetailListTitle'
 
 import ModalNavigation from '@/components/navigations/ModalNavigation'
 
+import SwitchNotification from '@/components/notifications/SwitchNotification'
+
 import ActionsSection from '@/components/sections/ActionsSection'
 import WalletsSection from '@/components/sections/WalletsSection'
 
@@ -63,6 +65,8 @@ Vue.component('detail-list-item', DetailListItem)
 Vue.component('detail-list-title', DetailListTitle)
 
 Vue.component('modal-navigation', ModalNavigation)
+
+Vue.component('switch-notification', SwitchNotification)
 
 Vue.component('actions-section', ActionsSection)
 Vue.component('wallets-section', WalletsSection)
