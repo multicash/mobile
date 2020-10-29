@@ -59,7 +59,7 @@ export default {
         isDarkScheme,
         'Add wallet',
         "Add a new or an existing wallet to MultiCash\nand use money like it's supposed to!",
-        require('@/assets/wallet.png')
+        require('@/assets/new-wallet2.png')
       )
     }
   }

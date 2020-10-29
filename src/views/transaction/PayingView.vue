@@ -67,12 +67,12 @@ const stylesStore = (done) => {
       color: 'white',
       fontWeight: 'bold',
       fontSize: 35,
-      textAlign: 'center',
-      marginBottom: 10
+      textAlign: 'center'
     },
 
     subtitle: {
-      color: 'white'
+      color: 'white',
+      fontWeight: '600'
     }
   }
 }

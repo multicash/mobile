@@ -7,7 +7,7 @@
     />
     <view-background :style="{ paddingBottom: 50 }">
 
-      <text>HW</text>
+      <text>TODO</text>
 
     </view-background>
   </view>

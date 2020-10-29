@@ -5,7 +5,7 @@
       has-back-button
       @on-dismiss="navigation.goBack()"
     />
-    <view-background :style="{ paddingBottom: 50 }">
+    <view-background :style="{ paddingBottom: 50 }" scrollable>
 
       <view :style="styles.headerContainer">
         <view :style="{ flexDirection: 'row' }">

@@ -55,7 +55,8 @@ const stylesStore = (isDarkScheme) => {
       shadowRadius: 3,
       shadowOpacity: 0.5,
       shadowOffset: { width: 3, height: 3 },
-      elevation: 10
+      elevation: 10,
+      marginBottom: 10
     },
 
     name: {

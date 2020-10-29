@@ -1,5 +1,5 @@
 <template>
-  <touchable-without-feedback :onPress="() => $emit('input', !value)">
+  <pressable :onPress="onPress">
     <view :style="styles.switchNotification">
       <switch
         :value="value"
@@ -11,10 +11,17 @@
       <spacer />
       <text :style="styles.switchNotificationText">{{ label }}</text>
     </view>
-  </touchable-without-feedback>
+  </pressable>
 </template>
 
 <script>
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
+
+const options = {
+  enableVibrateFallback: true,
+  ignoreAndroidSystemSettings: false
+}
+
 export default {
   name: 'SwitchNotification',
 
@@ -39,6 +46,14 @@ export default {
     styles () {
       return stylesStore(this.isDarkScheme, this.type)
     }
+  },
+
+  methods: {
+    onPress () {
+      ReactNativeHapticFeedback.trigger('impactLight', options)
+
+      this.$emit('input', !this.value)
+    }
   }
 }
 
@@ -47,7 +62,7 @@ const stylesStore = (isDarkScheme, type) => {
 
     default: {
       switchNotification: {
-        backgroundColor: isDarkScheme ? 'black' : 'white'
+        backgroundColor: isDarkScheme ? '#191919' : 'white'
       },
       switchNotificationText: {
         color: isDarkScheme ? '#d4d4d4' : '#3b3b3b'

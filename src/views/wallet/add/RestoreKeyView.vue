@@ -5,7 +5,7 @@
       has-back-button
       @on-dismiss="navigation.goBack()"
     />
-    <view-background :style="{ paddingBottom: 50 }">
+    <view-background :style="{ paddingBottom: 50 }" scrollable>
 
       <view :style="styles.headerContainer">
         <view :style="{ flexDirection: 'row' }">
@@ -35,8 +35,6 @@
         label="I hereby declare I've written down the restore key."
         type="warning"
       />
-
-      <spacer :style="{ flex: 1 }" />
 
       <rounded-button
         v-if="wordsAreBackedUp"

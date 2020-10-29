@@ -1,5 +1,8 @@
 <template>
-  <view :style="styles.viewBackground">
+  <scroll-view v-if="scrollable" :style="styles.viewBackground">
+    <slot/>
+  </scroll-view>
+  <view v-else :style="styles.viewBackground">
     <slot/>
   </view>
 </template>
@@ -10,6 +13,11 @@ export default {
 
   props: {
     noPadding: {
+      type: Boolean,
+      default: false
+    },
+
+    scrollable: {
       type: Boolean,
       default: false
     }

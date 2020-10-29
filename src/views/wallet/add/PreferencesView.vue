@@ -5,7 +5,7 @@
       has-back-button
       @on-dismiss="navigation.goBack()"
     />
-    <view-background>
+    <view-background scrollable>
 
       <text :style="styles.description">Choose a wallet name for this wallet to recognize it among your other wallets.</text>
       <rounded-text-input title="Wallet name" placeholder="Main account" :value="name" @input="name = $event"/>
@@ -28,10 +28,7 @@
         </view>
       </selector>
 
-      <spacer :style="{ flex: 1 }" />
-
       <rounded-button title="Proceed" @on-press="navigation.navigate(route.params.restore ? 'enterRestoreKey' : 'restoreKey')" />
-      <spacer />
 
     </view-background>
   </view>

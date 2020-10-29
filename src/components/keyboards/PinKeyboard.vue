@@ -10,14 +10,19 @@
         v-for="character in characters"
       >
         <keyboard-key
+          v-if="!(character === 'auth' && !biometryTypeIcon)"
           :key="character"
           :label="character"
-          :style="{ opacity: (character === 'auth' && !biometryTypeIcon) ? 0 : 1 }"
           @keydown="keyDown(character)"
         >
           <icon v-if="character === 'auth' && biometryTypeIcon" :name="biometryTypeIcon" />
           <icon v-else-if="character === 'del'" name="backspace" />
         </keyboard-key>
+        <view
+          v-else
+          :key="character"
+          :style="{ flex: 0.3 }"
+        />
       </template>
     </view>
 

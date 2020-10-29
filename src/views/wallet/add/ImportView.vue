@@ -7,7 +7,7 @@
     />
     <view-background>
 
-      <text>Nice</text>
+      <text>TODO</text>
 
     </view-background>
   </view>
