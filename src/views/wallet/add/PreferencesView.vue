@@ -28,9 +28,15 @@
         </view>
       </selector>
 
-      <rounded-button title="Proceed" @on-press="navigation.navigate(route.params.restore ? 'enterRestoreKey' : 'restoreKey')" />
+      <view :style="styles.proceedButtonPlaceholder" />
 
     </view-background>
+
+    <rounded-button
+      :style="styles.proceedButton"
+      title="Proceed"
+      @on-press="navigation.navigate(route.params.restore ? 'enterRestoreKey' : 'restoreKey')"
+    />
   </view>
 </template>
 
@@ -72,6 +78,17 @@ const stylesStore = (isDarkScheme) => {
 
     iconText: {
       color: isDarkScheme ? 'white' : 'black'
+    },
+
+    proceedButtonPlaceholder: {
+      height: 120
+    },
+
+    proceedButton: {
+      position: 'absolute',
+      bottom: 30,
+      left: 20,
+      right: 20
     }
   }
 }

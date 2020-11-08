@@ -27,6 +27,7 @@ import DetailListTitle from '@/components/lists/DetailListTitle'
 import ModalNavigation from '@/components/navigations/ModalNavigation'
 
 import ActionNotification from '@/components/notifications/ActionNotification'
+import Notification from '@/components/notifications/Notification'
 import SwitchNotification from '@/components/notifications/SwitchNotification'
 
 import ActionsSection from '@/components/sections/ActionsSection'
@@ -68,6 +69,7 @@ Vue.component('detail-list-title', DetailListTitle)
 Vue.component('modal-navigation', ModalNavigation)
 
 Vue.component('action-notification', ActionNotification)
+Vue.component('notification', Notification)
 Vue.component('switch-notification', SwitchNotification)
 
 Vue.component('actions-section', ActionsSection)

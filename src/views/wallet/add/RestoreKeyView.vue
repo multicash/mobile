@@ -36,13 +36,16 @@
         type="warning"
       />
 
-      <rounded-button
-        v-if="wordsAreBackedUp"
-        title="Proceed"
-        @on-press="navigation.navigate('confirm')"
-      />
+      <view :style="styles.proceedButtonPlaceholder" />
 
     </view-background>
+
+    <rounded-button
+      v-if="wordsAreBackedUp"
+      :style="styles.proceedButton"
+      title="Proceed"
+      @on-press="navigation.navigate('confirm')"
+    />
   </view>
 </template>
 
@@ -174,6 +177,17 @@ const stylesStore = (isDarkScheme) => {
     switchTrackColor: {
       false: '#e5d59f',
       true: '#32b680'
+    },
+
+    proceedButtonPlaceholder: {
+      height: 120
+    },
+
+    proceedButton: {
+      position: 'absolute',
+      bottom: 30,
+      left: 20,
+      right: 20
     }
   }
 }

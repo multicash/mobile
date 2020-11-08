@@ -39,13 +39,16 @@
 
       <spacer :style="{ flex: 1 }" />
 
-      <rounded-button
-        v-if="term1 && term2 && term3"
-        title="Proceed"
-        @on-press="navigation.navigate('create')"
-      />
+      <view :style="styles.proceedButtonPlaceholder" />
 
     </view-background>
+
+    <rounded-button
+      v-if="term1 && term2 && term3"
+      :style="styles.proceedButton"
+      title="Proceed"
+      @on-press="navigation.navigate('create')"
+    />
   </view>
 </template>
 
@@ -99,6 +102,17 @@ const stylesStore = (isDarkScheme) => {
       marginTop: 10,
       marginLeft: -40,
       resizeMode: 'contain'
+    },
+
+    proceedButtonPlaceholder: {
+      height: 120
+    },
+
+    proceedButton: {
+      position: 'absolute',
+      bottom: 30,
+      left: 20,
+      right: 20
     }
   }
 }
