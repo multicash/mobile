@@ -14,7 +14,7 @@
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/compat": "^5.2.8",
-    "@react-navigation/native": "^5.7.6",
+    "@react-navigation/native": "^5.8.0",
     "@react-navigation/stack": "^5.9.2",
     "intl": "1.2.5",
     "react": "^16.13.1",
