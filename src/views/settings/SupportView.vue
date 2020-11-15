@@ -27,7 +27,7 @@ export default {
             {
               title: 'Support Page',
               subtitle: 'https://multicash.io/support',
-              leftIcon: { name: 'information-circle' },
+              leftIcon: { name: 'information-circle', color: '#0a63ac' },
               navigate: () => {
                 Linking.openURL('https://multicash.io/support')
               }
@@ -35,7 +35,7 @@ export default {
             {
               title: 'Discord',
               subtitle: 'https://discord.gg/multicash',
-              leftIcon: { name: 'discord', type: 'font-awesome-5', size: 28 },
+              leftIcon: { name: 'discord', type: 'font-awesome-5', size: 28, color: '#7189d9' },
               navigate: () => {
                 Linking.openURL('https://discord.gg/multicash')
               }
@@ -43,7 +43,7 @@ export default {
             {
               title: 'Facebook',
               subtitle: 'https://www.facebook.com/MultiCash',
-              leftIcon: { name: 'logo-facebook' },
+              leftIcon: { name: 'logo-facebook', color: '#1876f2' },
               navigate: () => {
                 Linking.openURL('https://www.facebook.com/MultiCash')
               }
@@ -51,7 +51,7 @@ export default {
             {
               title: 'Reddit',
               subtitle: 'https://www.reddit.com/r/MultiCash',
-              leftIcon: { name: 'logo-reddit' },
+              leftIcon: { name: 'logo-reddit', color: '#ff4400' },
               navigate: () => {
                 Linking.openURL('https://www.reddit.com/r/MultiCash')
               }
@@ -59,7 +59,7 @@ export default {
             {
               title: 'Telegram',
               subtitle: 'https://t.me/MultiCash',
-              leftIcon: { name: 'send' },
+              leftIcon: { name: 'send', color: '#25a7e6' },
               navigate: () => {
                 Linking.openURL('https://t.me/MultiCash')
               }
@@ -67,7 +67,7 @@ export default {
             {
               title: 'Twitter',
               subtitle: 'https://www.twitter.com/MultiCash',
-              leftIcon: { name: 'logo-twitter' },
+              leftIcon: { name: 'logo-twitter', color: '#1ba0f1' },
               navigate: () => {
                 Linking.openURL('https://www.twitter.com/MultiCash')
               }
