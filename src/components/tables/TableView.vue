@@ -74,7 +74,7 @@ export default {
 
           {item.item.leftIcon &&
           <Icon
-            type="ionicon"
+            type={item.item.leftIcon.type || 'ionicon'}
             name={item.item.leftIcon.name}
             color={item.item.leftIcon.color || this.styles.itemLeftIcon.color}
             size={item.item.leftIcon.size || 24}
@@ -92,7 +92,7 @@ export default {
 
           {item.item.rightIcon &&
           <Icon
-            type="ionicon"
+            type={item.item.rightIcon.type || 'ionicon'}
             name={item.item.rightIcon.name}
             color={item.item.rightIcon.color || this.styles.itemRightIcon.color}
             size={item.item.rightIcon.size || 24}

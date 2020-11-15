@@ -15,6 +15,7 @@ import RoundButton from '@/components/buttons/RoundButton'
 import RoundedButton from '@/components/buttons/RoundedButton'
 import SecondaryActionButton from '@/components/buttons/SecondaryActionButton'
 
+import DotInput from '@/components/forms/DotInput'
 import RoundedTextInput from '@/components/forms/RoundedTextInput'
 import Selector from '@/components/forms/Selector'
 
@@ -50,6 +51,7 @@ Vue.component('round-button', RoundButton)
 Vue.component('rounded-button', RoundedButton)
 Vue.component('SecondaryAction-button', SecondaryActionButton)
 
+Vue.component('dot-input', DotInput)
 Vue.component('rounded-text-input', RoundedTextInput)
 Vue.component('selector', Selector)
 

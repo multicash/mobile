@@ -6,6 +6,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 // Setup views
 import WelcomeView from '@/views/setup/WelcomeView'
+import IntroView from '@/views/setup/IntroView'
 import SetupPinView from '@/views/setup/SetupPinView'
 
 // Authentication views
@@ -332,10 +333,15 @@ export const SetupNavigator = () => {
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="welcome"
+          headerMode="none"
         >
           <Stack.Screen
             name="welcome"
             component={WelcomeView}
+          />
+          <Stack.Screen
+            name="intro"
+            component={IntroView}
           />
           <Stack.Screen
             name="pinView"

@@ -36,15 +36,15 @@ export default {
                   }
                 })
               }
-            },
-            {
-              title: 'Biometric Authentication',
-              subtitle: 'Manage how MultiCash works with biometric authentication',
-              leftIcon: { name: 'finger-print' },
-              navigate: () => {
-                this.navigation.navigate('biometricAuthentication')
-              }
             }
+            // {
+            //   title: 'Biometric Authentication',
+            //   subtitle: 'Manage how MultiCash works with biometric authentication',
+            //   leftIcon: { name: 'finger-print' },
+            //   navigate: () => {
+            //     this.navigation.navigate('biometricAuthentication')
+            //   }
+            // }
           ]
         },
         {

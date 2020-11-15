@@ -1,10 +1,13 @@
 <template>
   <view :style="styles.notification">
-    <icon :name="icon" :color="styles.notificationIcon.color" :size="30"/>
-    <spacer />
-    <view :style="{ flex: 1 }">
+    <icon v-if="!loading" :name="icon" :color="styles.notificationIcon.color" :size="30"/>
+    <spacer v-if="!loading" />
+    <view v-if="!loading" :style="{ flex: 1 }">
       <text v-if="title !== ''" :style="styles.notificationTitle">{{ title }}</text>
       <text :style="styles.notificationText">{{ label }}</text>
+    </view>
+    <view v-if="loading" :style="styles.loadingContainer">
+      <activity-indicator />
     </view>
   </view>
 </template>
@@ -32,12 +35,17 @@ export default {
     type: {
       type: String,
       default: 'default'
+    },
+
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme, this.type)
+      return stylesStore(this.isDarkScheme, this.loading ? 'default' : this.type)
     }
   }
 }
@@ -143,6 +151,11 @@ const stylesStore = (isDarkScheme, type) => {
 
     notificationText: {
       color: typeColors[type].notificationText.color
+    },
+
+    loadingContainer: {
+      flex: 1,
+      justifyContent: 'center'
     }
   }
 }

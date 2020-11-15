@@ -18,16 +18,7 @@
 
         <text :style="styles.title">Enter your PIN</text>
 
-        <view :style="styles.digitDotsContainer">
-          <view
-            v-for="(index, i) in pin"
-            :key="i"
-            :style="{ paddingLeft: i === 0 ? 0 : 10 }"
-          >
-            <view v-if="index !== undefined" :style="styles.digitDotFilled" />
-            <view v-else :style="styles.digitDot" />
-          </view>
-        </view>
+        <dot-input :value.sync="pin" />
       </view>
 
       <pin-keyboard
@@ -158,25 +149,6 @@ const stylesStore = (isDarkScheme) => {
       fontWeight: '600',
       fontSize: 18,
       color: isDarkScheme ? 'white' : 'black'
-    },
-
-    digitDotsContainer: {
-      flexDirection: 'row',
-      margin: 20
-    },
-
-    digitDotFilled: {
-      backgroundColor: isDarkScheme ? '#6d6de3' : '#1e1e4d',
-      width: 20,
-      height: 20,
-      borderRadius: 10
-    },
-
-    digitDot: {
-      backgroundColor: isDarkScheme ? '#b95c8b' : '#931A5A',
-      width: 20,
-      height: 20,
-      borderRadius: 10
     }
   }
 }
