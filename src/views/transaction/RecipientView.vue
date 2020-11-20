@@ -21,20 +21,20 @@ export default {
             {
               title: 'My wallets',
               leftIcon: { name: 'wallet', size: 40 },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('wallets', { navigate: 'confirm', ...this.route.params })
               }
             },
             this.route.params.isReceive ? {
               title: 'Share QR code',
               leftIcon: { name: 'qr-code-outline', size: 40 },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('qr', this.route.params)
               }
             } : {
               title: 'Enter recipient address/tag',
               leftIcon: { name: 'barcode-outline', size: 40 },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('enterRecipient', this.route.params)
               }
             }
@@ -47,7 +47,7 @@ export default {
               title: 'Swen van Zanten',
               subtitle: '@swenvanzanten',
               leftIcon: { name: 'person-circle', color: '#c807a9', size: 40 },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('confirm', this.route.params)
               }
             },
@@ -55,7 +55,7 @@ export default {
               title: 'Sunerok',
               subtitle: '@justinvendetta',
               leftIcon: { name: 'person-circle', color: '#00ffb2', size: 40 },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('confirm', this.route.params)
               }
             }
@@ -68,7 +68,7 @@ export default {
               title: 'CryptoRekt',
               subtitle: '@cr',
               leftIcon: { name: 'person-circle', color: '#a7fb00', size: 40 },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('confirm', this.route.params)
               }
             },
@@ -76,7 +76,7 @@ export default {
               title: 'sandersvoice',
               subtitle: '@sandersvoice',
               leftIcon: { name: 'person-circle', color: '#3b28f3', size: 40 },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('confirm', this.route.params)
               }
             },
@@ -84,7 +84,7 @@ export default {
               title: 'Michael',
               subtitle: '@michael',
               leftIcon: { name: 'person-circle', color: '#eaee18', size: 40 },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('confirm', this.route.params)
               }
             }

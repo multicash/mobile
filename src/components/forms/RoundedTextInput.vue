@@ -7,6 +7,7 @@
       :style="styles.textInput"
       :placeholder="placeholder"
       :placeholder-text-color="isDarkScheme ? '#848484' : '#7f7f7f'"
+      :secureTextEntry="secureTextEntry"
       :multiline="multiline"
       :autoCapitalize="autoCapitalize"
       :autoCompleteType="autoCompleteType"
@@ -23,6 +24,11 @@ export default {
     value: {
       type: String,
       default: null
+    },
+
+    secureTextEntry: {
+      type: Boolean,
+      default: false
     },
 
     placeholder: {

@@ -17,8 +17,13 @@
         :value.sync="encryptFile"
         @input="encryptFile = $event"
         label="File encryption"
-        type="warning"
-      />
+      >
+        <view v-if="encryptFile">
+          <text :style="styles.encryptFileText">Because the export file contains all the data to your wallet we encourage you to encrypt your export file with a password.</text>
+          <rounded-text-input title="Password" secureTextEntry/>
+        </view>
+      </switch-notification>
+
       <switch-notification
         :value.sync="acceptedTerm"
         @input="acceptedTerm = $event"
@@ -58,6 +63,12 @@ export default {
 
 const stylesStore = (isDarkScheme) => {
   return {
+    encryptFileText: {
+      color: isDarkScheme ? '#b3aabe' : '#72677b',
+      fontSize: 12,
+      paddingBottom: 10
+    },
+
     exportButtonPlaceholder: {
       height: 120
     },

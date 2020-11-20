@@ -7,7 +7,7 @@
     />
     <view-background scrollable>
       <input-description>Make your wallet even more recognizable by choosing a wallet icon.</input-description>
-      <selector name="Icon">
+      <selector name="Icon" @on-press="selectIcon">
         <view slot="value" :style="styles.iconContainer">
           <wallet-icon :icon="icon.name" />
           <spacer />
@@ -44,6 +44,17 @@ export default {
     },
     styles () {
       return stylesStore(this.isDarkScheme)
+    }
+  },
+
+  methods: {
+    selectIcon () {
+      this.navigation.navigate('icons', {
+        goBack: true,
+        resolve: (value) => {
+          this.icon.name = value.item.name
+        }
+      })
     }
   }
 }

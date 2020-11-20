@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { Alert } from 'react-native'
+
 export default {
   name: 'SettingsView',
 
@@ -23,7 +25,7 @@ export default {
               title: 'Name',
               subtitle: 'The wallets name is needed because you can have multiple wallets inside this awesome application!',
               leftIcon: { name: 'wallet' },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('name', { wallet: this.route.params.wallet })
               }
             },
@@ -31,7 +33,7 @@ export default {
               title: 'Icon',
               subtitle: 'Choose an icon that fits the purpose of this wallet perfectly',
               leftIcon: { name: 'color-palette' },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('icon', { wallet: this.route.params.wallet })
               }
             }
@@ -44,7 +46,7 @@ export default {
               title: 'Restore key',
               subtitle: 'The restore key enables you to restore this wallet. If you lose it you can never recover it and you\'ll loose access to your XVG. So make absolutely sure to keep it very safe.',
               leftIcon: { name: 'key' },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('pin', {
                   authenticated: () => {
                     this.navigation.navigate('restoreKey', { wallet: this.route.params.wallet })
@@ -56,7 +58,7 @@ export default {
               title: 'Export your wallet',
               subtitle: 'Creating an extra backup of your wallet credentials can be a smart thing to do. Either store it safely on a removable drive or another secure place.',
               leftIcon: { name: 'download' },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('pin', {
                   authenticated: () => {
                     this.navigation.navigate('export', { wallet: this.route.params.wallet })
@@ -72,7 +74,34 @@ export default {
             {
               title: 'Delete',
               subtitle: 'This will delete your wallet from this application. Your wallet can still be restored by using your restore key and pass phrase. Please make absolutely sure you\'ve written down your restore key and know your pass phrase. Remember that your restore key + pass phrase is the only way to restore your current wallet.',
-              leftIcon: { name: 'trash' }
+              leftIcon: { name: 'trash', color: '#f14668' },
+              noChevron: true,
+              onPress: () => {
+                Alert.alert(
+                  'Delete wallet',
+                  `Are you sure you want to delete your wallet ${this.route.params.wallet.name}?`,
+                  [
+                    {
+                      text: 'Cancel',
+                      onPress: () => console.log('Cancel Pressed'),
+                      style: 'cancel'
+                    },
+                    {
+                      text: 'Delete',
+                      onPress: () => {
+                        this.navigation.navigate('pin', {
+                          authenticated: () => {
+                            console.log('Delete wallet')
+
+                            this.navigation.navigate('home')
+                          }
+                        })
+                      },
+                      style: 'destructive'
+                    }
+                  ]
+                )
+              }
             }
           ]
         }

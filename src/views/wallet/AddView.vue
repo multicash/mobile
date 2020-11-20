@@ -27,7 +27,7 @@ export default {
               title: 'Create a new wallet',
               subtitle: 'Never used MultiCash before? This is the one for you!',
               leftIcon: { name: 'star', color: '#ffb900', size: 30 },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('preferences', { restore: false })
               }
             },
@@ -35,7 +35,7 @@ export default {
               title: 'Restore an existing wallet',
               subtitle: 'Are you restoring your mobile device or did you reinstall the MultiCash app? Restore your already created wallet here.',
               leftIcon: { name: 'wallet', color: '#89e100', size: 30 },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('preferences', { restore: true })
               }
             },
@@ -43,7 +43,7 @@ export default {
               title: 'Import an existing wallet',
               subtitle: 'Did you previously export your wallet? Import and restore your wallet using this option.',
               leftIcon: { name: 'save', color: '#00ccde', size: 30 },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('import')
               }
             }

@@ -1,6 +1,6 @@
 <template>
   <safe-area-view :style="styles.safeArea">
-    <status-bar barStyle="light-content" />
+    <status-bar barStyle="dark-content" />
     <scroll-view :style="styles.scrollView" pagingEnabled horizontal>
       <view v-for="page in pages" :key="page.title" :style="styles.page">
         <view :style="{ flexDirection: 'row' }">
@@ -15,7 +15,7 @@
       <rounded-button
         :style="{ width: '100%' }"
         title="Proceed"
-        @on-press="updateIsSetup(true)"
+        @on-press="navigation.navigate('setupPin')"
       />
     </view>
   </safe-area-view>
@@ -24,7 +24,6 @@
 <script>
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Dimensions } from 'react-native'
-import { mapActions } from 'vuex'
 
 export default {
   components: { SafeAreaView },
@@ -42,10 +41,6 @@ export default {
         }
       ]
     }
-  },
-
-  methods: {
-    ...mapActions(['updateIsSetup'])
   },
 
   computed: {

@@ -1,15 +1,23 @@
 <template>
   <pressable :onPress="onPress">
     <view :style="styles.switchNotification">
-      <switch
-        :value="value"
-        :onChange="() => $emit('input', !value)"
-        :trackColor="styles.switchTrackColor"
-        thumbColor="#ffffff"
-        :ios_backgroundColor="styles.switchTrackColor[false]"
-      />
-      <spacer />
-      <text :style="styles.switchNotificationText">{{ label }}</text>
+      <view :style="styles.switchNotificationDefaultContainer">
+        <switch
+          :value="value"
+          :onChange="() => $emit('input', !value)"
+          :trackColor="styles.switchTrackColor"
+          thumbColor="#ffffff"
+          :ios_backgroundColor="styles.switchTrackColor[false]"
+        />
+        <spacer />
+        <text :style="styles.switchNotificationText">{{ label }}</text>
+      </view>
+      <view
+        v-if="(value || alwaysShowExtra) && $slots.default"
+        :style="styles.switchNotificationExtraContainer"
+      >
+        <slot></slot>
+      </view>
     </view>
   </pressable>
 </template>
@@ -34,6 +42,11 @@ export default {
     type: {
       type: String,
       default: 'default'
+    },
+
+    alwaysShowExtra: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -127,12 +140,19 @@ const stylesStore = (isDarkScheme, type) => {
 
   return {
     switchNotification: {
-      flexDirection: 'row',
-      alignItems: 'center',
       backgroundColor: typeColors[type].switchNotification.backgroundColor,
       borderRadius: 10,
       padding: 15,
       marginBottom: 10
+    },
+
+    switchNotificationDefaultContainer: {
+      flexDirection: 'row',
+      alignItems: 'center'
+    },
+
+    switchNotificationExtraContainer: {
+      marginTop: 10
     },
 
     switchNotificationText: {

@@ -99,7 +99,7 @@ export default {
           />
           }
 
-          {item.item.navigate !== undefined &&
+          {item.item.onPress !== undefined && !item.item.noChevron &&
           <ListItem.Chevron
             type="ionicon"
             name="chevron-forward"
@@ -142,8 +142,8 @@ export default {
     onPress (item) {
       this.$emit('on-press', item)
 
-      if (item.item.navigate) {
-        item.item.navigate()
+      if (item.item.onPress) {
+        item.item.onPress()
       }
     }
   }

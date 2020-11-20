@@ -61,7 +61,7 @@ export default {
               title: contact.name,
               subtitle: contact.tag,
               leftIcon: { name: contact.icon.name, color: contact.icon.color, size: 40 },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('contact', { contact })
               }
             }

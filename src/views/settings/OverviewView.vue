@@ -21,7 +21,7 @@ export default {
               title: 'Currency',
               subtitle: 'All fiat amounts will be displayed in this currency',
               leftIcon: { name: 'cash' },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('currency')
               }
             },
@@ -29,7 +29,7 @@ export default {
               title: 'Change PIN',
               subtitle: 'Change the PIN used for securing your wallets by MultiCash',
               leftIcon: { name: 'lock-closed' },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('pin', {
                   authenticated: () => {
                     this.navigation.navigate('changePin')
@@ -41,7 +41,7 @@ export default {
             //   title: 'Biometric Authentication',
             //   subtitle: 'Manage how MultiCash works with biometric authentication',
             //   leftIcon: { name: 'finger-print' },
-            //   navigate: () => {
+            //   onPress: () => {
             //     this.navigation.navigate('biometricAuthentication')
             //   }
             // }
@@ -54,7 +54,7 @@ export default {
               title: 'Support',
               subtitle: 'Let us help you when you run into trouble with MultiCash',
               leftIcon: { name: 'help-buoy' },
-              navigate: () => {
+              onPress: () => {
                 this.navigation.navigate('support')
               }
             },

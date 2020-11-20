@@ -12,7 +12,7 @@
       </round-button>
     </modal-navigation>
     <view-background>
-      <selector name="Icon">
+      <selector name="Icon" @on-press="selectIcon">
         <view slot="value" :style="styles.iconContainer">
           <icon :name="icon.name" :color="icon.color" :size="40" />
           <spacer />
@@ -58,6 +58,17 @@ export default {
       this.tag = this.route.params.contact.tag
       this.icon.name = this.route.params.contact.icon.name
       this.icon.color = this.route.params.contact.icon.color
+    }
+  },
+
+  methods: {
+    selectIcon () {
+      this.navigation.navigate('icons', {
+        goBack: true,
+        resolve: (value) => {
+          this.icon.name = value.item
+        }
+      })
     }
   }
 }

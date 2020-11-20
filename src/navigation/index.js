@@ -25,6 +25,7 @@ import SupportView from '@/views/settings/SupportView'
 // Contact views
 import ContactsOverviewView from '@/views/contacts/OverviewView'
 import ContactView from '@/views/contacts/ContactView'
+import ContactIconsView from '@/views/contacts/IconsView'
 
 // Transaction views
 import AmountView from '@/views/transaction/AmountView'
@@ -44,6 +45,7 @@ import IconView from '@/views/wallet/IconView'
 import RestoreKeyView from '@/views/wallet/RestoreKeyView'
 import ExportView from '@/views/wallet/ExportView'
 import OrderWalletsView from '@/views/wallet/OrderWalletsView'
+import WalletIconsView from '@/views/wallet/IconsView'
 
 // Add wallet views
 import AddView from '@/views/wallet/AddView'
@@ -99,6 +101,10 @@ const Contacts = () => {
       <Stack.Screen
         name="contact"
         component={ContactView}
+      />
+      <Stack.Screen
+        name="icons"
+        component={ContactIconsView}
       />
     </Stack.Navigator>
   )
@@ -208,6 +214,10 @@ const Wallet = () => {
         name="export"
         component={ExportView}
       />
+      <Stack.Screen
+        name="icons"
+        component={WalletIconsView}
+      />
     </Stack.Navigator>
   )
 }
@@ -245,6 +255,10 @@ const Add = () => {
       <Stack.Screen
         name="create"
         component={AddCreateView}
+      />
+      <Stack.Screen
+        name="icons"
+        component={WalletIconsView}
       />
     </Stack.Navigator>
   )
@@ -334,6 +348,15 @@ export const SetupNavigator = () => {
         <Stack.Navigator
           initialRouteName="welcome"
           headerMode="none"
+          screenOptions={{
+            headerShown: false,
+            gestureEnabled: false,
+            cardOverlayEnabled: true,
+            ...Platform.select({
+              ios: TransitionPresets.ModalPresentationIOS,
+              default: TransitionPresets.FadeFromBottomAndroid
+            })
+          }}
         >
           <Stack.Screen
             name="welcome"
@@ -344,8 +367,12 @@ export const SetupNavigator = () => {
             component={IntroView}
           />
           <Stack.Screen
-            name="pinView"
+            name="setupPin"
             component={SetupPinView}
+          />
+          <Stack.Screen
+            name="add"
+            component={Add}
           />
         </Stack.Navigator>
       </NavigationContainer>

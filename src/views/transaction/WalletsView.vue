@@ -22,13 +22,13 @@ export default {
               title: 'Main Account',
               subtitle: this.getFormattedCrypto(10505.44, 'en', 'MCX'),
               leftAvatar: { source: require('@/assets/walletIcons/wallet.png'), size: 40, rounded: false },
-              navigate: () => this.navigate({ name: 'Main Account', amount: 10 })
+              onPress: () => this.navigate({ name: 'Main Account', amount: 10 })
             },
             {
               title: 'Savings Account',
               subtitle: this.getFormattedCrypto(1430705.78, 'en', 'MCX'),
               leftAvatar: { source: require('@/assets/walletIcons/money_box.png'), size: 40, rounded: false },
-              navigate: () => this.navigate({ name: 'Savings Account', amount: 12 })
+              onPress: () => this.navigate({ name: 'Savings Account', amount: 12 })
             }
           ]
         }

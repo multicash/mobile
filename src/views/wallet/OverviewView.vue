@@ -90,6 +90,10 @@
               />
             </touchable-opacity>
           </view>
+          <rounded-button
+            title="Show more"
+            :style="{ marginBottom: 5 }"
+          />
         </view>
       </view-background>
     </scroll-view>
