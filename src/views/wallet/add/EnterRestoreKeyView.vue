@@ -7,29 +7,28 @@
     />
     <view-background :style="{ paddingBottom: 50 }" scrollable>
 
-      <view :style="styles.headerContainer">
-        <view :style="{ flexDirection: 'row' }">
-          <image :style="styles.headerImage1" :source="require('@/assets/restore-key.png')"/>
-          <image :style="styles.headerImage2" :source="require('@/assets/restore-key-safe.png')"/>
-        </view>
-        <text :style="styles.headerTitle">Enter your restore key!</text>
-        <text :style="styles.headerSubtitle">
-          Enter your restore key to recreate your wallet! It should be 12 words all lowercased.
-        </text>
-      </view>
-
-      <rounded-text-input
-        title="Restore key"
-        multiline
-        auto-capitalize="none"
-        auto-complete-type="off"
-        :auto-correct="false"
-        @input="onKeyup"
+      <header-view
+        title="Enter your restore key!"
+        subtitle="Enter your restore key to recreate your wallet! It should be 12 words all lowercased."
+        :image-background="require('@/assets/restore-key-safe.png')"
+        :image-foreground="require('@/assets/restore-key.png')"
       />
-      <view :style="styles.wordsCounter">
-        <text :style="styles.wordsCounterText">{{ words.length }}/12 words</text>
+
+      <view :style="styles.wordsContainer">
+        <rounded-text-input
+          title="Restore key"
+          multiline
+          auto-capitalize="none"
+          auto-complete-type="off"
+          :auto-correct="false"
+          @input="onKeyup"
+        />
+        <view :style="styles.wordsCounter">
+          <text :style="styles.wordsCounterText">{{ words.length }}/12 words</text>
+        </view>
       </view>
 
+      <spacer v-if="checkingRestoreKey || successfullyRestored" />
       <notification
         v-if="checkingRestoreKey || successfullyRestored"
         :loading="checkingRestoreKey"
@@ -43,7 +42,7 @@
     </view-background>
 
     <rounded-button
-      v-if="words.length === 12"
+      v-if="words.length === 12 && !checkingRestoreKey"
       :style="styles.proceedButton"
       title="Proceed"
       @on-press="proceed"
@@ -94,46 +93,13 @@ export default {
 
 const stylesStore = (isDarkScheme) => {
   return {
-    headerContainer: {
-      marginHorizontal: 20,
-      marginBottom: 30,
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-
-    headerTitle: {
-      fontSize: 24,
-      fontWeight: '600',
-      color: isDarkScheme ? 'white' : 'black',
-      marginVertical: 5
-    },
-
-    headerSubtitle: {
-      fontSize: 12,
-      color: isDarkScheme ? '#b3aabe' : '#72677b',
-      marginVertical: 5,
-      textAlign: 'center'
-    },
-
-    headerImage1: {
-      zIndex: 10,
-      width: 80,
-      height: 80,
-      marginTop: 0,
-      marginRight: -40,
-      resizeMode: 'contain'
-    },
-
-    headerImage2: {
-      width: 100,
-      height: 100,
-      resizeMode: 'contain',
-      marginTop: 20,
-      marginBottom: 5
+    wordsContainer: {
     },
 
     wordsCounter: {
-      marginVertical: 5
+      position: 'absolute',
+      bottom: 10,
+      right: 10
     },
 
     wordsCounterText: {

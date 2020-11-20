@@ -51,12 +51,16 @@ export default {
     autoCorrect: {
       type: Boolean,
       default: true
+    },
+    fontSize: {
+      type: Number,
+      default: 18
     }
   },
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme, this.multiline)
+      return stylesStore(this.isDarkScheme, this.multiline, this.fontSize)
     }
   },
 
@@ -67,7 +71,7 @@ export default {
   }
 }
 
-const stylesStore = (isDarkScheme, multiline) => {
+const stylesStore = (isDarkScheme, multiline, fontSize) => {
   return {
     container: {
       backgroundColor: isDarkScheme ? '#2e2e36' : '#d0d7e1',
@@ -88,7 +92,7 @@ const stylesStore = (isDarkScheme, multiline) => {
       color: isDarkScheme ? 'white' : 'black',
       width: '100%',
       height: multiline ? 100 : undefined,
-      fontSize: 18
+      fontSize: fontSize
     }
   }
 }

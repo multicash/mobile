@@ -45,7 +45,11 @@ export default {
               subtitle: 'The restore key enables you to restore this wallet. If you lose it you can never recover it and you\'ll loose access to your XVG. So make absolutely sure to keep it very safe.',
               leftIcon: { name: 'key' },
               navigate: () => {
-                this.navigation.navigate('restoreKey', { wallet: this.route.params.wallet })
+                this.navigation.navigate('pin', {
+                  authenticated: () => {
+                    this.navigation.navigate('restoreKey', { wallet: this.route.params.wallet })
+                  }
+                })
               }
             },
             {
@@ -53,7 +57,11 @@ export default {
               subtitle: 'Creating an extra backup of your wallet credentials can be a smart thing to do. Either store it safely on a removable drive or another secure place.',
               leftIcon: { name: 'download' },
               navigate: () => {
-                this.navigation.navigate('export', { wallet: this.route.params.wallet })
+                this.navigation.navigate('pin', {
+                  authenticated: () => {
+                    this.navigation.navigate('export', { wallet: this.route.params.wallet })
+                  }
+                })
               }
             }
           ]

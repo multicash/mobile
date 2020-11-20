@@ -7,19 +7,19 @@
     />
     <view-background scrollable>
 
-      <text :style="styles.description">Choose a wallet name for this wallet to recognize it among your other wallets.</text>
+      <input-description>Choose a wallet name for this wallet to recognize it among your other wallets.</input-description>
       <rounded-text-input title="Wallet name" placeholder="Main account" :value="name" @input="name = $event"/>
 
       <spacer />
 
       <view v-if="!route.params.restore">
-        <text :style="styles.description">Choose a wallet tag which will be shareable and enables other MultiCash users to easily recognize your account.</text>
+        <input-description>Choose a wallet tag which will be shareable and enables other MultiCash users to easily recognize your account.</input-description>
         <rounded-text-input title="Wallet tag" placeholder="@myWalletTag" :value="tag" @input="tag = $event"/>
 
         <spacer />
       </view>
 
-      <text :style="styles.description">Make your wallet even more recognizable by choosing a wallet icon.</text>
+      <input-description>Make your wallet even more recognizable by choosing a wallet icon.</input-description>
       <selector name="Icon">
         <view slot="value" :style="styles.iconContainer">
           <wallet-icon :icon="icon.name" />
@@ -63,13 +63,6 @@ export default {
 
 const stylesStore = (isDarkScheme) => {
   return {
-    description: {
-      color: isDarkScheme ? '#c0c0c0' : '#343434',
-      marginBottom: 10,
-      marginHorizontal: 5,
-      fontSize: 12
-    },
-
     iconContainer: {
       padding: 10,
       flexDirection: 'row',

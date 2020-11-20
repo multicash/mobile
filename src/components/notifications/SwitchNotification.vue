@@ -17,11 +17,6 @@
 <script>
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
 
-const options = {
-  enableVibrateFallback: true,
-  ignoreAndroidSystemSettings: false
-}
-
 export default {
   name: 'SwitchNotification',
 
@@ -50,7 +45,10 @@ export default {
 
   methods: {
     onPress () {
-      ReactNativeHapticFeedback.trigger('impactLight', options)
+      ReactNativeHapticFeedback.trigger('impactLight', {
+        enableVibrateFallback: true,
+        ignoreAndroidSystemSettings: false
+      })
 
       this.$emit('input', !this.value)
     }

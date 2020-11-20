@@ -20,6 +20,7 @@ import RoundedTextInput from '@/components/forms/RoundedTextInput'
 import Selector from '@/components/forms/Selector'
 
 import Money from '@/components/labels/Money'
+import InputDescription from '@/components/labels/InputDescription'
 
 import DetailList from '@/components/lists/DetailList'
 import DetailListItem from '@/components/lists/DetailListItem'
@@ -37,6 +38,8 @@ import WalletsSection from '@/components/sections/WalletsSection'
 import TableView from '@/components/tables/TableView'
 
 import Card from '@/components/views/Card'
+import HeaderView from '@/components/views/HeaderView'
+import RestoreKeyGridView from '@/components/views/RestoreKeyGridView'
 import Spacer from '@/components/views/Spacer'
 import StyledViewBackground from '@/components/views/StyledViewBackground'
 import ViewBackground from '@/components/views/ViewBackground'
@@ -63,6 +66,7 @@ Vue.component('pin-keyboard', PinKeyboard)
 Vue.component('keyboard-key', KeyboardKey)
 
 Vue.component('money', Money)
+Vue.component('input-description', InputDescription)
 
 Vue.component('detail-list', DetailList)
 Vue.component('detail-list-item', DetailListItem)
@@ -80,6 +84,8 @@ Vue.component('wallets-section', WalletsSection)
 Vue.component('table-view', TableView)
 
 Vue.component('card', Card)
+Vue.component('header-view', HeaderView)
+Vue.component('restore-key-grid-view', RestoreKeyGridView)
 Vue.component('spacer', Spacer)
 Vue.component('styled-view-background', StyledViewBackground)
 Vue.component('view-background', ViewBackground)

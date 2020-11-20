@@ -66,7 +66,9 @@ export default {
       }
 
       if (this.pinLength === this.pin.filter(v => v !== undefined).length) {
-        this.confirm = true
+        setTimeout(() => {
+          this.confirm = true
+        }, 500)
       }
     },
 

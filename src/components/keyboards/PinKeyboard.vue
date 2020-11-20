@@ -31,6 +31,7 @@
 
 <script>
 import ReactNativeBiometrics from 'react-native-biometrics'
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
 
 const AUTH_CHARACTER = 'auth'
 const DEL_CHARACTER = 'del'
@@ -85,6 +86,11 @@ export default {
 
   methods: {
     keyDown (charater) {
+      ReactNativeHapticFeedback.trigger('impactLight', {
+        enableVibrateFallback: true,
+        ignoreAndroidSystemSettings: false
+      })
+
       const index = Object.keys(this.value).length
       const value = this.value
 
