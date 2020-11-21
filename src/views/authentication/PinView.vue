@@ -6,8 +6,6 @@
       @on-dismiss="navigation.goBack()"
     />
 
-    <status-bar :bar-style="isDarkScheme ? 'light-content' : 'dark-content'" />
-
     <safe-area-view :style="styles.container">
 
       <view :style="styles.pinContainer">
