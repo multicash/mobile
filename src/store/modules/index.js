@@ -6,5 +6,6 @@
 export default {
   authenticated: require('@/store/modules/Authenticated').default,
   currency: require('@/store/modules/Currency').default,
-  setup: require('@/store/modules/Setup').default
+  setup: require('@/store/modules/Setup').default,
+  wallets: require('@/store/modules/Wallets').default
 }

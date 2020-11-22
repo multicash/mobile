@@ -80,7 +80,7 @@ export default {
       if (this.confirmPin.join('') === this.pin.join('')) {
         // save PIN
 
-        this.navigation.navigate('add')
+        this.navigation.navigate('done')
 
         return
       }

@@ -2,12 +2,13 @@ import * as React from 'react'
 import { Platform } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context'
 
 // Setup views
 import WelcomeView from '@/views/setup/WelcomeView'
 import IntroView from '@/views/setup/IntroView'
 import SetupPinView from '@/views/setup/SetupPinView'
+import DoneView from '@/views/setup/DoneView'
 
 // Authentication views
 import AuthenticationPinView from '@/views/authentication/PinView'
@@ -265,6 +266,12 @@ const Add = () => {
 }
 
 export const AppNavigator = () => {
+  const Home = () => {
+    return (
+      <HomeView insets={useSafeAreaInsets()} />
+    )
+  }
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>
@@ -283,11 +290,18 @@ export const AppNavigator = () => {
         >
           <Stack.Screen
             name="home"
-            component={HomeView}
-          />
+          >
+            {props => (
+              <HomeView insets={useSafeAreaInsets()} {...props} />
+            )}
+          </Stack.Screen>
           <Stack.Screen
             name="settings"
             component={Settings}
+          />
+          <Stack.Screen
+            name="support"
+            component={SupportView}
           />
           <Stack.Screen
             name="contacts"
@@ -348,15 +362,6 @@ export const SetupNavigator = () => {
         <Stack.Navigator
           initialRouteName="welcome"
           headerMode="none"
-          screenOptions={{
-            headerShown: false,
-            gestureEnabled: false,
-            cardOverlayEnabled: true,
-            ...Platform.select({
-              ios: TransitionPresets.ModalPresentationIOS,
-              default: TransitionPresets.FadeFromBottomAndroid
-            })
-          }}
         >
           <Stack.Screen
             name="welcome"
@@ -371,8 +376,8 @@ export const SetupNavigator = () => {
             component={SetupPinView}
           />
           <Stack.Screen
-            name="add"
-            component={Add}
+            name="done"
+            component={DoneView}
           />
         </Stack.Navigator>
       </NavigationContainer>

@@ -1,5 +1,9 @@
 <template>
-  <view :style="styles.notification">
+  <touchable-opacity
+    :on-press="() => $emit('on-press')"
+    :active-opacity="isPressable ? 0.6 : 1"
+    :style="styles.notification"
+  >
     <icon v-if="!loading" :name="icon" :color="styles.notificationIcon.color" :size="30"/>
     <spacer v-if="!loading" />
     <view v-if="!loading" :style="{ flex: 1 }">
@@ -9,7 +13,7 @@
     <view v-if="loading" :style="styles.loadingContainer">
       <activity-indicator />
     </view>
-  </view>
+  </touchable-opacity>
 </template>
 
 <script>
@@ -46,6 +50,10 @@ export default {
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme, this.loading ? 'default' : this.type)
+    },
+
+    isPressable () {
+      return !!this._events['on-press']
     }
   }
 }

@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import TableHeaderView from '@/react/components/TableHeaderView'
 
 export default {
@@ -64,6 +65,48 @@ export default {
               leftIcon: { name: 'star' }
             }
           ]
+        },
+        {
+          title: 'Development',
+          data: [
+            {
+              title: 'Return to setup state',
+              subtitle: 'The MultiCash app will return to the state on initial setup.',
+              leftIcon: { name: 'refresh-circle-outline' },
+              noChevron: true,
+              onPress: () => {
+                this.updateIsAuthenticated(false)
+                this.updateIsSetup(false)
+              }
+            },
+            {
+              title: 'Return to PIN view',
+              subtitle: 'Show the PIN view as the app is coming from the background',
+              leftIcon: { name: 'lock-closed-outline' },
+              noChevron: true,
+              onPress: () => {
+                this.updateIsAuthenticated(false)
+              }
+            },
+            {
+              title: 'Remove example wallets',
+              subtitle: 'Remove the example wallets from the home view',
+              leftIcon: { name: 'trash-outline' },
+              noChevron: true,
+              onPress: () => {
+                this.removeAllWallets()
+              }
+            },
+            {
+              title: 'Add example wallets',
+              subtitle: 'Add the example wallets on the home view',
+              leftIcon: { name: 'add-circle-outline' },
+              noChevron: true,
+              onPress: () => {
+                this.addExamplesWallets()
+              }
+            }
+          ]
         }
       ]
     }
@@ -76,6 +119,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(['updateIsAuthenticated', 'updateIsSetup', 'removeAllWallets', 'addExamplesWallets']),
+
     renderTableHeader (isDarkScheme) {
       return TableHeaderView(
         isDarkScheme,

@@ -21,21 +21,21 @@
         label="Its extremely smart to export your wallet restore key at this moment."
         type="warning"
       >
-        <rounded-button title="Export" @on-press="done"/>
+        <rounded-button title="Export" @on-press="navigation.navigate('home')"/>
       </action-notification>
 
       <action-notification
         title="Receive MCX"
         label="Start filling your wallet with value by receiving some MCX."
       >
-        <rounded-button title="Receive" @on-press="done"/>
+        <rounded-button title="Receive" @on-press="navigation.navigate('home')"/>
       </action-notification>
 
       <action-notification
         title="Or..."
         label="We can also just show you your new wallet where you can do lots more."
       >
-        <rounded-button title="To wallet" @on-press="done"/>
+        <rounded-button title="To wallet" @on-press="navigation.navigate('home')"/>
       </action-notification>
 
     </view>
@@ -52,8 +52,6 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-
 export default {
   name: 'CreateView',
 
@@ -70,23 +68,8 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['isSetup']),
-
     styles () {
       return stylesStore(this.isDarkScheme)
-    }
-  },
-
-  methods: {
-    ...mapActions(['updateIsSetup', 'updateIsAuthenticated']),
-
-    done () {
-      if (!this.isSetup) {
-        this.updateIsAuthenticated(true)
-        this.updateIsSetup(true)
-      } else {
-        this.navigation.navigate('home')
-      }
     }
   }
 }
