@@ -1,11 +1,9 @@
 module.exports = {
-  preset: 'ts-jest',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node', 'vue'],
+  preset: 'react-native',
+  moduleFileExtensions: ['js', 'jsx', 'json', 'node', 'vue'],
   transform: {
-    '.*\\.vue$': 'vue-jest',
-    '.*\\.ts$': 'ts-jest'
+    '.*\\.vue$': 'vue-jest'
   },
-  testRegex: '.*/.*\\.spec\\.ts$',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
   }
