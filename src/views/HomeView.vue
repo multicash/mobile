@@ -106,7 +106,9 @@ export default {
   created () {
     AppState.addEventListener('change', this.onAppStateChange)
 
-    this.navigation.navigate('authenticate')
+    if (this.wallets.length > 0) {
+      this.navigation.navigate('authenticate')
+    }
   },
 
   methods: {
