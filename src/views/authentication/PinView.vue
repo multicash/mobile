@@ -76,8 +76,6 @@ export default {
   },
 
   methods: {
-    ...mapActions(['updateIsAuthenticated']),
-
     pinUpdated () {
       this.$forceUpdate()
 
@@ -107,12 +105,12 @@ export default {
     authenticate () {
       if (this.pin.join('') === '0123') {
         if (this.hasAuthenticatedAction) {
-          this.navigation.goBack()
-
-          return this.route.params.authenticated()
+          this.route.params.authenticated()
         }
 
-        return this.updateIsAuthenticated(true)
+        this.navigation.goBack()
+
+        return
       }
 
       alert('The correct PIN is 0123 :)')

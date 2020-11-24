@@ -6,17 +6,12 @@
         :screenOptions="screenOptions"
       >
         <stack-screen
-          v-if="isSetup && isAuthenticated"
+          v-if="isSetup"
           name="app"
           :component="app"
         />
         <stack-screen
-          v-else-if="isSetup"
-          name="authentication"
-          :component="auth"
-        />
-        <stack-screen
-          v-else
+          v-if="!isSetup"
           name="setup"
           :component="setup"
         />
@@ -57,7 +52,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['isSetup', 'isAuthenticated']),
+    ...mapGetters(['isSetup']),
 
     screenOptions () {
       return {

@@ -75,17 +75,7 @@ export default {
               leftIcon: { name: 'refresh-circle-outline' },
               noChevron: true,
               onPress: () => {
-                this.updateIsAuthenticated(false)
                 this.updateIsSetup(false)
-              }
-            },
-            {
-              title: 'Return to PIN view',
-              subtitle: 'Show the PIN view as the app is coming from the background',
-              leftIcon: { name: 'lock-closed-outline' },
-              noChevron: true,
-              onPress: () => {
-                this.updateIsAuthenticated(false)
               }
             },
             {
@@ -119,7 +109,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['updateIsAuthenticated', 'updateIsSetup', 'removeAllWallets', 'addExamplesWallets']),
+    ...mapActions(['updateIsSetup', 'removeAllWallets', 'addExamplesWallets']),
 
     renderTableHeader (isDarkScheme) {
       return TableHeaderView(

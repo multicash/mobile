@@ -1,6 +1,12 @@
 import * as React from 'react'
-import { Platform } from 'react-native'
-import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
+import { Easing, Platform } from 'react-native'
+import {
+  createStackNavigator,
+  TransitionPresets,
+  TransitionSpecs,
+  CardStyleInterpolators,
+  HeaderStyleInterpolators
+} from '@react-navigation/stack'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 // Setup views
@@ -321,6 +327,24 @@ export const AppNavigator = () => {
       <Stack.Screen
         name="pin"
         component={AuthenticationPinView}
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+          cardOverlayEnabled: false,
+          gestureDirection: 'vertical',
+          transitionSpec: {
+            open: {
+              animation: 'timing',
+              config: {
+                duration: 0,
+                easing: Easing.out(Easing.poly(5))
+              }
+            },
+            close: TransitionSpecs.FadeOutToBottomAndroidSpec
+          },
+          cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
+          headerStyleInterpolator: HeaderStyleInterpolators.forFade
+        }}
       />
     </Stack.Navigator>
   )

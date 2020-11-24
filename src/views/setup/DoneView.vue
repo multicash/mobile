@@ -30,10 +30,9 @@ export default {
   },
 
   methods: {
-    ...mapActions(['updateIsSetup', 'updateIsAuthenticated']),
+    ...mapActions(['updateIsSetup']),
 
     done () {
-      this.updateIsAuthenticated(true)
       this.updateIsSetup(true)
     }
   }

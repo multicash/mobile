@@ -105,11 +105,11 @@ export default {
 
   created () {
     AppState.addEventListener('change', this.onAppStateChange)
+
+    this.navigation.navigate('pin', { closeOnAuthentication: true })
   },
 
   methods: {
-    ...mapActions(['updateIsAuthenticated']),
-
     onAppStateChange (state) {
       if (!this.isSetup) {
         return
@@ -117,8 +117,9 @@ export default {
 
       switch (state) {
         case 'background':
+          return this.navigation.navigate('pin', { closeOnAuthentication: true })
+        case 'inactive':
         case 'active':
-          return this.updateIsAuthenticated(false)
         default:
       }
     }
