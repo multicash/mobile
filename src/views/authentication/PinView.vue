@@ -104,11 +104,11 @@ export default {
 
     authenticate () {
       if (this.pin.join('') === '0123') {
+        this.navigation.goBack()
+
         if (this.hasAuthenticatedAction) {
           this.route.params.authenticated()
         }
-
-        this.navigation.goBack()
 
         return
       }

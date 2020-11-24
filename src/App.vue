@@ -25,7 +25,7 @@ import { Platform } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { AppNavigator, AuthenticationNavigator, SetupNavigator } from '@/navigation'
+import { AppNavigator, SetupNavigator } from '@/navigation'
 import { mapGetters } from 'vuex'
 import store from '@/store'
 
@@ -46,7 +46,6 @@ export default {
   data () {
     return {
       app: AppNavigator,
-      auth: AuthenticationNavigator,
       setup: SetupNavigator
     }
   },

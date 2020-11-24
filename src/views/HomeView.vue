@@ -106,7 +106,7 @@ export default {
   created () {
     AppState.addEventListener('change', this.onAppStateChange)
 
-    this.navigation.navigate('pin', { closeOnAuthentication: true })
+    this.navigation.navigate('authenticate')
   },
 
   methods: {
@@ -117,7 +117,7 @@ export default {
 
       switch (state) {
         case 'background':
-          return this.navigation.navigate('pin', { closeOnAuthentication: true })
+          return this.navigation.navigate('authenticate')
         case 'inactive':
         case 'active':
         default:

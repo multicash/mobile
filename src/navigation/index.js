@@ -62,6 +62,7 @@ import AddImportView from '@/views/wallet/add/ImportView'
 import AddConfirmView from '@/views/wallet/add/ConfirmView'
 import AddCreateView from '@/views/wallet/add/CreateView'
 
+const PinView = AuthenticationPinView
 const Stack = createStackNavigator()
 
 const Settings = () => {
@@ -326,6 +327,10 @@ export const AppNavigator = () => {
       />
       <Stack.Screen
         name="pin"
+        component={PinView}
+      />
+      <Stack.Screen
+        name="authenticate"
         component={AuthenticationPinView}
         options={{
           headerShown: false,
@@ -345,20 +350,6 @@ export const AppNavigator = () => {
           cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
           headerStyleInterpolator: HeaderStyleInterpolators.forFade
         }}
-      />
-    </Stack.Navigator>
-  )
-}
-
-export const AuthenticationNavigator = () => {
-  return (
-    <Stack.Navigator
-      initialRouteName="pin"
-      headerMode="none"
-    >
-      <Stack.Screen
-        name="pin"
-        component={AuthenticationPinView}
       />
     </Stack.Navigator>
   )
