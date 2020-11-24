@@ -1,5 +1,8 @@
 <template>
-  <view :style="{ flex: 1 }">
+  <keyboard-avoiding-view
+    :style="{ flex: 1 }"
+    :behavior="behavior"
+  >
     <modal-navigation
       has-back-button
       title="Export wallet"
@@ -40,12 +43,16 @@
       :style="styles.exportButton"
       title="Export"
     />
-  </view>
+  </keyboard-avoiding-view>
 </template>
 
 <script>
+import { Platform, KeyboardAvoidingView } from 'react-native'
+
 export default {
   name: 'ExportView',
+
+  components: { KeyboardAvoidingView },
 
   data () {
     return {
@@ -57,12 +64,20 @@ export default {
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
+    },
+
+    behavior () {
+      return Platform.OS === 'ios' ? 'padding' : null
     }
   }
 }
 
 const stylesStore = (isDarkScheme) => {
   return {
+    container: {
+
+    },
+
     encryptFileText: {
       color: isDarkScheme ? '#b3aabe' : '#72677b',
       fontSize: 12,

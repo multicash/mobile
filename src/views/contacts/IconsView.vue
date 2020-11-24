@@ -45,10 +45,8 @@ export default {
           activeOpacity={0.8}
         >
           <View style={this.styles.iconView}>
-            <View style={this.styles.iconView}>
-              <Icon name={item.item} size={50} />
-              <Text style={this.styles.iconText} ellipsizeMode="middle" numberOfLines={1}>{ item.item }</Text>
-            </View>
+            <Icon name={item.item} size={50} color={this.isDarkScheme ? 'white' : 'black'}/>
+            <Text style={this.styles.iconText} ellipsizeMode="middle" numberOfLines={1}>{ item.item }</Text>
           </View>
         </TouchableOpacity>
       )
@@ -79,7 +77,7 @@ const stylesStore = (isDarkScheme) => {
     iconView: {
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'white',
+      backgroundColor: isDarkScheme ? 'black' : 'white',
       borderRadius: 10,
       padding: 5,
       margin: 5

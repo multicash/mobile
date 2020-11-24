@@ -83,7 +83,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { AppState } from 'react-native'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'HomeView',
@@ -95,10 +96,31 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['wallets']),
+    ...mapGetters(['wallets', 'isSetup']),
 
     styles () {
       return stylesStore(this.isDarkScheme, this.insets)
+    }
+  },
+
+  created () {
+    AppState.addEventListener('change', this.onAppStateChange)
+  },
+
+  methods: {
+    ...mapActions(['updateIsAuthenticated']),
+
+    onAppStateChange (state) {
+      if (!this.isSetup) {
+        return
+      }
+
+      switch (state) {
+        case 'background':
+        case 'active':
+          return this.updateIsAuthenticated(false)
+        default:
+      }
     }
   }
 }

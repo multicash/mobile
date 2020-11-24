@@ -1,11 +1,16 @@
 <template>
   <safe-area-view :style="styles.safeArea">
-    <status-bar barStyle="dark-content" />
-    <scroll-view :style="styles.scrollView" pagingEnabled horizontal>
+    <status-bar barStyle="light-content" />
+    <scroll-view
+      :style="styles.scrollView"
+      pagingEnabled
+      horizontal
+      :showsHorizontalScrollIndicator="false"
+    >
       <view v-for="page in pages" :key="page.title" :style="styles.page">
         <view :style="{ flexDirection: 'row' }">
-          <image :style="styles.headerImage1" :source="require('@/assets/restore-key.png')"/>
-          <image :style="styles.headerImage2" :source="require('@/assets/restore-key-safe.png')"/>
+          <image :style="styles.headerImage1" :source="page.header1"/>
+          <image :style="styles.headerImage2" :source="page.header2"/>
         </view>
         <text :style="styles.title">{{ page.title }}</text>
         <text :style="styles.description">{{ page.description }}</text>
@@ -33,11 +38,21 @@ export default {
       pages: [
         {
           title: 'Store, manage, and protect your MultiCash.',
-          description: 'Keep your MultiCash always within reach in a secure and safe bank-like app with the benefits of the future.'
+          description: 'Keep your MultiCash always within reach in a secure and safe bank-like app with the benefits of the future.',
+          header1: require('@/assets/restore-key.png'),
+          header2: require('@/assets/restore-key-safe.png')
         },
         {
-          title: 'Hello world 2',
-          description: 'Lorem ipsum hello world foo bar baz'
+          title: 'Multiple Wallets!',
+          description: 'MultiCash allows you to create multiple wallets. Create your main wallet and perhaps a savings wallet. Add up to 10 wallets to MultiCash!',
+          header1: require('@/assets/new-wallet1.png'),
+          header2: require('@/assets/new-wallet2.png')
+        },
+        {
+          title: 'Wallet Tags!',
+          description: 'MultiCash allows you to create wallet tags! Which will enable you to easily send and receive MCX to friends, family and businesses!',
+          header1: require('@/assets/add-tag.png'),
+          header2: require('@/assets/wallet.png')
         }
       ]
     }
@@ -68,7 +83,7 @@ const stylesStore = () => {
     },
 
     container: {
-      paddingHorizontal: 20,
+      padding: 20,
       justifyContent: 'center',
       alignItems: 'center'
     },

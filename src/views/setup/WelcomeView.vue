@@ -38,7 +38,7 @@ const stylesStore = () => {
 
     container: {
       flex: 1,
-      paddingHorizontal: 20,
+      padding: 20,
       justifyContent: 'center',
       alignItems: 'center'
     },

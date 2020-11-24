@@ -86,7 +86,7 @@ const stylesStore = (isDarkScheme) => {
     iconView: {
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'white',
+      backgroundColor: isDarkScheme ? 'black' : 'white',
       borderRadius: 10,
       padding: 5,
       margin: 5

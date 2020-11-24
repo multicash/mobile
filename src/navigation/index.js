@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { Platform } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
-import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 // Setup views
 import WelcomeView from '@/views/setup/WelcomeView'
@@ -266,121 +265,103 @@ const Add = () => {
 }
 
 export const AppNavigator = () => {
-  const Home = () => {
-    return (
-      <HomeView insets={useSafeAreaInsets()} />
-    )
-  }
-
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="home"
-          screenOptions={{
-            headerShown: false,
-            gestureEnabled: true,
-            cardOverlayEnabled: true,
-            ...Platform.select({
-              ios: TransitionPresets.ModalPresentationIOS,
-              default: TransitionPresets.FadeFromBottomAndroid
-            })
-          }}
-          headerMode="none"
-        >
-          <Stack.Screen
-            name="home"
-          >
-            {props => (
-              <HomeView insets={useSafeAreaInsets()} {...props} />
-            )}
-          </Stack.Screen>
-          <Stack.Screen
-            name="settings"
-            component={Settings}
-          />
-          <Stack.Screen
-            name="support"
-            component={SupportView}
-          />
-          <Stack.Screen
-            name="contacts"
-            component={Contacts}
-          />
-          <Stack.Screen
-            name="pay"
-            component={Pay}
-          />
-          <Stack.Screen
-            name="receive"
-            component={Receive}
-          />
-          <Stack.Screen
-            name="wallet"
-            component={Wallet}
-          />
-          <Stack.Screen
-            name="orderWallets"
-            component={OrderWalletsView}
-          />
-          <Stack.Screen
-            name="add"
-            component={Add}
-          />
-          <Stack.Screen
-            name="pin"
-            component={AuthenticationPinView}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <Stack.Navigator
+      initialRouteName="home"
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: true,
+        cardOverlayEnabled: true,
+        ...Platform.select({
+          ios: TransitionPresets.ModalPresentationIOS,
+          default: TransitionPresets.FadeFromBottomAndroid
+        })
+      }}
+      headerMode="none"
+    >
+      <Stack.Screen
+        name="home"
+      >
+        {props => (
+          <HomeView insets={useSafeAreaInsets()} {...props} />
+        )}
+      </Stack.Screen>
+      <Stack.Screen
+        name="settings"
+        component={Settings}
+      />
+      <Stack.Screen
+        name="support"
+        component={SupportView}
+      />
+      <Stack.Screen
+        name="contacts"
+        component={Contacts}
+      />
+      <Stack.Screen
+        name="pay"
+        component={Pay}
+      />
+      <Stack.Screen
+        name="receive"
+        component={Receive}
+      />
+      <Stack.Screen
+        name="wallet"
+        component={Wallet}
+      />
+      <Stack.Screen
+        name="orderWallets"
+        component={OrderWalletsView}
+      />
+      <Stack.Screen
+        name="add"
+        component={Add}
+      />
+      <Stack.Screen
+        name="pin"
+        component={AuthenticationPinView}
+      />
+    </Stack.Navigator>
   )
 }
 
 export const AuthenticationNavigator = () => {
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="pin"
-          headerMode="none"
-        >
-          <Stack.Screen
-            name="pin"
-            component={AuthenticationPinView}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <Stack.Navigator
+      initialRouteName="pin"
+      headerMode="none"
+    >
+      <Stack.Screen
+        name="pin"
+        component={AuthenticationPinView}
+      />
+    </Stack.Navigator>
   )
 }
 
 export const SetupNavigator = () => {
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="welcome"
-          headerMode="none"
-        >
-          <Stack.Screen
-            name="welcome"
-            component={WelcomeView}
-          />
-          <Stack.Screen
-            name="intro"
-            component={IntroView}
-          />
-          <Stack.Screen
-            name="setupPin"
-            component={SetupPinView}
-          />
-          <Stack.Screen
-            name="done"
-            component={DoneView}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <Stack.Navigator
+      initialRouteName="welcome"
+      headerMode="none"
+    >
+      <Stack.Screen
+        name="welcome"
+        component={WelcomeView}
+      />
+      <Stack.Screen
+        name="intro"
+        component={IntroView}
+      />
+      <Stack.Screen
+        name="setupPin"
+        component={SetupPinView}
+      />
+      <Stack.Screen
+        name="done"
+        component={DoneView}
+      />
+    </Stack.Navigator>
   )
 }
