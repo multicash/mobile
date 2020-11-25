@@ -1,3 +1,5 @@
+import { Context } from 'vuex'
+
 interface Wallet {
   name: string,
   amount: number,
@@ -26,15 +28,15 @@ const exampleWallets = [
 const state: Wallet[] = []
 
 const mutations = {
-  ADD_WALLET (state: Wallet[], wallet: Wallet) {
+  ADD_WALLET (state: Wallet[], wallet: Wallet): void {
     state.push(wallet)
   },
 
-  REMOVE_WALLET (state: Wallet[], wallet: Wallet) {
+  REMOVE_WALLET (state: Wallet[], wallet: Wallet): void {
     state.splice(state.indexOf(wallet), 1)
   },
 
-  REMOVE_ALL_WALLETS (state: Wallet[]) {
+  REMOVE_ALL_WALLETS (state: Wallet[]): void {
     const length = state.length
 
     for (let i = 0; i < length; i++) {
@@ -44,27 +46,27 @@ const mutations = {
 }
 
 const actions = {
-  addWallet ({ commit }, wallet: Wallet) {
-    commit('ADD_WALLET', wallet)
+  addWallet (context: Context, wallet: Wallet): void {
+    context.commit('ADD_WALLET', wallet)
   },
 
-  removeWallet ({ commit }, wallet: Wallet) {
-    commit('REMOVE_WALLET', wallet)
+  removeWallet (context: Context, wallet: Wallet): void {
+    context.commit('REMOVE_WALLET', wallet)
   },
 
-  removeAllWallets ({ commit }) {
-    commit('REMOVE_ALL_WALLETS')
+  removeAllWallets (context: Context): void {
+    context.commit('REMOVE_ALL_WALLETS')
   },
 
-  addExamplesWallets ({ commit }) {
+  addExamplesWallets (context: Context): void {
     exampleWallets.forEach(wallet => {
-      commit('ADD_WALLET', wallet)
+      context.commit('ADD_WALLET', wallet)
     })
   }
 }
 
 const getters = {
-  wallets: (state: Wallet[]) => {
+  wallets (state: Wallet[]): Wallet[] {
     return state
   }
 }

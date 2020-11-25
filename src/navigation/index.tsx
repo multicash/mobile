@@ -11,57 +11,57 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 // Setup views
-import WelcomeView from '@/views/setup/WelcomeView'
-import IntroView from '@/views/setup/IntroView'
-import SetupPinView from '@/views/setup/SetupPinView'
-import DoneView from '@/views/setup/DoneView'
+import WelcomeView from '@/views/setup/WelcomeView.vue'
+import IntroView from '@/views/setup/IntroView.vue'
+import SetupPinView from '@/views/setup/SetupPinView.vue'
+import DoneView from '@/views/setup/DoneView.vue'
 
 // Authentication views
-import AuthenticationPinView from '@/views/authentication/PinView'
+import AuthenticationPinView from '@/views/authentication/PinView.vue'
 
 // Main application views
-import HomeView from '@/views/HomeView'
+import HomeView from '@/views/HomeView.vue'
 
 // Settings views
-import SettingsOverviewView from '@/views/settings/OverviewView'
-import BiometricAuthenticationView from '@/views/settings/BiometricAuthenticationView'
-import ChangePinView from '@/views/settings/ChangePinView'
-import CurrencyView from '@/views/settings/CurrencyView'
-import SupportView from '@/views/settings/SupportView'
+import SettingsOverviewView from '@/views/settings/OverviewView.vue'
+import BiometricAuthenticationView from '@/views/settings/BiometricAuthenticationView.vue'
+import ChangePinView from '@/views/settings/ChangePinView.vue'
+import CurrencyView from '@/views/settings/CurrencyView.vue'
+import SupportView from '@/views/settings/SupportView.vue'
 
 // Contact views
-import ContactsOverviewView from '@/views/contacts/OverviewView'
-import ContactView from '@/views/contacts/ContactView'
-import ContactIconsView from '@/views/contacts/IconsView'
+import ContactsOverviewView from '@/views/contacts/OverviewView.vue'
+import ContactView from '@/views/contacts/ContactView.vue'
+import ContactIconsView from '@/views/contacts/IconsView.vue'
 
 // Transaction views
-import AmountView from '@/views/transaction/AmountView'
-import WalletsView from '@/views/transaction/WalletsView'
-import RecipientView from '@/views/transaction/RecipientView'
-import EnterRecipientView from '@/views/transaction/EnterRecipientView'
-import QrView from '@/views/transaction/QrView'
-import ConfirmView from '@/views/transaction/ConfirmView'
-import PayingView from '@/views/transaction/PayingView'
+import AmountView from '@/views/transaction/AmountView.vue'
+import WalletsView from '@/views/transaction/WalletsView.vue'
+import RecipientView from '@/views/transaction/RecipientView.vue'
+import EnterRecipientView from '@/views/transaction/EnterRecipientView.vue'
+import QrView from '@/views/transaction/QrView.vue'
+import ConfirmView from '@/views/transaction/ConfirmView.vue'
+import PayingView from '@/views/transaction/PayingView.vue'
 
 // Wallet views
-import OverviewView from '@/views/wallet/OverviewView'
-import WalletSettingsView from '@/views/wallet/SettingsView'
-import TransactionView from '@/views/wallet/TransactionView'
-import NameView from '@/views/wallet/NameView'
-import IconView from '@/views/wallet/IconView'
-import RestoreKeyView from '@/views/wallet/RestoreKeyView'
-import ExportView from '@/views/wallet/ExportView'
-import OrderWalletsView from '@/views/wallet/OrderWalletsView'
-import WalletIconsView from '@/views/wallet/IconsView'
+import OverviewView from '@/views/wallet/OverviewView.vue'
+import WalletSettingsView from '@/views/wallet/SettingsView.vue'
+import TransactionView from '@/views/wallet/TransactionView.vue'
+import NameView from '@/views/wallet/NameView.vue'
+import IconView from '@/views/wallet/IconView.vue'
+import RestoreKeyView from '@/views/wallet/RestoreKeyView.vue'
+import ExportView from '@/views/wallet/ExportView.vue'
+import OrderWalletsView from '@/views/wallet/OrderWalletsView.vue'
+import WalletIconsView from '@/views/wallet/IconsView.vue'
 
 // Add wallet views
-import AddView from '@/views/wallet/AddView'
-import AddPreferencesView from '@/views/wallet/add/PreferencesView'
-import AddRestoreKeyView from '@/views/wallet/add/RestoreKeyView'
-import AddEnterRestoreKeyView from '@/views/wallet/add/EnterRestoreKeyView'
-import AddImportView from '@/views/wallet/add/ImportView'
-import AddConfirmView from '@/views/wallet/add/ConfirmView'
-import AddCreateView from '@/views/wallet/add/CreateView'
+import AddView from '@/views/wallet/AddView.vue'
+import AddPreferencesView from '@/views/wallet/add/PreferencesView.vue'
+import AddRestoreKeyView from '@/views/wallet/add/RestoreKeyView.vue'
+import AddEnterRestoreKeyView from '@/views/wallet/add/EnterRestoreKeyView.vue'
+import AddImportView from '@/views/wallet/add/ImportView.vue'
+import AddConfirmView from '@/views/wallet/add/ConfirmView.vue'
+import AddCreateView from '@/views/wallet/add/CreateView.vue'
 
 const PinView = AuthenticationPinView
 const Stack = createStackNavigator()

@@ -1,5 +1,7 @@
 // import constants from '@/utils/constants'
 
+import { Context } from 'vuex'
+
 const constants = {
   defaultCurrencyCode: 'EUR'
 }
@@ -13,20 +15,19 @@ const state: Currency = {
 }
 
 const mutations = {
-  UPDATE_CURRENCY (state: Currency, newCurrencyCode: string) {
+  UPDATE_CURRENCY (state: Currency, newCurrencyCode: string): void {
     state.code = newCurrencyCode
   }
 }
 
 const actions = {
-  // @ts-ignore
-  updateCurrency ({ commit }, currency: string) {
-    commit('UPDATE_CURRENCY', currency)
+  updateCurrency (context: Context, currency: string): void {
+    context.commit('UPDATE_CURRENCY', currency)
   }
 }
 
 const getters = {
-  currentCurrencyCode: (state: Currency) => {
+  currentCurrencyCode (state: Currency): string {
     return state.code
   }
 }

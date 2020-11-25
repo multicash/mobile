@@ -1,4 +1,4 @@
-const WalletIcons = {
+const WalletIcons: object = {
   wallet: () => require('@/assets/walletIcons/wallet.png'),
   moneyBox: () => require('@/assets/walletIcons/money_box.png'),
   gift: () => require('@/assets/walletIcons/gift.png'),
@@ -6,7 +6,8 @@ const WalletIcons = {
   security: () => require('@/assets/walletIcons/security.png')
 }
 
-export const resolveIcon = (name) => {
+export const resolveIcon = (name: string) => {
+  // @ts-ignore
   const icon = WalletIcons[name] || (() => null)
 
   if (!icon) {
