@@ -39,10 +39,15 @@
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/runtime": "^7.11.2",
-    "@typescript-eslint/eslint-plugin": "^4.4.0",
-    "@typescript-eslint/parser": "^4.4.0",
-    "@vue/cli-plugin-eslint": "^4.5.6",
-    "@vue/cli-service": "^4.5.6",
+    "@types/intl": "^1.2.0",
+    "@types/jest": "^26.0.15",
+    "@types/react": "^17.0.0",
+    "@types/react-native": "^0.63.37",
+    "@types/react-test-renderer": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
+    "@vue/cli-plugin-eslint": "^4.5.9",
+    "@vue/cli-service": "^4.5.9",
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/eslint-config-typescript": "^5.1.0",
     "babel-jest": "^26.5.2",
@@ -56,11 +61,8 @@
     "jest": "^26.5.2",
     "metro-react-native-babel-preset": "^0.63.0",
     "react-test-renderer": "^16.13.1",
-    "typescript": "^4.0.3",
+    "typescript": "^4.1.2",
     "vue-jest": "^3.0.7",
     "vue-native-scripts": "^0.1.4"
-  },
-  "jest": {
-    "preset": "react-native"
   }
 }

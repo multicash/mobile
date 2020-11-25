@@ -83,7 +83,7 @@ export default {
                   [
                     {
                       text: 'Cancel',
-                      onPress: () => console.log('Cancel Pressed'),
+                      onPress: () => alert('Cancel Pressed'),
                       style: 'cancel'
                     },
                     {
@@ -91,7 +91,7 @@ export default {
                       onPress: () => {
                         this.navigation.navigate('pin', {
                           authenticated: () => {
-                            console.log('Delete wallet')
+                            alert('Delete wallet')
 
                             this.navigation.navigate('home')
                           }

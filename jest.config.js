@@ -1,6 +1,6 @@
 module.exports = {
   preset: 'react-native',
-  moduleFileExtensions: ['js', 'jsx', 'json', 'node', 'vue'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node', 'vue'],
   transform: {
     '.*\\.vue$': 'vue-jest'
   },

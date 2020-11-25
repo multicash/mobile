@@ -84,7 +84,7 @@
 
 <script>
 import { AppState } from 'react-native'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'HomeView',

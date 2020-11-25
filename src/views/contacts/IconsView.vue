@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import Icon from 'react-native-vector-icons/Ionicons'
 import React from 'react'
+import Icon from 'react-native-vector-icons/Ionicons'
 import { View, Text, TouchableOpacity } from 'react-native'
 
 export default {

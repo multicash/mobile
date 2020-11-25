@@ -86,7 +86,7 @@ export default {
     },
 
     setState (nice) {
-      console.log(nice)
+      // console.log(nice)
     }
   }
 }

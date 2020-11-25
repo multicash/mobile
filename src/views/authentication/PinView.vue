@@ -33,7 +33,6 @@
 
 <script>
 import ReactNativeBiometrics from 'react-native-biometrics'
-import { mapActions } from 'vuex'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default {
@@ -71,7 +70,7 @@ export default {
         this.biometryType = biometryType
       })
       .catch(e => {
-        console.error(e)
+        alert('Sensor not available: ' + e.message)
       })
   },
 
@@ -97,8 +96,7 @@ export default {
           }
         })
         .catch(e => {
-          console.log('biometrics failed')
-          console.error(e)
+          alert('biometrics failed: ' + e.message)
         })
     },
 

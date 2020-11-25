@@ -18,8 +18,6 @@ import { View, Text } from 'react-native'
 import { ListItem, Avatar, Icon } from 'react-native-elements'
 import { text, subtitle, sectionTitle } from '@/styles'
 
-console.log(React.version)
-
 export default {
   name: 'TableView',
 
