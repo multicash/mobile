@@ -26,7 +26,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { AppNavigator, SetupNavigator } from '@/navigation'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import store from '@/store'
 
 const Stack = createStackNavigator()
@@ -50,6 +50,12 @@ export default {
     }
   },
 
+  created () {
+    if (!this.hasPin) {
+      this.updateIsSetup(false)
+    }
+  },
+
   computed: {
     ...mapGetters(['isSetup']),
 
@@ -64,6 +70,10 @@ export default {
         })
       }
     }
+  },
+
+  methods: {
+    ...mapActions(['updateIsSetup'])
   }
 }
 </script>

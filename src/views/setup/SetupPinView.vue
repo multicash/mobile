@@ -35,6 +35,7 @@
 
 <script>
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'ChangePinView',
@@ -62,6 +63,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(['updatePin']),
+
     pinUpdated () {
       this.$forceUpdate()
 
@@ -78,8 +81,7 @@ export default {
 
     pinConfirmed () {
       if (this.confirmPin.join('') === this.pin.join('')) {
-        // save PIN
-
+        this.updatePin(this.pin.join(''))
         this.navigation.navigate('done')
 
         return

@@ -1,4 +1,4 @@
-import { Context } from 'vuex'
+import { Store } from 'vuex'
 
 interface Wallet {
   name: string,
@@ -8,7 +8,7 @@ interface Wallet {
   address: string
 }
 
-const exampleWallets = [
+const exampleWallets: Wallet[] = [
   {
     name: 'Main Account',
     amount: 10505.43,
@@ -46,19 +46,19 @@ const mutations = {
 }
 
 const actions = {
-  addWallet (context: Context, wallet: Wallet): void {
+  addWallet (context: Store<Wallet[]>, wallet: Wallet): void {
     context.commit('ADD_WALLET', wallet)
   },
 
-  removeWallet (context: Context, wallet: Wallet): void {
+  removeWallet (context: Store<Wallet[]>, wallet: Wallet): void {
     context.commit('REMOVE_WALLET', wallet)
   },
 
-  removeAllWallets (context: Context): void {
+  removeAllWallets (context: Store<Wallet[]>): void {
     context.commit('REMOVE_ALL_WALLETS')
   },
 
-  addExamplesWallets (context: Context): void {
+  addExamplesWallets (context: Store<Wallet[]>): void {
     exampleWallets.forEach(wallet => {
       context.commit('ADD_WALLET', wallet)
     })

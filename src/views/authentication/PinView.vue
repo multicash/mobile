@@ -32,8 +32,10 @@
 </template>
 
 <script>
+import { Alert } from 'react-native'
 import ReactNativeBiometrics from 'react-native-biometrics'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: { SafeAreaView },
@@ -48,6 +50,8 @@ export default {
   },
 
   computed: {
+    ...mapGetters(['getPin']),
+
     digits () {
       return Array(this.pinLength)
     },
@@ -75,6 +79,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(['updateIsSetup', 'removeAllWallets']),
+
     pinUpdated () {
       this.$forceUpdate()
 
@@ -90,9 +96,8 @@ export default {
 
       ReactNativeBiometrics.simplePrompt({ promptMessage: 'Unlock MultiCash' })
         .then(({ success }) => {
-          if (success) {
-            this.pin = [0, 1, 2, 3]
-            this.authenticate()
+          if (success === true) {
+            this.successfullyAuthenticated()
           }
         })
         .catch(e => {
@@ -101,19 +106,56 @@ export default {
     },
 
     authenticate () {
-      if (this.pin.join('') === '0123') {
-        this.navigation.goBack()
-
-        if (this.hasAuthenticatedAction) {
-          this.route.params.authenticated()
-        }
-
-        return
+      if (this.pin.join('') === this.getPin) {
+        return this.successfullyAuthenticated()
       }
 
-      alert('The correct PIN is 0123 :)')
+      Alert.alert(
+        'Incorrect PIN provided, please retry',
+        null,
+        [
+          {
+            text: 'Reset MultiCash',
+            onPress: this.resetMultiCash,
+            style: 'destructive'
+          },
+          {
+            text: 'Ok',
+            style: 'default'
+          }
+        ]
+      )
 
       this.pin = Array(4)
+    },
+
+    successfullyAuthenticated () {
+      this.navigation.goBack()
+
+      if (this.hasAuthenticatedAction) {
+        this.route.params.authenticated()
+      }
+    },
+
+    resetMultiCash () {
+      Alert.alert(
+        'Reset MultiCash',
+        'You\'re about to reset MultiCash on this device. Your wallets will be removed and you\'ll have restore them again in order to access them.',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Reset',
+            style: 'destructive',
+            onPress: () => {
+              this.updateIsSetup()
+              this.removeAllWallets()
+            }
+          }
+        ]
+      )
     }
   }
 }

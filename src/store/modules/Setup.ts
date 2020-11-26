@@ -1,11 +1,10 @@
-import { Context } from 'vuex'
+import { Store } from 'vuex'
 
 interface SetupState {
   isSetup: boolean
 }
 
 export default {
-
   state: {
     isSetup: false
   },
@@ -17,7 +16,7 @@ export default {
   },
 
   actions: {
-    updateIsSetup (context: Context, isSetup: boolean): void {
+    updateIsSetup (context: Store<SetupState>, isSetup: boolean): void {
       context.commit('UPDATE_SETUP_STATUS', isSetup)
     }
   },
@@ -27,5 +26,4 @@ export default {
       return state.isSetup
     }
   }
-
 }

@@ -1,4 +1,4 @@
-import { Context } from 'vuex'
+import { Store } from 'vuex'
 
 interface PinState {
   pin: string|null
@@ -16,7 +16,7 @@ export default {
   },
 
   actions: {
-    updatePin (context: Context, pin: string|null): void {
+    updatePin (context: Store<PinState>, pin: string|null): void {
       context.commit('UPDATE_PIN', pin)
     }
   },

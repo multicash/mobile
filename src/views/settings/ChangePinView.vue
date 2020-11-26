@@ -34,6 +34,9 @@
 </template>
 
 <script>
+import { Alert } from 'react-native'
+import { mapActions } from 'vuex'
+
 export default {
   name: 'ChangePinView',
 
@@ -58,6 +61,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(['updatePin']),
+
     pinUpdated () {
       this.$forceUpdate()
 
@@ -74,8 +79,8 @@ export default {
 
     pinConfirmed () {
       if (this.confirmPin.join('') === this.pin.join('')) {
-        alert('Pin successfully changed')
-
+        Alert.alert('PIN successfully changed')
+        this.updatePin(this.pin.join(''))
         this.navigation.goBack()
 
         return

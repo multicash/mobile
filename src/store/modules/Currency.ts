@@ -1,6 +1,4 @@
-// import constants from '@/utils/constants'
-
-import { Context } from 'vuex'
+import { Store } from 'vuex'
 
 const constants = {
   defaultCurrencyCode: 'EUR'
@@ -21,7 +19,7 @@ const mutations = {
 }
 
 const actions = {
-  updateCurrency (context: Context, currency: string): void {
+  updateCurrency (context: Store<Currency>, currency: string): void {
     context.commit('UPDATE_CURRENCY', currency)
   }
 }
