@@ -79,7 +79,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['updateIsSetup', 'removeAllWallets']),
+    ...mapActions(['updateIsSetup']),
 
     pinUpdated () {
       this.$forceUpdate()
@@ -151,7 +151,11 @@ export default {
             style: 'destructive',
             onPress: () => {
               this.updateIsSetup()
-              this.removeAllWallets()
+              this.$walletManager.wallets.forEach(wallet => {
+                setTimeout(() => {
+                  this.$walletManager.removeWallet(wallet)
+                }, 250)
+              })
             }
           }
         ]
