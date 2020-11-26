@@ -13,7 +13,7 @@
         :image-foreground="require('@/assets/protect.png')"
       />
 
-      <restore-key-grid-view :words="words" />
+      <restore-key-grid-view :words="mnemonic" />
     </view-background>
   </view>
 </template>
@@ -22,22 +22,9 @@
 export default {
   name: 'RestoreKeyView',
 
-  data () {
-    return {
-      words: [
-        'one',
-        'two',
-        'three',
-        'four',
-        'five',
-        'six',
-        'seven',
-        'eight',
-        'nine',
-        'ten',
-        'eleven',
-        'twelve'
-      ]
+  computed: {
+    mnemonic () {
+      return this.route.params.wallet.getCredentials().mnemonic.split(' ')
     }
   }
 }

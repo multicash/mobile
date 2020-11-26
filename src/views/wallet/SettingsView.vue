@@ -91,7 +91,7 @@ export default {
                       onPress: () => {
                         this.navigation.navigate('pin', {
                           authenticated: () => {
-                            alert('Delete wallet')
+                            this.$walletManager.removeWallet(this.route.params.wallet)
 
                             this.navigation.navigate('home')
                           }

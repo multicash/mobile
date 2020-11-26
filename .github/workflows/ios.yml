@@ -20,3 +20,5 @@ jobs:
         run: npm ci
       - name: Install Pods
         run: cd ios && pod install
+#      - name: Xcode Build
+#        run: xcodebuild -workspace MultiCash.xcworkspace -scheme MultiCash build

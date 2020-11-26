@@ -47,7 +47,7 @@
       v-if="term1 && term2 && term3"
       :style="styles.proceedButton"
       title="Proceed"
-      @on-press="navigation.navigate('create')"
+      @on-press="navigation.navigate('create', route.params)"
     />
   </view>
 </template>

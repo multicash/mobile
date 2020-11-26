@@ -36,11 +36,11 @@ export default {
 
     amountFormatted () {
       if (this.crypto) {
-        return this.getFormattedCrypto(this.amount / 1000000, 'en', this.currency)
+        return this.getFormattedCrypto(this.amount / constants.satoshiDivider, 'en', this.currency)
       }
 
       if (this.convert) {
-        const amount = (this.amount) * 0.65 // this.currentRate
+        const amount = (this.amount / constants.satoshiDivider) * 0.65 // this.currentRate
         return this.getFormattedCurrency(amount, 'en', constants.defaultCurrencyCode) // this.currentCurrencyCode)
       }
 

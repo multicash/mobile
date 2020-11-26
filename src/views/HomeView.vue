@@ -25,15 +25,15 @@
     </view>
     <view :style="styles.content">
       <actions-section
-        v-if="wallets.length > 0"
+        v-if="hasWallets"
         @pay="navigation.navigate('pay')"
         @receive="navigation.navigate('receive')"
       />
       <wallets-section
-        v-if="wallets.length > 0"
-        :wallets="wallets"
+        v-if="hasWallets"
+        :wallets="$walletManager.wallets"
         @wallet-selected="navigation.navigate('wallet', { screen: 'overview', params: { wallet: arguments[0] } })"
-        @order-wallets="navigation.navigate('orderWallets', { wallets })"
+        @order-wallets="navigation.navigate('orderWallets', { wallets: $walletManager.wallets })"
         @add-wallet="navigation.navigate('add')"
       />
       <scroll-view
@@ -85,6 +85,7 @@
 <script>
 import { AppState } from 'react-native'
 import { mapGetters } from 'vuex'
+import ManagerConfig from '@/walletManager/ManagerConfig.ts'
 
 export default {
   name: 'HomeView',
@@ -96,7 +97,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['wallets', 'isSetup']),
+    ...mapGetters(['wallets', 'hasWallets', 'isSetup']),
 
     styles () {
       return stylesStore(this.isDarkScheme, this.insets)
@@ -104,11 +105,15 @@ export default {
   },
 
   created () {
-    AppState.addEventListener('change', this.onAppStateChange)
-
-    if (this.wallets.length > 0) {
+    if (this.hasWallets) {
       this.navigation.navigate('authenticate')
     }
+
+    AppState.addEventListener('change', this.onAppStateChange)
+
+    this.$walletManager.boot(new ManagerConfig(this.wallets)).then(() => {
+      this.$forceUpdate()
+    })
   },
 
   methods: {

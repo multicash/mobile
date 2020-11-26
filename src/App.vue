@@ -26,15 +26,20 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { AppNavigator, SetupNavigator } from '@/navigation'
+import Vue from 'vue-native-core'
 import { mapGetters, mapActions } from 'vuex'
 import store from '@/store'
+import walletManager from '@/walletManager'
 
 const Stack = createStackNavigator()
 const StackNavigator = Stack.Navigator
 const StackScreen = Stack.Screen
 
+Vue.use(walletManager, { store })
+
 export default {
   store: store,
+  walletManager: walletManager,
 
   components: {
     NavigationContainer,
@@ -57,7 +62,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['isSetup']),
+    ...mapGetters(['isSetup', 'hasPin']),
 
     screenOptions () {
       return {

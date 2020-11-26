@@ -57,14 +57,16 @@ export default {
 
   data () {
     return {
-      created: false
+      created: false,
+      wallet: null
     }
   },
 
   created () {
-    setTimeout(() => {
+    this.$walletManager.addWallet(this.route.params.walletConfig).then(wallet => {
       this.created = true
-    }, 5000)
+      this.wallet = wallet
+    })
   },
 
   computed: {

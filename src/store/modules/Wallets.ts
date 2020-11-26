@@ -1,42 +1,22 @@
 import { Store } from 'vuex'
+import { WalletConfigItem } from '@/walletManager/ManagerConfig'
 
-interface Wallet {
-  name: string,
-  amount: number,
-  icon: string,
-  tag: string,
-  address: string
-}
-
-const exampleWallets: Wallet[] = [
-  {
-    name: 'Main Account',
-    amount: 10505.43,
-    icon: 'wallet',
-    tag: '@SwenVanZanten',
-    address: 'M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De'
-  },
-  {
-    name: 'Savings Account',
-    amount: 1430705.54,
-    icon: 'gift',
-    tag: '@SwenSaving',
-    address: 'M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De'
-  }
-]
-
-const state: Wallet[] = []
+const state: WalletConfigItem[] = []
 
 const mutations = {
-  ADD_WALLET (state: Wallet[], wallet: Wallet): void {
+  ADD_WALLET (state: WalletConfigItem[], wallet: WalletConfigItem): void {
     state.push(wallet)
   },
 
-  REMOVE_WALLET (state: Wallet[], wallet: Wallet): void {
+  REMOVE_WALLET (state: WalletConfigItem[], wallet: WalletConfigItem): void {
     state.splice(state.indexOf(wallet), 1)
   },
 
-  REMOVE_ALL_WALLETS (state: Wallet[]): void {
+  UPDATE_WALLET (state: WalletConfigItem[], wallet: WalletConfigItem): void {
+    //
+  },
+
+  REMOVE_ALL_WALLETS (state: WalletConfigItem[]): void {
     const length = state.length
 
     for (let i = 0; i < length; i++) {
@@ -46,28 +26,32 @@ const mutations = {
 }
 
 const actions = {
-  addWallet (context: Store<Wallet[]>, wallet: Wallet): void {
+  addWallet (context: Store<WalletConfigItem[]>, wallet: WalletConfigItem): void {
     context.commit('ADD_WALLET', wallet)
   },
 
-  removeWallet (context: Store<Wallet[]>, wallet: Wallet): void {
+  removeWallet (context: Store<WalletConfigItem[]>, wallet: WalletConfigItem): void {
     context.commit('REMOVE_WALLET', wallet)
   },
 
-  removeAllWallets (context: Store<Wallet[]>): void {
-    context.commit('REMOVE_ALL_WALLETS')
-  },
+  getWallet (context: Store<WalletConfigItem[]>, name: string): WalletConfigItem|null {
+    for (const wallet of context.state) {
+      if (wallet.name === name) {
+        return wallet
+      }
+    }
 
-  addExamplesWallets (context: Store<Wallet[]>): void {
-    exampleWallets.forEach(wallet => {
-      context.commit('ADD_WALLET', wallet)
-    })
+    return null
   }
 }
 
 const getters = {
-  wallets (state: Wallet[]): Wallet[] {
+  wallets (state: WalletConfigItem[]): WalletConfigItem[] {
     return state
+  },
+
+  hasWallets (state: WalletConfigItem[]): boolean {
+    return state.length > 0
   }
 }
 

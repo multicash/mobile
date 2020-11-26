@@ -9,6 +9,29 @@
 import { mapActions } from 'vuex'
 import TableHeaderView from '@/react/components/TableHeaderView'
 
+const exampleWallets = [
+  {
+    name: 'Main Account',
+    icon: 'wallet',
+    tag: '@SwenVanZanten',
+    address: 'M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De',
+    coin: 'mcx',
+    network: 'livenet',
+    restoreKey: 'random okay unusual trim fan blue patrol feed mention crane ankle exile',
+    singleAddress: true
+  },
+  {
+    name: 'Savings Account',
+    icon: 'gift',
+    tag: '@SwenSaving',
+    address: 'M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De',
+    coin: 'mcx',
+    network: 'livenet',
+    restoreKey: 'output sphere drift town world sail gauge mechanic track core tiny into',
+    singleAddress: true
+  }
+]
+
 export default {
   name: 'OverviewView',
 
@@ -84,7 +107,11 @@ export default {
               leftIcon: { name: 'trash-outline' },
               noChevron: true,
               onPress: () => {
-                this.removeAllWallets()
+                this.$walletManager.wallets.forEach(wallet => {
+                  setTimeout(() => {
+                    this.$walletManager.removeWallet(wallet)
+                  }, 250)
+                })
               }
             },
             {
@@ -93,7 +120,9 @@ export default {
               leftIcon: { name: 'add-circle-outline' },
               noChevron: true,
               onPress: () => {
-                this.addExamplesWallets()
+                for (const wallet of exampleWallets) {
+                  this.$walletManager.addWallet(wallet)
+                }
               }
             }
           ]

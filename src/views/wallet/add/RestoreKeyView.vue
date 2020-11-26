@@ -31,7 +31,7 @@
       v-if="wordsAreBackedUp"
       :style="styles.proceedButton"
       title="Proceed"
-      @on-press="navigation.navigate('confirm')"
+      @on-press="proceed"
     />
   </view>
 </template>
@@ -64,6 +64,17 @@ export default {
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
+    }
+  },
+
+  methods: {
+    proceed () {
+      this.navigation.navigate('confirm', {
+        walletConfig: {
+          ...this.route.params.walletConfig,
+          restoreKey: this.words.join(' ')
+        }
+      })
     }
   }
 }

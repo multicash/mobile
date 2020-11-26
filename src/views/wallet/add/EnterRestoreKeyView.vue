@@ -79,7 +79,12 @@ export default {
 
     proceed () {
       if (this.successfullyRestored) {
-        this.navigation.navigate('confirm')
+        this.navigation.navigate('confirm', {
+          walletConfig: {
+            ...this.route.params.walletConfig,
+            restoreKey: this.words.join(' ')
+          }
+        })
       }
 
       this.checkingRestoreKey = true

@@ -1,13 +1,12 @@
 export default {
-  priceApi: 'https://api.vergecurrency.network/price/api/v1/price',
-  ipApi: 'https://api.vergecurrency.network/price/api/v1/ip/',
-  vwsApi: 'https://api.vergecurrency.network/vws/api',
-  bnApi: 'https://api.vergecurrency.network/node/api/XVG',
-  explorer: 'https://verge-blockchain.info',
-  termsOfUse: 'https://vergecurrency.com/wallets/terms',
+  priceApi: 'https://wallet.multicash.dev/api/v1/fiatrates/',
+  bitcoreClientApi: 'https://api.multicash.dev/bws/api',
+  bnApi: 'https://api.multicash.dev/api/MXC',
+  explorer: 'https://app.multicash.dev',
+  termsOfUse: 'https://multicash.io/wallets/terms',
   feePerKb: 100000,
-  satoshiDivider: 1000000,
-  decimalPerSatoshi: 6,
+  satoshiDivider: 100000000,
+  decimalPerSatoshi: 8,
   defaultCurrencyCode: 'USD',
   paperKeyLength: 12
 }

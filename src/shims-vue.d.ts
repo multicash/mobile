@@ -3,6 +3,8 @@ declare class Vue {
   static mixin(mixin: object): object;
   static use(plugin: object, ...options: any[]): object;
 
+  public prototype: any;
+
   readonly $el: Element;
   readonly $parent: Vue;
   readonly $root: Vue;
@@ -30,6 +32,14 @@ declare class Vue {
 }
 
 declare module 'vue-native-core' {
+  export type _Vue = Vue
+  export type PluginFunction<T> = (Vue: Vue, options?: T) => void;
+
+  export interface PluginObject<T> {
+    install: PluginFunction<T>;
+    [key: string]: any;
+  }
+
   export default Vue
 }
 

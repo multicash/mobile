@@ -35,12 +35,14 @@
     <rounded-button
       :style="styles.proceedButton"
       title="Proceed"
-      @on-press="navigation.navigate(route.params.restore ? 'enterRestoreKey' : 'restoreKey')"
+      @on-press="proceed"
     />
   </view>
 </template>
 
 <script>
+import constants from '@/support/constants'
+
 export default {
   name: 'PreferencesView',
 
@@ -66,6 +68,19 @@ export default {
         goBack: true,
         resolve: (value) => {
           this.icon.name = value.item.name
+        }
+      })
+    },
+
+    proceed () {
+      this.navigation.navigate(this.route.params.restore ? 'enterRestoreKey' : 'restoreKey', {
+        walletConfig: {
+          name: this.name,
+          tag: this.tag,
+          icon: this.icon.name,
+          coin: 'mcx',
+          network: 'livenet',
+          apiEndpoint: constants.bitcoreClientApi
         }
       })
     }
