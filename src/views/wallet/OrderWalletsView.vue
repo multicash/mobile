@@ -38,7 +38,7 @@ export default {
       return this.wallets.map(wallet => {
         return {
           title: wallet.name,
-          subtitle: this.getFormattedCrypto(wallet.amount, 'en', 'MCX'),
+          subtitle: this.formatAmountFromSatoshis(wallet.info.balance.totalAmount, 'en'),
           leftAvatar: { source: resolveIcon(wallet.icon), size: 40, rounded: false }
         }
       })

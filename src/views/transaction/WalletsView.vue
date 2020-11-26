@@ -5,32 +5,28 @@
       has-back-button
       @on-dismiss="navigation.goBack()"
     />
-    <table-view :sections="data" type="small"/>
+    <table-view :sections="wallets" type="small"/>
   </view-background>
 </template>
 
 <script>
+import { resolveIcon } from '@/support/walletIcons'
+
 export default {
   name: 'WalletsView',
 
-  data () {
-    return {
-      data: [
+  computed: {
+    wallets () {
+      return [
         {
-          data: [
-            {
-              title: 'Main Account',
-              subtitle: this.getFormattedCrypto(10505.44, 'en', 'MCX'),
-              leftAvatar: { source: require('@/assets/walletIcons/wallet.png'), size: 40, rounded: false },
-              onPress: () => this.navigate({ name: 'Main Account', amount: 10 })
-            },
-            {
-              title: 'Savings Account',
-              subtitle: this.getFormattedCrypto(1430705.78, 'en', 'MCX'),
-              leftAvatar: { source: require('@/assets/walletIcons/money_box.png'), size: 40, rounded: false },
-              onPress: () => this.navigate({ name: 'Savings Account', amount: 12 })
+          data: this.$walletManager.wallets.map(wallet => {
+            return {
+              title: wallet.name,
+              subtitle: this.formatAmountFromSatoshis(wallet.info.balance.totalAmount, 'en'),
+              leftAvatar: { source: resolveIcon(wallet.icon), size: 40, rounded: false },
+              onPress: () => this.navigate(wallet)
             }
-          ]
+          })
         }
       ]
     }
