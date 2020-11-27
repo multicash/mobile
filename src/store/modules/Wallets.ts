@@ -1,5 +1,6 @@
 import { Store } from 'vuex'
 import { WalletConfigItem } from '@/walletManager/ManagerConfig'
+import Wallet from '@/walletManager/Wallet'
 
 const state: WalletConfigItem[] = []
 
@@ -12,8 +13,17 @@ const mutations = {
     state.splice(state.indexOf(wallet), 1)
   },
 
-  UPDATE_WALLET (state: WalletConfigItem[], wallet: WalletConfigItem): void {
-    //
+  UPDATE_WALLET (state: WalletConfigItem[], wallet: Wallet): void {
+    const index = state.findIndex(stateWallet => {
+      return stateWallet.name === wallet.name
+    })
+
+    if (state[index]) {
+      state[index].name = wallet.name
+      state[index].tag = wallet.tag
+      state[index].icon = wallet.icon
+      state[index].apiEndpoint = wallet.getClient().request.baseUrl
+    }
   },
 
   REMOVE_ALL_WALLETS (state: WalletConfigItem[]): void {

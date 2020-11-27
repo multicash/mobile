@@ -31,9 +31,8 @@
       />
       <wallets-section
         v-if="hasWallets"
-        :wallets="$walletManager.wallets"
-        @wallet-selected="navigation.navigate('wallet', { screen: 'overview', params: { wallet: arguments[0] } })"
-        @order-wallets="navigation.navigate('orderWallets', { wallets: $walletManager.wallets })"
+        @wallet-selected="navigation.navigate('wallet', { screen: 'overview', params: { walletName: arguments[0].name } })"
+        @order-wallets="navigation.navigate('orderWallets')"
         @add-wallet="navigation.navigate('add')"
       />
       <scroll-view

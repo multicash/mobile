@@ -24,7 +24,7 @@ export default {
 
   computed: {
     mnemonic () {
-      return this.route.params.wallet.getCredentials().mnemonic.split(' ')
+      return this.wallet.getCredentials().mnemonic.split(' ')
     }
   }
 }

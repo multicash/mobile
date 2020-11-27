@@ -62,8 +62,7 @@ export default {
     },
 
     onSelect (item) {
-      this.route.params.resolve(item)
-      this.navigation.goBack()
+      this.navigation.navigate(this.route.params.returnView, { icon: item.item.icon.name })
     }
   }
 }

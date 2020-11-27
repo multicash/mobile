@@ -24,16 +24,6 @@ export default {
 
   created () {
     this.name = this.wallet.name
-  },
-
-  computed: {
-    wallet () {
-      if (!(this.route.params && this.route.params.wallet)) {
-        return null
-      }
-
-      return this.route.params.wallet
-    }
   }
 }
 </script>

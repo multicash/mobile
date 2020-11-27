@@ -1,4 +1,3 @@
-// @ts-ignore
 import Client from '@/walletManager/Client'
 import Wallet from '@/walletManager/Wallet'
 import ManagerConfig, { WalletConfigItem } from '@/walletManager/ManagerConfig'
@@ -8,6 +7,7 @@ import { Store } from 'vuex'
 export default class WalletManager {
   protected store: Store<WalletConfigItem[]>
   protected ticker?: number
+  protected tempWalletStore: any = {}
 
   public readonly wallets: Wallet[] = []
 
@@ -41,7 +41,7 @@ export default class WalletManager {
   }
 
   public getWallet (name: string): Wallet | undefined {
-    return this.wallets.find((wallet) => wallet.name === name)
+    return this.wallets.find(wallet => wallet.name === name)
   }
 
   public getWallets (): Wallet[] {
@@ -49,7 +49,6 @@ export default class WalletManager {
   }
 
   public async addWallet (walletConfig: WalletConfigItem): Promise<Wallet> {
-    console.log(walletConfig)
     const bitcoreClient = this.getClient(walletConfig)
     const wallet = new Wallet(walletConfig.name, walletConfig.icon, walletConfig.tag, bitcoreClient)
 
@@ -69,14 +68,7 @@ export default class WalletManager {
   }
 
   public async updateWallet (name: string, wallet: Wallet): Promise<Wallet> {
-    const walletConfig = await this.getWalletConfig(name)
-    // @ts-ignore
-    walletConfig.apiEndpoint = wallet.bitcoreClient.request.baseUrl
-    walletConfig.name = wallet.name!
-    walletConfig.icon = wallet.icon!
-    walletConfig.tag = wallet.tag!
-
-    this.store.commit('UPDATE_WALLET', walletConfig)
+    this.store.commit('UPDATE_WALLET', wallet)
     console.log(`wallet updated: ${wallet.name}`)
 
     this.restartTicker()
@@ -84,7 +76,7 @@ export default class WalletManager {
     return wallet
   }
 
-  public removeWallet (wallet: Wallet) {
+  public removeWallet (wallet: Wallet): void {
     this.wallets.splice(this.wallets.findIndex(w => w === wallet), 1)
     this.getWalletConfig(wallet.name).then(walletConfig => {
       this.store.commit('REMOVE_WALLET', walletConfig)
@@ -93,8 +85,32 @@ export default class WalletManager {
     console.log(`wallet removed: ${wallet.name}`)
   }
 
+  public defaultWallet (): Wallet | undefined {
+    return this.wallets[0]
+  }
+
   public getDerivedXPrivKey (wallet: Wallet): Promise<object> {
     return wallet.getCredentials().getDerivedXPrivKey()
+  }
+
+  public storeTempWallet (walletConfig: WalletConfigItem): WalletConfigItem {
+    const identifier = this.generateWalletIdentifier()
+    console.log(identifier)
+
+    this.tempWalletStore[identifier] = { ...walletConfig, identifier }
+
+    return this.tempWalletStore[identifier]
+  }
+
+  public getTempWallet (identifier: string): WalletConfigItem|null {
+    return this.tempWalletStore[identifier] || null
+  }
+
+  protected generateWalletIdentifier () {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      const r = Math.random() * 16 | 0; const v = c === 'x' ? r : (r & 0x3 | 0x8)
+      return v.toString(16)
+    })
   }
 
   protected getClient (walletConfig: WalletConfigItem): Client {

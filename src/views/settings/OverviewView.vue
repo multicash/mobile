@@ -11,6 +11,7 @@ import TableHeaderView from '@/react/components/TableHeaderView'
 
 const exampleWallets = [
   {
+    identifier: 'main-account',
     name: 'Main Account',
     icon: 'wallet',
     tag: '@SwenVanZanten',
@@ -21,6 +22,7 @@ const exampleWallets = [
     singleAddress: true
   },
   {
+    identifier: 'savings-account',
     name: 'Savings Account',
     icon: 'gift',
     tag: '@SwenSaving',

@@ -7,6 +7,7 @@ export default class ManagerConfig {
 }
 
 export interface WalletConfigItem {
+  identifier?: string
   name: string
   icon: string
   tag: string

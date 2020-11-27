@@ -57,7 +57,7 @@ export default {
   data () {
     return {
       amount: '',
-      sourceWallet: 'Main Account',
+      sourceWallet: null,
       keyboardHeight: 0
     }
   },
@@ -68,6 +68,12 @@ export default {
 
       Keyboard.removeListener('keyboardDidShow', listener)
     })
+
+    if (this.route.params.walletName) {
+      this.sourceWallet = this.route.params.walletName
+    } else {
+      this.sourceWallet = this.$walletManager.defaultWallet().name
+    }
   },
 
   computed: {
@@ -82,16 +88,25 @@ export default {
 
   methods: {
     selectSourceWallet () {
+      const unsubscribe = this.navigation.addListener('focus', () => {
+        if (this.route.params.sourceWallet) {
+          this.sourceWallet = this.route.params.sourceWallet
+          this.navigation.removeListener('focus', unsubscribe)
+        }
+      })
+
       this.navigation.navigate('wallets', {
         goBack: true,
-        resolve: (value) => {
-          this.sourceWallet = value.name
-        }
+        returnView: 'amount'
       })
     },
 
     confirm () {
-      this.navigation.navigate('recipient', { amount: this.amount, ...this.route.params })
+      this.navigation.navigate('recipient', {
+        amount: this.amount,
+        sourceWallet: this.sourceWallet,
+        ...this.route.params
+      })
     }
   }
 }

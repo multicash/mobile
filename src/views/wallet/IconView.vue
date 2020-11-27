@@ -9,9 +9,9 @@
       <input-description>Make your wallet even more recognizable by choosing a wallet icon.</input-description>
       <selector name="Icon" @on-press="selectIcon">
         <view slot="value" :style="styles.iconContainer">
-          <wallet-icon :icon="icon.name" />
+          <wallet-icon :icon="wallet.icon" />
           <spacer />
-          <text :style="styles.iconText">{{ icon.name }}</text>
+          <text :style="styles.iconText">{{ wallet.icon }}</text>
         </view>
       </selector>
     </view-background>
@@ -22,26 +22,7 @@
 export default {
   name: 'IconView',
 
-  data () {
-    return {
-      icon: {
-        name: null
-      }
-    }
-  },
-
-  created () {
-    this.icon.name = this.wallet.icon
-  },
-
   computed: {
-    wallet () {
-      if (!(this.route.params && this.route.params.wallet)) {
-        return null
-      }
-
-      return this.route.params.wallet
-    },
     styles () {
       return stylesStore(this.isDarkScheme)
     }
@@ -49,11 +30,19 @@ export default {
 
   methods: {
     selectIcon () {
+      const unsubscribe = this.navigation.addListener('focus', () => {
+        if (this.route.params.icon) {
+          const wallet = this.wallet
+          wallet.icon = this.route.params.icon
+
+          this.$walletManager.updateWallet(wallet.name, wallet)
+          this.navigation.removeListener('focus', unsubscribe)
+        }
+      })
+
       this.navigation.navigate('icons', {
         goBack: true,
-        resolve: (value) => {
-          this.icon.name = value.item.name
-        }
+        returnView: 'icon'
       })
     }
   }

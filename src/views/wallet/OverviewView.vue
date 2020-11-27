@@ -5,7 +5,7 @@
       has-close-button
       @on-dismiss="navigation.goBack()"
     >
-      <round-button slot="right" @on-press="navigation.navigate('settings', { wallet })">
+      <round-button slot="right" @on-press="navigation.navigate('settings', { walletName: wallet.name })">
         <icon name="ellipsis-horizontal"/>
       </round-button>
     </modal-navigation>
@@ -38,13 +38,13 @@
             title="Pay"
             icon="caret-up-outline"
             :style="{ flex: 1 }"
-            @on-press="navigation.navigate('pay', { screen: 'amount', params: { wallet: wallet }})"
+            @on-press="navigation.navigate('pay', { screen: 'amount', params: { walletName: wallet.name }})"
           />
           <rounded-button
             title="Receive"
             icon="caret-down-outline"
             :style="{ marginLeft: 10, flex: 1 }"
-            @on-press="navigation.navigate('receive', { screen: 'amount', params: { wallet: wallet }})"
+            @on-press="navigation.navigate('receive', { screen: 'amount', params: { walletName: wallet.name }})"
           />
         </view>
 
@@ -149,14 +149,6 @@ export default {
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
-    },
-
-    wallet () {
-      if (!(this.route.params && this.route.params.wallet)) {
-        return null
-      }
-
-      return this.route.params.wallet
     }
   },
 

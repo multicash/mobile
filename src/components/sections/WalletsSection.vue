@@ -9,11 +9,11 @@
         :style="styles.walletsContainer"
       >
         <wallet-card
-          v-for="(wallet, i) in wallets"
+          v-for="(wallet, i) in $walletManager.wallets"
           :key="wallet.name"
-          :wallet="wallet"
+          :value="wallet"
           :style="{
-            marginRight: (i === wallets.length - 1) ? 0 : 20,
+            marginRight: (i === $walletManager.wallets.length - 1) ? 0 : 20,
           }"
           containerContentStyle="space-between"
           @wallet-selected="$emit('wallet-selected', arguments[0])"
@@ -41,13 +41,6 @@
 <script>
 export default {
   name: 'WalletsSection',
-
-  props: {
-    wallets: {
-      type: Array,
-      required: true
-    }
-  },
 
   computed: {
     styles () {

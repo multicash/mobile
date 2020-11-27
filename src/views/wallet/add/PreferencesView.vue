@@ -51,7 +51,7 @@ export default {
       name: '',
       tag: '',
       icon: {
-        name: 'moneyBox'
+        name: 'wallet'
       }
     }
   },
@@ -64,24 +64,32 @@ export default {
 
   methods: {
     selectIcon () {
+      const unsubscribe = this.navigation.addListener('focus', () => {
+        if (this.route.params.icon) {
+          this.icon.name = this.route.params.icon
+          this.navigation.removeListener('focus', unsubscribe)
+        }
+      })
+
       this.navigation.navigate('icons', {
         goBack: true,
-        resolve: (value) => {
-          this.icon.name = value.item.name
-        }
+        returnView: 'preferences'
       })
     },
 
     proceed () {
+      const walletConfig = this.$walletManager.storeTempWallet({
+        name: this.name,
+        tag: this.tag,
+        icon: this.icon.name,
+        coin: 'mcx',
+        network: 'livenet',
+        apiEndpoint: constants.bitcoreClientApi,
+        restoreKey: ''
+      })
+
       this.navigation.navigate(this.route.params.restore ? 'enterRestoreKey' : 'restoreKey', {
-        walletConfig: {
-          name: this.name,
-          tag: this.tag,
-          icon: this.icon.name,
-          coin: 'mcx',
-          network: 'livenet',
-          apiEndpoint: constants.bitcoreClientApi
-        }
+        identifier: walletConfig.identifier
       })
     }
   }

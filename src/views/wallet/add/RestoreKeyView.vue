@@ -69,11 +69,12 @@ export default {
 
   methods: {
     proceed () {
+      const walletConfig = this.$walletManager.getTempWallet(this.route.params.identifier)
+
+      walletConfig.restoreKey = this.words.join(' ')
+
       this.navigation.navigate('confirm', {
-        walletConfig: {
-          ...this.route.params.walletConfig,
-          restoreKey: this.words.join(' ')
-        }
+        identifier: walletConfig.identifier
       })
     }
   }

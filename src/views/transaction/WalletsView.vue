@@ -37,13 +37,15 @@ export default {
       if (this.route.params.navigate) {
         this.navigation.navigate(
           this.route.params.navigate,
-          wallet
+          {
+            sourceWallet: wallet.name,
+            ...this.route.params
+          }
         )
       }
 
       if (this.route.params.goBack) {
-        this.route.params.resolve(wallet)
-        this.navigation.goBack()
+        this.navigation.navigate(this.route.params.returnView, { sourceWallet: wallet.name })
       }
     }
   }

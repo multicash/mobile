@@ -1,4 +1,3 @@
-import constants from '@/support/constants'
 import { WalletConfigItem } from '@/walletManager/ManagerConfig'
 import Info from '@/walletManager/models/Info'
 import Balance from '@/walletManager/models/Balance'
@@ -124,16 +123,30 @@ export interface SendMaxInfoOptions {
   returnInputs?: boolean
 }
 
+export interface ClientOptionsInterface {
+  baseUrl: string
+  verbose: boolean
+}
+
+export interface RequestInterface {
+  baseUrl: string;
+  session: any;
+  r: any;
+  credentials: any;
+  supportStaffWalletId: any;
+  timeout: any;
+}
+
 export default class Client {
   public readonly config: object
   public readonly credentials: CredentialsInterface
+  public request: RequestInterface
 
-  public request = {
-    baseUrl: constants.bitcoreClientApi
-  }
-
-  constructor (config: object) {
+  constructor (config: ClientOptionsInterface) {
     this.config = config
+    this.request = {
+      baseUrl: config.baseUrl
+    }
     this.credentials = new Credentials()
   }
 

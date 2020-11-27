@@ -27,13 +27,11 @@ export default {
 
   components: { DraggableFlatList },
 
-  data () {
-    return {
-      wallets: []
-    }
-  },
-
   computed: {
+    wallets () {
+      return this.$walletManager.wallets
+    },
+
     walletsList () {
       return this.wallets.map(wallet => {
         return {
@@ -47,10 +45,6 @@ export default {
     styles () {
       return stylesStore(this.isDarkScheme)
     }
-  },
-
-  created () {
-    this.wallets = this.route.params.wallets
   },
 
   methods: {
@@ -85,8 +79,8 @@ export default {
       )
     },
 
-    setState (nice) {
-      // console.log(nice)
+    setState (state) {
+      console.log(state)
     }
   }
 }

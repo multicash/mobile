@@ -1,25 +1,25 @@
 <template>
   <touchable-opacity
     :active-opacity="0.6"
-    :on-press="() => $emit('wallet-selected', wallet)"
+    :on-press="() => $emit('wallet-selected', value)"
     :style="styles.walletCard"
   >
     <view :style="styles.walletCardHeader">
-      <wallet-icon :icon="wallet.icon" :size="30"/>
+      <wallet-icon :icon="value.icon" :size="30"/>
 
       <text
         :style="styles.walletCardName"
         adjusts-font-size-to-fit
         :minimumFontScale="0.01"
       >
-        {{ wallet.name }}
+        {{ value.name }}
       </text>
     </view>
 
     <view :style="styles.moneyView">
       <money
         crypto
-        :amount="wallet.info.balance.totalAmount"
+        :amount="value.info.balance.totalAmount"
         :style="styles.walletCardAmount"
       />
     </view>
@@ -27,7 +27,7 @@
     <view :style="styles.moneyView">
       <money
         convert
-        :amount="wallet.info.balance.totalAmount"
+        :amount="value.info.balance.totalAmount"
         :style="styles.walletCardFiatAmount"
       />
     </view>
@@ -51,7 +51,7 @@ export default {
   },
 
   props: {
-    wallet: {
+    value: {
       type: Object,
       required: true
     }

@@ -26,7 +26,7 @@ export default {
               subtitle: 'The wallets name is needed because you can have multiple wallets inside this awesome application!',
               leftIcon: { name: 'wallet' },
               onPress: () => {
-                this.navigation.navigate('name', { wallet: this.route.params.wallet })
+                this.navigation.navigate('name', { walletName: this.wallet.name })
               }
             },
             {
@@ -34,7 +34,7 @@ export default {
               subtitle: 'Choose an icon that fits the purpose of this wallet perfectly',
               leftIcon: { name: 'color-palette' },
               onPress: () => {
-                this.navigation.navigate('icon', { wallet: this.route.params.wallet })
+                this.navigation.navigate('icon', { walletName: this.wallet.name })
               }
             }
           ]
@@ -49,7 +49,7 @@ export default {
               onPress: () => {
                 this.navigation.navigate('pin', {
                   authenticated: () => {
-                    this.navigation.navigate('restoreKey', { wallet: this.route.params.wallet })
+                    this.navigation.navigate('restoreKey', { walletName: this.wallet.name })
                   }
                 })
               }
@@ -61,7 +61,7 @@ export default {
               onPress: () => {
                 this.navigation.navigate('pin', {
                   authenticated: () => {
-                    this.navigation.navigate('export', { wallet: this.route.params.wallet })
+                    this.navigation.navigate('export', { walletName: this.wallet.name })
                   }
                 })
               }
@@ -79,11 +79,10 @@ export default {
               onPress: () => {
                 Alert.alert(
                   'Delete wallet',
-                  `Are you sure you want to delete your wallet ${this.route.params.wallet.name}?`,
+                  `Are you sure you want to delete your wallet ${this.wallet.name}?`,
                   [
                     {
                       text: 'Cancel',
-                      onPress: () => alert('Cancel Pressed'),
                       style: 'cancel'
                     },
                     {
@@ -91,7 +90,7 @@ export default {
                       onPress: () => {
                         this.navigation.navigate('pin', {
                           authenticated: () => {
-                            this.$walletManager.removeWallet(this.route.params.wallet)
+                            this.$walletManager.removeWallet(this.wallet)
 
                             this.navigation.navigate('home')
                           }
