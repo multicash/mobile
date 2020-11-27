@@ -3,16 +3,19 @@ import Wallet from '@/walletManager/Wallet'
 import ManagerConfig, { WalletConfigItem } from '@/walletManager/ManagerConfig'
 import constants from '@/support/constants'
 import { Store } from 'vuex'
+import { WalletOrderState } from '@/store/modules/WalletOrder'
 
 export default class WalletManager {
-  protected store: Store<WalletConfigItem[]>
+  protected walletStore: Store<WalletConfigItem[]>
+  protected walletOrderStore: Store<WalletOrderState>
   protected ticker?: number
   protected tempWalletStore: any = {}
 
   public readonly wallets: Wallet[] = []
 
-  constructor (store: Store<WalletConfigItem[]>) {
-    this.store = store
+  constructor (walletStore: Store<WalletConfigItem[]>, walletOrderStore: Store<WalletOrderState>) {
+    this.walletStore = walletStore
+    this.walletOrderStore = walletOrderStore
   }
 
   public async boot (config: ManagerConfig) {
@@ -22,6 +25,7 @@ export default class WalletManager {
       try {
         const bitcoreClient = this.getClient(walletConfig)
         const wallet = new Wallet(
+          walletConfig.identifier || this.generateWalletIdentifier(),
           walletConfig.name,
           walletConfig.icon,
           walletConfig.tag,
@@ -31,7 +35,7 @@ export default class WalletManager {
         await wallet.open()
 
         this.wallets.push(wallet)
-        console.log(`wallet opened: ${wallet.name}`)
+        console.log(`wallet opened: ${wallet.identifier}`)
       } catch (e) {
         console.error(e)
       }
@@ -40,8 +44,8 @@ export default class WalletManager {
     this.startTicker()
   }
 
-  public getWallet (name: string): Wallet | undefined {
-    return this.wallets.find(wallet => wallet.name === name)
+  public getWallet (identifier: string): Wallet | undefined {
+    return this.wallets.find(wallet => wallet.identifier === identifier)
   }
 
   public getWallets (): Wallet[] {
@@ -50,7 +54,13 @@ export default class WalletManager {
 
   public async addWallet (walletConfig: WalletConfigItem): Promise<Wallet> {
     const bitcoreClient = this.getClient(walletConfig)
-    const wallet = new Wallet(walletConfig.name, walletConfig.icon, walletConfig.tag, bitcoreClient)
+    const wallet = new Wallet(
+      walletConfig.identifier || this.generateWalletIdentifier(),
+      walletConfig.name,
+      walletConfig.icon,
+      walletConfig.tag,
+      bitcoreClient
+    )
 
     await wallet.create(walletConfig.name, walletConfig.name, 1, 1, {
       coin: walletConfig.coin,
@@ -58,18 +68,19 @@ export default class WalletManager {
       singleAddress: walletConfig.singleAddress
     })
     await wallet.open()
-    this.store.commit('ADD_WALLET', walletConfig)
+    this.walletStore.commit('ADD_WALLET', walletConfig)
+    this.walletOrderStore.commit('ADD_TO_WALLET_ORDER', walletConfig.identifier)
     this.wallets.push(wallet)
-    console.log(`wallet added: ${wallet.name}`)
+    console.log(`wallet added: ${wallet.identifier}`)
 
     this.restartTicker()
 
     return wallet
   }
 
-  public async updateWallet (name: string, wallet: Wallet): Promise<Wallet> {
-    this.store.commit('UPDATE_WALLET', wallet)
-    console.log(`wallet updated: ${wallet.name}`)
+  public async updateWallet (identifier: string, wallet: Wallet): Promise<Wallet> {
+    this.walletStore.commit('UPDATE_WALLET', wallet)
+    console.log(`wallet updated: ${wallet.identifier}`)
 
     this.restartTicker()
 
@@ -78,11 +89,12 @@ export default class WalletManager {
 
   public removeWallet (wallet: Wallet): void {
     this.wallets.splice(this.wallets.findIndex(w => w === wallet), 1)
-    this.getWalletConfig(wallet.name).then(walletConfig => {
-      this.store.commit('REMOVE_WALLET', walletConfig)
+    this.getWalletConfig(wallet.identifier).then(walletConfig => {
+      this.walletStore.commit('REMOVE_WALLET', walletConfig)
+      this.walletOrderStore.commit('REMOVE_FROM_WALLET_ORDER', walletConfig.identifier)
     })
 
-    console.log(`wallet removed: ${wallet.name}`)
+    console.log(`wallet removed: ${wallet.identifier}`)
   }
 
   public defaultWallet (): Wallet | undefined {
@@ -124,11 +136,11 @@ export default class WalletManager {
     return bitcoreClient
   }
 
-  protected async getWalletConfig (name: string): Promise<WalletConfigItem> {
-    const wallet = await this.store.dispatch('getWallet', name)
+  protected async getWalletConfig (identifier: string): Promise<WalletConfigItem> {
+    const wallet = await this.walletStore.dispatch('getWallet', identifier)
 
     if (wallet === undefined || wallet === null) {
-      throw Error(`Couldn't load wallet: ${name}`)
+      throw Error(`Couldn't load wallet: ${identifier}`)
     }
 
     return wallet

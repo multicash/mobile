@@ -7,5 +7,6 @@ export default {
   currency: require('@/store/modules/Currency').default,
   pin: require('@/store/modules/Pin').default,
   setup: require('@/store/modules/Setup').default,
-  wallets: require('@/store/modules/Wallets').default
+  wallets: require('@/store/modules/Wallets').default,
+  walletOrder: require('@/store/modules/WalletOrder').default
 }

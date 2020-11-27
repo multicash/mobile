@@ -15,7 +15,7 @@ const mutations = {
 
   UPDATE_WALLET (state: WalletConfigItem[], wallet: Wallet): void {
     const index = state.findIndex(stateWallet => {
-      return stateWallet.name === wallet.name
+      return stateWallet.identifier === wallet.identifier
     })
 
     if (state[index]) {
@@ -44,9 +44,9 @@ const actions = {
     context.commit('REMOVE_WALLET', wallet)
   },
 
-  getWallet (context: Store<WalletConfigItem[]>, name: string): WalletConfigItem|null {
+  getWallet (context: Store<WalletConfigItem[]>, identifier: string): WalletConfigItem|null {
     for (const wallet of context.state) {
-      if (wallet.name === name) {
+      if (wallet.identifier === identifier) {
         return wallet
       }
     }

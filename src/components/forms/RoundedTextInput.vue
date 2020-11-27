@@ -3,6 +3,7 @@
     <text v-if="title" :style="styles.title">{{ title }}</text>
     <text-input
       :onChangeText="onChangeText"
+      :onEndEditing="onEndEditing"
       :value="value"
       :style="styles.textInput"
       :placeholder="placeholder"
@@ -73,6 +74,10 @@ export default {
   methods: {
     onChangeText (text) {
       this.$emit('input', text)
+    },
+
+    onEndEditing (event) {
+      this.$emit('on-end-editing', event)
     }
   }
 }

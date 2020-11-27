@@ -100,6 +100,12 @@ export default {
               leftIcon: { name: 'refresh-circle-outline' },
               noChevron: true,
               onPress: () => {
+                this.$walletManager.wallets.forEach(wallet => {
+                  setTimeout(() => {
+                    this.$walletManager.removeWallet(wallet)
+                  }, 250)
+                })
+
                 this.updateIsSetup(false)
               }
             },

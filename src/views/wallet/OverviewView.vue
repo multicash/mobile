@@ -5,7 +5,7 @@
       has-close-button
       @on-dismiss="navigation.goBack()"
     >
-      <round-button slot="right" @on-press="navigation.navigate('settings', { walletName: wallet.name })">
+      <round-button slot="right" @on-press="navigation.navigate('settings', { walletIdentifier: wallet.identifier })">
         <icon name="ellipsis-horizontal"/>
       </round-button>
     </modal-navigation>
@@ -38,13 +38,13 @@
             title="Pay"
             icon="caret-up-outline"
             :style="{ flex: 1 }"
-            @on-press="navigation.navigate('pay', { screen: 'amount', params: { walletName: wallet.name }})"
+            @on-press="navigation.navigate('pay', { screen: 'amount', params: { walletIdentifier: wallet.identifier }})"
           />
           <rounded-button
             title="Receive"
             icon="caret-down-outline"
             :style="{ marginLeft: 10, flex: 1 }"
-            @on-press="navigation.navigate('receive', { screen: 'amount', params: { walletName: wallet.name }})"
+            @on-press="navigation.navigate('receive', { screen: 'amount', params: { walletIdentifier: wallet.identifier }})"
           />
         </view>
 

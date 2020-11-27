@@ -19,7 +19,7 @@ const managerStore = new Vue({
 
 const walletManager: PluginFunction<any> = function (vue: VueConstructor, options: any): void {
   // @ts-ignore
-  managerStore.setManager(new WalletManager(options.store))
+  managerStore.setManager(new WalletManager(options.store, options.store))
   // @ts-ignore
   vue.prototype.$walletManager = managerStore.manager
 
@@ -27,12 +27,28 @@ const walletManager: PluginFunction<any> = function (vue: VueConstructor, option
     computed: {
       wallet (): Wallet|null {
         // @ts-ignore
-        if (!(this.route && this.route.params && this.route.params.walletName)) {
+        if (!(this.route && this.route.params && this.route.params.walletIdentifier)) {
           return null
         }
 
         // @ts-ignore
-        return this.$walletManager.getWallet(this.route.params.walletName)
+        return this.$walletManager.getWallet(this.route.params.walletIdentifier)
+      },
+
+      orderedWallets (): Wallet[] {
+        // @ts-ignore
+        const order = this.$store.state.walletOrder.order
+
+        // @ts-ignore
+        if (this.$walletManager.wallets.length !== order.length) {
+          return []
+        }
+
+        // @ts-ignore
+        return this.$store.state.walletOrder.order.map(identifier => {
+          // @ts-ignore
+          return this.$walletManager.getWallet(identifier)
+        })
       }
     }
   })

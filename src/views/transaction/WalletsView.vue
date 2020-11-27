@@ -19,7 +19,7 @@ export default {
     wallets () {
       return [
         {
-          data: this.$walletManager.wallets.map(wallet => {
+          data: this.orderedWallets.map(wallet => {
             return {
               title: wallet.name,
               subtitle: this.formatAmountFromSatoshis(wallet.info.balance.totalAmount, 'en'),

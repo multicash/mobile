@@ -9,6 +9,7 @@ import { CredentialsInterface } from '@/walletManager/Credentials'
 
 export default class Wallet {
   protected client: Client
+  public readonly identifier: string
   public name: string
   public icon: string
   public tag: string
@@ -17,7 +18,8 @@ export default class Wallet {
   public transactions: Tx[] = []
   public addresses: AddressInfo[] = []
 
-  constructor (name: string, icon: string, tag: string, client: Client, address?: string) {
+  constructor (identifier: string, name: string, icon: string, tag: string, client: Client, address?: string) {
+    this.identifier = identifier
     this.name = name
     this.icon = icon
     this.tag = tag
@@ -52,7 +54,7 @@ export default class Wallet {
 
         this.info = info
 
-        console.log(`wallet opened: ${this.name}`)
+        console.log(`wallet opened: ${this.identifier}`)
         resolve(info)
       })
     })
@@ -67,7 +69,7 @@ export default class Wallet {
 
         this.info = info
 
-        console.log(`wallet status fetched: ${this.name}`)
+        console.log(`wallet status fetched: ${this.identifier}`)
         resolve(info)
       })
     })
@@ -80,20 +82,20 @@ export default class Wallet {
           return reject(error)
         }
 
-        console.log(`wallet balance fetched: ${this.name}`)
+        console.log(`wallet balance fetched: ${this.identifier}`)
         resolve(balance)
       })
     })
   }
 
-  public scan (name: string): Promise<boolean> {
+  public scan (): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.client.startScan(null, (error: Error|null) => {
         if (error) {
           return reject(error)
         }
 
-        console.log(`wallet addresses scanned: ${this.name}`)
+        console.log(`wallet addresses scanned: ${this.identifier}`)
         resolve(true)
       })
     })
@@ -108,7 +110,7 @@ export default class Wallet {
 
         this.transactions = txs
 
-        console.log(`wallet tx history fetched: ${this.name}`)
+        console.log(`wallet tx history fetched: ${this.identifier}`)
         resolve(txs)
       })
     })
@@ -125,7 +127,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        console.log(`wallet create tx proposal: ${this.name}`)
+        console.log(`wallet create tx proposal: ${this.identifier}`)
         resolve(txp)
       })
     })
@@ -138,7 +140,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        console.log(`wallet publish tx proposal: ${this.name}`)
+        console.log(`wallet publish tx proposal: ${this.identifier}`)
         resolve(txp)
       })
     })
@@ -151,7 +153,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        console.log(`wallet sign tx proposal: ${this.name}`)
+        console.log(`wallet sign tx proposal: ${this.identifier}`)
         resolve(txp)
       })
     })
@@ -164,7 +166,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        console.log(`wallet broadcast tx proposal: ${this.name}`)
+        console.log(`wallet broadcast tx proposal: ${this.identifier}`)
         resolve(txp)
       })
     })
@@ -179,7 +181,7 @@ export default class Wallet {
 
         this.addresses.unshift(addressInfo)
 
-        console.log(`wallet address created: ${this.name}`)
+        console.log(`wallet address created: ${this.identifier}`)
         resolve(addressInfo)
       })
     })
@@ -194,7 +196,7 @@ export default class Wallet {
 
         this.addresses = addresses
 
-        console.log(`wallet main addresses fetched: ${this.name}`)
+        console.log(`wallet main addresses fetched: ${this.identifier}`)
         resolve(addresses)
       })
     })
@@ -230,7 +232,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        console.log(`wallet send max info fetched: ${this.name}`)
+        console.log(`wallet send max info fetched: ${this.identifier}`)
         resolve(info)
       })
     })

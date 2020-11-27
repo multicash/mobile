@@ -31,7 +31,7 @@
       />
       <wallets-section
         v-if="hasWallets"
-        @wallet-selected="navigation.navigate('wallet', { screen: 'overview', params: { walletName: arguments[0].name } })"
+        @wallet-selected="navigation.navigate('wallet', { screen: 'overview', params: { walletIdentifier: arguments[0].identifier } })"
         @order-wallets="navigation.navigate('orderWallets')"
         @add-wallet="navigation.navigate('add')"
       />

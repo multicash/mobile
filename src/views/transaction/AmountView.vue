@@ -50,6 +50,7 @@
 
 <script>
 import { Platform, Keyboard } from 'react-native'
+import constants from '@/support/constants.ts'
 
 export default {
   name: 'AmountView',
@@ -69,8 +70,8 @@ export default {
       Keyboard.removeListener('keyboardDidShow', listener)
     })
 
-    if (this.route.params.walletName) {
-      this.sourceWallet = this.route.params.walletName
+    if (this.route.params.walletIdentifier) {
+      this.sourceWallet = this.wallet.name
     } else {
       this.sourceWallet = this.$walletManager.defaultWallet().name
     }
@@ -82,7 +83,7 @@ export default {
     },
 
     amountNumber () {
-      return parseFloat(this.amount) || 0
+      return parseFloat(this.amount * constants.satoshiDivider) || 0
     }
   },
 

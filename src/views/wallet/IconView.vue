@@ -35,7 +35,7 @@ export default {
           const wallet = this.wallet
           wallet.icon = this.route.params.icon
 
-          this.$walletManager.updateWallet(wallet.name, wallet)
+          this.$walletManager.updateWallet(wallet.identifier, wallet)
           this.navigation.removeListener('focus', unsubscribe)
         }
       })

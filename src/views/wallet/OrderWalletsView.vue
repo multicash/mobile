@@ -9,7 +9,7 @@
       :style="styles.container"
       :data="walletsList"
       :renderItem="renderList"
-      :keyExtractor="(item, index) => `draggable-item-${index}`"
+      :keyExtractor="item => `draggable-item-${item.identifier}`"
       :onDragEnd="({ data }) => setState({ data })"
     />
   </view-background>
@@ -17,8 +17,10 @@
 
 <script>
 import React from 'react'
+import { TouchableWithoutFeedback } from 'react-native'
 import { ListItem, Avatar } from 'react-native-elements'
 import DraggableFlatList from 'react-native-draggable-flatlist'
+import { mapActions } from 'vuex'
 import { resolveIcon } from '@/support/walletIcons'
 import { text, subtitle } from '@/styles'
 
@@ -28,13 +30,10 @@ export default {
   components: { DraggableFlatList },
 
   computed: {
-    wallets () {
-      return this.$walletManager.wallets
-    },
-
     walletsList () {
-      return this.wallets.map(wallet => {
+      return this.orderedWallets.map(wallet => {
         return {
+          identifier: wallet.identifier,
           title: wallet.name,
           subtitle: this.formatAmountFromSatoshis(wallet.info.balance.totalAmount, 'en'),
           leftAvatar: { source: resolveIcon(wallet.icon), size: 40, rounded: false }
@@ -48,39 +47,43 @@ export default {
   },
 
   methods: {
+    ...mapActions(['updateWalletOrder']),
+
     renderList ({ item, index, drag, isActive }) {
       return (
-        <ListItem
-          style={this.wallets.length - 1 === index ? undefined : this.styles.item}
-          containerStyle={isActive ? this.styles.itemContentDragged : this.styles.itemContent}
-          key={index}
-          onLongPress={drag}
+        <TouchableWithoutFeedback
+          onPressIn={drag}
         >
-          <Avatar
-            source={item.leftAvatar.source}
-            size={item.leftAvatar.size || 40}
-            rounded={item.leftAvatar.rounded || true}
-            placeholderStyle={{ backgroundColor: 'transparent' }}
-          />
+          <ListItem
+            style={this.orderedWallets.length - 1 === index ? undefined : this.styles.item}
+            containerStyle={isActive ? this.styles.itemContentDragged : this.styles.itemContent}
+            key={index}
+          >
+            <Avatar
+              source={item.leftAvatar.source}
+              size={item.leftAvatar.size || 40}
+              rounded={item.leftAvatar.rounded || true}
+              placeholderStyle={{ backgroundColor: 'transparent' }}
+            />
 
-          <ListItem.Content>
-            <ListItem.Title style={this.styles.itemTitle}>{item.title || undefined}</ListItem.Title>
-            <ListItem.Subtitle style={this.styles.itemSubtitle}>{item.subtitle || undefined}</ListItem.Subtitle>
-          </ListItem.Content>
+            <ListItem.Content>
+              <ListItem.Title style={this.styles.itemTitle}>{item.title || undefined}</ListItem.Title>
+              <ListItem.Subtitle style={this.styles.itemSubtitle}>{item.subtitle || undefined}</ListItem.Subtitle>
+            </ListItem.Content>
 
-          <ListItem.Chevron
-            color={this.styles.checkedChevron.color}
-            name="menu"
-            type="ionicon"
-            size={25}
-            onPress={drag}
-          />
-        </ListItem>
+            <ListItem.Chevron
+              color={this.styles.checkedChevron.color}
+              name="menu"
+              type="ionicon"
+              size={25}
+            />
+          </ListItem>
+        </TouchableWithoutFeedback>
       )
     },
 
     setState (state) {
-      console.log(state)
+      this.updateWalletOrder(state.data.map(wallet => wallet.identifier))
     }
   }
 }

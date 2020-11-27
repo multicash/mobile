@@ -9,11 +9,11 @@
         :style="styles.walletsContainer"
       >
         <wallet-card
-          v-for="(wallet, i) in $walletManager.wallets"
-          :key="wallet.name"
+          v-for="(wallet, i) in orderedWallets"
+          :key="wallet.identifier"
           :value="wallet"
           :style="{
-            marginRight: (i === $walletManager.wallets.length - 1) ? 0 : 20,
+            marginRight: (i === orderedWallets.length - 1) ? 0 : 20,
           }"
           containerContentStyle="space-between"
           @wallet-selected="$emit('wallet-selected', arguments[0])"

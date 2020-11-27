@@ -26,7 +26,7 @@ export default {
               subtitle: 'The wallets name is needed because you can have multiple wallets inside this awesome application!',
               leftIcon: { name: 'wallet' },
               onPress: () => {
-                this.navigation.navigate('name', { walletName: this.wallet.name })
+                this.navigation.navigate('name', { walletIdentifier: this.wallet.identifier })
               }
             },
             {
@@ -34,7 +34,7 @@ export default {
               subtitle: 'Choose an icon that fits the purpose of this wallet perfectly',
               leftIcon: { name: 'color-palette' },
               onPress: () => {
-                this.navigation.navigate('icon', { walletName: this.wallet.name })
+                this.navigation.navigate('icon', { walletIdentifier: this.wallet.identifier })
               }
             }
           ]
@@ -49,7 +49,7 @@ export default {
               onPress: () => {
                 this.navigation.navigate('pin', {
                   authenticated: () => {
-                    this.navigation.navigate('restoreKey', { walletName: this.wallet.name })
+                    this.navigation.navigate('restoreKey', { walletIdentifier: this.wallet.identifier })
                   }
                 })
               }
@@ -61,7 +61,7 @@ export default {
               onPress: () => {
                 this.navigation.navigate('pin', {
                   authenticated: () => {
-                    this.navigation.navigate('export', { walletName: this.wallet.name })
+                    this.navigation.navigate('export', { walletIdentifier: this.wallet.identifier })
                   }
                 })
               }

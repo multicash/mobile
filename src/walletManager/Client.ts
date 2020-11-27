@@ -130,11 +130,11 @@ export interface ClientOptionsInterface {
 
 export interface RequestInterface {
   baseUrl: string;
-  session: any;
-  r: any;
-  credentials: any;
-  supportStaffWalletId: any;
-  timeout: any;
+  session?: any;
+  r?: any;
+  credentials?: any;
+  supportStaffWalletId?: any;
+  timeout?: any;
 }
 
 export default class Client {
