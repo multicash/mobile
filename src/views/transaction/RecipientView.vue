@@ -48,7 +48,15 @@ export default {
               subtitle: '@swenvanzanten',
               leftIcon: { name: 'person-circle', color: '#c807a9', size: 40 },
               onPress: () => {
-                this.navigation.navigate('confirm', this.route.params)
+                this.navigation.navigate('confirm', {
+                  ...this.route.params,
+                  target: {
+                    title: 'Swen van Zanten',
+                    amount: null,
+                    icon: 'person-circle',
+                    iconColor: '#c807a9'
+                  }
+                })
               }
             },
             {
@@ -56,7 +64,15 @@ export default {
               subtitle: '@justinvendetta',
               leftIcon: { name: 'person-circle', color: '#00ffb2', size: 40 },
               onPress: () => {
-                this.navigation.navigate('confirm', this.route.params)
+                this.navigation.navigate('confirm', {
+                  ...this.route.params,
+                  target: {
+                    title: 'Sunerok',
+                    amount: null,
+                    icon: 'person-circle',
+                    iconColor: '#00ffb2'
+                  }
+                })
               }
             }
           ]
@@ -69,7 +85,15 @@ export default {
               subtitle: '@cr',
               leftIcon: { name: 'person-circle', color: '#a7fb00', size: 40 },
               onPress: () => {
-                this.navigation.navigate('confirm', this.route.params)
+                this.navigation.navigate('confirm', {
+                  ...this.route.params,
+                  target: {
+                    title: 'CryptoRekt',
+                    amount: null,
+                    icon: 'person-circle',
+                    iconColor: '#a7fb00'
+                  }
+                })
               }
             },
             {
@@ -77,7 +101,15 @@ export default {
               subtitle: '@sandersvoice',
               leftIcon: { name: 'person-circle', color: '#3b28f3', size: 40 },
               onPress: () => {
-                this.navigation.navigate('confirm', this.route.params)
+                this.navigation.navigate('confirm', {
+                  ...this.route.params,
+                  target: {
+                    title: 'sandersvoice',
+                    amount: null,
+                    icon: 'person-circle',
+                    iconColor: '#3b28f3'
+                  }
+                })
               }
             },
             {
@@ -85,7 +117,15 @@ export default {
               subtitle: '@michael',
               leftIcon: { name: 'person-circle', color: '#eaee18', size: 40 },
               onPress: () => {
-                this.navigation.navigate('confirm', this.route.params)
+                this.navigation.navigate('confirm', {
+                  ...this.route.params,
+                  target: {
+                    title: 'Michael',
+                    amount: null,
+                    icon: 'person-circle',
+                    iconColor: '#eaee18'
+                  }
+                })
               }
             }
           ]

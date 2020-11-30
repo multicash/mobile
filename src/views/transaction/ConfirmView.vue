@@ -10,17 +10,24 @@
     >
       <view :style="styles.headerContainer">
         <source-icon
-          title="Main Account"
-          :amount="50444440000"
-          image="wallet"
+          v-if="source"
+          :title="source.title"
+          :amount="source.amount"
+          :image="source.image"
+          :icon="source.icon"
+          :icon-color="source.iconColor"
         />
         <icon
           :name="route.params.isReceive ? 'arrow-back-outline' : 'arrow-forward-outline'"
           :size="50"
         />
         <source-icon
-          title="Savings Account"
-          image="moneyBox"
+          v-if="target"
+          :title="target.title"
+          :amount="target.amount"
+          :image="target.image"
+          :icon="target.icon"
+          :icon-color="target.iconColor"
         />
       </view>
 
@@ -55,6 +62,14 @@ export default {
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
+    },
+
+    source () {
+      return this.route.params.source
+    },
+
+    target () {
+      return this.route.params.target
     }
   }
 }

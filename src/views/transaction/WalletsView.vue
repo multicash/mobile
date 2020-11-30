@@ -19,14 +19,22 @@ export default {
     wallets () {
       return [
         {
-          data: this.orderedWallets.map(wallet => {
-            return {
-              title: wallet.name,
-              subtitle: this.formatAmountFromSatoshis(wallet.info.balance.totalAmount, 'en'),
-              leftAvatar: { source: resolveIcon(wallet.icon), size: 40, rounded: false },
-              onPress: () => this.navigate(wallet)
-            }
-          })
+          data: this.orderedWallets
+            .filter(wallet => {
+              if (!this.route.params.source) {
+                return true
+              }
+
+              return wallet.identifier !== this.route.params.source.walletIdentifier
+            })
+            .map(wallet => {
+              return {
+                title: wallet.name,
+                subtitle: this.formatAmountFromSatoshis(wallet.info.balance.totalAmount, 'en'),
+                leftAvatar: { source: resolveIcon(wallet.icon), size: 40, rounded: false },
+                onPress: () => this.navigate(wallet)
+              }
+            })
         }
       ]
     }
@@ -38,14 +46,20 @@ export default {
         this.navigation.navigate(
           this.route.params.navigate,
           {
-            sourceWallet: wallet.name,
+            recipientType: 'self',
+            target: {
+              walletIdentifier: wallet.identifier,
+              title: wallet.name,
+              amount: wallet.info.balance.totalAmount,
+              image: wallet.icon
+            },
             ...this.route.params
           }
         )
       }
 
       if (this.route.params.goBack) {
-        this.navigation.navigate(this.route.params.returnView, { sourceWallet: wallet.name })
+        this.navigation.navigate(this.route.params.returnView, { sourceWallet: wallet })
       }
     }
   }

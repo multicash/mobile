@@ -15,7 +15,7 @@
           <selector
             v-if="!route.params.isReceive"
             name="From wallet"
-            :value="sourceWallet"
+            :value="sourceWallet.name"
             @on-press="selectSourceWallet"
           />
         </view>
@@ -71,9 +71,9 @@ export default {
     })
 
     if (this.route.params.walletIdentifier) {
-      this.sourceWallet = this.wallet.name
+      this.sourceWallet = this.wallet
     } else {
-      this.sourceWallet = this.$walletManager.defaultWallet().name
+      this.sourceWallet = this.$walletManager.defaultWallet()
     }
   },
 
@@ -105,8 +105,12 @@ export default {
     confirm () {
       this.navigation.navigate('recipient', {
         amount: this.amount,
-        sourceWallet: this.sourceWallet,
-        ...this.route.params
+        source: {
+          walletIdentifier: this.sourceWallet.identifier,
+          title: this.sourceWallet.name,
+          amount: this.sourceWallet.info.balance.totalAmount,
+          image: this.sourceWallet.icon
+        }
       })
     }
   }
