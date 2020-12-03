@@ -78,6 +78,7 @@
         />
       </scroll-view>
     </view>
+    <view v-if="showLoadingHideContainer" :style="styles.loadingHideContainer" />
   </styled-view-background>
 </template>
 
@@ -88,6 +89,12 @@ import ManagerConfig from '@/walletManager/ManagerConfig.ts'
 
 export default {
   name: 'HomeView',
+
+  data () {
+    return {
+      showLoadingHideContainer: false
+    }
+  },
 
   props: {
     insets: {
@@ -105,7 +112,12 @@ export default {
 
   created () {
     if (this.hasWallets) {
-      this.navigation.navigate('authenticate')
+      this.showLoadingHideContainer = true
+
+      setTimeout(() => {
+        this.navigation.navigate('authenticate', { showCloseButton: false })
+        this.showLoadingHideContainer = false
+      }, 250)
     }
 
     AppState.addEventListener('change', this.onAppStateChange)
@@ -224,6 +236,15 @@ const stylesStore = (isDarkScheme, insets) => {
       color: isDarkScheme ? '#c2c2c2' : '#5e5e5e',
       textAlign: 'center',
       marginBottom: 20
+    },
+
+    loadingHideContainer: {
+      backgroundColor: isDarkScheme ? '#222429' : '#ededf3',
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0
     }
   }
 }

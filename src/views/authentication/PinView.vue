@@ -1,9 +1,9 @@
 <template>
   <view-background no-padding>
     <modal-navigation
-      v-if="hasAuthenticatedAction"
+      v-if="showCloseButton"
       has-close-button
-      @on-dismiss="navigation.goBack()"
+      @on-dismiss="onDismiss"
     />
 
     <safe-area-view :style="styles.container">
@@ -60,8 +60,8 @@ export default {
       return stylesStore(this.isDarkScheme)
     },
 
-    hasAuthenticatedAction () {
-      return this.route.params && this.route.params.authenticated && typeof this.route.params.authenticated === 'function'
+    showCloseButton () {
+      return !(this.route.params && this.route.params.showCloseButton === false)
     }
   },
 
@@ -131,10 +131,7 @@ export default {
 
     successfullyAuthenticated () {
       this.navigation.goBack()
-
-      if (this.hasAuthenticatedAction) {
-        this.route.params.authenticated()
-      }
+      this.$eventBus.$emit('authenticated')
     },
 
     resetMultiCash () {
@@ -160,6 +157,11 @@ export default {
           }
         ]
       )
+    },
+
+    onDismiss () {
+      this.$eventBus.$off('authenticated')
+      this.navigation.goBack()
     }
   }
 }

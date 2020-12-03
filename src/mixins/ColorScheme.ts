@@ -1,7 +1,6 @@
 import Vue from 'vue-native-core'
 import { Appearance } from 'react-native'
 
-// @ts-ignore
 const store = new Vue({
   data () {
     return {

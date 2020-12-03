@@ -56,11 +56,11 @@ export default {
               subtitle: 'Change the PIN used for securing your wallets by MultiCash',
               leftIcon: { name: 'lock-closed' },
               onPress: () => {
-                this.navigation.navigate('pin', {
-                  authenticated: () => {
-                    this.navigation.navigate('changePin')
-                  }
+                this.$eventBus.$once('authenticated', () => {
+                  this.navigation.navigate('changePin')
                 })
+
+                this.navigation.navigate('pin')
               }
             }
             // {

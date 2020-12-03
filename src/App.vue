@@ -30,16 +30,19 @@ import Vue from 'vue-native-core'
 import { mapGetters, mapActions } from 'vuex'
 import store from '@/store'
 import walletManager from '@/walletManager'
+import EventBus from '@/EventBus'
 
 const Stack = createStackNavigator()
 const StackNavigator = Stack.Navigator
 const StackScreen = Stack.Screen
 
 Vue.use(walletManager, { store })
+Vue.use(EventBus)
 
 export default {
   store: store,
   walletManager: walletManager,
+  eventBus: EventBus,
 
   components: {
     NavigationContainer,
