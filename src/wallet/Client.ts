@@ -1,11 +1,11 @@
-import { WalletConfigItem } from '@/walletManager/ManagerConfig'
-import Info from '@/walletManager/models/Info'
-import Balance from '@/walletManager/models/Balance'
-import Tx from '@/walletManager/models/Tx'
-import { TxProposalResponse } from '@/walletManager/models/TxProposal'
-import AddressInfo from '@/walletManager/models/AddressInfo'
-import SendMaxInfo from '@/walletManager/models/SendMaxInfo'
-import Credentials, { CredentialsInterface } from '@/walletManager/Credentials'
+import { WalletConfigItem } from '@/wallet/ManagerConfig'
+import Info from '@/wallet/models/Info'
+import Balance from '@/wallet/models/Balance'
+import Tx from '@/wallet/models/Tx'
+import { TxProposalResponse } from '@/wallet/models/TxProposal'
+import AddressInfo from '@/wallet/models/AddressInfo'
+import SendMaxInfo from '@/wallet/models/SendMaxInfo'
+import Credentials, { CredentialsInterface } from '@/wallet/Credentials'
 
 const exampleBalance: Balance = {
   totalAmount: 12346800000000,

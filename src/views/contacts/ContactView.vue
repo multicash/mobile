@@ -20,6 +20,13 @@
         </view>
       </selector>
 
+      <color-picker
+        @input="icon.color = $event"
+        @onDrag="navigation.setOptions({ gestureEnabled: false })"
+        @onDragRelease="navigation.setOptions({ gestureEnabled: true })"
+      />
+
+      <spacer />
       <spacer />
 
       <rounded-text-input title="Name" placeholder="Martin" :value="name" @input="name = $event"/>
@@ -41,7 +48,7 @@ export default {
       tag: '',
       icon: {
         name: 'person-circle',
-        color: 'grey'
+        color: 'cyan'
       }
     }
   },

@@ -33,7 +33,7 @@ export default {
       this.done = true
 
       setTimeout(() => {
-        const screenName = this.route.params.wallet ? 'wallet' : 'home'
+        const screenName = this.route.params.walletIdentifier ? 'wallet' : 'home'
 
         this.navigation.navigate(screenName)
       }, 2000)

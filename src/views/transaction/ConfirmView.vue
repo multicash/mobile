@@ -47,7 +47,7 @@
       <rounded-button
         :title="route.params.isReceive ? 'Share request' : 'Send payment'"
         :style="styles.sendPaymentButton"
-        @on-press="navigation.navigate('paying', route.params)"
+        @on-press="proceed"
       />
 
       <rounded-text-input title="Description" placeholder="Why this payment?" />
@@ -70,6 +70,17 @@ export default {
 
     target () {
       return this.route.params.target
+    }
+  },
+
+  methods: {
+    proceed () {
+      if (this.route.params.isReceive) {
+        alert('share...')
+        this.navigation.navigate(this.route.params.walletIdentifier ? 'wallet' : 'home')
+      } else {
+        this.navigation.navigate('paying', this.route.params)
+      }
     }
   }
 }

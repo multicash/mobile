@@ -1,9 +1,9 @@
 // import electron from 'electron'
-// import Wallet from '@/walletManager/Wallet'
+// import Wallet from '@/wallet/Wallet'
 // // @ts-ignore
 // import sjcl from 'sjcl'
 // import fs from 'fs'
-// import { WalletConfigItem } from '@/walletManager/ManagerConfig'
+// import { WalletConfigItem } from '@/wallet/ManagerConfig'
 //
 // export default class ExportImportManager {
 //   public static registerEvents (browserWindow: Electron.BrowserWindow) {

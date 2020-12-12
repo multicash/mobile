@@ -105,12 +105,14 @@ export default {
     confirm () {
       this.navigation.navigate('recipient', {
         amount: this.amount,
+        walletIdentifier: this.route.params.walletIdentifier || null,
         source: {
           walletIdentifier: this.sourceWallet.identifier,
           title: this.sourceWallet.name,
           amount: this.sourceWallet.info.balance.totalAmount,
           image: this.sourceWallet.icon
-        }
+        },
+        isReceive: this.route.params.isReceive
       })
     }
   }

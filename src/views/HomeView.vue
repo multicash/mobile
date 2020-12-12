@@ -85,7 +85,7 @@
 <script>
 import { AppState } from 'react-native'
 import { mapGetters } from 'vuex'
-import ManagerConfig from '@/walletManager/ManagerConfig.ts'
+import ManagerConfig from '@/wallet/ManagerConfig.ts'
 
 export default {
   name: 'HomeView',
@@ -115,7 +115,8 @@ export default {
       this.showLoadingHideContainer = true
 
       setTimeout(() => {
-        this.navigation.navigate('authenticate', { showCloseButton: false })
+        this.$authManager.setNavigationComponent(this.navigation)
+        this.$authManager.authenticate('app')
         this.showLoadingHideContainer = false
       }, 250)
     }
@@ -135,7 +136,7 @@ export default {
 
       switch (state) {
         case 'background':
-          return this.navigation.navigate('authenticate')
+          return this.$authManager.authenticate('app')
         case 'inactive':
         case 'active':
         default:

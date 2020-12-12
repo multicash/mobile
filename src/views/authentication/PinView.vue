@@ -61,7 +61,11 @@ export default {
     },
 
     showCloseButton () {
-      return !(this.route.params && this.route.params.showCloseButton === false)
+      if (this.route.params && this.route.params.showCloseButton) {
+        return this.route.params.showCloseButton
+      }
+
+      return false
     }
   },
 
@@ -160,7 +164,7 @@ export default {
     },
 
     onDismiss () {
-      this.$eventBus.$off('authenticated')
+      this.$eventBus.$emit('authenticationAborted')
       this.navigation.goBack()
     }
   }

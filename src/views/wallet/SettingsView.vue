@@ -47,8 +47,8 @@ export default {
               subtitle: 'The restore key enables you to restore this wallet. If you lose it you can never recover it and you\'ll loose access to your XVG. So make absolutely sure to keep it very safe.',
               leftIcon: { name: 'key' },
               onPress: () => {
-                this.navigation.navigate('pin', {
-                  authenticated: () => {
+                this.$authManager.authenticate().then(authenticated => {
+                  if (authenticated) {
                     this.navigation.navigate('restoreKey', { walletIdentifier: this.wallet.identifier })
                   }
                 })
@@ -59,8 +59,8 @@ export default {
               subtitle: 'Creating an extra backup of your wallet credentials can be a smart thing to do. Either store it safely on a removable drive or another secure place.',
               leftIcon: { name: 'download' },
               onPress: () => {
-                this.navigation.navigate('pin', {
-                  authenticated: () => {
+                this.$authManager.authenticate().then(authenticated => {
+                  if (authenticated) {
                     this.navigation.navigate('export', { walletIdentifier: this.wallet.identifier })
                   }
                 })
@@ -88,8 +88,8 @@ export default {
                     {
                       text: 'Delete',
                       onPress: () => {
-                        this.navigation.navigate('pin', {
-                          authenticated: () => {
+                        this.$authManager.authenticate().then(authenticated => {
+                          if (authenticated) {
                             this.$walletManager.removeWallet(this.wallet)
 
                             this.navigation.navigate('home')

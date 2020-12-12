@@ -1,5 +1,5 @@
-import Balance from '@/walletManager/models/Balance'
-import AddressInfo from '@/walletManager/models/AddressInfo'
+import Balance from '@/wallet/models/Balance'
+import AddressInfo from '@/wallet/models/AddressInfo'
 
 export default interface Info {
   name: string

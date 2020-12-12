@@ -1,6 +1,6 @@
 import Vue from 'vue-native-core'
-import WalletManager from '@/walletManager/WalletManager'
-import Wallet from '@/walletManager/Wallet'
+import WalletManager from '@/wallet/WalletManager'
+import Wallet from '@/wallet/Wallet'
 import { PluginFunction, VueConstructor } from '@/types/vue'
 
 const managerStore = new Vue({
@@ -17,7 +17,7 @@ const managerStore = new Vue({
   }
 })
 
-const walletManager: PluginFunction<any> = function (vue: VueConstructor, options: any): void {
+const plugin: PluginFunction<any> = function (vue: VueConstructor, options: any): void {
   // @ts-ignore
   managerStore.setManager(new WalletManager(options.store, options.store))
   // @ts-ignore
@@ -54,4 +54,4 @@ const walletManager: PluginFunction<any> = function (vue: VueConstructor, option
   })
 }
 
-export default walletManager
+export default plugin

@@ -1,6 +1,6 @@
 import { Store } from 'vuex'
-import { WalletConfigItem } from '@/walletManager/ManagerConfig'
-import Wallet from '@/walletManager/Wallet'
+import { WalletConfigItem } from '@/wallet/ManagerConfig'
+import Wallet from '@/wallet/Wallet'
 
 const state: WalletConfigItem[] = []
 

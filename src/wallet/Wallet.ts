@@ -1,11 +1,11 @@
-import Client from '@/walletManager/Client'
-import Info from '@/walletManager/models/Info'
-import Balance, { BalanceAddress } from '@/walletManager/models/Balance'
-import Tx from '@/walletManager/models/Tx'
-import { TxProposal, TxProposalResponse } from '@/walletManager/models/TxProposal'
-import AddressInfo from '@/walletManager/models/AddressInfo'
-import SendMaxInfo from '@/walletManager/models/SendMaxInfo'
-import { CredentialsInterface } from '@/walletManager/Credentials'
+import Client from '@/wallet/Client'
+import Info from '@/wallet/models/Info'
+import Balance, { BalanceAddress } from '@/wallet/models/Balance'
+import Tx from '@/wallet/models/Tx'
+import { TxProposal, TxProposalResponse } from '@/wallet/models/TxProposal'
+import AddressInfo from '@/wallet/models/AddressInfo'
+import SendMaxInfo from '@/wallet/models/SendMaxInfo'
+import { CredentialsInterface } from '@/wallet/Credentials'
 
 export default class Wallet {
   protected client: Client
