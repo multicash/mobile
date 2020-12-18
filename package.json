@@ -22,7 +22,7 @@
     "react-native": "^0.63.3",
     "react-native-biometrics": "^2.1.4",
     "react-native-draggable": "^3.3.0",
-    "react-native-draggable-flatlist": "^2.4.0",
+    "react-native-draggable-flatlist": "^2.5.1",
     "react-native-elements": "^2.3.2",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-haptic-feedback": "^1.11.0",
