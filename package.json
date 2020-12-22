@@ -19,7 +19,7 @@
     "bitcore-wallet-client": "^8.23.1",
     "intl": "1.2.5",
     "react": "^16.13.1",
-    "react-native": "^0.63.3",
+    "react-native": "^0.63.4",
     "react-native-biometrics": "^2.1.4",
     "react-native-draggable": "^3.3.0",
     "react-native-draggable-flatlist": "^2.4.0",
