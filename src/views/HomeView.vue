@@ -1,94 +1,106 @@
 <template>
-  <styled-view-background :style="styles.container">
-    <view :style="styles.navigation">
-      <round-button
-        :style="{ marginRight: 10 }"
-        transparent-shadow
-        @on-press="navigation.navigate('contacts')"
-      >
-        <icon name="people"/>
-      </round-button>
-      <round-button
-        transparent-shadow
-        @on-press="navigation.navigate('settings')"
-      >
-        <icon name="toggle"/>
-      </round-button>
-    </view>
-    <view :style="styles.logoContainer">
-      <view-section :style="styles.logoSection">
-        <image
-          :source="require('@/assets/logo-light.png')"
-          :style="styles.logoImage"
+  <view :style="styles.container">
+    <status-bar bar-style="light-content" />
+    <safe-area-view :style="styles.safeArea">
+      <app-header-view :insets="insets">
+        <view :style="styles.navigation">
+          <round-button
+            :style="{ marginRight: 10 }"
+            transparent-shadow
+            @on-press="navigation.navigate('contacts')"
+          >
+            <icon name="people"/>
+          </round-button>
+          <round-button
+            transparent-shadow
+            @on-press="navigation.navigate('settings')"
+          >
+            <icon name="toggle"/>
+          </round-button>
+        </view>
+        <view :style="styles.logoContainer">
+          <view-section :style="styles.logoSection">
+            <image
+              :source="require('@/assets/logo-light.png')"
+              :style="styles.logoImage"
+            />
+          </view-section>
+        </view>
+      </app-header-view>
+      <view :style="styles.content">
+        <actions-section
+          v-if="hasWallets"
+          @pay="navigation.navigate('pay')"
+          @receive="navigation.navigate('receive')"
         />
-      </view-section>
-    </view>
-    <view :style="styles.content">
-      <actions-section
-        v-if="hasWallets"
-        @pay="navigation.navigate('pay')"
-        @receive="navigation.navigate('receive')"
-      />
-      <wallets-section
-        v-if="hasWallets"
-        @wallet-selected="navigation.navigate('wallet', { screen: 'overview', params: { walletIdentifier: arguments[0].identifier } })"
-        @order-wallets="navigation.navigate('orderWallets')"
-        @add-wallet="navigation.navigate('add')"
-      />
-      <scroll-view
-        v-else
-        :style="styles.noWalletContainer"
-        :showsVerticalScrollIndicator="false"
-        :contentInset="{ top: 0, left: 0, bottom: insets.bottom, right: 0 }"
-      >
-        <card
-          :background-color="isDarkScheme ? '#2c2e36' : 'white'"
-          :style="styles.noWalletCard"
+        <wallets-section
+          v-if="hasWallets"
+          @wallet-selected="navigation.navigate('wallet', { screen: 'overview', params: { walletIdentifier: arguments[0].identifier } })"
+          @order-wallets="navigation.navigate('orderWallets')"
+          @add-wallet="navigation.navigate('add')"
+        />
+        <scroll-view
+          v-else
+          :style="styles.noWalletContainer"
+          :showsVerticalScrollIndicator="false"
+          :contentInset="{ top: 0, left: 0, bottom: insets.bottom || 0, right: 0 }"
         >
-          <view :style="styles.noWalletContent">
-            <view :style="{ flexDirection: 'row' }">
-              <image :style="styles.noWalletIcon1" :source="require('@/assets/new-wallet1.png')"/>
-              <image :style="styles.noWalletIcon2" :source="require('@/assets/new-wallet2.png')"/>
+          <card
+            :background-color="isDarkScheme ? '#2c2e36' : 'white'"
+            :style="styles.noWalletCard"
+          >
+            <view :style="styles.noWalletContent">
+              <view :style="{ flexDirection: 'row' }">
+                <image :style="styles.noWalletIcon1" :source="require('@/assets/new-wallet1.png')"/>
+                <image :style="styles.noWalletIcon2" :source="require('@/assets/new-wallet2.png')"/>
+              </view>
+              <text :style="styles.noWalletTitle">Add a MultiCash wallet</text>
+              <text :style="styles.noWalletSubtitle">Add a new or an existing wallet to MultiCash and use money like it's supposed to!</text>
             </view>
-            <text :style="styles.noWalletTitle">Add a MultiCash wallet</text>
-            <text :style="styles.noWalletSubtitle">Add a new or an existing wallet to MultiCash and use money like it's supposed to!</text>
-          </view>
-          <rounded-button
-            :style="{ width: '100%' }"
-            icon="add"
-            title="Add wallet"
-            @on-press="navigation.navigate('add')"
+            <rounded-button
+              :style="{ width: '100%' }"
+              icon="add"
+              title="Add wallet"
+              @on-press="navigation.navigate('add')"
+            />
+          </card>
+
+          <notification
+            icon="people"
+            title="Contacts"
+            label="Add MultiCash contacts to receive and send MultiCash after setting up your wallet"
+            @on-press="navigation.navigate('contacts')"
+            type="success"
           />
-        </card>
 
-        <notification
-          icon="people"
-          title="Contacts"
-          label="Add MultiCash contacts to receive and send MultiCash after setting up your wallet"
-          @on-press="navigation.navigate('contacts')"
-          type="success"
-        />
-
-        <notification
-          icon="help-buoy"
-          title="Support"
-          label="Do you need help or have a question? Checkout the support options for MultiCash"
-          type="primary"
-          @on-press="navigation.navigate('support')"
-        />
-      </scroll-view>
-    </view>
-    <view v-if="showLoadingHideContainer" :style="styles.loadingHideContainer" />
-  </styled-view-background>
+          <notification
+            icon="help-buoy"
+            title="Support"
+            label="Do you need help or have a question? Checkout the support options for MultiCash"
+            type="primary"
+            @on-press="navigation.navigate('support')"
+          />
+        </scroll-view>
+      </view>
+      <view v-if="showLoadingHideContainer" :style="styles.loadingHideContainer" />
+    </safe-area-view>
+  </view>
 </template>
 
 <script>
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { AppState } from 'react-native'
 import { mapGetters } from 'vuex'
 import ManagerConfig from '@/wallet/ManagerConfig.ts'
+import AppHeaderView from '@/components/views/AppHeaderView'
 
 export default {
   name: 'HomeView',
+
+  components: {
+    AppHeaderView,
+    SafeAreaView
+  },
 
   data () {
     return {
@@ -148,7 +160,14 @@ export default {
 const stylesStore = (isDarkScheme, insets) => {
   return {
     container: {
-      flexDirection: 'row'
+      flexDirection: 'row',
+      backgroundColor: isDarkScheme ? '#0f0f11' : '#e8e8f3',
+      flex: 1
+    },
+
+    safeArea: {
+      backgroundColor: 'transparent',
+      flex: 1
     },
 
     navigation: {
@@ -198,7 +217,8 @@ const stylesStore = (isDarkScheme, insets) => {
       width: '100%',
       justifyContent: 'center',
       alignItems: 'center',
-      marginBottom: 10
+      marginBottom: 10,
+      marginTop: 20
     },
 
     noWalletContent: {

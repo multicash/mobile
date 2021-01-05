@@ -8,10 +8,10 @@
     />
     <view-background>
 
-      <view :style="styles.sourceContainer">
+      <view v-if="targetWallet" :style="styles.sourceContainer">
         <selector
           name="Receiving wallet"
-          :value="targetWallet"
+          :value="targetWallet.name"
           @on-press="selectSourceWallet"
         />
       </view>
@@ -67,7 +67,7 @@ export default {
 
   data () {
     return {
-      targetWallet: 'Main Account',
+      targetWallet: null,
       label: ''
     }
   },
@@ -78,7 +78,7 @@ export default {
     },
 
     qrValue () {
-      let value = 'multicash:M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De?tag=@SwenVanZanten&amount=' + this.route.params.amount
+      let value = `multicash:${this.targetWallet.address}?tag=${this.targetWallet.tag}&amount=${this.route.params.amount}`
 
       if (this.label !== '') {
         value += '&label=' + this.label
@@ -88,13 +88,22 @@ export default {
     }
   },
 
+  created () {
+    this.targetWallet = this.$walletManager.getWallet(this.route.params.source.walletIdentifier)
+  },
+
   methods: {
     selectSourceWallet () {
+      const unsubscribe = this.navigation.addListener('focus', () => {
+        if (this.route.params.sourceWallet) {
+          this.targetWallet = this.route.params.sourceWallet
+          this.navigation.removeListener('focus', unsubscribe)
+        }
+      })
+
       this.navigation.navigate('wallets', {
         goBack: true,
-        resolve: (value) => {
-          this.targetWallet = value.name
-        }
+        returnView: 'qr'
       })
     },
 

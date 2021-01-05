@@ -13,8 +13,7 @@
       >
         <view :style="styles.sourceContainer">
           <selector
-            v-if="!route.params.isReceive"
-            name="From wallet"
+            :name="route.params.isReceive ? 'Receiving wallet' : 'From wallet'"
             :value="sourceWallet.name"
             @on-press="selectSourceWallet"
           />

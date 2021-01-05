@@ -42,7 +42,6 @@ import Card from '@/components/views/Card.vue'
 import HeaderView from '@/components/views/HeaderView.vue'
 import RestoreKeyGridView from '@/components/views/RestoreKeyGridView.vue'
 import Spacer from '@/components/views/Spacer.vue'
-import StyledViewBackground from '@/components/views/StyledViewBackground.vue'
 import ViewBackground from '@/components/views/ViewBackground.vue'
 import ViewSection from '@/components/views/ViewSection.vue'
 import WalletCard from '@/components/views/WalletCard.vue'
@@ -89,7 +88,6 @@ Vue.component('card', Card)
 Vue.component('header-view', HeaderView)
 Vue.component('restore-key-grid-view', RestoreKeyGridView)
 Vue.component('spacer', Spacer)
-Vue.component('styled-view-background', StyledViewBackground)
 Vue.component('view-background', ViewBackground)
 Vue.component('view-section', ViewSection)
 Vue.component('wallet-card', WalletCard)

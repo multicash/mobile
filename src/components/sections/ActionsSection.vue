@@ -1,5 +1,5 @@
 <template>
-  <view-section title="Actions" title-color="white">
+  <view-section title="Actions">
     <view class="actions">
       <action-button
         title="Pay"
