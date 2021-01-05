@@ -8,6 +8,8 @@
 
 <script>
 import constants from '@/support/constants'
+import { NativeModules, Platform } from 'react-native'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'money',
@@ -32,16 +34,21 @@ export default {
   },
 
   computed: {
-    // ...mapGetters(['currentRate', 'currentCurrencyCode']),
+    ...mapGetters(['currentCurrencyCode']),
 
     amountFormatted () {
+      const locale =
+        Platform.OS === 'ios'
+          ? NativeModules.SettingsManager.settings.AppleLanguages[0]
+          : NativeModules.I18nManager.localeIdentifier
+
       if (this.crypto) {
-        return this.getFormattedCrypto(this.amount / constants.satoshiDivider, 'en', this.currency)
+        return this.getFormattedCrypto(this.amount / constants.satoshiDivider, locale, this.currency)
       }
 
       if (this.convert) {
         const amount = (this.amount / constants.satoshiDivider) * 0.65 // this.currentRate
-        return this.getFormattedCurrency(amount, 'en', constants.defaultCurrencyCode) // this.currentCurrencyCode)
+        return this.getFormattedCurrency(amount, locale, this.currentCurrencyCode)
       }
 
       return ''

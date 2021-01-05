@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'CurrencyView',
 
@@ -81,8 +83,10 @@ export default {
   },
 
   computed: {
+    ...mapGetters(['currentCurrencyCode']),
+
     currenciesList () {
-      const selectedCurrency = this.route.params ? this.route.params.currencyCode : null
+      const selectedCurrency = this.currentCurrencyCode
 
       return [
         {
@@ -90,12 +94,19 @@ export default {
             return {
               title: currency.code,
               subtitle: currency.name,
-              checked: selectedCurrency === currency.code
+              checked: selectedCurrency === currency.code,
+              onPress: () => {
+                this.updateCurrency(currency.code)
+              }
             }
           })
         }
       ]
     }
+  },
+
+  methods: {
+    ...mapActions(['updateCurrency'])
   }
 }
 </script>
