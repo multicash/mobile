@@ -37,10 +37,15 @@ export default {
     ...mapGetters(['currentCurrencyCode']),
 
     amountFormatted () {
-      const locale =
-        Platform.OS === 'ios'
+      let locale = 'en'
+
+      try {
+        locale = Platform.OS === 'ios'
           ? NativeModules.SettingsManager.settings.AppleLanguages[0]
           : NativeModules.I18nManager.localeIdentifier
+      } catch (e) {
+        // Use the default
+      }
 
       if (this.crypto) {
         return this.getFormattedCrypto(this.amount / constants.satoshiDivider, locale, this.currency)
