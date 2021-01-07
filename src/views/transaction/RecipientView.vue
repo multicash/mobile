@@ -113,14 +113,14 @@ export default {
               }
             },
             {
-              title: 'Michael',
-              subtitle: '@michael',
+              title: 'Mihael',
+              subtitle: '@mihael',
               leftIcon: { name: 'person-circle', color: '#eaee18', size: 40 },
               onPress: () => {
                 this.navigation.navigate('confirm', {
                   ...this.route.params,
                   target: {
-                    title: 'Michael',
+                    title: 'Mihael',
                     amount: null,
                     icon: 'person-circle',
                     iconColor: '#eaee18'

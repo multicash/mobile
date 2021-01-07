@@ -62,6 +62,9 @@
 </template>
 
 <script>
+import { Share } from 'react-native'
+import Locale from '@/support/locale'
+
 export default {
   name: 'QrView',
 
@@ -78,7 +81,7 @@ export default {
     },
 
     qrValue () {
-      let value = `multicash:${this.targetWallet.address}?tag=${this.targetWallet.tag}&amount=${this.route.params.amount}`
+      let value = `https://multicash.io/pay/${this.targetWallet.address}?tag=${this.targetWallet.tag}&amount=${this.route.params.amount}`
 
       if (this.label !== '') {
         value += '&label=' + this.label
@@ -108,7 +111,11 @@ export default {
     },
 
     showShareSheet () {
-      alert('Show a share sheet')
+      const amount = this.getFormattedCrypto(this.route.params.amount, Locale.getCurrentLocale(), 'MCX')
+
+      Share.share({
+        message: `Would you like to pay me ${amount}: ${this.qrValue}`
+      })
     }
   }
 }

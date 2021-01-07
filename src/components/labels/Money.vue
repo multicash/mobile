@@ -9,8 +9,8 @@
 
 <script>
 import constants from '@/support/constants'
-import { NativeModules, Platform } from 'react-native'
 import { mapGetters } from 'vuex'
+import Locale from '@/support/locale'
 
 export default {
   name: 'money',
@@ -42,15 +42,7 @@ export default {
     ...mapGetters(['currentCurrencyCode']),
 
     amountFormatted () {
-      let locale = 'en'
-
-      try {
-        locale = Platform.OS === 'ios'
-          ? NativeModules.SettingsManager.settings.AppleLanguages[0]
-          : NativeModules.I18nManager.localeIdentifier
-      } catch (e) {
-        // Use the default
-      }
+      const locale = Locale.getCurrentLocale()
 
       if (this.crypto) {
         return this.getFormattedCrypto(this.amount / constants.satoshiDivider, locale, this.currency)

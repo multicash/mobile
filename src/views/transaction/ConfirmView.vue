@@ -45,19 +45,33 @@
       </view>
 
       <rounded-button
-        :title="route.params.isReceive ? 'Share request' : 'Send payment'"
+        :title="route.params.isReceive && !route.params.target.walletIdentifier ? 'Share request' : 'Send payment'"
         :style="styles.sendPaymentButton"
         @on-press="proceed"
       />
 
-      <rounded-text-input title="Description" placeholder="Why this payment?" />
+      <rounded-text-input
+        title="Description"
+        placeholder="Why this payment?"
+        :value="label"
+        @input="label = $event"
+      />
     </view-background>
   </view>
 </template>
 
 <script>
+import Locale from '@/support/locale'
+import { Share } from 'react-native'
+
 export default {
   name: 'ConfirmView',
+
+  data () {
+    return {
+      label: ''
+    }
+  },
 
   computed: {
     styles () {
@@ -76,8 +90,23 @@ export default {
   methods: {
     proceed () {
       if (this.route.params.isReceive) {
-        alert('share...')
-        this.navigation.navigate(this.route.params.walletIdentifier ? 'wallet' : 'home')
+        if (this.route.params.target.walletIdentifier) {
+          return this.navigation.navigate('paying', this.route.params)
+        }
+
+        const wallet = this.$walletManager.getWallet(this.route.params.source.walletIdentifier)
+        const amount = this.getFormattedCrypto(this.route.params.amount, Locale.getCurrentLocale(), 'MCX')
+        let url = `https://multicash.io/pay/${wallet.address}?tag=${wallet.tag}&amount=${this.route.params.amount}`
+
+        if (this.label !== '') {
+          url += '&label=' + this.label
+        }
+
+        Share.share({
+          message: `Would you like to pay me ${amount}: ${url}`
+        }).then(() => {
+          this.navigation.navigate(this.route.params.walletIdentifier ? 'wallet' : 'home')
+        })
       } else {
         this.navigation.navigate('paying', this.route.params)
       }

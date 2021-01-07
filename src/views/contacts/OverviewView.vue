@@ -29,8 +29,8 @@ export default {
           icon: { name: 'person-circle', color: '#a7fb00' }
         },
         {
-          name: 'Michael',
-          tag: '@michael',
+          name: 'Mihael',
+          tag: '@mihael',
           icon: { name: 'cloud-circle', color: '#eaee18' }
         },
         {
