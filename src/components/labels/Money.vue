@@ -3,6 +3,7 @@
     :minimumFontScale="0.01"
     :adjustsFontSizeToFit="true"
     :numberOfLines="1"
+    :style="style || {}"
   >{{ amountFormatted }}</text>
 </template>
 
@@ -30,6 +31,10 @@ export default {
     convert: {
       type: Boolean,
       default: false
+    },
+    style: {
+      type: Array,
+      default: null
     }
   },
 
