@@ -16,7 +16,8 @@ module.exports = {
     parser: '@typescript-eslint/parser'
   },
   ignorePatterns: [
-    'vueTransformerPlugin.js'
+    'vueTransformerPlugin.js',
+    'src/support/sjcl.js'
   ],
   overrides: [
     {
