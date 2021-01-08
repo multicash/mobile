@@ -23,7 +23,12 @@
       >
         <view v-if="encryptFile">
           <text :style="styles.encryptFileText">Because the export file contains all the data to your wallet we encourage you to encrypt your export file with a password.</text>
-          <rounded-text-input title="Password" secureTextEntry/>
+          <rounded-text-input
+            title="Password"
+            secureTextEntry
+            :value="encryptionPassword"
+            @input="encryptionPassword = $event"
+          />
         </view>
       </switch-notification>
 
@@ -42,12 +47,15 @@
       v-if="acceptedTerm"
       :style="styles.exportButton"
       title="Export"
+      @on-press="showShareSheet"
     />
   </keyboard-avoiding-view>
 </template>
 
 <script>
-import { Platform, KeyboardAvoidingView } from 'react-native'
+import { Share, Platform, KeyboardAvoidingView } from 'react-native'
+import ExportImportManager from '@/wallet/ExportImportManager'
+import base64 from 'react-native-base64'
 
 export default {
   name: 'ExportView',
@@ -57,7 +65,8 @@ export default {
   data () {
     return {
       encryptFile: false,
-      acceptedTerm: false
+      acceptedTerm: false,
+      encryptionPassword: ''
     }
   },
 
@@ -68,6 +77,19 @@ export default {
 
     behavior () {
       return Platform.OS === 'ios' ? 'padding' : null
+    }
+  },
+
+  methods: {
+    showShareSheet () {
+      const exportContent = base64.encode(ExportImportManager.getExportContent(
+        this.wallet,
+        this.encryptFile ? this.encryptionPassword : null
+      ))
+
+      Share.share({
+        url: `data:application/json;base64,${exportContent}`
+      }).catch(() => {})
     }
   }
 }
