@@ -88,7 +88,7 @@ export default {
         this.encryptFile ? this.encryptionPassword : null
       ))
 
-      const title = 'Export your wallet'
+      const title = `Export MultiCash wallet ${this.wallet.name}.json`
       const message = 'Save your export file safely'
       const url = `data:application/json;base64,${exportContent}`
 
@@ -119,7 +119,7 @@ export default {
           this.encryptFile = false
           this.acceptedTerm = false
         })
-        .catch((err) => { err && alert(err.message) })
+        .catch((err) => { err && console.error(err.message) })
     }
   }
 }
