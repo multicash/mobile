@@ -53,7 +53,8 @@
 </template>
 
 <script>
-import { Share, Platform, KeyboardAvoidingView } from 'react-native'
+import { Platform, KeyboardAvoidingView } from 'react-native'
+import Share from 'react-native-share'
 import ExportImportManager from '@/wallet/ExportImportManager'
 import base64 from 'react-native-base64'
 
@@ -87,9 +88,38 @@ export default {
         this.encryptFile ? this.encryptionPassword : null
       ))
 
-      Share.share({
-        url: `data:application/json;base64,${exportContent}`
-      }).catch(() => {})
+      const title = 'Export your wallet'
+      const message = 'Save your export file safely'
+      const url = `data:application/json;base64,${exportContent}`
+
+      const options = Platform.select({
+        ios: {
+          activityItemSources: [
+            {
+              placeholderItem: { type: 'url', content: url },
+              item: {
+                default: { type: 'url', content: url }
+              },
+              subject: {
+                default: title
+              },
+              linkMetadata: { originalUrl: url, url, title }
+            }
+          ]
+        },
+        default: {
+          title,
+          subject: title,
+          message: `${message} ${url}`
+        }
+      })
+
+      Share.open(options)
+        .then(() => {
+          this.encryptFile = false
+          this.acceptedTerm = false
+        })
+        .catch((err) => { err && alert(err.message) })
     }
   }
 }
