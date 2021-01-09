@@ -89,7 +89,6 @@ export default {
       ))
 
       const title = `Export MultiCash wallet ${this.wallet.name}.json`
-      const message = 'Save your export file safely'
       const url = `data:application/json;base64,${exportContent}`
 
       const options = Platform.select({
@@ -110,7 +109,7 @@ export default {
         default: {
           title,
           subject: title,
-          message: `${message} ${url}`
+          url
         }
       })
 

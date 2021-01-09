@@ -3,31 +3,26 @@ import { WalletConfigItem } from '@/wallet/ManagerConfig'
 
 const sjcl = require('@/support/sjcl')
 
-export default class ExportImportManager {
-  // public static registerEvents (browserWindow: Electron.BrowserWindow) {
-  //   electron.ipcMain.on('export-wallet-file', async (event, filename: string) => {
-  //     event.returnValue = await electron.dialog.showSaveDialog(browserWindow, {
-  //       defaultPath: filename,
-  //       properties: [
-  //         'showHiddenFiles',
-  //         'createDirectory',
-  //         'showOverwriteConfirmation'
-  //       ]
-  //     })
-  //   })
-  // }
+export class DecryptError extends Error {}
 
-  // public async readWallet (file: File, encryptionPassword: () => Promise<string>): Promise<WalletConfigItem> {
-  //   const content = fs.readFileSync(file.path).toString()
-  //   let parsed = JSON.parse(content)
-  //
-  //   if (!this.isWalletConfig(parsed)) {
-  //     parsed = sjcl.decrypt(await encryptionPassword(), content)
-  //     parsed = JSON.parse(parsed)
-  //   }
-  //
-  //   return parsed
-  // }
+export default class ExportImportManager {
+  public async readWallet (content: string, encryptionPassword: () => Promise<string>): Promise<WalletConfigItem> {
+    const parsed = JSON.parse(content)
+
+    if (this.isWalletConfig(parsed)) {
+      return parsed
+    }
+
+    if (!this.isEncryptedWalletConfig(parsed)) {
+      throw new SyntaxError()
+    }
+
+    try {
+      return JSON.parse(sjcl.decrypt(await encryptionPassword(), content))
+    } catch (e) {
+      throw new DecryptError('Content couldn\'t be decrypted.')
+    }
+  }
 
   public static getExportContent (wallet: Wallet, encryptionPassword: string|null = null): string {
     let walletConfig = JSON.stringify(wallet.getExportConfig())
@@ -41,13 +36,6 @@ export default class ExportImportManager {
     return walletConfig
   }
 
-  // protected userSavesFile (filename: string, isEncrypted: boolean = false): Promise<Electron.SaveDialogReturnValue> {
-  //   return electron.ipcRenderer.sendSync(
-  //     'export-wallet-file',
-  //     `${filename.toLocaleLowerCase().replace(' ', '-')}${isEncrypted ? '-encrypted-' : ''}-myvergies-export.json`
-  //   )
-  // }
-
   protected isWalletConfig (content: any): content is WalletConfigItem {
     return content &&
       'name' in content &&
@@ -59,5 +47,18 @@ export default class ExportImportManager {
       'walletPrivateKey' in content &&
       'singleAddress' in content &&
       'apiEndpoint' in content
+  }
+
+  protected isEncryptedWalletConfig (content: any): boolean {
+    return 'iv' in content &&
+      'v' in content &&
+      'iter' in content &&
+      'ks' in content &&
+      'ts' in content &&
+      'mode' in content &&
+      'adata' in content &&
+      'cipher' in content &&
+      'salt' in content &&
+      'ct' in content
   }
 }

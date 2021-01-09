@@ -18,6 +18,7 @@
         title="Paste import file contents"
         multiline
         :fontSize="12"
+        :value="pastedContents"
         @input="pastedContents = $event"
       />
       <text v-if="pastedContents === ''" :style="styles.orLabel">Or</text>
@@ -41,15 +42,29 @@
     </view-background>
 
     <rounded-button
-      v-if="pastedContents !== '' && !checkingRestoreKey"
+      v-if="pastedContents !== '' && !checkingRestoreKey && resolvedWalletConfig === null"
       :style="styles.proceedButton"
       title="Proceed"
       @on-press="importPastedContents"
+    />
+
+    <rounded-button
+      v-if="resolvedWalletConfig"
+      :style="styles.proceedButton"
+      title="Import wallet"
+      @on-press="createWallet"
     />
   </view>
 </template>
 
 <script>
+import DocumentPicker from 'react-native-document-picker'
+import FileSystem from 'react-native-fs'
+import ExportImportManager, { DecryptError } from '@/wallet/ExportImportManager'
+import { Alert } from 'react-native'
+
+const exportImportManager = new ExportImportManager()
+
 export default {
   name: 'ImportView',
 
@@ -57,7 +72,8 @@ export default {
     return {
       pastedContents: '',
       checkingRestoreKey: false,
-      successfullyRestored: false
+      successfullyRestored: false,
+      resolvedWalletConfig: null
     }
   },
 
@@ -68,24 +84,89 @@ export default {
   },
 
   methods: {
-    importFile () {
-      this.proceed()
-    },
+    async importFile () {
+      try {
+        const res = await DocumentPicker.pick({
+          type: [DocumentPicker.types.allFiles]
+        })
 
-    importPastedContents () {
-      this.proceed()
-    },
-
-    proceed () {
-      if (this.successfullyRestored) {
-        this.navigation.navigate('confirm')
+        this.pastedContents = await FileSystem.readFile(decodeURI(res.uri))
+      } catch (err) {
+        if (!DocumentPicker.isCancel(err)) {
+          Alert.alert('Couldn\'t open the selected file', err.message)
+        }
       }
+    },
 
+    async importPastedContents () {
+      try {
+        const wallet = await exportImportManager.readWallet(this.pastedContents, this.showPasswordPrompt)
+
+        this.proceed(wallet)
+      } catch (e) {
+        console.log(e)
+
+        switch (e.constructor) {
+          case SyntaxError:
+            Alert.alert(
+              'Given file is not valid',
+              'The file doesn\'t contain any valid wallet configuration.',
+              [
+                {
+                  text: 'Ok',
+                  onPress: () => {
+                    this.pastedContents = ''
+                  }
+                }
+              ]
+            )
+            break
+          case DecryptError:
+            console.log('Wrong password')
+            Alert.alert(
+              'Wrong password entered',
+              'Couldn\'t decrypt the import file because the given password was wrong, please try again.',
+              [
+                {
+                  text: 'Cancel',
+                  onPress: () => {
+                    this.pastedContents = ''
+                  }
+                },
+                { text: 'Try again', onPress: () => this.importPastedContents() }
+              ]
+            )
+            break
+        }
+      }
+    },
+
+    async showPasswordPrompt () {
+      return new Promise((resolve, reject) => {
+        Alert.prompt(
+          'File encrypted',
+          'Enter your encryption password to unlock the encrypted import file.',
+          [
+            { text: 'Cancel', onPress: () => reject(new Error('No password entered')), style: 'cancel' },
+            { text: 'Decrypt', onPress: (password) => resolve(password) }
+          ]
+        )
+      })
+    },
+
+    proceed (wallet) {
+      this.resolvedWalletConfig = wallet
       this.checkingRestoreKey = true
       setTimeout(() => {
         this.checkingRestoreKey = false
         this.successfullyRestored = true
       }, 1000)
+    },
+
+    createWallet () {
+      const wallet = this.$walletManager.storeTempWallet(this.resolvedWalletConfig)
+
+      this.navigation.navigate('confirm', { identifier: wallet.identifier })
     }
   }
 }
