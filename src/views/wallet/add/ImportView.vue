@@ -28,7 +28,7 @@
         @on-press="importFile"
       />
 
-      <spacer v-if="checkingRestoreKey || successfullyRestored" />
+      <spacer v-if="checkingRestoreKey || successfullyRestored"/>
       <notification
         v-if="checkingRestoreKey || successfullyRestored"
         :loading="checkingRestoreKey"
@@ -37,7 +37,7 @@
         type="success"
       />
 
-      <view :style="styles.proceedButtonPlaceholder" />
+      <view :style="styles.proceedButtonPlaceholder"/>
 
     </view-background>
 
@@ -61,7 +61,8 @@
 import DocumentPicker from 'react-native-document-picker'
 import FileSystem from 'react-native-fs'
 import ExportImportManager, { DecryptError } from '@/wallet/ExportImportManager'
-import { Alert } from 'react-native'
+import { Alert, Platform } from 'react-native'
+import AndroidPrompt from 'react-native-prompt-android'
 
 const exportImportManager = new ExportImportManager()
 
@@ -143,14 +144,19 @@ export default {
 
     async showPasswordPrompt () {
       return new Promise((resolve, reject) => {
-        Alert.prompt(
-          'File encrypted',
-          'Enter your encryption password to unlock the encrypted import file.',
-          [
-            { text: 'Cancel', onPress: () => reject(new Error('No password entered')), style: 'cancel' },
-            { text: 'Decrypt', onPress: (password) => resolve(password) }
-          ]
-        )
+        const title = 'File encrypted'
+        const message = 'Enter your encryption password to unlock the encrypted import file.'
+        const actions = [
+          { text: 'Cancel', onPress: () => reject(new Error('No password entered')), style: 'cancel' },
+          { text: 'Decrypt', onPress: (password) => resolve(password) }
+        ]
+        const type = 'secure-text'
+
+        if (Platform.OS === 'ios') {
+          Alert.prompt(title, message, actions, type)
+        } else {
+          AndroidPrompt(title, message, actions, { type })
+        }
       })
     },
 
