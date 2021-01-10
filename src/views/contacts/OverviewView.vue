@@ -12,48 +12,40 @@
         <icon name="person-add" :size="20"/>
       </round-button>
     </modal-navigation>
-    <table-view :sections="contactsList" :grouped="false"/>
+    <table-view :sections="contactsList" :grouped="false">
+      <view
+        :style="styles.noContactsContainer"
+        slot="empty"
+      >
+        <header-view
+          title="No Contacts"
+          subtitle="Add a contact to send them MCX easily"
+          :image-background="require('@/assets/contact-book.png')"
+          :image-foreground="require('@/assets/new-wallet1.png')"
+        />
+      </view>
+    </table-view>
   </view-background>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'OverviewView',
 
-  data () {
-    return {
-      contacts: [
-        {
-          name: 'CryptoRekt',
-          tag: '@cr',
-          icon: { name: 'person-circle', color: '#a7fb00' }
-        },
-        {
-          name: 'Mihael',
-          tag: '@mihael',
-          icon: { name: 'cloud-circle', color: '#eaee18' }
-        },
-        {
-          name: 'sandersvoice',
-          tag: '@sandersvoice',
-          icon: { name: 'person-circle', color: '#3b28f3' }
-        },
-        {
-          name: 'Sunerok',
-          tag: '@justinvendetta',
-          icon: { name: 'navigate-circle', color: '#00ffb2' }
-        },
-        {
-          name: 'Swen van Zanten',
-          tag: '@swenvanzanten',
-          icon: { name: 'planet', color: '#c807a9' }
-        }
-      ]
-    }
-  },
-
   computed: {
+    ...mapGetters(['contacts', 'hasContacts']),
+
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    },
+
     contactsList () {
+      if (this.contacts.length === 0) {
+        return []
+      }
+
       return [
         {
           data: this.contacts.map(contact => {
@@ -62,12 +54,22 @@ export default {
               subtitle: contact.tag,
               leftIcon: { name: contact.icon.name, color: contact.icon.color, size: 40 },
               onPress: () => {
-                this.navigation.navigate('contact', { contact })
+                this.navigation.navigate('contact', { contactIdentifier: contact.identifier })
               }
             }
           })
         }
       ]
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme) => {
+  return {
+    noContactsContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
     }
   }
 }

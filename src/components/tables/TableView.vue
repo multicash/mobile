@@ -1,6 +1,12 @@
 <template>
   <view :style="styles.container">
+    <slot
+      v-if="sections.length === 0"
+      name="empty"
+      :style="styles.emptyContainer"
+    />
     <section-list
+      v-if="sections.length > 0"
       :sections="sections"
       :keyExtractor="(item, index) => item + index"
       :renderItem="(item) => renderList(item)"

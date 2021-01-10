@@ -8,31 +8,8 @@
 <script>
 import { mapActions } from 'vuex'
 import TableHeaderView from '@/react/components/TableHeaderView'
-
-const exampleWallets = [
-  {
-    identifier: 'main-account',
-    name: 'Main Account',
-    icon: 'wallet',
-    tag: '@SwenVanZanten',
-    address: 'M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De',
-    coin: 'mcx',
-    network: 'livenet',
-    restoreKey: 'random okay unusual trim fan blue patrol feed mention crane ankle exile',
-    singleAddress: true
-  },
-  {
-    identifier: 'savings-account',
-    name: 'Savings Account',
-    icon: 'gift',
-    tag: '@SwenSaving',
-    address: 'M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De',
-    coin: 'mcx',
-    network: 'livenet',
-    restoreKey: 'output sphere drift town world sail gauge mechanic track core tiny into',
-    singleAddress: true
-  }
-]
+import exampleContacts from '@/assets/examples/contacts'
+import exampleWallets from '@/assets/examples/wallets'
 
 export default {
   name: 'OverviewView',
@@ -107,6 +84,28 @@ export default {
                 })
 
                 this.updateIsSetup(false)
+              }
+            },
+            {
+              title: 'Remove all example contacts',
+              subtitle: 'To see the no contacts views remove all the contacts here',
+              leftIcon: { name: 'person-remove' },
+              noChevron: true,
+              onPress: () => {
+                for (const contact of this.$store.getters.contacts) {
+                  this.$store.dispatch('removeContact', contact)
+                }
+              }
+            },
+            {
+              title: 'Add example contacts',
+              subtitle: 'Add some example contacts to play with',
+              leftIcon: { name: 'person-add' },
+              noChevron: true,
+              onPress: () => {
+                for (const contact of exampleContacts) {
+                  this.$store.dispatch('addContact', contact)
+                }
               }
             },
             {

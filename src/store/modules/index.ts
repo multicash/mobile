@@ -4,6 +4,7 @@
  */
 
 export default {
+  contacts: require('@/store/modules/Contacts').default,
   currency: require('@/store/modules/Currency').default,
   pin: require('@/store/modules/Pin').default,
   setup: require('@/store/modules/Setup').default,
