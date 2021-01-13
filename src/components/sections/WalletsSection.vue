@@ -51,18 +51,13 @@ export default {
 
 const stylesStore = (isDarkScheme) => {
   return {
-    flexGrow: {
-      flex: 1,
-      width: '100%'
-    },
+    flexGrow: {},
 
     wallets: {
-      display: 'flex',
       margin: -30
     },
 
     walletsContainer: {
-      display: 'flex',
       margin: 30,
       flexDirection: 'row'
     },

@@ -15,6 +15,15 @@
         @on-press="$emit('receive')"
       />
     </view>
+
+    <spacer />
+
+    <view class="actions-secondary">
+      <secondary-round-button
+        icon="qr-code"
+        title=""
+      />
+    </view>
   </view-section>
 </template>
 
@@ -23,6 +32,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+  .actions-secondary {
+    align-items: center;
   }
 </style>
 

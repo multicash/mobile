@@ -21,6 +21,7 @@ export default class WalletManager {
 
   public async boot (config: ManagerConfig) {
     this.stopTicker()
+    this.wallets.splice(0, this.wallets.length)
 
     for (const walletConfig of config.wallets) {
       try {
@@ -51,6 +52,19 @@ export default class WalletManager {
 
   public getWallets (): Wallet[] {
     return this.wallets
+  }
+
+  public getOrderedWallets (): Wallet[] {
+    const order = this.walletOrderStore.getters.getWalletOrder
+    const wallets = this.wallets
+
+    if (wallets.length !== order.length) {
+      return wallets
+    }
+
+    return order.map((identifier: string) => {
+      return wallets.find(wallet => wallet.identifier === identifier)
+    })
   }
 
   public async addWallet (walletConfig: WalletConfigItem): Promise<Wallet> {

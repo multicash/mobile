@@ -14,6 +14,7 @@ import LinkButton from '@/components/buttons/LinkButton.vue'
 import RoundButton from '@/components/buttons/RoundButton.vue'
 import RoundedButton from '@/components/buttons/RoundedButton.vue'
 import SecondaryActionButton from '@/components/buttons/SecondaryActionButton.vue'
+import SecondaryRoundButton from '@/components/buttons/SecondaryRoundButton.vue'
 
 import ColorPicker from '@/components/forms/ColorPicker.vue'
 import DotInput from '@/components/forms/DotInput.vue'
@@ -42,6 +43,7 @@ import Card from '@/components/views/Card.vue'
 import HeaderView from '@/components/views/HeaderView.vue'
 import RestoreKeyGridView from '@/components/views/RestoreKeyGridView.vue'
 import Spacer from '@/components/views/Spacer.vue'
+import TotalAmountSection from '@/components/views/TotalAmountSection.vue'
 import ViewBackground from '@/components/views/ViewBackground.vue'
 import ViewSection from '@/components/views/ViewSection.vue'
 import WalletCard from '@/components/views/WalletCard.vue'
@@ -52,7 +54,8 @@ Vue.component('action-button', ActionButton)
 Vue.component('link-button', LinkButton)
 Vue.component('round-button', RoundButton)
 Vue.component('rounded-button', RoundedButton)
-Vue.component('SecondaryAction-button', SecondaryActionButton)
+Vue.component('secondary-action-button', SecondaryActionButton)
+Vue.component('secondary-round-button', SecondaryRoundButton)
 
 Vue.component('color-picker', ColorPicker)
 Vue.component('dot-input', DotInput)
@@ -88,6 +91,7 @@ Vue.component('card', Card)
 Vue.component('header-view', HeaderView)
 Vue.component('restore-key-grid-view', RestoreKeyGridView)
 Vue.component('spacer', Spacer)
+Vue.component('total-amount-section', TotalAmountSection)
 Vue.component('view-background', ViewBackground)
 Vue.component('view-section', ViewSection)
 Vue.component('wallet-card', WalletCard)

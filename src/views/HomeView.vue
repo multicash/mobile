@@ -2,7 +2,7 @@
   <view :style="styles.container">
     <status-bar bar-style="light-content" />
     <safe-area-view :style="styles.safeArea">
-      <app-header-view :insets="insets">
+      <app-header-view :insets="insets" :expand="hasWallets">
         <view :style="styles.navigation">
           <round-button
             :style="{ marginRight: 10 }"
@@ -18,26 +18,19 @@
             <icon name="toggle"/>
           </round-button>
         </view>
-        <view :style="styles.logoContainer">
-          <view-section :style="styles.logoSection">
-            <image
-              :source="require('@/assets/logo-light.png')"
-              :style="styles.logoImage"
-            />
-          </view-section>
-        </view>
+        <total-amount-section v-if="hasWallets" />
       </app-header-view>
       <view :style="styles.content">
-        <actions-section
-          v-if="hasWallets"
-          @pay="navigation.navigate('pay')"
-          @receive="navigation.navigate('receive')"
-        />
         <wallets-section
           v-if="hasWallets"
           @wallet-selected="navigation.navigate('wallet', { screen: 'overview', params: { walletIdentifier: arguments[0].identifier } })"
           @order-wallets="navigation.navigate('orderWallets')"
           @add-wallet="navigation.navigate('add')"
+        />
+        <actions-section
+          v-if="hasWallets"
+          @pay="navigation.navigate('pay')"
+          @receive="navigation.navigate('receive')"
         />
         <scroll-view
           v-else
@@ -171,44 +164,19 @@ const stylesStore = (isDarkScheme, insets) => {
     },
 
     navigation: {
-      width: '100%',
-      flex: 0,
       flexDirection: 'row',
       justifyContent: 'flex-end',
       paddingTop: 10,
       paddingLeft: 30,
-      paddingRight: 30,
-      marginBottom: -10
-    },
-
-    logoContainer: {
-      paddingLeft: 30,
-      paddingRight: 30,
-      paddingBottom: 10,
-      paddingTop: 0
-    },
-
-    logoSection: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center'
+      paddingRight: 30
     },
 
     content: {
       paddingLeft: 30,
-      paddingRight: 30,
-      flex: 1
-    },
-
-    logoImage: {
-      resizeMode: 'contain',
-      width: '100%',
-      height: 50,
-      marginVertical: 5
+      paddingRight: 30
     },
 
     noWalletContainer: {
-      flex: 1,
       marginBottom: -insets.bottom
     },
 
