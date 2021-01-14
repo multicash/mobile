@@ -40,12 +40,12 @@
       <view :style="styles.amountContainer">
         <money
           crypto
-          :amount="route.params.amount * 1000000"
+          :amount="route.params.amount * 100000000"
           :style="styles.amount"
         />
         <money
           convert
-          :amount="parseFloat(route.params.amount) || 0"
+          :amount="parseFloat(route.params.amount) * 100000000 || 0"
           :style="styles.calculatedAmount"
         />
       </view>
