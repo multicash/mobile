@@ -31,6 +31,7 @@
           v-if="hasWallets"
           @pay="navigation.navigate('pay')"
           @receive="navigation.navigate('receive')"
+          @scanQR="navigation.navigate('scanQR')"
         />
         <scroll-view
           v-else
@@ -75,8 +76,8 @@
           />
         </scroll-view>
       </view>
-      <view v-if="showLoadingHideContainer" :style="styles.loadingHideContainer" />
     </safe-area-view>
+    <view v-if="showLoadingHideContainer" :style="styles.loadingHideContainer" />
   </view>
 </template>
 
@@ -111,7 +112,7 @@ export default {
     ...mapGetters(['wallets', 'hasWallets', 'isSetup']),
 
     styles () {
-      return stylesStore(this.isDarkScheme, this.insets)
+      return stylesStore(this.isDarkScheme, this.insets, this.hasWallets)
     }
   },
 
@@ -139,6 +140,7 @@ export default {
         return
       }
 
+      console.log(state)
       switch (state) {
         case 'background':
           return this.$authManager.authenticate('app')
@@ -150,7 +152,7 @@ export default {
   }
 }
 
-const stylesStore = (isDarkScheme, insets) => {
+const stylesStore = (isDarkScheme, insets, expand) => {
   return {
     container: {
       flexDirection: 'row',
@@ -172,11 +174,13 @@ const stylesStore = (isDarkScheme, insets) => {
     },
 
     content: {
+      flex: expand ? undefined : 1,
       paddingLeft: 30,
       paddingRight: 30
     },
 
     noWalletContainer: {
+      flex: 1,
       marginBottom: -insets.bottom
     },
 

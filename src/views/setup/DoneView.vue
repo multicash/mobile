@@ -1,5 +1,6 @@
 <template>
   <safe-area-view :style="styles.safeArea">
+    <colors-background />
     <view :style="styles.container">
       <image :style="styles.image1" :source="require('@/assets/checked.png')" />
       <text :style="styles.title">MultiCash is ready</text>
@@ -61,7 +62,7 @@ const stylesStore = (isDarkScheme) => {
     },
 
     title: {
-      color: isDarkScheme ? 'white' : 'black',
+      color: 'white',
       fontSize: 28,
       fontWeight: '800',
       paddingBottom: 10,
@@ -69,7 +70,7 @@ const stylesStore = (isDarkScheme) => {
     },
 
     subtitle: {
-      color: isDarkScheme ? '#b9b9b9' : '#4d4d4d',
+      color: '#e6e6e6',
       fontSize: 16,
       fontWeight: '600',
       textAlign: 'center'

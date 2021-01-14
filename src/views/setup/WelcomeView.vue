@@ -1,6 +1,7 @@
 <template>
   <safe-area-view :style="styles.safeArea">
     <status-bar barStyle="light-content" />
+    <colors-background />
     <view :style="styles.container">
       <image
         :style="styles.logo"

@@ -24,6 +24,10 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+    <string>The devices rear camera is used when scanning for a transaction QR code</string>
+    <key>NSFaceIDUsageDescription</key>
+    <string>If enabled FaceID is used to unlock MultiCash</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

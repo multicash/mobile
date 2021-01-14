@@ -22,6 +22,7 @@
       <secondary-round-button
         icon="qr-code"
         title=""
+        @on-press="$emit('scanQR')"
       />
     </view>
   </view-section>

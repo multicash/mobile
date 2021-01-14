@@ -1,3 +1,4 @@
+// @ts-nocheck
 // eslint-disable-next-line no-use-before-define
 import * as React from 'react'
 import { Easing, Platform } from 'react-native'
@@ -21,6 +22,7 @@ import AuthenticationPinView from '@/views/authentication/PinView.vue'
 
 // Main application views
 import HomeView from '@/views/HomeView.vue'
+import ScanQRView from '@/views/ScanQRView.vue'
 
 // Settings views
 import SettingsOverviewView from '@/views/settings/OverviewView.vue'
@@ -325,6 +327,10 @@ export const AppNavigator = () => {
       <Stack.Screen
         name="add"
         component={Add}
+      />
+      <Stack.Screen
+        name="scanQR"
+        component={ScanQRView}
       />
       <Stack.Screen
         name="pin"

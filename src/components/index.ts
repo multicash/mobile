@@ -40,6 +40,7 @@ import WalletsSection from '@/components/sections/WalletsSection.vue'
 import TableView from '@/components/tables/TableView.vue'
 
 import Card from '@/components/views/Card.vue'
+import ColorsBackground from '@/components/views/ColorsBackground.vue'
 import HeaderView from '@/components/views/HeaderView.vue'
 import RestoreKeyGridView from '@/components/views/RestoreKeyGridView.vue'
 import Spacer from '@/components/views/Spacer.vue'
@@ -57,11 +58,13 @@ Vue.component('rounded-button', RoundedButton)
 Vue.component('secondary-action-button', SecondaryActionButton)
 Vue.component('secondary-round-button', SecondaryRoundButton)
 
+// @ts-ignore
 Vue.component('color-picker', ColorPicker)
 Vue.component('dot-input', DotInput)
 Vue.component('rounded-text-input', RoundedTextInput)
 Vue.component('selector', Selector)
 
+// @ts-ignore
 Vue.component('icon', Icon)
 Vue.component('source-icon', SourceIcon)
 Vue.component('wallet-icon', WalletIcon)
@@ -88,6 +91,7 @@ Vue.component('wallets-section', WalletsSection)
 Vue.component('table-view', TableView)
 
 Vue.component('card', Card)
+Vue.component('colors-background', ColorsBackground)
 Vue.component('header-view', HeaderView)
 Vue.component('restore-key-grid-view', RestoreKeyGridView)
 Vue.component('spacer', Spacer)

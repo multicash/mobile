@@ -1,14 +1,19 @@
 <template>
   <view :style="styles.section">
-    <slot name="title">
-      <text
-        v-if="title !== ''"
-        :style="styles.sectionTitle"
-      >
-        {{ title }}
-      </text>
-    </slot>
-    <slot />
+    <view>
+      <slot />
+    </view>
+    <view :style="styles.sectionHeader">
+      <slot name="title">
+        <text
+          v-if="title !== ''"
+          :style="styles.sectionTitle"
+        >
+          {{ title }}
+        </text>
+      </slot>
+      <slot name="options" />
+    </view>
   </view>
 </template>
 
@@ -38,13 +43,20 @@ export default {
 const stylesStore = (isDarkScheme, titleColor) => {
   return {
     section: {
-      display: 'flex',
-      marginVertical: 20
+      marginVertical: 20,
+      flexDirection: 'column-reverse'
     },
+
+    sectionHeader: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: 10
+    },
+
     sectionTitle: {
       fontSize: 16,
       fontWeight: 'bold',
-      marginBottom: 10,
       color: titleColor || isDarkScheme ? 'white' : 'black'
     }
   }

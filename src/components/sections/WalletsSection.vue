@@ -1,5 +1,20 @@
 <template>
   <view-section :style="styles.flexGrow" title="Wallets">
+    <view slot="options" :style="styles.actionsContainer">
+      <secondary-action-button
+        icon="albums-outline"
+        title=""
+        :style="styles.actionButton"
+        @on-press="$emit('order-wallets')"
+      />
+      <secondary-action-button
+        icon="add-outline"
+        title=""
+        :style="styles.actionButton"
+        @on-press="$emit('add-wallet')"
+      />
+    </view>
+
     <scroll-view
       :style="styles.wallets"
       horizontal
@@ -20,21 +35,6 @@
         />
       </view>
     </scroll-view>
-
-    <view :style="styles.actionsContainer">
-      <secondary-action-button
-        icon="albums-outline"
-        title=""
-        :style="styles.actionButton"
-        @on-press="$emit('order-wallets')"
-      />
-      <secondary-action-button
-        icon="add-outline"
-        title="Add"
-        :style="styles.actionButton"
-        @on-press="$emit('add-wallet')"
-      />
-    </view>
   </view-section>
 </template>
 
@@ -63,12 +63,11 @@ const stylesStore = (isDarkScheme) => {
     },
 
     actionsContainer: {
-      flexDirection: 'row',
-      marginTop: 20
+      flexDirection: 'row'
     },
 
     actionButton: {
-      marginRight: 10
+      marginLeft: 10
     }
   }
 }

@@ -28,6 +28,8 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     container: {
+      flexGrow: 1,
+      justifyContent: 'center',
       paddingHorizontal: 30
     },
 
