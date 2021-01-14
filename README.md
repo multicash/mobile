@@ -27,8 +27,8 @@ npm start
 
 4. Run a simulator.
 ```bash
-// On macOS only for iOS
+# On macOS only for iOS
 npm run ios --simulator='iPhone 12 Pro'
-// or/and on all systems for android
+# or/and on all systems for android
 npm run android
 ```
