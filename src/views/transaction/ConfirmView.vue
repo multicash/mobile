@@ -1,8 +1,9 @@
 <template>
   <view :style="{ flex: 1 }">
     <modal-navigation
-      :title="route.params.isReceive ? 'New request' : 'New payment'"
-      has-back-button
+      :title="isReceive ? 'New request' : 'New payment'"
+      :has-back-button="!payLink"
+      :has-close-button="payLink"
       @on-dismiss="navigation.goBack()"
     />
     <view-background
@@ -16,9 +17,10 @@
           :image="source.image"
           :icon="source.icon"
           :icon-color="source.iconColor"
+          @on-press="selectSourceWallet"
         />
         <icon
-          :name="route.params.isReceive ? 'arrow-back-outline' : 'arrow-forward-outline'"
+          :name="isReceive ? 'arrow-back-outline' : 'arrow-forward-outline'"
           :size="50"
         />
         <source-icon
@@ -34,18 +36,24 @@
       <view :style="styles.amountContainer">
         <money
           crypto
-          :amount="route.params.amount * 100000000"
+          :amount="amount * 100000000"
           :style="styles.amount"
         />
         <money
           convert
-          :amount="(route.params.amount * 100000000) || 0"
+          :amount="(amount * 100000000) || 0"
           :style="styles.calculatedAmount"
         />
+        <text
+          v-if="notEnoughBalance"
+          :style="styles.notEnoughBalanceText">
+          Not enough balance
+        </text>
       </view>
 
       <rounded-button
-        :title="route.params.isReceive && !route.params.target.walletIdentifier ? 'Share request' : 'Send payment'"
+        :disabled="notEnoughBalance"
+        :title="isReceive && !target.walletIdentifier ? 'Share request' : 'Send payment'"
         :style="styles.sendPaymentButton"
         @on-press="proceed"
       />
@@ -61,6 +69,7 @@
 </template>
 
 <script>
+import Constants from '@/support/constants'
 import Locale from '@/support/locale'
 import { Share } from 'react-native'
 
@@ -69,34 +78,71 @@ export default {
 
   data () {
     return {
-      label: ''
+      payLink: false,
+      isReceive: false,
+      walletIdentifier: null,
+      amount: 0,
+      label: '',
+      source: {},
+      target: {}
     }
   },
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme)
+      return stylesStore(this.isDarkScheme, this.notEnoughBalance)
     },
 
-    source () {
-      return this.route.params.source
-    },
-
-    target () {
-      return this.route.params.target
+    notEnoughBalance () {
+      return this.source.amount < (this.amount * Constants.satoshiDivider)
     }
   },
 
+  created () {
+    this.payLink = this.route.params.payLink || false
+    this.isReceive = this.route.params.isReceive || false
+    this.walletIdentifier = this.route.params.walletIdentifier || null
+    this.amount = this.route.params.amount
+    this.label = this.route.params.label || ''
+    this.source = this.route.params.source
+    this.target = this.route.params.target
+  },
+
   methods: {
+    selectSourceWallet () {
+      const unsubscribe = this.navigation.addListener('focus', () => {
+        if (this.route.params.sourceWallet) {
+          this.source.walletIdentifier = this.route.params.sourceWallet.identifier
+          this.source.title = this.route.params.sourceWallet.name
+          this.source.amount = this.route.params.sourceWallet.info.balance.totalAmount
+          this.source.image = this.route.params.sourceWallet.icon
+
+          this.navigation.removeListener('focus', unsubscribe)
+        }
+      })
+
+      this.navigation.navigate('wallets', {
+        goBack: true,
+        returnView: 'confirm'
+      })
+    },
+
     proceed () {
-      if (this.route.params.isReceive) {
-        if (this.route.params.target.walletIdentifier) {
-          return this.navigation.navigate('paying', this.route.params)
+      if (this.isReceive) {
+        if (this.target.walletIdentifier) {
+          return this.navigation.navigate('paying', {
+            payLink: this.payLink,
+            isReceive: this.isReceive,
+            walletIdentifier: this.walletIdentifier,
+            amount: this.amount,
+            source: this.source,
+            target: this.target
+          })
         }
 
-        const wallet = this.$walletManager.getWallet(this.route.params.source.walletIdentifier)
-        const amount = this.getFormattedCrypto(this.route.params.amount, Locale.getCurrentLocale(), 'MCX')
-        let url = `https://multicash.io/pay/${wallet.address}?tag=${wallet.tag}&amount=${this.route.params.amount}`
+        const wallet = this.$walletManager.getWallet(this.source.walletIdentifier)
+        const amount = this.getFormattedCrypto(this.amount, Locale.getCurrentLocale(), 'MCX')
+        let url = `https://multicash.io/pay/${wallet.address}?tag=${wallet.tag}&amount=${this.amount}`
 
         if (this.label !== '') {
           url += '&label=' + this.label
@@ -105,16 +151,23 @@ export default {
         Share.share({
           message: `Would you like to pay me ${amount}: ${url}`
         }).then(() => {
-          this.navigation.navigate(this.route.params.walletIdentifier ? 'wallet' : 'home')
+          this.navigation.navigate(this.walletIdentifier ? 'wallet' : 'home')
         })
       } else {
-        this.navigation.navigate('paying', this.route.params)
+        this.navigation.navigate('paying', {
+          payLink: this.payLink,
+          isReceive: this.isReceive,
+          walletIdentifier: this.walletIdentifier,
+          amount: this.amount,
+          source: this.source,
+          target: this.target
+        })
       }
     }
   }
 }
 
-const stylesStore = (isDarkScheme) => {
+const stylesStore = (isDarkScheme, notEnoughBalance) => {
   return {
     headerContainer: {
       flexDirection: 'row',
@@ -131,14 +184,20 @@ const stylesStore = (isDarkScheme) => {
 
     amount: {
       fontSize: 40,
-      color: '#a014c1',
+      color: notEnoughBalance ? (isDarkScheme ? '#585858' : '#868686') : '#a014c1',
       fontWeight: '600'
     },
 
     calculatedAmount: {
-      color: isDarkScheme ? '#8374b2' : '#4d3f70',
+      color: isDarkScheme
+        ? (notEnoughBalance ? '#3d3d3d' : '#8374b2')
+        : (notEnoughBalance ? '#868686' : '#4d3f70'),
       fontSize: 20,
       fontWeight: 'bold'
+    },
+
+    notEnoughBalanceText: {
+      color: '#c90c0c'
     },
 
     sendPaymentButton: {

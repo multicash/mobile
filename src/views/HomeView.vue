@@ -15,7 +15,7 @@
             transparent-shadow
             @on-press="navigation.navigate('settings')"
           >
-            <icon name="toggle"/>
+            <icon name="cog-outline"/>
           </round-button>
         </view>
         <total-amount-section v-if="hasWallets" />

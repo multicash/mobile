@@ -20,7 +20,7 @@ import React from 'react'
 import { TouchableWithoutFeedback } from 'react-native'
 import { ListItem, Avatar } from 'react-native-elements'
 import DraggableFlatList from 'react-native-draggable-flatlist'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { resolveIcon } from '@/support/walletIcons'
 import { text, subtitle } from '@/styles'
 
@@ -30,13 +30,16 @@ export default {
   components: { DraggableFlatList },
 
   computed: {
+    ...mapGetters(['getDefaultWallet']),
+
     walletsList () {
       return this.orderedWallets.map(wallet => {
         return {
           identifier: wallet.identifier,
           title: wallet.name,
           subtitle: this.formatAmountFromSatoshis(wallet.info.balance.totalAmount, 'en'),
-          leftAvatar: { source: resolveIcon(wallet.icon), size: 40, rounded: false }
+          leftAvatar: { source: resolveIcon(wallet.icon), size: 40, rounded: false },
+          isDefault: this.getDefaultWallet === wallet.identifier
         }
       })
     },
@@ -47,12 +50,13 @@ export default {
   },
 
   methods: {
-    ...mapActions(['updateWalletOrder']),
+    ...mapActions(['updateWalletOrder', 'setDefaultWallet']),
 
     renderList ({ item, index, drag, isActive }) {
       return (
         <TouchableWithoutFeedback
           onPressIn={drag}
+          onLongPress={() => this.setDefaultWallet(item.identifier)}
         >
           <ListItem
             style={this.orderedWallets.length - 1 === index ? undefined : this.styles.item}
@@ -70,6 +74,10 @@ export default {
               <ListItem.Title style={this.styles.itemTitle}>{item.title || undefined}</ListItem.Title>
               <ListItem.Subtitle style={this.styles.itemSubtitle}>{item.subtitle || undefined}</ListItem.Subtitle>
             </ListItem.Content>
+
+            {item.isDefault &&
+            <ListItem.Subtitle style={this.styles.defaultLabel}>default</ListItem.Subtitle>
+            }
 
             <ListItem.Chevron
               color={this.styles.checkedChevron.color}
@@ -112,6 +120,14 @@ const stylesStore = (isDarkScheme) => {
     },
     itemSubtitle: {
       color: subtitle(isDarkScheme).color
+    },
+    defaultLabel: {
+      color: 'purple',
+      fontSize: 10,
+      padding: 2.5,
+      borderWidth: 1,
+      borderColor: 'purple',
+      borderRadius: 5
     },
     checkedChevron: {
       color: isDarkScheme ? '#a96cf5' : '#7200ff'

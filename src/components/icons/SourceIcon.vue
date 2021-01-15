@@ -1,13 +1,18 @@
 <template>
-  <view :style="styles.iconContainer">
-    <view :style="styles.iconCircle">
-      <icon v-if="icon" :name="icon" :size="40" :color="iconColor"/>
-      <wallet-icon v-if="image" :icon="image" :size="40"/>
+  <touchable-opacity
+    :on-press="() => $emit('on-press')"
+    :active-opacity="0.6"
+  >
+    <view :style="styles.iconContainer">
+      <view :style="styles.iconCircle">
+        <icon v-if="icon" :name="icon" :size="40" :color="iconColor"/>
+        <wallet-icon v-if="image" :icon="image" :size="40"/>
+      </view>
+      <text :style="styles.walletTitle">{{ title }}</text>
+      <money v-if="amount" :style="styles.walletAmount" :amount="amount" crypto/>
+      <text v-else> </text>
     </view>
-    <text :style="styles.walletTitle">{{ title }}</text>
-    <money v-if="amount" :style="styles.walletAmount" :amount="amount" crypto/>
-    <text v-else> </text>
-  </view>
+  </touchable-opacity>
 </template>
 
 <script>

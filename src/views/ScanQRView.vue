@@ -10,16 +10,25 @@
       :start="{ x: 0, y: 0 }"
       :end="{ x: 0, y: 0.25 }"
     />
+    <linear-gradient
+      :colors="[ '#00000000', 'rgba(0, 0, 0, 0.75)', '#000' ]"
+      :style="styles.safeArea"
+      :start="{ x: 0, y: 0.75 }"
+      :end="{ x: 0, y: 1 }"
+    />
     <safe-area-view :style="styles.safeArea">
       <view :style="styles.actionsContainer">
         <secondary-round-button
           icon="flash"
           @on-press="toggleFlash"
         />
-        <rounded-button
-          title="Close"
-          @on-press="navigation.goBack()"
-        />
+        <touchable-opacity
+          :on-press="() => navigation.goBack()"
+          :style="styles.closeButton"
+          :active-opacity="0.6"
+        >
+          <text :style="styles.closeButtonText">Close</text>
+        </touchable-opacity>
       </view>
     </safe-area-view>
   </view>
@@ -31,6 +40,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { RNCamera } from 'react-native-camera'
 import QrCodeScanner from 'react-native-qrcode-scanner'
 import PayLinkParser from '@/support/PayLinkParser'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'ScanQRView',
@@ -48,6 +58,8 @@ export default {
   },
 
   computed: {
+    ...mapGetters(['getDefaultWallet']),
+
     styles () {
       return stylesStore()
     }
@@ -56,17 +68,19 @@ export default {
   methods: {
     onRead (qrCode) {
       const qrData = new PayLinkParser(qrCode.data)
-      const sourceWallet = this.$walletManager.getWallet('main-account')
+      const sourceWallet = this.$walletManager.getWallet(this.getDefaultWallet) || this.$walletManager.defaultWallet()
 
       this.navigation.replace('pay', {
         screen: 'confirm',
         params: {
+          payLink: true,
           isReceive: false,
           amount: qrData.get('amount'),
+          label: qrData.get('label'),
           source: {
-            walletIdentifier: 'main-account',
+            walletIdentifier: sourceWallet.identifier,
             title: sourceWallet.name,
-            amount: sourceWallet.info.balance.availableAmount,
+            amount: sourceWallet.info.balance.totalAmount,
             image: sourceWallet.icon
           },
           target: {
@@ -107,6 +121,15 @@ const stylesStore = () => {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center'
+    },
+
+    closeButton: {
+      padding: 20
+    },
+
+    closeButtonText: {
+      color: '#b400ff',
+      fontSize: 16
     }
   }
 }

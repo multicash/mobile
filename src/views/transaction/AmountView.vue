@@ -50,6 +50,7 @@
 <script>
 import { Platform, Keyboard } from 'react-native'
 import constants from '@/support/constants.ts'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'AmountView',
@@ -72,11 +73,13 @@ export default {
     if (this.route.params.walletIdentifier) {
       this.sourceWallet = this.wallet
     } else {
-      this.sourceWallet = this.$walletManager.defaultWallet()
+      this.sourceWallet = this.$walletManager.getWallet(this.getDefaultWallet) || this.$walletManager.defaultWallet()
     }
   },
 
   computed: {
+    ...mapGetters(['getDefaultWallet']),
+
     styles () {
       return stylesStore(this.isDarkScheme, this.keyboardHeight)
     },
