@@ -11,7 +11,11 @@
     <view
       v-for="color in colors"
       :key="color"
-      :style="{ flex: 1, backgroundColor: color }"
+      :style="{
+        flex: 1,
+        backgroundColor: color,
+        height: randomHeights ? Math.floor((Math.random() * (maxHeightPercentage - minHeightPercentage + 1)) + minHeightPercentage) + '%' : undefined
+      }"
     />
   </view>
 </template>
@@ -32,6 +36,23 @@ export default {
         '#0bbcda',
         '#00ade7'
       ]
+    }
+  },
+
+  props: {
+    randomHeights: {
+      type: Boolean,
+      default: false
+    },
+
+    minHeightPercentage: {
+      type: Number,
+      default: 95
+    },
+
+    maxHeightPercentage: {
+      type: Number,
+      default: 100
     }
   }
 }

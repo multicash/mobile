@@ -1,6 +1,6 @@
 <template>
   <view :style="styles.container">
-    <colors-background />
+    <colors-background random-heights/>
     <view :style="styles.contentContainer">
       <slot />
     </view>

@@ -1,5 +1,10 @@
 <template>
   <view-background no-padding>
+    <colors-background
+      random-heights
+      :min-height-percentage="15"
+      :max-height-percentage="20"
+    />
     <modal-navigation
       v-if="showCloseButton"
       has-close-button
