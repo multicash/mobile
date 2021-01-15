@@ -2,8 +2,8 @@
   <view-background no-padding>
     <colors-background
       random-heights
-      :min-height-percentage="15"
-      :max-height-percentage="20"
+      :min-height-percentage="showCloseButton ? 15 : 10"
+      :max-height-percentage="showCloseButton ? 20 : 15"
     />
     <modal-navigation
       v-if="showCloseButton"
