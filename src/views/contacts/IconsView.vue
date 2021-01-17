@@ -6,6 +6,15 @@
       @on-dismiss="navigation.goBack()"
     />
     <view-background no-padding>
+      <view
+        :style="{ margin: 10, marginBottom: 0 }"
+      >
+        <rounded-text-input
+          placeholder="Search an icon"
+          :value="search"
+          @input="search = $event"
+        />
+      </view>
       <flat-list
         :style="styles.flatList"
         :data="icons"
@@ -26,9 +35,27 @@ import { View, Text, TouchableOpacity } from 'react-native'
 export default {
   name: 'IconsView',
 
+  data () {
+    return {
+      search: ''
+    }
+  },
+
   computed: {
     icons () {
-      return Object.keys(Icon.getRawGlyphMap())
+      return Object
+        .keys(Icon.getRawGlyphMap())
+        .filter(icon => {
+          return icon.includes(this.search.toLowerCase())
+        })
+        .filter(icon => {
+          return (
+            !icon.endsWith('-outline') &&
+            !icon.endsWith('-sharp') &&
+            !icon.startsWith('ios-') &&
+            !icon.startsWith('md-')
+          )
+        })
     },
 
     styles () {
