@@ -1,6 +1,6 @@
 <template>
   <view-section title="Actions">
-    <view class="actions">
+    <view :style="styles.actions">
       <action-button
         title="Pay"
         :icon="require('@/assets/send.png')"
@@ -18,29 +18,58 @@
 
     <spacer />
 
-    <view class="actions-secondary">
+    <view :style="styles.actionsSecondary">
       <secondary-round-button
         icon="qr-code"
         title=""
         @on-press="$emit('scanQR')"
       />
+
+      <spacer/>
+
+      <secondary-round-button
+        @on-press="$emit('scanNFC')"
+      >
+        <image
+          :style="styles.nfcImage"
+          :source="require('@/assets/nfc-logo.png')"
+        />
+      </secondary-round-button>
     </view>
   </view-section>
 </template>
 
-<style>
-  .actions {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .actions-secondary {
-    align-items: center;
-  }
-</style>
-
 <script>
 export default {
-  name: 'ActionsSection'
+  name: 'ActionsSection',
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme) => {
+  return {
+    actions: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between'
+    },
+
+    actionsSecondary: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'row'
+    },
+
+    nfcImage: {
+      width: 25,
+      height: 25,
+      resizeMode: 'contain',
+      tintColor: isDarkScheme ? 'white' : 'black'
+    }
+  }
 }
 </script>

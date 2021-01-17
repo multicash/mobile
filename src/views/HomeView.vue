@@ -32,6 +32,7 @@
           @pay="navigation.navigate('pay')"
           @receive="navigation.navigate('receive')"
           @scanQR="navigation.navigate('scanQR')"
+          @scanNFC="scanNFC"
         />
         <scroll-view
           v-else
@@ -87,6 +88,7 @@ import { AppState } from 'react-native'
 import { mapGetters } from 'vuex'
 import ManagerConfig from '@/wallet/ManagerConfig.ts'
 import AppHeaderView from '@/components/views/AppHeaderView'
+import NfcManager, { NfcEvents } from 'react-native-nfc-manager'
 
 export default {
   name: 'HomeView',
@@ -132,6 +134,13 @@ export default {
     this.$walletManager.boot(new ManagerConfig(this.wallets)).then(() => {
       this.$forceUpdate()
     })
+
+    NfcManager.start()
+    NfcManager.setEventListener(NfcEvents.DiscoverTag, tag => {
+      console.warn('tag', tag)
+      NfcManager.setAlertMessageIOS('I got your tag!')
+      NfcManager.unregisterTagEvent().catch(() => 0)
+    })
   },
 
   methods: {
@@ -147,6 +156,15 @@ export default {
         case 'inactive':
         case 'active':
         default:
+      }
+    },
+
+    async scanNFC () {
+      try {
+        await NfcManager.registerTagEvent()
+      } catch (ex) {
+        console.warn('ex', ex)
+        NfcManager.unregisterTagEvent().catch(() => 0)
       }
     }
   }

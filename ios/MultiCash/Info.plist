@@ -28,6 +28,8 @@
     <string>The devices rear camera is used when scanning for a transaction QR code</string>
     <key>NSFaceIDUsageDescription</key>
     <string>If enabled FaceID is used to unlock MultiCash</string>
+    <key>NFCReaderUsageDescription</key>
+    <string>MultiCash reads NFC tags to populate a transaction</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
