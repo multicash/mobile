@@ -28,6 +28,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { AppNavigator, SetupNavigator } from '@/navigation'
 import Vue from 'vue-native-core'
 import { mapGetters, mapActions } from 'vuex'
+import Vuelidate from 'vuelidate'
 import store from '@/store'
 import AuthManager from '@/plugins/AuthManager'
 import EventBus from '@/plugins/EventBus'
@@ -37,6 +38,7 @@ const Stack = createStackNavigator()
 const StackNavigator = Stack.Navigator
 const StackScreen = Stack.Screen
 
+Vue.use(Vuelidate)
 Vue.use(WalletManager, { store })
 Vue.use(EventBus)
 Vue.use(AuthManager)

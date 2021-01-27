@@ -22,7 +22,7 @@ import { ListItem, Avatar } from 'react-native-elements'
 import DraggableFlatList from 'react-native-draggable-flatlist'
 import { mapActions, mapGetters } from 'vuex'
 import { resolveIcon } from '@/support/walletIcons'
-import { text, subtitle } from '@/styles'
+import { text, subtitle } from '@/support/styles'
 
 export default {
   name: 'OrderWalletsView',

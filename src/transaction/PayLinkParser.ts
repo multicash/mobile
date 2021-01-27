@@ -11,6 +11,26 @@ export default class PayLinkParser {
     return this.params[key] || null
   }
 
+  public getPayParamsWithSource (sourceWallet: any, iconName: string, iconColor: string): object {
+    return {
+      payLink: true,
+      isReceive: false,
+      amount: this.get('amount'),
+      label: this.get('label'),
+      source: {
+        walletIdentifier: sourceWallet.identifier,
+        title: sourceWallet.name,
+        amount: sourceWallet.info.balance.totalAmount,
+        image: sourceWallet.icon
+      },
+      target: {
+        title: this.get('tag'),
+        icon: iconName,
+        iconColor: iconColor
+      }
+    }
+  }
+
   protected parseParams (payLink: string): object {
     const paramsString = payLink.split('?')[1]
     const paramsArrayString = paramsString.split('&')

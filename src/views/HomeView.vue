@@ -85,10 +85,10 @@
 <script>
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { AppState } from 'react-native'
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import ManagerConfig from '@/wallet/ManagerConfig.ts'
 import AppHeaderView from '@/components/views/AppHeaderView'
-import NfcManager, { NfcEvents } from 'react-native-nfc-manager'
+import PayLinkParser from '@/transaction/PayLinkParser'
 
 export default {
   name: 'HomeView',
@@ -134,16 +134,11 @@ export default {
     this.$walletManager.boot(new ManagerConfig(this.wallets)).then(() => {
       this.$forceUpdate()
     })
-
-    NfcManager.start()
-    NfcManager.setEventListener(NfcEvents.DiscoverTag, tag => {
-      console.warn('tag', tag)
-      NfcManager.setAlertMessageIOS('I got your tag!')
-      NfcManager.unregisterTagEvent().catch(() => 0)
-    })
   },
 
   methods: {
+    ...mapActions(['startNfcTagReader']),
+
     onAppStateChange (state) {
       if (!this.isSetup) {
         return
@@ -160,12 +155,15 @@ export default {
     },
 
     async scanNFC () {
-      try {
-        await NfcManager.registerTagEvent()
-      } catch (ex) {
-        console.warn('ex', ex)
-        NfcManager.unregisterTagEvent().catch(() => 0)
-      }
+      this.startNfcTagReader().then(tag => {
+        const payLink = new PayLinkParser(tag)
+        const sourceWallet = this.$walletManager.getWallet(this.getDefaultWallet) || this.$walletManager.defaultWallet()
+
+        this.navigation.navigate('pay', {
+          screen: 'confirm',
+          params: payLink.getPayParamsWithSource(sourceWallet, 'pricetags', '#0027da')
+        })
+      })
     }
   }
 }

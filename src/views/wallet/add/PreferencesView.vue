@@ -14,7 +14,7 @@
 
       <view v-if="!route.params.restore">
         <input-description>Choose a wallet tag which will be shareable and enables other MultiCash users to easily recognize your account.</input-description>
-        <rounded-text-input title="Wallet tag" placeholder="@myWalletTag" :value="tag" @input="tag = $event"/>
+        <rounded-text-input title="Wallet tag" placeholder="myWalletTag" :value="tag" @input="tag = $event"/>
 
         <spacer />
       </view>
@@ -33,6 +33,7 @@
     </view-background>
 
     <rounded-button
+      v-if="!$v.$invalid"
       :style="styles.proceedButton"
       title="Proceed"
       @on-press="proceed"
@@ -42,6 +43,7 @@
 
 <script>
 import constants from '@/support/constants'
+import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 
 export default {
   name: 'PreferencesView',
@@ -56,9 +58,27 @@ export default {
     }
   },
 
+  validations: {
+    name: {
+      required,
+      minLength: minLength(2)
+    },
+    tag: {
+      required,
+      minLength: minLength(8),
+      maxLength: maxLength(25)
+    }
+  },
+
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
+    }
+  },
+
+  created () {
+    if (this.route.params.restore) {
+      this.tag = '12345678'
     }
   },
 

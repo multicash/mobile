@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import { subtitle, text } from '@/styles'
+import { subtitle, text } from '@/support/styles'
 
 export default {
   name: 'OverviewView',

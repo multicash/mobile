@@ -39,7 +39,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { RNCamera } from 'react-native-camera'
 import QrCodeScanner from 'react-native-qrcode-scanner'
-import PayLinkParser from '@/support/PayLinkParser'
+import PayLinkParser from '@/transaction/PayLinkParser'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -72,23 +72,7 @@ export default {
 
       this.navigation.replace('pay', {
         screen: 'confirm',
-        params: {
-          payLink: true,
-          isReceive: false,
-          amount: qrData.get('amount'),
-          label: qrData.get('label'),
-          source: {
-            walletIdentifier: sourceWallet.identifier,
-            title: sourceWallet.name,
-            amount: sourceWallet.info.balance.totalAmount,
-            image: sourceWallet.icon
-          },
-          target: {
-            title: qrData.get('tag'),
-            icon: 'qr-code',
-            iconColor: '#3edd8a'
-          }
-        }
+        params: qrData.getPayParamsWithSource(sourceWallet, 'qr-code', '#3edd8a')
       })
     },
 

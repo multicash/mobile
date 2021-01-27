@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { cards, text } from '@/styles'
+import { cards, text } from '@/support/styles'
 import WalletIcon from '@/components/icons/WalletIcon'
 import Money from '@/components/labels/Money'
 

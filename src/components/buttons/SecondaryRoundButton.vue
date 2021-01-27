@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { cards, text } from '@/styles'
+import { cards, text } from '@/support/styles'
 
 export default {
   name: 'SecondaryRoundButton',
