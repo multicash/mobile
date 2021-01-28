@@ -3,12 +3,12 @@
     <text :style="styles.totalAmountTitle">Total Value</text>
     <money
       crypto
-      :amount="1398345454400000"
+      :amount="totalAmount"
       :style="styles.totalAmount"
     />
     <money
       convert
-      :amount="1398345454400000"
+      :amount="totalAmount"
       :style="styles.totalFiatAmount"
     />
   </view>
@@ -21,6 +21,10 @@ export default {
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
+    },
+
+    totalAmount () {
+      return this.wallets.map(wallet => wallet.info.balance.totalAmount).reduce((a, b) => a + b, 0)
     }
   }
 }

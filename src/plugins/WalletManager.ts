@@ -31,6 +31,10 @@ const plugin: PluginFunction<any> = function (vue: VueConstructor, options: any)
         return this.$walletManager.getWallet(this.route.params.walletIdentifier)
       },
 
+      wallets (): Wallet[] {
+        return this.$walletManager.getWallets()
+      },
+
       orderedWallets (): Wallet[] {
         return this.$walletManager.getOrderedWallets()
       }

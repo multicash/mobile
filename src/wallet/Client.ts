@@ -8,9 +8,9 @@ import SendMaxInfo from '@/wallet/models/SendMaxInfo'
 import Credentials, { CredentialsInterface } from '@/wallet/Credentials'
 
 const exampleBalance: Balance = {
-  totalAmount: 12346800000000,
+  totalAmount: 1234567800000,
   lockedAmount: 12,
-  totalConfirmedAmount: 12345600000000,
+  totalConfirmedAmount: 1234567800000,
   lockedConfirmedAmount: 12,
   availableAmount: 123456,
   availableConfirmedAmount: 0,
@@ -18,7 +18,7 @@ const exampleBalance: Balance = {
     {
       address: 'M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De',
       path: 'm/1/1',
-      amount: 12345600000000
+      amount: 1234567800000
     }
   ]
 }
