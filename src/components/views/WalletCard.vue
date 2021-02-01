@@ -19,7 +19,7 @@
     <view :style="styles.moneyView">
       <money
         crypto
-        :amount="value.info.balance.totalAmount"
+        :amount="value.totalAmount"
         :style="styles.walletCardAmount"
       />
     </view>
@@ -27,7 +27,7 @@
     <view :style="styles.moneyView">
       <money
         convert
-        :amount="value.info.balance.totalAmount"
+        :amount="value.totalAmount"
         :style="styles.walletCardFiatAmount"
       />
     </view>

@@ -1,4 +1,4 @@
-import Client from '@/wallet/Client'
+import Client from 'bitcore-wallet-client'
 import Wallet from '@/wallet/Wallet'
 import ManagerConfig, { WalletConfigItem } from '@/wallet/ManagerConfig'
 import constants from '@/support/constants'
@@ -133,17 +133,33 @@ export default class WalletManager {
     return this.tempWalletStore[identifier] || null
   }
 
+  public generateKey (): object {
+    return new Client.Key({
+      seedType: 'new'
+    })
+  }
+
   protected generateWalletIdentifier (): string {
     return UUID.create()
   }
 
   protected getClient (walletConfig: WalletConfigItem): Client {
+    const words = walletConfig.restoreKey
+    const key = new Client.Key({ seedData: words, seedType: 'mnemonic' })
+
+    const credentials = key.createCredentials(null, {
+      coin: walletConfig.coin,
+      network: walletConfig.network,
+      account: 0,
+      n: 1
+    })
+
     const bitcoreClient = new Client({
-      baseUrl: walletConfig.apiEndpoint || constants.bitcoreClientApi,
+      baseUrl: 'http://localhost:3000/bws/api', // walletConfig.apiEndpoint || constants.bitcoreClientApi,
       verbose: false
     })
 
-    bitcoreClient.seedFromMnemonic(walletConfig.restoreKey, walletConfig)
+    bitcoreClient.fromObj(credentials)
 
     return bitcoreClient
   }
@@ -174,6 +190,7 @@ export default class WalletManager {
       }
     }
 
+    // @ts-ignore
     this.ticker = setInterval(fetch, 30000)
 
     fetch()

@@ -42,6 +42,10 @@ export default {
 
     removeFromWalletOrder (context: Store<WalletOrderState>, walletIdentifier: string): void {
       context.commit('REMOVE_FROM_WALLET_ORDER', walletIdentifier)
+    },
+
+    removeWalletOrder (context: Store<WalletOrderState>): void {
+      context.state.order.forEach(walletIdentifier => context.commit('REMOVE_FROM_WALLET_ORDER', walletIdentifier))
     }
   },
 

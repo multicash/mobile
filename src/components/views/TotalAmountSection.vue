@@ -24,7 +24,7 @@ export default {
     },
 
     totalAmount () {
-      return this.wallets.map(wallet => wallet.info.balance.totalAmount).reduce((a, b) => a + b, 0)
+      return this.wallets.map(wallet => wallet.totalAmount).reduce((a, b) => a + b, 0)
     }
   }
 }

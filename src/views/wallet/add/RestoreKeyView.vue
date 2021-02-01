@@ -42,20 +42,7 @@ export default {
 
   data () {
     return {
-      words: [
-        'one',
-        'two',
-        'three',
-        'four',
-        'five',
-        'six',
-        'seven',
-        'eight',
-        'nine',
-        'ten',
-        'eleven',
-        'twelve'
-      ],
+      words: [],
 
       wordsAreBackedUp: false
     }
@@ -65,6 +52,10 @@ export default {
     styles () {
       return stylesStore(this.isDarkScheme)
     }
+  },
+
+  created () {
+    this.words = this.$walletManager.generateKey().toObj().mnemonic.split(' ')
   },
 
   methods: {

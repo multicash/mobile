@@ -111,7 +111,7 @@ export default {
         source: {
           walletIdentifier: this.sourceWallet.identifier,
           title: this.sourceWallet.name,
-          amount: this.sourceWallet.info.balance.totalAmount,
+          amount: this.sourceWallet.totalAmount,
           image: this.sourceWallet.icon
         },
         isReceive: this.route.params.isReceive

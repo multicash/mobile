@@ -23,12 +23,12 @@
         <view :style="styles.amountContainer">
           <money
             crypto
-            :amount="wallet.info.balance.totalAmount"
+            :amount="wallet.totalAmount"
             :style="styles.amount"
           />
           <money
             convert
-            :amount="wallet.info.balance.totalAmount"
+            :amount="wallet.totalAmount"
             :style="styles.fiatAmount"
           />
         </view>

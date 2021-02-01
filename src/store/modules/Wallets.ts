@@ -52,6 +52,12 @@ const actions = {
     }
 
     return null
+  },
+
+  removeAllWallets (context: Store<WalletConfigItem[]>): void {
+    for (const wallet of context.state) {
+      context.commit('REMOVE_WALLET', wallet)
+    }
   }
 }
 

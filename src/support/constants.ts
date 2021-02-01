@@ -8,5 +8,7 @@ export default {
   satoshiDivider: 100000000,
   decimalPerSatoshi: 8,
   defaultCurrencyCode: 'USD',
+  defaultCoin: 'btc',
+  defaultNetwork: 'livenet',
   paperKeyLength: 12
 }

@@ -37,7 +37,7 @@ export default {
         return {
           identifier: wallet.identifier,
           title: wallet.name,
-          subtitle: this.formatAmountFromSatoshis(wallet.info.balance.totalAmount, 'en'),
+          subtitle: this.formatAmountFromSatoshis(wallet.totalAmount, 'en'),
           leftAvatar: { source: resolveIcon(wallet.icon), size: 40, rounded: false },
           isDefault: this.getDefaultWallet === wallet.identifier
         }

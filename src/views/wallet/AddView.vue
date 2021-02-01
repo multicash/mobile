@@ -6,7 +6,7 @@
       @on-dismiss="navigation.goBack()"
     />
 
-    <table-view :sections="data" :header="renderTableHeader"/>
+    <table-view :sections="tableItems" :header="renderTableHeader"/>
 
   </view-background>
 </template>
@@ -19,7 +19,7 @@ export default {
 
   data () {
     return {
-      data: [
+      tableItems: [
         {
           title: 'Ways to add a wallet',
           data: [

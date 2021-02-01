@@ -22,7 +22,11 @@ module.exports = (async () => {
       })
     },
     resolver: {
-      sourceExts: [...sourceExts, 'vue']
+      sourceExts: [...sourceExts, 'vue'],
+      extraNodeModules: {
+        randombytes: require.resolve('./src/support/randombytes.ts'),
+        crypto: require.resolve('crypto-browserify')
+      }
     }
   }
 })()

@@ -119,6 +119,10 @@ export default {
                     this.$walletManager.removeWallet(wallet)
                   }, 250)
                 })
+
+                this.setDefaultWallet(null)
+                this.removeAllWallets()
+                this.removeWalletOrder()
               }
             },
             {
@@ -145,7 +149,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['updateIsSetup', 'removeAllWallets', 'addExamplesWallets']),
+    ...mapActions(['updateIsSetup', 'setDefaultWallet', 'removeAllWallets', 'removeWalletOrder']),
 
     renderTableHeader (isDarkScheme) {
       return TableHeaderView(

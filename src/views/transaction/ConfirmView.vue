@@ -114,7 +114,7 @@ export default {
         if (this.route.params.sourceWallet) {
           this.source.walletIdentifier = this.route.params.sourceWallet.identifier
           this.source.title = this.route.params.sourceWallet.name
-          this.source.amount = this.route.params.sourceWallet.info.balance.totalAmount
+          this.source.amount = this.route.params.sourceWallet.totalAmount
           this.source.image = this.route.params.sourceWallet.icon
 
           this.navigation.removeListener('focus', unsubscribe)

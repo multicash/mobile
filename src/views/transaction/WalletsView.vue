@@ -30,7 +30,7 @@ export default {
             .map(wallet => {
               return {
                 title: wallet.name,
-                subtitle: this.formatAmountFromSatoshis(wallet.info.balance.totalAmount, 'en'),
+                subtitle: this.formatAmountFromSatoshis(wallet.totalAmount, 'en'),
                 leftAvatar: { source: resolveIcon(wallet.icon), size: 40, rounded: false },
                 onPress: () => this.navigate(wallet)
               }
@@ -50,7 +50,7 @@ export default {
             target: {
               walletIdentifier: wallet.identifier,
               title: wallet.name,
-              amount: wallet.info.balance.totalAmount,
+              amount: wallet.totalAmount,
               image: wallet.icon
             },
             ...this.route.params

@@ -1,4 +1,4 @@
-import Client from '@/wallet/Client'
+import Client from 'bitcore-wallet-client'
 import Info from '@/wallet/models/Info'
 import Balance, { BalanceAddress } from '@/wallet/models/Balance'
 import Tx from '@/wallet/models/Tx'
@@ -17,6 +17,16 @@ export default class Wallet {
   public info?: Info
   public transactions: Tx[] = []
   public addresses: AddressInfo[] = []
+
+  get totalAmount (): number {
+    const fallback = 0
+
+    try {
+      return this.info ? this.info.balance.totalAmount : fallback
+    } catch (e) {
+      return fallback
+    }
+  }
 
   constructor (identifier: string, name: string, icon: string, tag: string, client: Client, address?: string) {
     this.identifier = identifier
@@ -47,7 +57,7 @@ export default class Wallet {
 
   public open (): Promise<Info> {
     return new Promise((resolve, reject) => {
-      this.client.openWallet((error: Error|null, info: Info|null) => {
+      this.client.openWallet({}, (error: Error|null, info: Info|null) => {
         if (error || info === null) {
           return reject(error)
         }
@@ -129,7 +139,7 @@ export default class Wallet {
 
         console.log(`wallet create tx proposal: ${this.identifier}`)
         resolve(txp)
-      })
+      }, null)
     })
   }
 
@@ -148,7 +158,7 @@ export default class Wallet {
 
   public signTxProposal (proposal: TxProposalResponse, passphrase: string): Promise<TxProposalResponse> {
     return new Promise((resolve, reject) => {
-      this.client.signTxProposal(proposal, passphrase, (error: Error|null, txp: TxProposalResponse|null) => {
+      this.client.signTxProposalFromAirGapped(proposal, passphrase, 1, 1, (error: Error|null, txp: TxProposalResponse|null) => {
         if (error || txp === null) {
           return reject(error)
         }

@@ -102,8 +102,8 @@ export default {
         name: this.name,
         tag: this.tag,
         icon: this.icon.name,
-        coin: 'mcx',
-        network: 'livenet',
+        coin: constants.defaultCoin,
+        network: constants.defaultNetwork,
         apiEndpoint: constants.bitcoreClientApi,
         restoreKey: ''
       })
