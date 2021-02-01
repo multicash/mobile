@@ -52,6 +52,8 @@
 </template>
 
 <script>
+import { Alert } from 'react-native'
+
 export default {
   name: 'CreateView',
 
@@ -68,6 +70,19 @@ export default {
     this.$walletManager.addWallet(walletConfig).then(wallet => {
       this.created = true
       this.newWallet = wallet
+    }).catch(error => {
+      Alert.alert(
+        'Creation failed',
+        `An error was raised while creating your MultiCash with the following message: ${error.message}`,
+        [
+          {
+            text: 'Ok',
+            onPress: () => {
+              this.navigation.goBack()
+            }
+          }
+        ]
+      )
     })
   },
 

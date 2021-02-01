@@ -1,7 +1,6 @@
 import Client from 'bitcore-wallet-client'
 import Wallet from '@/wallet/Wallet'
 import ManagerConfig, { WalletConfigItem } from '@/wallet/ManagerConfig'
-import constants from '@/support/constants'
 import { Store } from 'vuex'
 import { WalletOrderState } from '@/store/modules/WalletOrder'
 import UUID from '@/support/UUID'
