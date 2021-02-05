@@ -14,7 +14,7 @@
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/compat": "^5.2.8",
-    "@react-navigation/native": "^5.7.6",
+    "@react-navigation/native": "^5.9.0",
     "@react-navigation/stack": "^5.9.2",
     "bitcore-wallet-client": "^8.23.1",
     "intl": "1.2.5",
