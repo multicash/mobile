@@ -71,6 +71,8 @@ export default {
       this.created = true
       this.newWallet = wallet
     }).catch(error => {
+      console.error(error)
+
       Alert.alert(
         'Creation failed',
         `An error was raised while creating your MultiCash with the following message: ${error.message}`,

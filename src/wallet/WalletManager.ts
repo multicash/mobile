@@ -1,9 +1,11 @@
-import Client from 'bitcore-wallet-client'
+import Client from 'multicore-wallet-client'
 import Wallet from '@/wallet/Wallet'
 import ManagerConfig, { WalletConfigItem } from '@/wallet/ManagerConfig'
 import { Store } from 'vuex'
 import { WalletOrderState } from '@/store/modules/WalletOrder'
 import UUID from '@/support/UUID'
+import AddressInfo from '@/wallet/models/AddressInfo'
+import constants from '@/support/constants'
 
 export default class WalletManager {
   protected walletStore: Store<WalletConfigItem[]>
@@ -24,16 +26,21 @@ export default class WalletManager {
 
     for (const walletConfig of config.wallets) {
       try {
-        const bitcoreClient = this.getClient(walletConfig)
+        const multicoreClient = this.getClient(walletConfig)
         const wallet = new Wallet(
           walletConfig.identifier || this.generateWalletIdentifier(),
           walletConfig.name,
           walletConfig.icon,
           walletConfig.tag,
-          bitcoreClient,
+          multicoreClient,
           walletConfig.address
         )
         await wallet.open()
+
+        if (undefined === wallet.address) {
+          const addressInfo = await wallet.getAddress()
+          wallet.address = addressInfo.address
+        }
 
         this.wallets.push(wallet)
         console.log(`wallet opened: ${wallet.identifier}`)
@@ -67,13 +74,13 @@ export default class WalletManager {
   }
 
   public async addWallet (walletConfig: WalletConfigItem): Promise<Wallet> {
-    const bitcoreClient = this.getClient(walletConfig)
+    const multicoreClient = this.getClient(walletConfig)
     const wallet = new Wallet(
       walletConfig.identifier || this.generateWalletIdentifier(),
       walletConfig.name,
       walletConfig.icon,
       walletConfig.tag,
-      bitcoreClient
+      multicoreClient
     )
 
     await wallet.create(walletConfig.name, walletConfig.name, 1, 1, {
@@ -82,6 +89,9 @@ export default class WalletManager {
       singleAddress: walletConfig.singleAddress
     })
     await wallet.open()
+    const addressInfo = await wallet.createAddress()
+    walletConfig.address = wallet.address = addressInfo.address
+
     this.walletStore.commit('ADD_WALLET', walletConfig)
     this.walletOrderStore.commit('ADD_TO_WALLET_ORDER', walletConfig.identifier)
     this.wallets.push(wallet)
@@ -153,14 +163,14 @@ export default class WalletManager {
       n: 1
     })
 
-    const bitcoreClient = new Client({
-      baseUrl: 'http://localhost:3000/bws/api', // walletConfig.apiEndpoint || constants.bitcoreClientApi,
+    const multicoreClient = new Client({
+      baseUrl: walletConfig.apiEndpoint || constants.multicoreWalletServiceApi,
       verbose: false
     })
 
-    bitcoreClient.fromObj(credentials)
+    multicoreClient.fromObj(credentials)
 
-    return bitcoreClient
+    return multicoreClient
   }
 
   protected async getWalletConfig (identifier: string): Promise<WalletConfigItem> {
@@ -192,7 +202,9 @@ export default class WalletManager {
     // @ts-ignore
     this.ticker = setInterval(fetch, 30000)
 
-    fetch()
+    fetch().catch(e => {
+      console.error(`Wallet ticker error: ${e}`)
+    })
   }
 
   protected stopTicker () {

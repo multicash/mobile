@@ -1,4 +1,4 @@
-import Client from 'bitcore-wallet-client'
+import Client from 'multicore-wallet-client'
 import Info from '@/wallet/models/Info'
 import Balance, { BalanceAddress } from '@/wallet/models/Balance'
 import Tx from '@/wallet/models/Tx'
