@@ -21,21 +21,30 @@
         label="Its extremely smart to export your wallet restore key at this moment."
         type="warning"
       >
-        <rounded-button title="Export" @on-press="navigation.navigate('home')"/>
+        <rounded-button
+          title="Export"
+          @on-press="navigation.replace('wallet', { screen: 'export', params: { walletIdentifier: newWallet.identifier } })"
+        />
       </action-notification>
 
       <action-notification
         title="Receive MCX"
         label="Start filling your wallet with value by receiving some MCX."
       >
-        <rounded-button title="Receive" @on-press="navigation.navigate('home')"/>
+        <rounded-button
+          title="Receive"
+          @on-press="navigation.replace('receive', { walletIdentifier: newWallet.identifier })"
+        />
       </action-notification>
 
       <action-notification
         title="Or..."
         label="We can also just show you your new wallet where you can do lots more."
       >
-        <rounded-button title="To wallet" @on-press="navigation.navigate('home')"/>
+        <rounded-button
+          title="To wallet"
+          @on-press="navigation.replace('wallet', { screen: 'overview', params: { walletIdentifier: newWallet.identifier } })"
+        />
       </action-notification>
 
     </view>

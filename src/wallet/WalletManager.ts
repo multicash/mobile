@@ -1,11 +1,11 @@
-import Client from 'multicore-wallet-client'
+import Client from '@/wallet/Client'
 import Wallet from '@/wallet/Wallet'
 import ManagerConfig, { WalletConfigItem } from '@/wallet/ManagerConfig'
 import { Store } from 'vuex'
 import { WalletOrderState } from '@/store/modules/WalletOrder'
 import UUID from '@/support/UUID'
-import AddressInfo from '@/wallet/models/AddressInfo'
 import constants from '@/support/constants'
+import ClientInterface from '@/wallet/ClientInterface'
 
 export default class WalletManager {
   protected walletStore: Store<WalletConfigItem[]>
@@ -152,7 +152,7 @@ export default class WalletManager {
     return UUID.create()
   }
 
-  protected getClient (walletConfig: WalletConfigItem): Client {
+  protected getClient (walletConfig: WalletConfigItem): ClientInterface {
     const words = walletConfig.restoreKey
     const key = new Client.Key({ seedData: words, seedType: 'mnemonic' })
 

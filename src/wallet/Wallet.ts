@@ -1,14 +1,14 @@
-import Client from 'multicore-wallet-client'
 import Info from '@/wallet/models/Info'
 import Balance, { BalanceAddress } from '@/wallet/models/Balance'
 import Tx from '@/wallet/models/Tx'
 import { TxProposal, TxProposalResponse } from '@/wallet/models/TxProposal'
 import AddressInfo from '@/wallet/models/AddressInfo'
 import SendMaxInfo from '@/wallet/models/SendMaxInfo'
-import { CredentialsInterface } from '@/wallet/Credentials'
+import CredentialsInterface from '@/wallet/models/CredentialsInterface'
+import ClientInterface from '@/wallet/ClientInterface'
 
 export default class Wallet {
-  protected client: Client
+  protected client: ClientInterface
   public readonly identifier: string
   public name: string
   public icon: string
@@ -28,7 +28,7 @@ export default class Wallet {
     }
   }
 
-  constructor (identifier: string, name: string, icon: string, tag: string, client: Client, address?: string) {
+  constructor (identifier: string, name: string, icon: string, tag: string, client: ClientInterface, address?: string) {
     this.identifier = identifier
     this.name = name
     this.icon = icon
@@ -158,14 +158,15 @@ export default class Wallet {
 
   public signTxProposal (proposal: TxProposalResponse, passphrase: string): Promise<TxProposalResponse> {
     return new Promise((resolve, reject) => {
-      this.client.signTxProposalFromAirGapped(proposal, passphrase, 1, 1, (error: Error|null, txp: TxProposalResponse|null) => {
-        if (error || txp === null) {
-          return reject(error)
-        }
-
-        console.log(`wallet sign tx proposal: ${this.identifier}`)
-        resolve(txp)
-      })
+      resolve(proposal)
+      // this.client.signTxProposalFromAirGapped(proposal, passphrase, 1, 1, (error: Error|null, txp: TxProposalResponse|null) => {
+      //   if (error || txp === null) {
+      //     return reject(error)
+      //   }
+      //
+      //   console.log(`wallet sign tx proposal: ${this.identifier}`)
+      //   resolve(txp)
+      // })
     })
   }
 
@@ -262,7 +263,7 @@ export default class Wallet {
     }
   }
 
-  public getClient (): Client {
+  public getClient (): ClientInterface {
     return this.client
   }
 

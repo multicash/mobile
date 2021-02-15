@@ -2,6 +2,7 @@
   <view-section :style="styles.flexGrow" title="Wallets">
     <view slot="options" :style="styles.actionsContainer">
       <secondary-action-button
+        v-if="orderedWallets.length > 1"
         icon="albums-outline"
         title=""
         :style="styles.actionButton"
