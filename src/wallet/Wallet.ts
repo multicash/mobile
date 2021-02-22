@@ -7,6 +7,12 @@ import SendMaxInfo from '@/wallet/models/SendMaxInfo'
 import CredentialsInterface from '@/wallet/models/CredentialsInterface'
 import ClientInterface from '@/wallet/ClientInterface'
 
+const Log = Logger.extend('WALLET')
+
+const createLogMessage = (message: string, parent: Wallet) => {
+  return `${message} (coin: ${(parent.info?.wallet.coin || '').toUpperCase()}, network: ${(parent.info?.wallet.network || '').toUpperCase()}, id: ${parent.identifier})`
+}
+
 export default class Wallet {
   protected client: ClientInterface
   public readonly identifier: string
@@ -64,7 +70,7 @@ export default class Wallet {
 
         this.info = info
 
-        console.log(`wallet opened: ${this.identifier}`)
+        Log.info(createLogMessage('Opened', this))
         resolve(info)
       })
     })
@@ -79,7 +85,7 @@ export default class Wallet {
 
         this.info = info
 
-        console.log(`wallet status fetched: ${this.identifier}`)
+        Log.info(createLogMessage('Status fetched', this))
         resolve(info)
       })
     })
@@ -92,7 +98,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        console.log(`wallet balance fetched: ${this.identifier}`)
+        Log.info(createLogMessage('Balance fetched', this))
         resolve(balance)
       })
     })
@@ -105,7 +111,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        console.log(`wallet addresses scanned: ${this.identifier}`)
+        Log.info(createLogMessage('Addresses scanned', this))
         resolve(true)
       })
     })
@@ -120,7 +126,7 @@ export default class Wallet {
 
         this.transactions = txs
 
-        console.log(`wallet tx history fetched: ${this.identifier}`)
+        Log.info(createLogMessage('TX history fetched', this))
         resolve(txs)
       })
     })
@@ -137,7 +143,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        console.log(`wallet create tx proposal: ${this.identifier}`)
+        Log.info(createLogMessage('Created tx proposal', this))
         resolve(txp)
       }, null)
     })
@@ -150,7 +156,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        console.log(`wallet publish tx proposal: ${this.identifier}`)
+        Log.info(createLogMessage('Published tx proposal', this))
         resolve(txp)
       })
     })
@@ -164,7 +170,7 @@ export default class Wallet {
       //     return reject(error)
       //   }
       //
-      //   console.log(`wallet sign tx proposal: ${this.identifier}`)
+      //   Log.info(createLogMessage('Signed tx proposal', this))
       //   resolve(txp)
       // })
     })
@@ -177,7 +183,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        console.log(`wallet broadcast tx proposal: ${this.identifier}`)
+        Log.info(createLogMessage('Broadcasted tx proposal', this))
         resolve(txp)
       })
     })
@@ -192,7 +198,7 @@ export default class Wallet {
 
         this.addresses.unshift(addressInfo)
 
-        console.log(`wallet address created: ${this.identifier}`)
+        Log.info(createLogMessage('Address created', this))
         resolve(addressInfo)
       })
     })
@@ -207,7 +213,7 @@ export default class Wallet {
 
         this.addresses = addresses
 
-        console.log(`wallet main addresses fetched: ${this.identifier}`)
+        Log.info(createLogMessage('Main addresses fetched', this))
         resolve(addresses)
       })
     })
@@ -243,7 +249,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        console.log(`wallet send max info fetched: ${this.identifier}`)
+        Log.info(createLogMessage('Send max info fetched', this))
         resolve(info)
       })
     })

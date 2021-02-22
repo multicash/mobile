@@ -7,6 +7,8 @@ import UUID from '@/support/UUID'
 import constants from '@/support/constants'
 import ClientInterface from '@/wallet/ClientInterface'
 
+const Log = Logger.extend('WM')
+
 export default class WalletManager {
   protected walletStore: Store<WalletConfigItem[]>
   protected walletOrderStore: Store<WalletOrderState>
@@ -43,9 +45,9 @@ export default class WalletManager {
         }
 
         this.wallets.push(wallet)
-        console.log(`wallet opened: ${wallet.identifier}`)
+        Log.info(`Opened wallet (coin: ${walletConfig.coin.toUpperCase()}, network: ${walletConfig.network.toUpperCase()}, id: ${walletConfig.identifier})`)
       } catch (e) {
-        console.error(e)
+        Log.error(`Opening wallet failed (coin: ${walletConfig.coin.toUpperCase()}, network: ${walletConfig.network.toUpperCase()}, id: ${walletConfig.identifier})`)
       }
     }
 
@@ -95,7 +97,7 @@ export default class WalletManager {
     this.walletStore.commit('ADD_WALLET', walletConfig)
     this.walletOrderStore.commit('ADD_TO_WALLET_ORDER', walletConfig.identifier)
     this.wallets.push(wallet)
-    console.log(`wallet added: ${wallet.identifier}`)
+    Log.info(`Added wallet (coin: ${walletConfig.coin.toUpperCase()}, network: ${walletConfig.network.toUpperCase()}, id: ${walletConfig.identifier})`)
 
     this.restartTicker()
 
@@ -104,7 +106,7 @@ export default class WalletManager {
 
   public async updateWallet (identifier: string, wallet: Wallet): Promise<Wallet> {
     this.walletStore.commit('UPDATE_WALLET', wallet)
-    console.log(`wallet updated: ${wallet.identifier}`)
+    Log.info('Updated wallet', identifier)
 
     this.restartTicker()
 
@@ -118,7 +120,7 @@ export default class WalletManager {
       this.walletOrderStore.commit('REMOVE_FROM_WALLET_ORDER', walletConfig.identifier)
     })
 
-    console.log(`wallet removed: ${wallet.identifier}`)
+    Log.info('Removed wallet', wallet.identifier)
   }
 
   public defaultWallet (): Wallet | undefined {
@@ -131,7 +133,7 @@ export default class WalletManager {
 
   public storeTempWallet (walletConfig: WalletConfigItem): WalletConfigItem {
     const identifier = this.generateWalletIdentifier()
-    console.log(identifier)
+    Log.info('Generated identifier', identifier)
 
     this.tempWalletStore[identifier] = { ...walletConfig, identifier }
 
@@ -170,6 +172,8 @@ export default class WalletManager {
 
     multicoreClient.fromObj(credentials)
 
+    Log.info(`Client created for (coin: ${walletConfig.coin.toUpperCase()}, network: ${walletConfig.network.toUpperCase()}, id: ${walletConfig.identifier})`)
+
     return multicoreClient
   }
 
@@ -194,7 +198,7 @@ export default class WalletManager {
           await wallet.status()
           await wallet.fetchTxHistory()
         } catch (e) {
-          console.error(e)
+          Log.error('Fetch error', e)
         }
       }
     }
@@ -203,7 +207,7 @@ export default class WalletManager {
     this.ticker = setInterval(fetch, 30000)
 
     fetch().catch(e => {
-      console.error(`Wallet ticker error: ${e}`)
+      Log.error('Ticker error', e)
     })
   }
 

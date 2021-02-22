@@ -10,7 +10,6 @@ const state: DefaultWalletState = {
 
 const mutations = {
   SET_DEFAULT_WALLET (state: DefaultWalletState, identifier: string|null): void {
-    console.log(identifier)
     state.walletIdentifier = identifier
   }
 }

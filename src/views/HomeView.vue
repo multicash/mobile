@@ -90,6 +90,8 @@ import ManagerConfig from '@/wallet/ManagerConfig.ts'
 import AppHeaderView from '@/components/views/AppHeaderView'
 import PayLinkParser from '@/transaction/PayLinkParser'
 
+const Log = global.Logger.extend('APP')
+
 export default {
   name: 'HomeView',
 
@@ -144,7 +146,8 @@ export default {
         return
       }
 
-      console.log(state)
+      Log.info(`State changed: ${state}`)
+
       switch (state) {
         case 'background':
           return this.$authManager.authenticate('app')

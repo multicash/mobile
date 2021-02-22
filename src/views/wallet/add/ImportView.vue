@@ -64,6 +64,7 @@ import ExportImportManager, { DecryptError } from '@/wallet/ExportImportManager'
 import { Alert, Platform } from 'react-native'
 import AndroidPrompt from 'react-native-prompt-android'
 
+const Log = global.Logger.extend('IMPORT')
 const exportImportManager = new ExportImportManager()
 
 export default {
@@ -105,10 +106,12 @@ export default {
 
         this.proceed(wallet)
       } catch (e) {
-        console.log(e)
+        Log.error(`Couldn't read import contents: ${e}`)
 
         switch (e.constructor) {
           case SyntaxError:
+            Log.info('Given file is not valid')
+
             Alert.alert(
               'Given file is not valid',
               'The file doesn\'t contain any valid wallet configuration.',
@@ -123,7 +126,8 @@ export default {
             )
             break
           case DecryptError:
-            console.log('Wrong password')
+            Log.info('Wrong password entered')
+
             Alert.alert(
               'Wrong password entered',
               'Couldn\'t decrypt the import file because the given password was wrong, please try again.',
