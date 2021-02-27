@@ -57,6 +57,9 @@ import { Platform, KeyboardAvoidingView } from 'react-native'
 import Share from 'react-native-share'
 import ExportImportManager from '@/wallet/ExportImportManager'
 import base64 from 'react-native-base64'
+import Messages from '@/logging/Messages'
+
+const Log = global.Logger.extend('EXPORT')
 
 export default {
   name: 'ExportView',
@@ -115,10 +118,14 @@ export default {
 
       Share.open(options)
         .then(() => {
+          Log.info(Messages.wallet('Successfully exported wallet', this.wallet))
+
           this.encryptFile = false
           this.acceptedTerm = false
         })
-        .catch((err) => { err && console.error(err.message) })
+        .catch(error => {
+          Log.error(Messages.wallet(`Export failed: ${error.message}`, this.wallet))
+        })
     }
   }
 }

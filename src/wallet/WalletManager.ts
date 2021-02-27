@@ -6,6 +6,7 @@ import { WalletOrderState } from '@/store/modules/WalletOrder'
 import UUID from '@/support/UUID'
 import constants from '@/support/constants'
 import ClientInterface from '@/wallet/ClientInterface'
+import Messages from '@/logging/Messages'
 
 const Log = Logger.extend('WM')
 
@@ -97,7 +98,8 @@ export default class WalletManager {
     this.walletStore.commit('ADD_WALLET', walletConfig)
     this.walletOrderStore.commit('ADD_TO_WALLET_ORDER', walletConfig.identifier)
     this.wallets.push(wallet)
-    Log.info(`Added wallet (coin: ${walletConfig.coin.toUpperCase()}, network: ${walletConfig.network.toUpperCase()}, id: ${walletConfig.identifier})`)
+
+    Log.info(Messages.wallet('Added wallet', wallet))
 
     this.restartTicker()
 
@@ -106,7 +108,8 @@ export default class WalletManager {
 
   public async updateWallet (identifier: string, wallet: Wallet): Promise<Wallet> {
     this.walletStore.commit('UPDATE_WALLET', wallet)
-    Log.info('Updated wallet', identifier)
+
+    Log.info(Messages.wallet('Updated wallet', wallet))
 
     this.restartTicker()
 
@@ -120,7 +123,7 @@ export default class WalletManager {
       this.walletOrderStore.commit('REMOVE_FROM_WALLET_ORDER', walletConfig.identifier)
     })
 
-    Log.info('Removed wallet', wallet.identifier)
+    Log.info(Messages.wallet('Removed wallet', wallet))
   }
 
   public defaultWallet (): Wallet | undefined {

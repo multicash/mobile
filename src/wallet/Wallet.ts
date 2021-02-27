@@ -6,12 +6,9 @@ import AddressInfo from '@/wallet/models/AddressInfo'
 import SendMaxInfo from '@/wallet/models/SendMaxInfo'
 import CredentialsInterface from '@/wallet/models/CredentialsInterface'
 import ClientInterface from '@/wallet/ClientInterface'
+import Messages from '@/logging/Messages'
 
 const Log = Logger.extend('WALLET')
-
-const createLogMessage = (message: string, parent: Wallet) => {
-  return `${message} (coin: ${(parent.info?.wallet.coin || '').toUpperCase()}, network: ${(parent.info?.wallet.network || '').toUpperCase()}, id: ${parent.identifier})`
-}
 
 export default class Wallet {
   protected client: ClientInterface
@@ -70,7 +67,7 @@ export default class Wallet {
 
         this.info = info
 
-        Log.info(createLogMessage('Opened', this))
+        Log.info(Messages.wallet('Opened', this))
         resolve(info)
       })
     })
@@ -85,7 +82,7 @@ export default class Wallet {
 
         this.info = info
 
-        Log.info(createLogMessage('Status fetched', this))
+        Log.info(Messages.wallet('Status fetched', this))
         resolve(info)
       })
     })
@@ -98,7 +95,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        Log.info(createLogMessage('Balance fetched', this))
+        Log.info(Messages.wallet('Balance fetched', this))
         resolve(balance)
       })
     })
@@ -111,7 +108,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        Log.info(createLogMessage('Addresses scanned', this))
+        Log.info(Messages.wallet('Addresses scanned', this))
         resolve(true)
       })
     })
@@ -126,7 +123,7 @@ export default class Wallet {
 
         this.transactions = txs
 
-        Log.info(createLogMessage('TX history fetched', this))
+        Log.info(Messages.wallet('TX history fetched', this))
         resolve(txs)
       })
     })
@@ -143,7 +140,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        Log.info(createLogMessage('Created tx proposal', this))
+        Log.info(Messages.wallet('Created tx proposal', this))
         resolve(txp)
       }, null)
     })
@@ -156,7 +153,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        Log.info(createLogMessage('Published tx proposal', this))
+        Log.info(Messages.wallet('Published tx proposal', this))
         resolve(txp)
       })
     })
@@ -170,7 +167,7 @@ export default class Wallet {
       //     return reject(error)
       //   }
       //
-      //   Log.info(createLogMessage('Signed tx proposal', this))
+      //   Log.info(Messages.wallet('Signed tx proposal', this))
       //   resolve(txp)
       // })
     })
@@ -183,7 +180,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        Log.info(createLogMessage('Broadcasted tx proposal', this))
+        Log.info(Messages.wallet('Broadcasted tx proposal', this))
         resolve(txp)
       })
     })
@@ -198,7 +195,7 @@ export default class Wallet {
 
         this.addresses.unshift(addressInfo)
 
-        Log.info(createLogMessage('Address created', this))
+        Log.info(Messages.wallet('Address created', this))
         resolve(addressInfo)
       })
     })
@@ -213,7 +210,7 @@ export default class Wallet {
 
         this.addresses = addresses
 
-        Log.info(createLogMessage('Main addresses fetched', this))
+        Log.info(Messages.wallet('Main addresses fetched', this))
         resolve(addresses)
       })
     })
@@ -249,7 +246,7 @@ export default class Wallet {
           return reject(error)
         }
 
-        Log.info(createLogMessage('Send max info fetched', this))
+        Log.info(Messages.wallet('Send max info fetched', this))
         resolve(info)
       })
     })
