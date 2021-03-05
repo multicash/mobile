@@ -1,4 +1,8 @@
-# multicash-mobile-wallet
+[![Unit-test](https://github.com/multicash/mobile/actions/workflows/unit-test.yml/badge.svg)](https://github.com/multicash/mobile/actions/workflows/unit-test.yml)
+[![Android CI](https://github.com/multicash/mobile/actions/workflows/android.yml/badge.svg)](https://github.com/multicash/mobile/actions/workflows/android.yml)
+[![iOS CI](https://github.com/multicash/mobile/actions/workflows/ios.yml/badge.svg)](https://github.com/multicash/mobile/actions/workflows/ios.yml)
+
+# Mobile
 MultiCash Android and iOS application
 
 ## Local Development
