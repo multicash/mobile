@@ -7,7 +7,7 @@
     "postinstall": "npm run nodeify && npm run remove:modules && npm run fix:multicore-lib:random && npm run fix:multicore-lib-cash:random && npm run fix:multicore-lib-mcx:random",
     "lint": "vue-cli-service lint",
     "lint:fix": "vue-cli-service lint --fix",
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "react-native start",
     "test": "jest",
     "ios": "react-native run-ios --simulator \"iPhone 11 Pro\"",
     "ios:install": "cd ios && pod install && cd ..",
