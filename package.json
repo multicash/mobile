@@ -4,7 +4,7 @@
   "private": true,
   "author": "MultiCash LLC",
   "scripts": {
-    "postinstall": "npm run nodeify && npm run disable:randombytes && npm run fix:multicore-lib:random && npm run fix:multicore-lib-cash:random && npm run fix:multicore-lib-mcx:random",
+    "postinstall": "yarn nodeify && yarn disable:randombytes && yarn fix:multicore-lib:random && yarn fix:multicore-lib-cash:random && yarn fix:multicore-lib-mcx:random",
     "lint": "vue-cli-service lint",
     "lint:fix": "vue-cli-service lint --fix",
     "start": "react-native start",
@@ -13,9 +13,9 @@
     "ios:install": "cd ios && pod install && cd ..",
     "android": "react-native run-android",
     "disable:randombytes": "mv node_modules/randombytes node_modules/randombytes.bk || exit 0",
-    "fix:multicore-lib:random": "echo \"\\nprocess.browser = false;\\n\" >> node_modules/multicore-lib/lib/crypto/random.js",
-    "fix:multicore-lib-cash:random": "echo \"\\nprocess.browser = false;\\n\" >> node_modules/multicore-lib-cash/lib/crypto/random.js",
-    "fix:multicore-lib-mcx:random": "echo \"\\nprocess.browser = false;\\n\" >> node_modules/multicore-lib-mcx/lib/crypto/random.js",
+    "fix:multicore-lib:random": "echo \"\\nprocess.browser = false;\\n\" >> node_modules/multicore-lib/lib/crypto/random.js || exit 0",
+    "fix:multicore-lib-cash:random": "echo \"\\nprocess.browser = false;\\n\" >> node_modules/multicore-lib-cash/lib/crypto/random.js || exit 0",
+    "fix:multicore-lib-mcx:random": "echo \"\\nprocess.browser = false;\\n\" >> node_modules/multicore-lib-mcx/lib/crypto/random.js || exit 0",
     "nodeify": "rn-nodeify --install \" buffer,fs,stream,http,https,os,url,inherits,zlib\" --hack"
   },
   "dependencies": {
