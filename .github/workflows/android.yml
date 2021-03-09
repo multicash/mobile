@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 14.x
       - name: Prepare JS Build
-        run: npm ci
+        run: yarn
       - name: set up JDK 1.8
         uses: actions/setup-java@v1
         with:

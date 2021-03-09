@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 14.x
       - name: Prepare JS Build
-        run: npm ci
+        run: yarn
       - name: Install Pods
         run: pod install
         working-directory: ios
