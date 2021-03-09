@@ -44,7 +44,7 @@ export default {
           data: [
             {
               title: 'Restore key',
-              subtitle: 'The restore key enables you to restore this wallet. If you lose it you can never recover it and you\'ll loose access to your XVG. So make absolutely sure to keep it very safe.',
+              subtitle: 'The restore key enables you to restore this wallet. If you lose it you can never recover it and you\'ll loose access to your MCX. So make absolutely sure to keep it very safe.',
               leftIcon: { name: 'key' },
               onPress: () => {
                 this.$authManager.authenticate().then(authenticated => {

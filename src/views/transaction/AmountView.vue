@@ -49,7 +49,7 @@
 
 <script>
 import { Platform, Keyboard } from 'react-native'
-import constants from '@/support/constants.ts'
+import constants from '@/core/support/constants.ts'
 import { mapGetters } from 'vuex'
 
 export default {

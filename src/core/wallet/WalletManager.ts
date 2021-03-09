@@ -1,12 +1,12 @@
-import Client from '@/wallet/Client'
-import Wallet from '@/wallet/Wallet'
-import ManagerConfig, { WalletConfigItem } from '@/wallet/ManagerConfig'
+import Client from '@/core/wallet/Client'
+import Wallet from '@/core/wallet/Wallet'
+import ManagerConfig, { WalletConfigItem } from '@/core/wallet/ManagerConfig'
 import { Store } from 'vuex'
 import { WalletOrderState } from '@/store/modules/WalletOrder'
-import UUID from '@/support/UUID'
-import constants from '@/support/constants'
-import ClientInterface from '@/wallet/ClientInterface'
-import Messages from '@/logging/Messages'
+import UUID from '@/core/support/UUID'
+import constants from '@/core/support/constants'
+import ClientInterface from '@/core/wallet/ClientInterface'
+import Messages from '@/core/logging/Messages'
 
 const Log = Logger.extend('WM')
 

@@ -39,7 +39,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { RNCamera } from 'react-native-camera'
 import QrCodeScanner from 'react-native-qrcode-scanner'
-import PayLinkParser from '@/transaction/PayLinkParser'
+import PayLinkParser from '@/core/transaction/PayLinkParser'
 import { mapGetters } from 'vuex'
 
 export default {

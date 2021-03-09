@@ -21,8 +21,8 @@ import { TouchableWithoutFeedback } from 'react-native'
 import { ListItem, Avatar } from 'react-native-elements'
 import DraggableFlatList from 'react-native-draggable-flatlist'
 import { mapActions, mapGetters } from 'vuex'
-import { resolveIcon } from '@/support/walletIcons'
-import { text, subtitle } from '@/support/styles'
+import { resolveIcon } from '@/core/support/walletIcons'
+import { text, subtitle } from '@/core/support/styles'
 
 export default {
   name: 'OrderWalletsView',

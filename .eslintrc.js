@@ -10,14 +10,15 @@ module.exports = {
   ],
   rules: {
     'no-debugger': 'error',
-    'no-use-before-define': 'off'
+    'no-use-before-define': 'off',
+    'import/no-duplicates': 'off'
   },
   parserOptions: {
     parser: '@typescript-eslint/parser'
   },
   ignorePatterns: [
     'vueTransformerPlugin.js',
-    'src/support/sjcl.js',
+    'src/core/support/sjcl.js',
     'shim.js'
   ],
   overrides: [

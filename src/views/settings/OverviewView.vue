@@ -23,7 +23,7 @@ export default {
             {
               title: 'Currency',
               subtitle: 'All fiat amounts will be displayed in this currency',
-              leftIcon: { name: 'cash' },
+              leftIcon: { name: 'cash', color: '#5a9174' },
               onPress: () => {
                 this.navigation.navigate('currency')
               }
@@ -31,7 +31,7 @@ export default {
             {
               title: 'Change PIN',
               subtitle: 'Change the PIN used for securing your wallets by MultiCash',
-              leftIcon: { name: 'lock-closed' },
+              leftIcon: { name: 'lock-closed', color: '#d3c47f' },
               onPress: () => {
                 this.$authManager.authenticate().then(authenticated => {
                   if (authenticated) {
@@ -56,7 +56,7 @@ export default {
             {
               title: 'Support',
               subtitle: 'Let us help you when you run into trouble with MultiCash',
-              leftIcon: { name: 'help-buoy' },
+              leftIcon: { name: 'help-buoy', color: '#e86800' },
               onPress: () => {
                 this.navigation.navigate('support')
               }
@@ -64,7 +64,7 @@ export default {
             {
               title: 'Rate MultiCash',
               subtitle: 'Let others know how much you like MultiCash',
-              leftIcon: { name: 'star' }
+              leftIcon: { name: 'star', color: '#f744e4' }
             }
           ]
         },

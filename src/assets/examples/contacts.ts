@@ -1,4 +1,4 @@
-import UUID from '@/support/UUID'
+import UUID from '@/core/support/UUID'
 
 export default [
   {

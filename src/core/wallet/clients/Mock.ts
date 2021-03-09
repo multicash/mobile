@@ -1,23 +1,24 @@
-import { WalletConfigItem } from '@/wallet/ManagerConfig'
-import Info from '@/wallet/models/Info'
-import Balance from '@/wallet/models/Balance'
-import Tx from '@/wallet/models/Tx'
-import { TxProposalResponse } from '@/wallet/models/TxProposal'
-import AddressInfo from '@/wallet/models/AddressInfo'
-import SendMaxInfo from '@/wallet/models/SendMaxInfo'
-import CredentialsInterface from '@/wallet/models/CredentialsInterface'
+import { WalletConfigItem } from '@/core/wallet/ManagerConfig'
+import Info from '@/core/wallet/models/Info'
+import Balance from '@/core/wallet/models/Balance'
+import Tx from '@/core/wallet/models/Tx'
+import { TxProposalResponse } from '@/core/wallet/models/TxProposal'
+import AddressInfo from '@/core/wallet/models/AddressInfo'
+import SendMaxInfo from '@/core/wallet/models/SendMaxInfo'
+import CredentialsInterface from '@/core/wallet/models/CredentialsInterface'
 import ClientInterface, {
   BalanceOptions,
   ClientOptionsInterface,
   CreateAddressOptions,
-  CreateTxProposalOptions, CredentialsOptions,
+  CreateTxProposalOptions,
+  CredentialsOptions,
   MainAddressesOptions,
   PublishTxProposalOptions,
   RequestInterface,
   ScanOptions,
   SendMaxInfoOptions,
   StatusOptions, TxHistoryOptions
-} from '@/wallet/ClientInterface'
+} from '@/core/wallet/ClientInterface'
 
 const exampleBalance: Balance = {
   totalAmount: 1234567800000,

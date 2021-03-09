@@ -1,10 +1,10 @@
-import CredentialsInterface from '@/wallet/models/CredentialsInterface'
-import Info from '@/wallet/models/Info'
-import Balance from '@/wallet/models/Balance'
-import Tx from '@/wallet/models/Tx'
-import { TxProposalResponse } from '@/wallet/models/TxProposal'
-import AddressInfo from '@/wallet/models/AddressInfo'
-import SendMaxInfo from '@/wallet/models/SendMaxInfo'
+import CredentialsInterface from '@/core/wallet/models/CredentialsInterface'
+import Info from '@/core/wallet/models/Info'
+import Balance from '@/core/wallet/models/Balance'
+import Tx from '@/core/wallet/models/Tx'
+import { TxProposalResponse } from '@/core/wallet/models/TxProposal'
+import AddressInfo from '@/core/wallet/models/AddressInfo'
+import SendMaxInfo from '@/core/wallet/models/SendMaxInfo'
 
 export interface BalanceOptions {
   coin?: string

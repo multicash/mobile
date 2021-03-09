@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { cards } from '@/support/styles'
+import { cards } from '@/core/support/styles'
 
 export default {
   name: 'Card',

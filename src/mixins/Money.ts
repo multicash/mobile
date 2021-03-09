@@ -1,5 +1,5 @@
 import Vue from 'vue-native-core'
-import constants from '@/support/constants'
+import constants from '@/core/support/constants'
 import Intl from 'intl'
 import 'intl/locale-data/jsonp/en'
 

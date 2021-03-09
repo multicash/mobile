@@ -46,7 +46,7 @@ const stylesStore = (isDarkScheme, hasImageForeground) => {
     },
 
     headerTitle: {
-      fontSize: 22,
+      fontSize: 24,
       fontWeight: '600',
       color: isDarkScheme ? 'white' : 'black',
       marginVertical: 5,
@@ -54,8 +54,8 @@ const stylesStore = (isDarkScheme, hasImageForeground) => {
     },
 
     headerSubtitle: {
-      fontSize: 12,
-      color: isDarkScheme ? '#b3aabe' : '#72677b',
+      fontSize: 16,
+      color: isDarkScheme ? '#b3aabe' : '#4a4350',
       marginVertical: 5,
       textAlign: 'center'
     },

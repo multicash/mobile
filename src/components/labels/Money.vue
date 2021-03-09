@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import constants from '@/support/constants'
+import constants from '@/core/support/constants'
 import { mapGetters } from 'vuex'
-import Locale from '@/support/locale'
+import Locale from '@/core/support/locale'
 
 export default {
   name: 'money',

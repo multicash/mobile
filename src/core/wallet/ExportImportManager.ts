@@ -1,7 +1,7 @@
-import Wallet from '@/wallet/Wallet'
-import { WalletConfigItem } from '@/wallet/ManagerConfig'
+import Wallet from '@/core/wallet/Wallet'
+import { WalletConfigItem } from '@/core/wallet/ManagerConfig'
 
-const sjcl = require('@/support/sjcl')
+const sjcl = require('@/core/support/sjcl')
 
 export class DecryptError extends Error {}
 

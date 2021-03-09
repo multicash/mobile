@@ -14,6 +14,9 @@ import {
 } from './options'
 import { VNode, VNodeData, VNodeChildren, NormalizedScopedSlot } from './vnode'
 import { PluginFunction, PluginObject } from './plugin'
+import { Store } from 'vuex'
+import AuthManager from '@/core/authentication/AuthManager'
+import WalletManager from '@/core/wallet/WalletManager'
 
 export interface CreateElement {
   (tag?: string | Component<any, any, any, any> | AsyncComponent<any, any, any, any> | (() => Component), children?: VNodeChildren): VNode;
@@ -21,6 +24,11 @@ export interface CreateElement {
 }
 
 export interface Vue {
+  $store: Store<any>;
+  $authManager: AuthManager
+  $eventBus: Vue
+  $walletManager: WalletManager
+
   readonly $el: Element;
   readonly $options: ComponentOptions<Vue>;
   readonly $parent: Vue;

@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import constants from '@/support/constants'
+import constants from '@/core/support/constants'
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 
 export default {

@@ -86,9 +86,9 @@
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { AppState } from 'react-native'
 import { mapActions, mapGetters } from 'vuex'
-import ManagerConfig from '@/wallet/ManagerConfig.ts'
+import ManagerConfig from '@/core/wallet/ManagerConfig.ts'
 import AppHeaderView from '@/components/views/AppHeaderView'
-import PayLinkParser from '@/transaction/PayLinkParser'
+import PayLinkParser from '@/core/transaction/PayLinkParser'
 
 const Log = global.Logger.extend('APP')
 

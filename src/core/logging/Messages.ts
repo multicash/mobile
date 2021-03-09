@@ -1,4 +1,4 @@
-import Wallet from '@/wallet/Wallet'
+import Wallet from '@/core/wallet/Wallet'
 
 export default class Messages {
   static wallet (message: string, wallet: Wallet): string {

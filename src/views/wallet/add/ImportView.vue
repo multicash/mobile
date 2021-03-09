@@ -60,7 +60,7 @@
 <script>
 import DocumentPicker from 'react-native-document-picker'
 import FileSystem from 'react-native-fs'
-import ExportImportManager, { DecryptError } from '@/wallet/ExportImportManager'
+import ExportImportManager, { DecryptError } from '@/core/wallet/ExportImportManager'
 import { Alert, Platform } from 'react-native'
 import AndroidPrompt from 'react-native-prompt-android'
 

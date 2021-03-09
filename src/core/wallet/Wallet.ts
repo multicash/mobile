@@ -1,12 +1,12 @@
-import Info from '@/wallet/models/Info'
-import Balance, { BalanceAddress } from '@/wallet/models/Balance'
-import Tx from '@/wallet/models/Tx'
-import { TxProposal, TxProposalResponse } from '@/wallet/models/TxProposal'
-import AddressInfo from '@/wallet/models/AddressInfo'
-import SendMaxInfo from '@/wallet/models/SendMaxInfo'
-import CredentialsInterface from '@/wallet/models/CredentialsInterface'
-import ClientInterface from '@/wallet/ClientInterface'
-import Messages from '@/logging/Messages'
+import Info from '@/core/wallet/models/Info'
+import Balance, { BalanceAddress } from '@/core/wallet/models/Balance'
+import Tx from '@/core/wallet/models/Tx'
+import { TxProposal, TxProposalResponse } from '@/core/wallet/models/TxProposal'
+import AddressInfo from '@/core/wallet/models/AddressInfo'
+import SendMaxInfo from '@/core/wallet/models/SendMaxInfo'
+import CredentialsInterface from '@/core/wallet/models/CredentialsInterface'
+import ClientInterface from '@/core/wallet/ClientInterface'
+import Messages from '@/core/logging/Messages'
 
 const Log = Logger.extend('WALLET')
 

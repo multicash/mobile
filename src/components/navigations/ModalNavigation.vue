@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { text } from '@/support/styles'
+import { text } from '@/core/support/styles'
 
 export default {
   name: 'ModalNavigation',

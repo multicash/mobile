@@ -55,9 +55,9 @@
 <script>
 import { Platform, KeyboardAvoidingView } from 'react-native'
 import Share from 'react-native-share'
-import ExportImportManager from '@/wallet/ExportImportManager'
+import ExportImportManager from '@/core/wallet/ExportImportManager'
 import base64 from 'react-native-base64'
-import Messages from '@/logging/Messages'
+import Messages from '@/core/logging/Messages'
 
 const Log = global.Logger.extend('EXPORT')
 

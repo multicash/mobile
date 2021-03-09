@@ -1,5 +1,5 @@
 import Vue from 'vue-native-core'
-import Vuex from 'vuex'
+import Vuex, { Store } from 'vuex'
 import VuexPersistence from 'vuex-persist'
 import AsyncStorage from '@react-native-community/async-storage'
 
@@ -16,12 +16,10 @@ const vuexLocal = new VuexPersistence({
   }
 })
 
-const vuexPersistEmitter = () => {
-  // @ts-ignore
-  return store => {
-    // @ts-ignore
+const vuexPersistEmitter = <S>() => {
+  return (store: Store<S>): any => {
     store.subscribe(mutation => {
-      if (mutation.type === 'RESTORE_MUTATION') {
+      if (mutation.type === 'RESTORE_MUTATION') { // @ts-ignore
         store._vm.$root.$emit('storageReady')
       }
     })
@@ -35,17 +33,14 @@ for (const module in modules) {
   })
 }
 
-// @ts-ignore
 const store = new Vuex.Store({
   modules,
   plugins: [vuexLocal.plugin, vuexPersistEmitter()],
-  // @ts-ignore
   strict: process.env.NODE_ENV !== 'production'
 })
 
 Vue.mixin({
   beforeCreate () {
-    // @ts-ignore
     this.$store = store
   }
 })

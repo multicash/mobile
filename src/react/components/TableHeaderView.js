@@ -29,8 +29,8 @@ const stylesStore = (isDarkScheme) => {
       marginVertical: 5
     },
     subtitle: {
-      fontSize: 12,
-      color: isDarkScheme ? '#b3aabe' : '#72677b',
+      fontSize: 16,
+      color: isDarkScheme ? '#b3aabe' : '#4a4350',
       marginVertical: 5,
       textAlign: 'center'
     },

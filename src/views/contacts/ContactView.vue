@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import UUID from '@/support/UUID'
+import UUID from '@/core/support/UUID'
 import { Alert } from 'react-native'
 import { mapActions } from 'vuex'
 

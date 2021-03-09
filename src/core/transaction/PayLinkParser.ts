@@ -38,9 +38,9 @@ export default class PayLinkParser {
     const params: any = {}
 
     paramsArrayString.forEach((param: string) => {
-      const splittedParam = param.split('=')
+      const splitParam = param.split('=')
 
-      params[splittedParam[0]] = splittedParam[1]
+      params[splitParam[0]] = splitParam[1]
     })
 
     return params

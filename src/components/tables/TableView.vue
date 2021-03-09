@@ -22,7 +22,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import { ListItem, Avatar, Icon } from 'react-native-elements'
-import { text, subtitle, sectionTitle } from '@/support/styles'
+import { text, subtitle, sectionTitle } from '@/core/support/styles'
 
 export default {
   name: 'TableView',

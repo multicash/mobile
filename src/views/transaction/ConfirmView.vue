@@ -69,8 +69,8 @@
 </template>
 
 <script>
-import Constants from '@/support/constants'
-import Locale from '@/support/locale'
+import Constants from '@/core/support/constants'
+import Locale from '@/core/support/locale'
 import { Share } from 'react-native'
 
 export default {

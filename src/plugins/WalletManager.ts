@@ -1,7 +1,7 @@
 // @ts-nocheck
 import Vue from 'vue-native-core'
-import WalletManager from '@/wallet/WalletManager'
-import Wallet from '@/wallet/Wallet'
+import WalletManager from '@/core/wallet/WalletManager'
+import Wallet from '@/core/wallet/Wallet'
 import { PluginFunction, VueConstructor } from '@/types/vue'
 
 const managerStore = new Vue({

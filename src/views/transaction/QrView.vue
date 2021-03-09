@@ -63,7 +63,7 @@
 
 <script>
 import { Share } from 'react-native'
-import Locale from '@/support/locale'
+import Locale from '@/core/support/locale'
 
 export default {
   name: 'QrView',

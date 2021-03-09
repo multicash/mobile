@@ -1,5 +1,5 @@
 import { Store } from 'vuex'
-import constants from '@/support/constants'
+import constants from '@/core/support/constants'
 
 interface Currency {
   code: string
