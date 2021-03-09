@@ -110,7 +110,7 @@ export default {
     return {
       transactions: [
         {
-          title: '@sunerok',
+          title: '@cordovaV1',
           subtitle: 'Yesterday 9:40',
           amount: -33550000,
           icon: 'person-circle',
@@ -123,14 +123,14 @@ export default {
           avatar: 'gift'
         },
         {
-          title: '@swenvanzanten',
+          title: '@BLyberth',
           subtitle: 'June 4th, 2020 10:23',
           amount: -94000000,
           icon: 'person-circle',
           color: '#c807a9'
         },
         {
-          title: 'DNc3MivQfEqhxY9bRm8jw89Koa2jQ7dqTG',
+          title: 'Msc3MivQfEqhxY9bRm8jw89Koa2jQ7dqTG',
           subtitle: 'May 28th, 2020 23:49',
           amount: -203440000,
           icon: 'help-circle',

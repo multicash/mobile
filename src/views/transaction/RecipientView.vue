@@ -44,14 +44,14 @@ export default {
           title: 'Recent',
           data: [
             {
-              title: 'Swen van Zanten',
-              subtitle: '@swenvanzanten',
+              title: 'Kirsten Larsen',
+              subtitle: '@KirstenLn1992',
               leftIcon: { name: 'person-circle', color: '#c807a9', size: 40 },
               onPress: () => {
                 this.navigation.navigate('confirm', {
                   ...this.route.params,
                   target: {
-                    title: 'Swen van Zanten',
+                    title: 'Kirsten Larsen',
                     amount: null,
                     icon: 'person-circle',
                     iconColor: '#c807a9'
@@ -60,14 +60,14 @@ export default {
               }
             },
             {
-              title: 'Sunerok',
-              subtitle: '@justinvendetta',
-              leftIcon: { name: 'person-circle', color: '#00ffb2', size: 40 },
+              title: 'Birthe Lyberth',
+              subtitle: '@BLyberth',
+              leftIcon: { name: 'bicycle', color: '#00ffb2', size: 40 },
               onPress: () => {
                 this.navigation.navigate('confirm', {
                   ...this.route.params,
                   target: {
-                    title: 'Sunerok',
+                    title: 'Birthe Lyberth',
                     amount: null,
                     icon: 'person-circle',
                     iconColor: '#00ffb2'
@@ -81,14 +81,14 @@ export default {
           title: 'Favorites',
           data: [
             {
-              title: 'CryptoRekt',
-              subtitle: '@cr',
-              leftIcon: { name: 'person-circle', color: '#a7fb00', size: 40 },
+              title: 'Fletcher Faubert',
+              subtitle: '@fF',
+              leftIcon: { name: 'barbell', color: '#a7fb00', size: 40 },
               onPress: () => {
                 this.navigation.navigate('confirm', {
                   ...this.route.params,
                   target: {
-                    title: 'CryptoRekt',
+                    title: 'Fletcher Faubert',
                     amount: null,
                     icon: 'person-circle',
                     iconColor: '#a7fb00'
@@ -97,14 +97,14 @@ export default {
               }
             },
             {
-              title: 'sandersvoice',
-              subtitle: '@sandersvoice',
-              leftIcon: { name: 'person-circle', color: '#3b28f3', size: 40 },
+              title: 'Maik Fisher',
+              subtitle: '@MMFisher',
+              leftIcon: { name: 'airplane', color: '#3b28f3', size: 40 },
               onPress: () => {
                 this.navigation.navigate('confirm', {
                   ...this.route.params,
                   target: {
-                    title: 'sandersvoice',
+                    title: 'Maik Fisher',
                     amount: null,
                     icon: 'person-circle',
                     iconColor: '#3b28f3'
@@ -113,14 +113,14 @@ export default {
               }
             },
             {
-              title: 'Mihael',
-              subtitle: '@mihael',
+              title: 'Pola Cordova Guzmán',
+              subtitle: '@cordovaV1',
               leftIcon: { name: 'person-circle', color: '#eaee18', size: 40 },
               onPress: () => {
                 this.navigation.navigate('confirm', {
                   ...this.route.params,
                   target: {
-                    title: 'Mihael',
+                    title: 'Pola Cordova Guzmán',
                     amount: null,
                     icon: 'person-circle',
                     iconColor: '#eaee18'
