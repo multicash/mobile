@@ -1,7 +1,8 @@
 declare module '@env' {
-  export const PRICE_API: string
-  export const MULTICORE_WALLET_SERVICE_API: string
-  export const BN_API: string
+  export const TAGS_API: string
+  export const RATES_API: string
+  export const WALLET_SERVICE_API: string
+  export const NODE_API: string
   export const BLOCK_EXPLORER: string
   export const TERMS_OF_USE: string
   export const DEFAULT_COIN: string

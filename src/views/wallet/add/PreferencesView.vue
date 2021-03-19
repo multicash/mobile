@@ -104,7 +104,7 @@ export default {
         icon: this.icon.name,
         coin: constants.defaultCoin,
         network: constants.defaultNetwork,
-        apiEndpoint: constants.multicoreWalletServiceApi,
+        apiEndpoint: constants.walletServiceApi,
         singleAddress: true,
         restoreKey: ''
       })
