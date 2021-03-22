@@ -5,12 +5,12 @@
   >
     <view :style="styles.iconContainer">
       <view :style="styles.iconCircle">
-        <icon v-if="icon" :name="icon" :size="40" :color="iconColor"/>
-        <wallet-icon v-if="image" :icon="image" :size="40"/>
+        <icon v-if="transactionIcon.icon" :name="transactionIcon.icon" :size="40" :color="transactionIcon.iconColor"/>
+        <wallet-icon v-if="transactionIcon.image" :icon="transactionIcon.image" :size="40"/>
       </view>
-      <text :style="styles.walletTitle">{{ title }}</text>
-      <money v-if="amount" :style="styles.walletAmount" :amount="amount" crypto/>
-      <text v-else> </text>
+      <text :style="styles.walletTitle">{{ transactionIcon.title }}</text>
+      <money v-if="transactionIcon.amount" :style="styles.walletAmount" :amount="transactionIcon.amount" crypto/>
+      <text v-else :style="styles.walletAmount">{{ transactionIcon.tagOrAddress }}</text>
     </view>
   </touchable-opacity>
 </template>
@@ -25,28 +25,9 @@ export default {
   components: { WalletIcon, Money },
 
   props: {
-    image: {
-      type: String,
-      default: null
-    },
-
-    icon: {
-      type: String,
-      default: null
-    },
-
-    iconColor: {
-      type: String,
-      default: undefined
-    },
-
-    title: {
-      type: String
-    },
-
-    amount: {
-      type: Number,
-      default: null
+    transactionIcon: {
+      type: Object,
+      required: true
     }
   },
 

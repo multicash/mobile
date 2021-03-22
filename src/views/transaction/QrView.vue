@@ -40,12 +40,12 @@
       <view :style="styles.amountContainer">
         <money
           crypto
-          :amount="route.params.amount * 100000000"
+          :amount="route.params.transaction.amount * 100000000"
           :style="styles.amount"
         />
         <money
           convert
-          :amount="parseFloat(route.params.amount) * 100000000 || 0"
+          :amount="parseFloat(route.params.transaction.amount) * 100000000 || 0"
           :style="styles.calculatedAmount"
         />
       </view>
@@ -81,7 +81,7 @@ export default {
     },
 
     qrValue () {
-      let value = `https://multicash.io/pay/${this.targetWallet.address}?tag=${this.targetWallet.tag}&amount=${this.route.params.amount}`
+      let value = `https://multicash.io/pay/${this.targetWallet.address}?tag=${this.targetWallet.tag}&amount=${this.route.params.transaction.amount}`
 
       if (this.label !== '') {
         value += '&label=' + this.label
@@ -92,7 +92,7 @@ export default {
   },
 
   created () {
-    this.targetWallet = this.$walletManager.getWallet(this.route.params.source.walletIdentifier)
+    this.targetWallet = this.$walletManager.getWallet(this.route.params.transaction.to.identifier)
   },
 
   methods: {
@@ -111,7 +111,7 @@ export default {
     },
 
     showShareSheet () {
-      const amount = this.getFormattedCrypto(this.route.params.amount, Locale.getCurrentLocale(), 'MCX')
+      const amount = this.getFormattedCrypto(this.route.params.transaction.amount, Locale.getCurrentLocale(), 'MCX')
 
       Share.share({
         message: `Would you like to pay me ${amount}: ${this.qrValue}`

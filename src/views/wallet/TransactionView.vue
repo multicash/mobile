@@ -12,14 +12,18 @@
     >
       <view :style="styles.headerContainer">
         <source-icon
-          title="Main Account"
-          :amount="50444440000"
-          image="wallet"
+          :transaction-icon="{
+            title: 'Main Account',
+            amount: 50444440000,
+            image: 'wallet'
+          }"
         />
         <icon name="arrow-forward-outline" :size="50"/>
         <source-icon
-          title="Savings Account"
-          image="moneyBox"
+          :transaction-icon="{
+            title: 'Savings Account',
+            image: 'moneyBox'
+          }"
         />
       </view>
 

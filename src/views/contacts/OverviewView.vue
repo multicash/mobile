@@ -35,7 +35,7 @@ export default {
   name: 'OverviewView',
 
   computed: {
-    ...mapGetters(['contacts', 'hasContacts']),
+    ...mapGetters(['contacts']),
 
     styles () {
       return stylesStore(this.isDarkScheme)
@@ -51,7 +51,7 @@ export default {
           data: this.contacts.map(contact => {
             return {
               title: contact.name,
-              subtitle: contact.tag,
+              subtitle: contact.tagOrAddress,
               leftIcon: { name: contact.icon.name, color: contact.icon.color, size: 40 },
               onPress: () => {
                 this.navigation.navigate('contact', { contactIdentifier: contact.identifier })

@@ -51,6 +51,7 @@
 import { Platform, Keyboard } from 'react-native'
 import constants from '@/core/support/constants.ts'
 import { mapGetters } from 'vuex'
+import Transaction from '@/core/transaction/models/Transaction'
 
 export default {
   name: 'AmountView',
@@ -105,16 +106,12 @@ export default {
     },
 
     confirm () {
+      const transaction = Transaction.byAmount(this.amount, this.route.params.isReceive)
+      transaction.setWallet(this.sourceWallet)
+
       this.navigation.navigate('recipient', {
-        amount: this.amount,
         walletIdentifier: this.route.params.walletIdentifier || null,
-        source: {
-          walletIdentifier: this.sourceWallet.identifier,
-          title: this.sourceWallet.name,
-          amount: this.sourceWallet.totalAmount,
-          image: this.sourceWallet.icon
-        },
-        isReceive: this.route.params.isReceive
+        transaction: transaction
       })
     }
   }

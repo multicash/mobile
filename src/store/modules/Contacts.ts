@@ -1,14 +1,5 @@
 import { Store } from 'vuex'
-
-interface Contact {
-  identifier: string
-  name: string
-  tagOrAddress: string
-  icon: {
-    name: string
-    color: string
-  }
-}
+import Contact from '@/core/contacts/models/Contact'
 
 const state: Contact[] = []
 
@@ -29,6 +20,7 @@ const mutations = {
     if (state[index]) {
       state[index].name = contact.name
       state[index].tagOrAddress = contact.tagOrAddress
+      state[index].isFavorite = contact.isFavorite
       state[index].icon.name = contact.icon.name
       state[index].icon.color = contact.icon.color
     }

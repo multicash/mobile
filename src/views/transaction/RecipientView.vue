@@ -10,12 +10,39 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'RecipientView',
 
-  data () {
-    return {
-      data: [
+  computed: {
+    ...mapGetters(['contacts']),
+
+    contactsList () {
+      if (this.contacts.length === 0) {
+        return []
+      }
+
+      return this.contacts.map(contact => {
+        return {
+          title: contact.name,
+          subtitle: contact.tagOrAddress,
+          leftIcon: { name: contact.icon.name, color: contact.icon.color, size: 40 },
+          meta: {
+            isFavorite: contact.isFavorite
+          },
+          onPress: () => {
+            const transaction = this.route.params.transaction
+            transaction.setContact(contact)
+
+            this.navigation.navigate('confirm', this.route.params)
+          }
+        }
+      })
+    },
+
+    data () {
+      return [
         {
           data: [
             {
@@ -25,7 +52,7 @@ export default {
                 this.navigation.navigate('wallets', { navigate: 'confirm', ...this.route.params })
               }
             },
-            this.route.params.isReceive ? {
+            this.route.params.transaction.isReceive ? {
               title: 'Share QR code',
               leftIcon: { name: 'qr-code-outline', size: 40 },
               onPress: () => {
@@ -42,93 +69,11 @@ export default {
         },
         {
           title: 'Recent',
-          data: [
-            {
-              title: 'Kirsten Larsen',
-              subtitle: '@KirstenLn1992',
-              leftIcon: { name: 'person-circle', color: '#c807a9', size: 40 },
-              onPress: () => {
-                this.navigation.navigate('confirm', {
-                  ...this.route.params,
-                  target: {
-                    title: 'Kirsten Larsen',
-                    amount: null,
-                    icon: 'person-circle',
-                    iconColor: '#c807a9'
-                  }
-                })
-              }
-            },
-            {
-              title: 'Birthe Lyberth',
-              subtitle: '@BLyberth',
-              leftIcon: { name: 'bicycle', color: '#00ffb2', size: 40 },
-              onPress: () => {
-                this.navigation.navigate('confirm', {
-                  ...this.route.params,
-                  target: {
-                    title: 'Birthe Lyberth',
-                    amount: null,
-                    icon: 'person-circle',
-                    iconColor: '#00ffb2'
-                  }
-                })
-              }
-            }
-          ]
+          data: this.contactsList
         },
         {
           title: 'Favorites',
-          data: [
-            {
-              title: 'Fletcher Faubert',
-              subtitle: '@fF',
-              leftIcon: { name: 'barbell', color: '#a7fb00', size: 40 },
-              onPress: () => {
-                this.navigation.navigate('confirm', {
-                  ...this.route.params,
-                  target: {
-                    title: 'Fletcher Faubert',
-                    amount: null,
-                    icon: 'person-circle',
-                    iconColor: '#a7fb00'
-                  }
-                })
-              }
-            },
-            {
-              title: 'Maik Fisher',
-              subtitle: '@MMFisher',
-              leftIcon: { name: 'airplane', color: '#3b28f3', size: 40 },
-              onPress: () => {
-                this.navigation.navigate('confirm', {
-                  ...this.route.params,
-                  target: {
-                    title: 'Maik Fisher',
-                    amount: null,
-                    icon: 'person-circle',
-                    iconColor: '#3b28f3'
-                  }
-                })
-              }
-            },
-            {
-              title: 'Pola Cordova Guzmán',
-              subtitle: '@cordovaV1',
-              leftIcon: { name: 'person-circle', color: '#eaee18', size: 40 },
-              onPress: () => {
-                this.navigation.navigate('confirm', {
-                  ...this.route.params,
-                  target: {
-                    title: 'Pola Cordova Guzmán',
-                    amount: null,
-                    icon: 'person-circle',
-                    iconColor: '#eaee18'
-                  }
-                })
-              }
-            }
-          ]
+          data: this.contactsList.filter(contact => contact.meta.isFavorite)
         }
       ]
     }

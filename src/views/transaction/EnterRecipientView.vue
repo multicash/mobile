@@ -37,6 +37,10 @@
 </template>
 
 <script>
+import Contact from '@/core/contacts/models/Contact'
+import UUID from '@/core/support/UUID'
+import { mapActions } from 'vuex'
+
 export default {
   name: 'EnterRecipientView',
 
@@ -59,16 +63,27 @@ export default {
   },
 
   methods: {
+    ...mapActions(['addContact']),
+
     toConfirm () {
-      this.navigation.navigate('confirm', {
-        ...this.route.params,
-        target: {
-          title: this.address,
-          amount: null,
-          icon: 'star',
-          iconColor: '#6d6de3'
+      const contact: Contact = {
+        identifier: UUID.create(),
+        name: this.name || 'Unknown',
+        tagOrAddress: this.address,
+        isFavorite: this.addToFavorites,
+        icon: {
+          name: 'star',
+          color: '#6d6de3'
         }
-      })
+      }
+
+      if (this.name !== '' || this.addToFavorites) {
+        this.addContact(contact)
+      }
+
+      this.route.params.transaction.to = contact
+
+      this.navigation.navigate('confirm', this.route.params)
     }
   }
 }

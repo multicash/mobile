@@ -1,3 +1,8 @@
+import Transaction from '@/core/transaction/models/Transaction'
+import Wallet from '@/core/wallet/Wallet'
+import Contact from '@/core/contacts/models/Contact'
+import UUID from '@/core/support/UUID'
+
 export default class PayLinkParser {
   payLink: string
   params: any
@@ -11,23 +16,28 @@ export default class PayLinkParser {
     return this.params[key] || null
   }
 
-  public getPayParamsWithSource (sourceWallet: any, iconName: string, iconColor: string): object {
+  public getPayParamsWithSource (sourceWallet: Wallet, iconName: string, iconColor: string): object {
+    const contact: Contact = {
+      identifier: UUID.create(),
+      name: 'PayLink',
+      tagOrAddress: this.get('tag') || '',
+      isFavorite: false,
+      icon: {
+        name: iconName,
+        color: iconColor
+      }
+    }
+
+    const transaction = new Transaction(
+      sourceWallet,
+      contact,
+      parseInt(this.get('amount') || '0'),
+      this.get('label')
+    )
+
     return {
       payLink: true,
-      isReceive: false,
-      amount: this.get('amount'),
-      label: this.get('label'),
-      source: {
-        walletIdentifier: sourceWallet.identifier,
-        title: sourceWallet.name,
-        amount: sourceWallet.info.balance.totalAmount,
-        image: sourceWallet.icon
-      },
-      target: {
-        title: this.get('tag'),
-        icon: iconName,
-        iconColor: iconColor
-      }
+      transaction: transaction
     }
   }
 

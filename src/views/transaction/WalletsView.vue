@@ -43,16 +43,17 @@ export default {
   methods: {
     navigate (wallet) {
       if (this.route.params.navigate) {
+        const transaction = this.route.params.transaction
+        if (transaction.isReceive) {
+          this.route.params.transaction.from = wallet
+        } else {
+          this.route.params.transaction.to = wallet
+        }
+
         this.navigation.navigate(
           this.route.params.navigate,
           {
             recipientType: 'self',
-            target: {
-              walletIdentifier: wallet.identifier,
-              title: wallet.name,
-              amount: wallet.totalAmount,
-              image: wallet.icon
-            },
             ...this.route.params
           }
         )

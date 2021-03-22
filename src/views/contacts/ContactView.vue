@@ -42,9 +42,16 @@
       <rounded-text-input
         title="Tag/Address"
         placeholder="@lutherKing"
-        :value="contact.tag"
+        :value="contact.tagOrAddress"
         @input="setTag"
       />
+
+      <spacer />
+
+      <view :style="styles.isFavoriteContainer">
+        <text :style="styles.isFavoriteText">Favorite</text>
+        <switch v-model="contact.isFavorite"/>
+      </view>
 
       <spacer :style="{ flex: 1 }" />
 
@@ -74,7 +81,8 @@ export default {
       contact: {
         identifier: null,
         name: '',
-        tag: '',
+        tagOrAddress: '',
+        isFavorite: false,
         icon: {
           name: 'person-circle',
           color: 'cyan'
@@ -90,7 +98,7 @@ export default {
 
     contactInfoValid () {
       return this.contact.name !== '' &&
-        this.contact.tag !== '' &&
+        this.contact.tagOrAddress !== '' &&
         this.contact.icon.name !== '' &&
         this.contact.icon.color !== ''
     }
@@ -101,7 +109,8 @@ export default {
       this.getContact(this.route.params.contactIdentifier).then(contact => {
         this.contact.identifier = contact.identifier
         this.contact.name = contact.name
-        this.contact.tag = contact.tag
+        this.contact.tagOrAddress = contact.tagOrAddress
+        this.contact.isFavorite = contact.isFavorite
         this.contact.icon.name = contact.icon.name
         this.contact.icon.color = contact.icon.color
       })
@@ -121,8 +130,8 @@ export default {
       this.changed = true
     },
 
-    setTag (tag) {
-      this.contact.tag = tag
+    setTag (tagOrAddress) {
+      this.contact.tagOrAddress = tagOrAddress
       this.changed = true
     },
 
@@ -214,6 +223,17 @@ const stylesStore = (isDarkScheme) => {
     },
 
     iconText: {
+      color: isDarkScheme ? 'white' : 'black'
+    },
+
+    isFavoriteContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      marginBottom: 20
+    },
+
+    isFavoriteText: {
       color: isDarkScheme ? 'white' : 'black'
     }
   }
