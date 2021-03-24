@@ -85,7 +85,19 @@ export default {
     },
 
     notEnoughBalance () {
-      return this.transaction.from.totalAmount < (this.transaction.amount * Constants.satoshiDivider)
+      const fromWalletIdentifier = this.transaction.from.identifier || null
+
+      if (!fromWalletIdentifier) {
+        return false
+      }
+
+      const fromWallet = this.$walletManager.getWallet(fromWalletIdentifier)
+
+      if (!fromWallet) {
+        return false
+      }
+
+      return fromWallet.totalAmount < (this.transaction.amount * Constants.satoshiDivider)
     }
   },
 
@@ -145,7 +157,7 @@ export default {
 
         const wallet = this.$walletManager.getWallet(this.transaction.to.identifier)
         const amount = this.getFormattedCrypto(this.transaction.amount, Locale.getCurrentLocale(), 'MCX')
-        let url = `https://multicash.io/pay/${wallet.address}?tag=${wallet.tag}&amount=${this.transaction.amount}`
+        let url = `${Constants.payLink}/${wallet.address}?tag=${wallet.tag}&amount=${this.transaction.amount}`
 
         if (this.transaction.label !== '') {
           url += '&label=' + this.transaction.label

@@ -1,6 +1,7 @@
 import { Store } from 'vuex'
 import NfcManager, { Ndef, NfcEvents, TagEvent } from 'react-native-nfc-manager'
 import DeviceInfo from 'react-native-device-info'
+import Constants from '@/core/support/constants'
 
 interface NfcTagReaderState {
   lastReadTag: string|null
@@ -22,7 +23,7 @@ const actions = {
 
     return new Promise((resolve) => {
       if (isEmulator) {
-        return resolve('https://multicash.io/pay/Md9sajd9j29d29ejd9ejd892jeje2jd9j9d28?tag=@SwenSaving&amount=4455')
+        return resolve(`${Constants.payLink}/Md9sajd9j29d29ejd9ejd892jeje2jd9j9d28?tag=@SwenSaving&amount=4455`)
       }
 
       NfcManager.start()

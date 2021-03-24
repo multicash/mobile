@@ -3,6 +3,7 @@ declare module '@env' {
   export const RATES_API: string
   export const WALLET_SERVICE_API: string
   export const NODE_API: string
+  export const PAY_LINK: string
   export const BLOCK_EXPLORER: string
   export const TERMS_OF_USE: string
   export const DEFAULT_COIN: string

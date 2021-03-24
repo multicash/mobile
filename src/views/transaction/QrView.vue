@@ -64,6 +64,7 @@
 <script>
 import { Share } from 'react-native'
 import Locale from '@/core/support/locale'
+import Constants from '@/core/support/constants'
 
 export default {
   name: 'QrView',
@@ -81,7 +82,7 @@ export default {
     },
 
     qrValue () {
-      let value = `https://multicash.io/pay/${this.targetWallet.address}?tag=${this.targetWallet.tag}&amount=${this.route.params.transaction.amount}`
+      let value = `${Constants.payLink}/${this.targetWallet.address}?tag=${this.targetWallet.tag}&amount=${this.route.params.transaction.amount}`
 
       if (this.label !== '') {
         value += '&label=' + this.label

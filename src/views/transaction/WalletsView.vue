@@ -45,9 +45,9 @@ export default {
       if (this.route.params.navigate) {
         const transaction = this.route.params.transaction
         if (transaction.isReceive) {
-          this.route.params.transaction.from = wallet
+          transaction.from = wallet
         } else {
-          this.route.params.transaction.to = wallet
+          transaction.to = wallet
         }
 
         this.navigation.navigate(
