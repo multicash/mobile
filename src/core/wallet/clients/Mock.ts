@@ -29,7 +29,7 @@ const exampleBalance: Balance = {
   availableConfirmedAmount: 0,
   byAddress: [
     {
-      address: 'M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De',
+      address: 'MsnDg65r9sE2mmS5Ksg9U4egwRsHKqd9JeL',
       path: 'm/1/1',
       amount: 1234567800000
     }
@@ -37,7 +37,7 @@ const exampleBalance: Balance = {
 }
 
 const exampleAddressInfo: AddressInfo = {
-  address: 'M6NYsdntCHYDv6X6uGzgEChnoQruHBR1De',
+  address: 'MsnDg65r9sE2mmS5Ksg9U4egwRsHKqd9JeL',
   coin: 'string',
   createdOn: 1234,
   isChange: false,

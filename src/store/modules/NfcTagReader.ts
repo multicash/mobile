@@ -23,7 +23,7 @@ const actions = {
 
     return new Promise((resolve) => {
       if (isEmulator) {
-        return resolve(`${Constants.payLink}/Md9sajd9j29d29ejd9ejd892jeje2jd9j9d28?tag=@SwenSaving&amount=4455`)
+        return resolve(`${Constants.payLink}/?id=6a52cfaa-25fb-4bf8-8a62-d2bf21342638&address=MsnDg65r9sE2mmS5Ksg9U4egwRsHKqd9JeL&tag=%40arcuriSavings&amount=655&label=My%20Label`)
       }
 
       NfcManager.start()

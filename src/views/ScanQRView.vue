@@ -67,13 +67,17 @@ export default {
 
   methods: {
     onRead (qrCode) {
-      const qrData = new PayLinkParser(qrCode.data)
-      const sourceWallet = this.$walletManager.getWallet(this.getDefaultWallet) || this.$walletManager.defaultWallet()
+      try {
+        const qrData = new PayLinkParser(qrCode.data)
+        const sourceWallet = this.$walletManager.getWallet(this.getDefaultWallet) || this.$walletManager.defaultWallet()
 
-      this.navigation.replace('pay', {
-        screen: 'confirm',
-        params: qrData.getPayParamsWithSource(sourceWallet, 'qr-code', '#3edd8a')
-      })
+        this.navigation.replace('pay', {
+          screen: 'confirm',
+          params: qrData.getPayParamsWithSource(sourceWallet, 'qr-code', '#3edd8a')
+        })
+      } catch (e) {
+        console.log(e)
+      }
     },
 
     toggleFlash () {

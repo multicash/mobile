@@ -24,12 +24,8 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-    <string>The devices rear camera is used when scanning for a transaction QR code</string>
-    <key>NSFaceIDUsageDescription</key>
-    <string>If enabled FaceID is used to unlock MultiCash</string>
-    <key>NFCReaderUsageDescription</key>
-    <string>MultiCash reads NFC tags to populate a transaction</string>
+	<key>NFCReaderUsageDescription</key>
+	<string>MultiCash reads NFC tags to populate a transaction</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -43,10 +39,12 @@
 			</dict>
 		</dict>
 	</dict>
-  <key>NSFaceIDUsageDescription</key>
-  <string>MultiCash uses Face ID to unlock the application</string>
+	<key>NSCameraUsageDescription</key>
+	<string>The devices rear camera is used when scanning for a transaction QR code</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>MultiCash uses Face ID to unlock the application</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Ionicons.ttf</string>
@@ -77,6 +75,13 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

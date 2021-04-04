@@ -67,12 +67,15 @@ import Locale from '@/core/support/locale'
 import { Share } from 'react-native'
 import Wallet from '@/core/wallet/Wallet'
 import Contact from '@/core/contacts/models/Contact'
+import UUID from '@/core/support/UUID'
+import { encode } from 'html-entities'
 
 export default {
   name: 'ConfirmView',
 
   data () {
     return {
+      id: '',
       transaction: null,
       payLink: false,
       walletIdentifier: null
@@ -102,6 +105,7 @@ export default {
   },
 
   created () {
+    this.id = UUID.create()
     this.transaction = this.route.params.transaction
     this.payLink = this.route.params.payLink || false
     this.walletIdentifier = this.route.params.walletIdentifier || null
@@ -157,14 +161,14 @@ export default {
 
         const wallet = this.$walletManager.getWallet(this.transaction.to.identifier)
         const amount = this.getFormattedCrypto(this.transaction.amount, Locale.getCurrentLocale(), 'MCX')
-        let url = `${Constants.payLink}/${wallet.address}?tag=${wallet.tag}&amount=${this.transaction.amount}`
+        let url = `${Constants.payLink}/?id=${this.id}&address=${wallet.address}&tag=${wallet.tag}&amount=${this.transaction.amount}`
 
-        if (this.transaction.label !== '') {
-          url += '&label=' + this.transaction.label
+        if (this.transaction.label !== '' && this.transaction.label !== null) {
+          url += '&label=' + encode(this.transaction.label)
         }
 
         Share.share({
-          message: `Would you like to pay me ${amount}: ${url}`
+          message: `${encodeURI(url)}\n\nWould you like to pay me ${amount}`
         }).then(() => {
           this.navigation.navigate(this.walletIdentifier ? 'wallet' : 'home')
         })

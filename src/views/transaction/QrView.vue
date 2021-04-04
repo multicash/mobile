@@ -65,12 +65,15 @@
 import { Share } from 'react-native'
 import Locale from '@/core/support/locale'
 import Constants from '@/core/support/constants'
+import UUID from '@/core/support/UUID'
+import { encode } from 'html-entities'
 
 export default {
   name: 'QrView',
 
   data () {
     return {
+      id: '',
       targetWallet: null,
       label: ''
     }
@@ -82,17 +85,18 @@ export default {
     },
 
     qrValue () {
-      let value = `${Constants.payLink}/${this.targetWallet.address}?tag=${this.targetWallet.tag}&amount=${this.route.params.transaction.amount}`
+      let value = `${Constants.payLink}/?id=${this.id}&address=${this.targetWallet.address}&tag=${this.targetWallet.tag}&amount=${this.route.params.transaction.amount}`
 
       if (this.label !== '') {
-        value += '&label=' + this.label
+        value += '&label=' + encode(this.label)
       }
 
-      return value
+      return encodeURI(value)
     }
   },
 
   created () {
+    this.id = UUID.create()
     this.targetWallet = this.$walletManager.getWallet(this.route.params.transaction.to.identifier)
   },
 
@@ -115,7 +119,7 @@ export default {
       const amount = this.getFormattedCrypto(this.route.params.transaction.amount, Locale.getCurrentLocale(), 'MCX')
 
       Share.share({
-        message: `Would you like to pay me ${amount}: ${this.qrValue}`
+        message: `${this.qrValue}\n\nWould you like to pay me ${amount}`
       })
     }
   }
