@@ -84,7 +84,7 @@
 
 <script>
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { AppState } from 'react-native'
+import { AppState, Linking } from 'react-native'
 import { mapActions, mapGetters } from 'vuex'
 import ManagerConfig from '@/core/wallet/ManagerConfig.ts'
 import AppHeaderView from '@/components/views/AppHeaderView'
@@ -102,7 +102,8 @@ export default {
 
   data () {
     return {
-      showLoadingHideContainer: false
+      showLoadingHideContainer: false,
+      receivedDeepLink: null
     }
   },
 
@@ -128,7 +129,24 @@ export default {
         this.$authManager.setNavigationComponent(this.navigation)
         this.$authManager.authenticate('app')
         this.showLoadingHideContainer = false
+
+        Linking.getInitialURL().then(url => {
+          Log.info(url)
+          this.receivedDeepLink = url
+        })
       }, 250)
+
+      this.$eventBus.$on('authenticated', () => {
+        if (this.receivedDeepLink) {
+          this.openPayment(this.receivedDeepLink, 'qr-code', '#3edd8a')
+
+          this.receivedDeepLink = null
+        }
+      })
+
+      Linking.addEventListener('url', ({ url }) => {
+        this.receivedDeepLink = url
+      })
     }
 
     AppState.addEventListener('change', this.onAppStateChange)
@@ -159,13 +177,17 @@ export default {
 
     async scanNFC () {
       this.startNfcTagReader().then(tag => {
-        const payLink = new PayLinkParser(tag)
-        const sourceWallet = this.$walletManager.getWallet(this.getDefaultWallet) || this.$walletManager.defaultWallet()
+        this.openPayment(tag, 'pricetags', '#0027da')
+      })
+    },
 
-        this.navigation.navigate('pay', {
-          screen: 'confirm',
-          params: payLink.getPayParamsWithSource(sourceWallet, 'pricetags', '#0027da')
-        })
+    openPayment (url, icon, color) {
+      const payLink = new PayLinkParser(url)
+      const sourceWallet = this.$walletManager.getWallet(this.getDefaultWallet) || this.$walletManager.defaultWallet()
+
+      this.navigation.navigate('pay', {
+        screen: 'confirm',
+        params: payLink.getPayParamsWithSource(sourceWallet, icon, color)
       })
     }
   }
