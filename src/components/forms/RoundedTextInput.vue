@@ -94,7 +94,7 @@ const stylesStore = (isDarkScheme, multiline, fontSize) => {
     },
 
     title: {
-      color: isDarkScheme ? '#9176e6' : '#4c00ff',
+      color: isDarkScheme ? '#f744e4' : '#b00dfa',
       fontSize: 12,
       marginBottom: 2
     },

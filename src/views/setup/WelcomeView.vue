@@ -2,7 +2,6 @@
   <safe-area-view :style="styles.safeArea">
     <status-bar barStyle="light-content" />
     <colors-background
-      random-heights
       :min-height-percentage="70"
       :max-height-percentage="80"
     />

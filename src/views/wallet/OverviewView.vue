@@ -16,7 +16,7 @@
           <view :style="{ marginLeft: 10 }">
             <text :style="styles.name">{{ wallet.name }}</text>
             <text :style="styles.tag">{{ wallet.tag }}</text>
-            <text :style="styles.address">{{ wallet.address }}</text>
+<!--            <text :style="styles.address">{{ wallet.address }}</text>-->
           </view>
         </view>
 
@@ -200,7 +200,7 @@ const stylesStore = (isDarkScheme) => {
     },
 
     tag: {
-      color: isDarkScheme ? '#ffffff' : 'black'
+      color: isDarkScheme ? '#f744e4' : '#b00dfa'
     },
 
     address: {

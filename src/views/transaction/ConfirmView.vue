@@ -200,7 +200,7 @@ const stylesStore = (isDarkScheme, notEnoughBalance) => {
 
     amount: {
       fontSize: 40,
-      color: notEnoughBalance ? (isDarkScheme ? '#585858' : '#868686') : '#a014c1',
+      color: notEnoughBalance ? (isDarkScheme ? '#585858' : '#868686') : (isDarkScheme ? '#f744e4' : '#b00dfa'),
       fontWeight: '600'
     },
 

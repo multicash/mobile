@@ -5,6 +5,10 @@
       has-close-button
       @on-dismiss="navigation.goBack()"
     />
+    <view :style="styles.defaultContainer">
+      <text :style="styles.defaultContainerLabel">Default wallet</text>
+      <text :style="styles.defaultContainerWallet">{{ defaultWalletName }}</text>
+    </view>
     <draggable-flat-list
       :style="styles.container"
       :data="walletsList"
@@ -31,6 +35,14 @@ export default {
 
   computed: {
     ...mapGetters(['getDefaultWallet']),
+
+    defaultWalletName () {
+      if (this.getDefaultWallet) {
+        return this.$walletManager.getWallet(this.getDefaultWallet).name
+      }
+
+      return 'No wallet selected'
+    },
 
     walletsList () {
       return this.orderedWallets.map(wallet => {
@@ -122,15 +134,32 @@ const stylesStore = (isDarkScheme) => {
       color: subtitle(isDarkScheme).color
     },
     defaultLabel: {
-      color: 'purple',
+      color: isDarkScheme ? '#f744e4' : '#b00dfa',
       fontSize: 10,
       padding: 2.5,
       borderWidth: 1,
-      borderColor: 'purple',
+      borderColor: isDarkScheme ? '#f744e4' : '#b00dfa',
       borderRadius: 5
     },
     checkedChevron: {
-      color: isDarkScheme ? '#a96cf5' : '#7200ff'
+      color: isDarkScheme ? '#f744e4' : '#b00dfa'
+    },
+    defaultContainer: {
+      backgroundColor: isDarkScheme ? '#4e4f5b' : '#ccccda',
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: 20
+    },
+    defaultContainerLabel: {
+      color: isDarkScheme ? 'white' : 'black',
+      fontWeight: '600'
+    },
+    defaultContainerWallet: {
+      color: isDarkScheme ? '#f744e4' : '#b00dfa',
+      fontWeight: '800',
+      fontSize: 15
     }
   }
 }

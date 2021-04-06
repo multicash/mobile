@@ -61,7 +61,7 @@ const stylesStore = (isDarkScheme) => {
 
     name: {
       fontWeight: 'bold',
-      color: isDarkScheme ? '#8b36df' : '#8b36df'
+      color: isDarkScheme ? '#f744e4' : '#b00dfa'
     },
 
     value: {

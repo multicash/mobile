@@ -24,8 +24,8 @@
             <text :style="styles.amountCurrencyText">MCX</text>
             <text-input
               :style="styles.amountTextInput"
-              keyboard-type="decimal-pad"
-              placeholder="0,00"
+              keyboard-type="numeric"
+              placeholder="0.00"
               auto-focus
               :placeholder-text-color="isDarkScheme ? '#111111' : '#dadada'"
               v-model="amount"
@@ -86,7 +86,9 @@ export default {
     },
 
     amountNumber () {
-      return parseFloat(this.amount * constants.satoshiDivider) || 0
+      const amount = parseFloat(this.amount.replace(',', '.'))
+
+      return parseFloat(amount * constants.satoshiDivider) || 0
     }
   },
 
@@ -106,7 +108,8 @@ export default {
     },
 
     confirm () {
-      const transaction = Transaction.byAmount(this.amount, this.route.params.isReceive)
+      const amount = parseFloat(this.amount.replace(',', '.'))
+      const transaction = Transaction.byAmount(amount, this.route.params.isReceive)
       transaction.setWallet(this.sourceWallet)
 
       this.navigation.navigate('recipient', {

@@ -1,10 +1,6 @@
 <template>
   <view-background no-padding>
-    <colors-background
-      random-heights
-      :min-height-percentage="showCloseButton ? 15 : 10"
-      :max-height-percentage="showCloseButton ? 20 : 15"
-    />
+    <colors-background :full-screen="false" :style="styles.colorsBackground" />
     <modal-navigation
       v-if="showCloseButton"
       has-close-button
@@ -62,7 +58,7 @@ export default {
     },
 
     styles () {
-      return stylesStore(this.isDarkScheme)
+      return stylesStore(this.isDarkScheme, this.showCloseButton)
     },
 
     showCloseButton () {
@@ -175,8 +171,12 @@ export default {
   }
 }
 
-const stylesStore = (isDarkScheme) => {
+const stylesStore = (isDarkScheme, showCloseButton) => {
   return {
+    colorsBackground: {
+      height: showCloseButton ? 150 : 90
+    },
+
     container: {
       padding: 30,
       flex: 1,

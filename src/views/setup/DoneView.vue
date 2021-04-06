@@ -1,9 +1,8 @@
 <template>
   <safe-area-view :style="styles.safeArea">
     <colors-background
-      random-heights
-      :min-height-percentage="25"
-      :max-height-percentage="35"
+      :full-screen="false"
+      :style="{ height: '25%' }"
     />
     <view :style="styles.container">
       <image :style="styles.image1" :source="require('@/assets/checked.png')" />
