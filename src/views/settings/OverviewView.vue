@@ -23,7 +23,7 @@ export default {
             {
               title: 'Currency',
               subtitle: 'All fiat amounts will be displayed in this currency',
-              leftIcon: { name: 'cash', color: '#5a9174' },
+              leftIcon: { name: 'cash', color: '#05ad25' },
               onPress: () => {
                 this.navigation.navigate('currency')
               }
@@ -31,7 +31,7 @@ export default {
             {
               title: 'Change PIN',
               subtitle: 'Change the PIN used for securing your wallets by MultiCash',
-              leftIcon: { name: 'lock-closed', color: '#d3c47f' },
+              leftIcon: { name: 'lock-closed', color: '#ffb900' },
               onPress: () => {
                 this.$authManager.authenticate().then(authenticated => {
                   if (authenticated) {

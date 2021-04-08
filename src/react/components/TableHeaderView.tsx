@@ -1,20 +1,20 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import React, { ReactElement } from 'react'
+import { View, Text, Image, StyleSheet, ImageURISource } from 'react-native'
 
-export default (isDarkScheme, title, subtitle, image) => {
-  const styles = StyleSheet.create(stylesStore(isDarkScheme))
+export default function <T> (isDarkScheme: boolean, title: string, subtitle: string, image: ImageURISource): ReactElement {
+  const styles = StyleSheet.create(stylesStore(isDarkScheme) as any)
 
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={image}/>
+      <Image style={styles.image} source={image} />
       <Text style={styles.title}>{ title }</Text>
       <Text style={styles.subtitle}>{ subtitle }</Text>
     </View>
   )
 }
 
-const stylesStore = (isDarkScheme) => {
+const stylesStore = (isDarkScheme: boolean) => {
   return {
     container: {
       flex: 1,
@@ -29,7 +29,7 @@ const stylesStore = (isDarkScheme) => {
       marginVertical: 5
     },
     subtitle: {
-      fontSize: 16,
+      fontSize: 14,
       color: isDarkScheme ? '#b3aabe' : '#4a4350',
       marginVertical: 5,
       textAlign: 'center'

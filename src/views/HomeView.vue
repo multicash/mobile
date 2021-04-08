@@ -131,7 +131,8 @@ export default {
         this.showLoadingHideContainer = false
 
         Linking.getInitialURL().then(url => {
-          Log.info(url)
+          Log.info(`Received pay link: ${url}`)
+
           this.receivedDeepLink = url
         })
       }, 250)
@@ -145,6 +146,8 @@ export default {
       })
 
       Linking.addEventListener('url', ({ url }) => {
+        Log.info(`Received pay link: ${url}`)
+
         this.receivedDeepLink = url
       })
     }

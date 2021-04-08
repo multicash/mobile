@@ -37,14 +37,14 @@ const stylesStore = (isDarkScheme) => {
     },
 
     digitDotFilled: {
-      backgroundColor: isDarkScheme ? '#0bbcda' : '#0bbcda',
+      backgroundColor: isDarkScheme ? '#6d6de3' : '#1e1e4d',
       width: 20,
       height: 20,
       borderRadius: 10
     },
 
     digitDot: {
-      backgroundColor: isDarkScheme ? '#f744e4' : '#aa0c98',
+      backgroundColor: isDarkScheme ? '#b95c8b' : '#931A5A',
       width: 20,
       height: 20,
       borderRadius: 10

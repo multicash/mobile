@@ -200,7 +200,8 @@ const stylesStore = (isDarkScheme) => {
     },
 
     tag: {
-      color: isDarkScheme ? '#f744e4' : '#b00dfa'
+      color: isDarkScheme ? '#b95c8b' : '#931A5A',
+      fontSize: 16
     },
 
     address: {

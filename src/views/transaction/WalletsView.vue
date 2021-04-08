@@ -31,7 +31,7 @@ export default {
               return {
                 title: wallet.name,
                 subtitle: this.formatAmountFromSatoshis(wallet.totalAmount, 'en'),
-                leftAvatar: { source: resolveIcon(wallet.icon), size: 40, rounded: false },
+                leftAvatar: { source: resolveIcon(wallet.icon), size: 40 },
                 onPress: () => this.navigate(wallet)
               }
             })

@@ -5,9 +5,20 @@
       has-close-button
       @on-dismiss="navigation.goBack()"
     />
+    <header-view
+      :style="{ marginTop: 10 }"
+      title="Order wallets"
+      subtitle="Rearrange your wallets in your desired order and select your default wallet."
+      :image-background="require('@/assets/sorting.png')"
+      :image-foreground="require('@/assets/wallet.png')"
+    />
     <view :style="styles.defaultContainer">
-      <text :style="styles.defaultContainerLabel">Default wallet</text>
-      <text :style="styles.defaultContainerWallet">{{ defaultWalletName }}</text>
+      <action-notification
+        title="Default wallet"
+        label="Select your default wallet by pressing longer on one of the wallets below"
+      >
+        <text :style="styles.defaultContainerWallet">{{ defaultWalletName }}</text>
+      </action-notification>
     </view>
     <draggable-flat-list
       :style="styles.container"
@@ -50,7 +61,7 @@ export default {
           identifier: wallet.identifier,
           title: wallet.name,
           subtitle: this.formatAmountFromSatoshis(wallet.totalAmount, 'en'),
-          leftAvatar: { source: resolveIcon(wallet.icon), size: 40, rounded: false },
+          leftAvatar: { source: resolveIcon(wallet.icon), size: 40 },
           isDefault: this.getDefaultWallet === wallet.identifier
         }
       })
@@ -78,7 +89,7 @@ export default {
             <Avatar
               source={item.leftAvatar.source}
               size={item.leftAvatar.size || 40}
-              rounded={item.leftAvatar.rounded || true}
+              rounded={item.leftAvatar.rounded || false}
               placeholderStyle={{ backgroundColor: 'transparent' }}
             />
 
@@ -111,7 +122,7 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     container: {
-      paddingTop: 50
+      paddingTop: 10
     },
     item: {
       borderBottomColor: isDarkScheme ? '#505155' : '#dfe1ee',
@@ -145,20 +156,17 @@ const stylesStore = (isDarkScheme) => {
       color: isDarkScheme ? '#f744e4' : '#b00dfa'
     },
     defaultContainer: {
-      backgroundColor: isDarkScheme ? '#4e4f5b' : '#ccccda',
+      backgroundColor: isDarkScheme ? 'black' : '#d4d4de',
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: 20
-    },
-    defaultContainerLabel: {
-      color: isDarkScheme ? 'white' : 'black',
-      fontWeight: '600'
+      paddingHorizontal: 10,
+      paddingTop: 10
     },
     defaultContainerWallet: {
-      color: isDarkScheme ? '#f744e4' : '#b00dfa',
-      fontWeight: '800',
+      color: isDarkScheme ? '#0bbcda' : '#00ade7',
+      fontWeight: '700',
       fontSize: 15
     }
   }

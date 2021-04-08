@@ -3,6 +3,7 @@
     <qr-code-scanner
       :onRead="onRead"
       :flashMode="flashMode"
+      :cameraStyle="{ height: '100%', width: '100%' }"
     />
     <linear-gradient
       :colors="[ '#000', '#00000000' ]"
@@ -29,6 +30,18 @@
         >
           <text :style="styles.closeButtonText">Close</text>
         </touchable-opacity>
+      </view>
+      <view :style="styles.contentContainer">
+        <view :style="styles.qrBorders">
+          <view :style="styles.qrBordersRow">
+            <view :style="{ borderLeftWidth: 4, borderLeftColor: 'white', borderTopWidth: 4, borderTopColor: 'white', height: 50, width: 50, borderTopLeftRadius: 10 }"/>
+            <view :style="{ borderRightWidth: 4, borderRightColor: 'white', borderTopWidth: 4, borderTopColor: 'white', height: 50, width: 50, borderTopRightRadius: 10 }"/>
+          </view>
+          <view :style="styles.qrBordersRow">
+            <view :style="{ borderLeftWidth: 4, borderLeftColor: 'white', borderBottomWidth: 4, borderBottomColor: 'white', height: 50, width: 50, borderBottomLeftRadius: 10 }"/>
+            <view :style="{ borderRightWidth: 4, borderRightColor: 'white', borderBottomWidth: 4, borderBottomColor: 'white', height: 50, width: 50, borderBottomRightRadius: 10 }"/>
+          </view>
+        </view>
       </view>
     </safe-area-view>
   </view>
@@ -103,6 +116,25 @@ const stylesStore = () => {
       left: 0,
       right: 0,
       padding: 30
+    },
+
+    contentContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+
+    qrBorders: {
+      flex: 1,
+      justifyContent: 'space-between',
+      maxHeight: 200,
+      maxWidth: 200
+    },
+
+    qrBordersRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      width: '100%'
     },
 
     actionsContainer: {

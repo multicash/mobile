@@ -71,7 +71,7 @@ export default {
           <Avatar
             source={item.item.leftAvatar.source}
             size={item.item.leftAvatar.size || 40}
-            rounded={item.item.leftAvatar.rounded || true}
+            rounded={item.item.leftAvatar.rounded || false}
             placeholderStyle={{ backgroundColor: 'transparent' }}
           />
           }
@@ -181,16 +181,18 @@ const stylesStore = (isDarkScheme, type, grouped) => {
       color: text(isDarkScheme).color
     },
     itemSubtitle: {
-      color: subtitle(isDarkScheme).color
+      color: subtitle(isDarkScheme).color,
+      fontSize: 12,
+      paddingTop: 2
     },
     itemLeftIcon: {
-      color: isDarkScheme ? '#a96cf5' : '#7200ff'
+      color: isDarkScheme ? '#e033eb' : '#b00dfa'
     },
     itemRightIcon: {
       color: isDarkScheme ? 'white' : 'black'
     },
     checkedChevron: {
-      color: isDarkScheme ? '#a96cf5' : '#7200ff'
+      color: isDarkScheme ? '#e033eb' : '#b00dfa'
     }
   }
 }
