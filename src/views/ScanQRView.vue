@@ -32,6 +32,7 @@
         </touchable-opacity>
       </view>
       <view :style="styles.contentContainer">
+        <text :style="styles.scanLabel">Scan a MultiCash Pay Link</text>
         <view :style="styles.qrBorders">
           <view :style="styles.qrBordersRow">
             <view :style="{ borderLeftWidth: 4, borderLeftColor: 'white', borderTopWidth: 4, borderTopColor: 'white', height: 50, width: 50, borderTopLeftRadius: 10 }"/>
@@ -122,6 +123,14 @@ const stylesStore = () => {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center'
+    },
+
+    scanLabel: {
+      color: 'white',
+      marginTop: -30,
+      paddingBottom: 20,
+      fontSize: 15,
+      fontWeight: '600'
     },
 
     qrBorders: {

@@ -1,9 +1,12 @@
 const WalletIcons: any = {
-  wallet: () => require('@/assets/walletIcons/wallet.png'),
-  moneyBox: () => require('@/assets/walletIcons/money_box.png'),
   gift: () => require('@/assets/walletIcons/gift.png'),
+  moneyBox: () => require('@/assets/walletIcons/money_box.png'),
+  new: () => require('@/assets/walletIcons/new.png'),
   newYears: () => require('@/assets/walletIcons/new_years.png'),
-  security: () => require('@/assets/walletIcons/security.png')
+  qrCode: () => require('@/assets/walletIcons/qr_code.png'),
+  security: () => require('@/assets/walletIcons/security.png'),
+  wallet: () => require('@/assets/walletIcons/wallet.png'),
+  walletMoney: () => require('@/assets/walletIcons/wallet_money.png')
 }
 
 export const resolveIcon = (name: string) => {

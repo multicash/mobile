@@ -174,11 +174,11 @@ export default {
 const stylesStore = (isDarkScheme, showCloseButton) => {
   return {
     colorsBackground: {
-      height: showCloseButton ? 150 : 90
+      height: showCloseButton ? 110 : 90
     },
 
     container: {
-      padding: 30,
+      padding: showCloseButton ? 0 : 30,
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center'

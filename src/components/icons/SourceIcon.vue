@@ -33,12 +33,12 @@ export default {
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme, !!this.image)
+      return stylesStore(this.isDarkScheme)
     }
   }
 }
 
-const stylesStore = (isDarkScheme, usesImage) => {
+const stylesStore = (isDarkScheme) => {
   return {
     iconContainer: {
       justifyContent: 'center',
@@ -52,7 +52,6 @@ const stylesStore = (isDarkScheme, usesImage) => {
       backgroundColor: isDarkScheme ? '#494949' : '#d6d5d5',
       justifyContent: 'center',
       alignItems: 'center',
-      paddingLeft: usesImage ? 0 : 3,
       marginBottom: 10
     },
 

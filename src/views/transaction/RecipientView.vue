@@ -41,41 +41,53 @@ export default {
       })
     },
 
+    favorites () {
+      return this.contactsList.filter(contact => contact.meta.isFavorite)
+    },
+
     data () {
-      return [
+      const data = [
         {
           data: [
             {
               title: 'My wallets',
-              leftIcon: { name: 'wallet', size: 40 },
+              leftAvatar: { source: require('@/assets/new-wallet2.png'), size: 40 },
               onPress: () => {
                 this.navigation.navigate('wallets', { navigate: 'confirm', ...this.route.params })
               }
             },
             this.route.params.transaction.isReceive ? {
               title: 'Share QR code',
-              leftIcon: { name: 'qr-code-outline', size: 40 },
+              leftAvatar: { source: require('@/assets/qr-code.png'), size: 40 },
               onPress: () => {
                 this.navigation.navigate('qr', this.route.params)
               }
             } : {
               title: 'Enter recipient address/tag',
-              leftIcon: { name: 'barcode-outline', size: 40 },
+              leftAvatar: { source: require('@/assets/barcode-scanner.png'), size: 40 },
               onPress: () => {
                 this.navigation.navigate('enterRecipient', this.route.params)
               }
             }
           ]
-        },
-        {
-          title: 'Recent',
-          data: this.contactsList
-        },
-        {
-          title: 'Favorites',
-          data: this.contactsList.filter(contact => contact.meta.isFavorite)
         }
       ]
+
+      if (this.contactsList.length > 0) {
+        data.push({
+          title: 'Recent',
+          data: this.contactsList
+        })
+      }
+
+      if (this.favorites.length > 0) {
+        data.push({
+          title: 'Favorites',
+          data: this.favorites
+        })
+      }
+
+      return data
     }
   }
 }

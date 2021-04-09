@@ -23,7 +23,7 @@ export default {
             {
               title: 'Currency',
               subtitle: 'All fiat amounts will be displayed in this currency',
-              leftIcon: { name: 'cash', color: '#05ad25' },
+              leftAvatar: { source: require('@/assets/currency-exchange.png'), size: 40 },
               onPress: () => {
                 this.navigation.navigate('currency')
               }
@@ -31,7 +31,7 @@ export default {
             {
               title: 'Change PIN',
               subtitle: 'Change the PIN used for securing your wallets by MultiCash',
-              leftIcon: { name: 'lock-closed', color: '#ffb900' },
+              leftAvatar: { source: require('@/assets/phonelink-lock.png'), size: 40 },
               onPress: () => {
                 this.$authManager.authenticate().then(authenticated => {
                   if (authenticated) {
@@ -56,7 +56,7 @@ export default {
             {
               title: 'Support',
               subtitle: 'Let us help you when you run into trouble with MultiCash',
-              leftIcon: { name: 'help-buoy', color: '#e86800' },
+              leftAvatar: { source: require('@/assets/faq.png'), size: 40 },
               onPress: () => {
                 this.navigation.navigate('support')
               }
@@ -64,7 +64,7 @@ export default {
             {
               title: 'Rate MultiCash',
               subtitle: 'Let others know how much you like MultiCash',
-              leftIcon: { name: 'star', color: '#f744e4' }
+              leftAvatar: { source: require('@/assets/rating.png'), size: 40 }
             }
           ]
         },
