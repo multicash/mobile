@@ -182,7 +182,7 @@ const stylesStore = (isDarkScheme, type, grouped) => {
     },
     itemSubtitle: {
       color: subtitle(isDarkScheme).color,
-      fontSize: 12,
+      fontSize: 14,
       paddingTop: 2
     },
     itemLeftIcon: {

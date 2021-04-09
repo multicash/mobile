@@ -21,7 +21,7 @@ export const text = (isDarkTheme) => {
 export const subtitle = (isDarkTheme) => {
   return {
     fontWeight: '600',
-    color: isDarkTheme ? '#8386a0' : '#8386a0'
+    color: isDarkTheme ? '#a0a3bd' : '#8386a0'
   }
 }
 
