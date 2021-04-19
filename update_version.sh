@@ -21,7 +21,7 @@ update_android_gradle()
 update_ios_xproject()
 {
     sed -i '' -e "s/APP_BUILD = [0-9]\{1,\};/APP_BUILD = $200;/g" $1
-    sed -i '' -e "s/APP_VERSION = .*;/APP_VERSION = $300;/g" $1
+    sed -i '' -e "s/APP_VERSION = .*;/APP_VERSION = $3;/g" $1
 }
 
 update_package_json()
