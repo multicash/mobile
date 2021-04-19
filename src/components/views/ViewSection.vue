@@ -43,7 +43,8 @@ export default {
 const stylesStore = (isDarkScheme, titleColor) => {
   return {
     section: {
-      marginVertical: 20,
+      marginTop: 15,
+      marginBottom: 10,
       flexDirection: 'column-reverse'
     },
 

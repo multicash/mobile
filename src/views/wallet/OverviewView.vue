@@ -16,7 +16,6 @@
           <view :style="{ marginLeft: 10 }">
             <text :style="styles.name">{{ wallet.name }}</text>
             <text :style="styles.tag">{{ wallet.tag }}</text>
-<!--            <text :style="styles.address">{{ wallet.address }}</text>-->
           </view>
         </view>
 
@@ -48,113 +47,50 @@
           />
         </view>
 
-        <text :style="styles.transactionsTitle">Last transactions</text>
-        <view :style="styles.transactionsContainer">
-          <view
-            v-for="transaction in transactions"
-            :key="JSON.stringify(transaction)"
-          >
-            <touchable-opacity
-              :style="styles.item"
-              :active-opacity="0.6"
-              :on-press="() => navigation.navigate('transaction', { transaction })"
-            >
-              <view :style="styles.itemAvatar">
-                <icon
-                  v-if="transaction.icon"
-                  :name="transaction.icon"
-                  :color="transaction.color"
-                  :size="40"
-                />
-                <wallet-icon
-                  v-if="transaction.avatar"
-                  :icon="transaction.avatar"
-                  :size="40"
-                />
-              </view>
-              <view :style="styles.itemTextContainer">
-                <text
-                  :style="styles.itemTitle"
-                  :numberOfLines="1"
-                  ellipsizeMode="middle"
-                >
-                  {{ transaction.title }}
-                </text>
-                <text :style="styles.itemSubtitle">{{ transaction.subtitle }}</text>
-              </view>
-              <money
-                :amount="transaction.amount"
-                crypto
-                currency=""
-                :style="styles.itemAmount"
-              />
-            </touchable-opacity>
-          </view>
-          <rounded-button
-            title="Show more"
-            :style="{ marginBottom: 5 }"
-          />
-        </view>
+        <text :style="styles.sectionTitle">Last transactions</text>
+        <transactions-container
+          :style="styles.sectionContainer"
+          :transactions="transactions"
+          @on-press="navigation.navigate('transaction', { transaction: $event })"
+        />
+
+        <text :style="styles.sectionTitle">Addresses</text>
+        <addresses-container
+          :style="styles.sectionContainer"
+        />
       </view-background>
     </scroll-view>
   </view>
 </template>
 
 <script>
-import { subtitle, text } from '@/core/support/styles'
+import Transactions from '@/assets/examples/transactions'
+import TransactionsContainer from '@/components/views/TransactionsContainer'
+import AddressesContainer from '@/components/views/AddressesContainer'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'OverviewView',
 
+  components: { AddressesContainer, TransactionsContainer },
+
   data () {
     return {
-      transactions: [
-        {
-          title: '@cordovaV1',
-          subtitle: 'Yesterday 9:40',
-          amount: -33550000,
-          icon: 'person-circle',
-          color: '#00ffb2'
-        },
-        {
-          title: 'Savings Account',
-          subtitle: 'Received payment',
-          amount: 2050450000,
-          avatar: 'gift'
-        },
-        {
-          title: '@BLyberth',
-          subtitle: 'June 4th, 2020 10:23',
-          amount: -94000000,
-          icon: 'person-circle',
-          color: '#c807a9'
-        },
-        {
-          title: 'Msc3MivQfEqhxY9bRm8jw89Koa2jQ7dqTG',
-          subtitle: 'May 28th, 2020 23:49',
-          amount: -203440000,
-          icon: 'help-circle',
-          color: '#887d87'
-        },
-        {
-          title: 'Savings Account',
-          subtitle: 'Received payment',
-          amount: 1299000000,
-          avatar: 'gift'
-        }
-      ]
+      transactions: []
     }
   },
 
   computed: {
+    ...mapGetters(['getDefaultWallet']),
+
     styles () {
       return stylesStore(this.isDarkScheme)
     }
   },
 
-  methods: {
-    onPress (transaction) {
-      alert(transaction.title)
+  created () {
+    if (this.getDefaultWallet === this.wallet.identifier) {
+      this.transactions = Transactions
     }
   }
 }
@@ -189,7 +125,7 @@ const stylesStore = (isDarkScheme) => {
     },
 
     fiatAmount: {
-      color: isDarkScheme ? '#b95c8b' : '#931A5A',
+      color: isDarkScheme ? '#a7bbc1' : '#7e97a0',
       fontSize: 15,
       fontWeight: '600'
     },
@@ -215,56 +151,20 @@ const stylesStore = (isDarkScheme) => {
       marginBottom: 20
     },
 
-    transactionsTitle: {
+    sectionTitle: {
       color: isDarkScheme ? 'white' : 'black',
       fontWeight: 'bold',
       marginBottom: 10
     },
 
-    transactionsContainer: {
-      backgroundColor: isDarkScheme ? '#191a20' : '#dfe1ee', // #dfe1ee
+    sectionContainer: {
+      backgroundColor: isDarkScheme ? '#191a20' : '#dfe1ee',
       borderRadius: 15,
       overflow: 'hidden',
       marginBottom: 20,
       paddingHorizontal: 10,
       paddingTop: 10,
       paddingBottom: 5
-    },
-
-    item: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      borderRadius: 10,
-      marginBottom: 5,
-      backgroundColor: isDarkScheme ? '#2c2e36' : '#ffffff',
-      padding: 15
-    },
-
-    itemAvatar: {
-      width: 40,
-      height: 40,
-      marginRight: 10
-    },
-
-    itemTextContainer: {
-      flex: 1,
-      marginRight: 10
-    },
-
-    itemTitle: {
-      color: text(isDarkScheme).color,
-      fontSize: 16,
-      marginBottom: 2
-    },
-
-    itemSubtitle: {
-      color: subtitle(isDarkScheme).color,
-      fontSize: 13
-    },
-
-    itemAmount: {
-      fontWeight: 'bold',
-      color: isDarkScheme ? '#b95c8b' : '#931A5A'
     }
   }
 }

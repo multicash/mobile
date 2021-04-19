@@ -7,13 +7,23 @@
     <view :style="styles.walletCardHeader">
       <wallet-icon :icon="value.icon" :size="30"/>
 
-      <text
-        :style="styles.walletCardName"
-        adjusts-font-size-to-fit
-        :minimumFontScale="0.01"
-      >
-        {{ value.name }}
-      </text>
+      <view :style="styles.walletCardInfo">
+        <text
+          :style="styles.walletCardName"
+          adjusts-font-size-to-fit
+          :minimumFontScale="0.01"
+        >
+          {{ value.name }}
+        </text>
+
+        <text
+          :style="styles.walletCardTag"
+          adjusts-font-size-to-fit
+          :minimumFontScale="0.01"
+        >
+          {{ value.tag }}
+        </text>
+      </view>
     </view>
 
     <view :style="styles.moneyView">
@@ -72,12 +82,18 @@ const stylesStore = (isDarkScheme) => {
       flexDirection: 'row',
       marginBottom: 10
     },
+    walletCardInfo: {
+      marginLeft: 10
+    },
     walletCardName: {
-      marginLeft: 10,
       fontSize: 15,
       fontWeight: '600',
-      color: text(isDarkScheme).color,
-      lineHeight: 30
+      color: text(isDarkScheme).color
+    },
+    walletCardTag: {
+      color: isDarkScheme ? '#b95c8b' : '#931A5A',
+      fontWeight: '600',
+      fontSize: 12
     },
     moneyView: {
       display: 'flex',
@@ -91,7 +107,7 @@ const stylesStore = (isDarkScheme) => {
       width: '100%'
     },
     walletCardFiatAmount: {
-      color: isDarkScheme ? '#b95c8b' : '#931A5A',
+      color: isDarkScheme ? '#a7bbc1' : '#7e97a0',
       fontSize: 15,
       fontWeight: '600'
     }

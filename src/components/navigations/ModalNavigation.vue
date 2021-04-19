@@ -1,5 +1,6 @@
 <template>
   <view :style="styles.modalNavigation">
+    <colors-background v-if="colorsBackground"></colors-background>
     <round-button
       v-if="hasCloseButton || hasBackButton"
       @on-press="$emit('on-dismiss')"
@@ -34,17 +35,21 @@ export default {
     hasBackButton: {
       type: Boolean,
       default: false
+    },
+    colorsBackground: {
+      type: Boolean,
+      default: false
     }
   },
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme)
+      return stylesStore(this.isDarkScheme, this.colorsBackground)
     }
   }
 }
 
-const stylesStore = (isDarkScheme) => {
+const stylesStore = (isDarkScheme, colorsBackground) => {
   return {
     modalNavigation: {
       backgroundColor: isDarkScheme ? '#2c2e36' : '#ededf3',
