@@ -5,8 +5,8 @@
 
       <view :style="styles.headerContainer">
         <view :style="{ flexDirection: 'row' }">
-          <image :style="styles.headerImage1" :source="require('@/assets/new-wallet1.png')"/>
-          <image :style="styles.headerImage2" :source="require('@/assets/new-wallet2.png')"/>
+          <image :style="styles.headerImage1" :source="require('@/assets/new.png')"/>
+          <image :style="styles.headerImage2" :source="require('@/assets/coin-wallet.png')"/>
         </view>
         <text :style="styles.headerTitle">Awesome, you've done it!</text>
         <text :style="styles.headerSubtitle">
@@ -49,10 +49,19 @@
 
     </view>
     <view v-else :style="styles.creatingContainer">
-      <view :style="{ flexDirection: 'row' }">
-        <image :style="styles.creatingImage1" :source="require('@/assets/create-wallet1.png')"/>
-        <image :style="styles.creatingImage2" :source="require('@/assets/create-wallet2.png')"/>
-      </view>
+      <animated:view
+        :style="{
+          transform: [{rotate: spin}],
+          width: 200,
+          height: 200,
+          marginBottom: 10,
+        }"
+      >
+        <image
+          :style="styles.image"
+          :source="require('@/assets/loading.png')"
+        />
+      </animated:view>
       <text :style="styles.creatingTitle">In progress</text>
       <text :style="styles.creatingSubtitle">Your wallet is being created...</text>
     </view>
@@ -62,6 +71,7 @@
 
 <script>
 import { Alert } from 'react-native'
+import { Animated, Easing } from 'react-native'
 
 export default {
   name: 'CreateView',
@@ -69,11 +79,19 @@ export default {
   data () {
     return {
       created: false,
-      newWallet: null
+      newWallet: null,
+      spinValue: 0,
+      spin: '0deg',
+      animatedValueRotate: 0
     }
   },
 
   created () {
+    this.spinValue = new Animated.Value(0)
+    this.animatedValueRotate = new Animated.Value(0)
+
+    this.animationRotate()
+
     const walletConfig = this.$walletManager.getTempWallet(this.route.params.identifier)
 
     this.$walletManager.addWallet(walletConfig).then(wallet => {
@@ -100,6 +118,28 @@ export default {
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
+    }
+  },
+
+  methods: {
+    animationRotate () {
+      this.spinValue.setValue(0)
+      this.animatedValueRotate.setValue(0)
+
+      Animated.timing(this.spinValue, {
+        toValue: 1,
+        duration: 1250,
+        easing: Easing.linear,
+        useNativeDriver: true
+      })
+        .start(() => {
+          this.animationRotate()
+        })
+
+      this.spin = this.spinValue.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg']
+      })
     }
   }
 }
@@ -143,6 +183,13 @@ const stylesStore = (isDarkScheme) => {
       resizeMode: 'contain',
       marginTop: 20,
       marginBottom: 5
+    },
+
+    image: {
+      width: 200,
+      height: 200,
+      resizeMode: 'contain'
+
     },
 
     nextTitle: {

@@ -9,7 +9,7 @@
       <header-view
         title="Your wallets restore key"
         subtitle="In order to recover your wallet you need the restore key."
-        :image-background="require('@/assets/signing-document.png')"
+        :image-background="require('@/assets/signing-a-document.png')"
         :image-foreground="require('@/assets/protect.png')"
       />
 

@@ -10,8 +10,8 @@
       <header-view
         title="Write down your restore key!"
         :subtitle="'A restore key is the ONLY WAY to restore your wallet and open it in another app. If you lose it you can never recover it and you\'ll lose access to your MultiCash. So make absolutely sure to keep it very safe!'"
-        :image-background="require('@/assets/restore-key-safe.png')"
-        :image-foreground="require('@/assets/restore-key.png')"
+        :image-background="require('@/assets/safe.png')"
+        :image-foreground="require('@/assets/key.png')"
       />
 
       <restore-key-grid-view :words="words" />

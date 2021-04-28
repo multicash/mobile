@@ -17,7 +17,12 @@
           <view :style="styles.nameContainer">
             <wallet-icon :icon="wallet.icon" :size="40"/>
             <view :style="{ marginLeft: 10 }">
-              <text :style="styles.tag">{{ wallet.tag }}</text>
+              <text
+                :style="styles.tag"
+                :minimumFontScale="0.01"
+                :adjustsFontSizeToFit="true"
+                :numberOfLines="1"
+              >{{ wallet.tag }}</text>
             </view>
           </view>
           <money
@@ -101,14 +106,14 @@ const stylesStore = (isDarkScheme) => {
     nameContainer: {
       flexDirection: 'row',
       alignItems: 'center',
-      marginBottom: 0,
+      marginBottom: 5,
       paddingHorizontal: 0
     },
 
     tag: {
       color: isDarkScheme ? '#B95C8B' : '#931A5A',
       fontWeight: 'bold',
-      fontSize: 20
+      fontSize: 25
     },
 
     amountContainer: {
@@ -120,7 +125,7 @@ const stylesStore = (isDarkScheme) => {
 
     amount: {
       color: isDarkScheme ? '#FFFFFF' : 'black',
-      fontSize: 35,
+      fontSize: 25,
       fontWeight: 'bold'
     },
 

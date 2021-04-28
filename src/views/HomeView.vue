@@ -46,8 +46,8 @@
           >
             <view :style="styles.noWalletContent">
               <view :style="{ flexDirection: 'row' }">
-                <image :style="styles.noWalletIcon1" :source="require('@/assets/new-wallet1.png')"/>
-                <image :style="styles.noWalletIcon2" :source="require('@/assets/new-wallet2.png')"/>
+                <image :style="styles.noWalletIcon1" :source="require('@/assets/new.png')"/>
+                <image :style="styles.noWalletIcon2" :source="require('@/assets/coin-wallet.png')"/>
               </view>
               <text :style="styles.noWalletTitle">Add a MultiCash wallet</text>
               <text :style="styles.noWalletSubtitle">Add a new or an existing wallet to MultiCash and use money like it's supposed to!</text>
@@ -61,7 +61,7 @@
           </card>
 
           <notification
-            icon="people"
+            :image="require('@/assets/contact-book.png')"
             title="Contacts"
             label="Add MultiCash contacts to receive and send MultiCash after setting up your wallet"
             @on-press="navigation.navigate('contacts')"

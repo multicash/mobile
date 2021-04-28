@@ -10,8 +10,8 @@
       <header-view
         title="Enter your restore key!"
         subtitle="Enter your restore key to recreate your wallet! It should be 12 words all lowercased."
-        :image-background="require('@/assets/restore-key-safe.png')"
-        :image-foreground="require('@/assets/restore-key.png')"
+        :image-background="require('@/assets/safe.png')"
+        :image-foreground="require('@/assets/key.png')"
       />
 
       <view :style="styles.wordsContainer">

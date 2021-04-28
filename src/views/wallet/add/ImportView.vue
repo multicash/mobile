@@ -11,7 +11,7 @@
         title="Import an existing wallet"
         subtitle="Import an exported wallet file or paste the file contents here."
         :image-background="require('@/assets/import.png')"
-        :image-foreground="require('@/assets/cardcash.png')"
+        :image-foreground="require('@/assets/credit-card-cash-withdrawal.png')"
       />
 
       <rounded-text-input

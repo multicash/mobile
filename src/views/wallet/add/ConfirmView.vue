@@ -9,8 +9,8 @@
 
       <view :style="styles.headerContainer">
         <view :style="{ flexDirection: 'row' }">
-          <image :style="styles.headerImage1" :source="require('@/assets/confirm-check-list.png')"/>
-          <image :style="styles.headerImage2" :source="require('@/assets/confirm-check.png')"/>
+          <image :style="styles.headerImage1" :source="require('@/assets/todo-list.png')"/>
+          <image :style="styles.headerImage2" :source="require('@/assets/check-all.png')"/>
         </view>
         <text :style="styles.headerTitle">Almost Done!</text>
       </view>

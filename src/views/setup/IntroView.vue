@@ -39,14 +39,14 @@ export default {
         {
           title: 'Store, manage, and protect your MultiCash.',
           description: 'Keep your MultiCash always within reach in a secure and safe bank-like app with the benefits of the future.',
-          header1: require('@/assets/restore-key.png'),
-          header2: require('@/assets/restore-key-safe.png')
+          header1: require('@/assets/key.png'),
+          header2: require('@/assets/safe.png')
         },
         {
           title: 'Multiple Wallets!',
           description: 'MultiCash allows you to create multiple wallets. Create your main wallet and perhaps a savings wallet. Add up to 10 wallets to MultiCash!',
-          header1: require('@/assets/new-wallet1.png'),
-          header2: require('@/assets/new-wallet2.png')
+          header1: require('@/assets/new.png'),
+          header2: require('@/assets/coin-wallet.png')
         },
         {
           title: 'Wallet Tags!',

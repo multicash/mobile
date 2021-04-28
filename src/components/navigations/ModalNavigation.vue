@@ -64,7 +64,7 @@ const stylesStore = (isDarkScheme, colorsBackground, smallTitle) => {
       alignItems: 'center',
       shadowBlur: 10,
       shadowRadius: 10,
-      shadowOpacity: 0.2,
+      shadowOpacity: 0.1,
       shadowColor: '#000000',
       zIndex: 1
     },

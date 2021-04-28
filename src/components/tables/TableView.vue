@@ -62,8 +62,9 @@ export default {
     renderList (item) {
       return (
         <ListItem
-          style={item.section.data.length - 1 === item.index ? undefined : this.styles.item}
+          style={this.getListItemStyle(item)}
           containerStyle={this.styles.itemContent}
+          underlayColor="#CED6E8FF"
           key={item.index}
           onPress={ () => this.onPress(item) }
         >
@@ -143,6 +144,30 @@ export default {
       return null
     },
 
+    getListItemStyle (item) {
+      if (!this.grouped) {
+        return this.styles.item
+      }
+
+      if (item.section.data.length === 1) {
+        return {
+          ...this.styles.item,
+          ...this.styles.itemFirst,
+          ...this.styles.itemLast
+        }
+      }
+
+      if (item.section.data.length - 1 === item.index) {
+        return this.styles.itemLast
+      }
+
+      if (item.index === 0) {
+        return this.styles.itemFirst
+      }
+
+      return this.styles.item
+    },
+
     onPress (item) {
       this.$emit('on-press', item)
 
@@ -162,17 +187,33 @@ const stylesStore = (isDarkScheme, type, grouped) => {
     header: {
       backgroundColor: grouped ? 'transparent' : (isDarkScheme ? '#222429' : '#ededf3'),
       paddingTop: grouped ? (type === 'small' ? 15 : 30) : 5,
-      paddingLeft: 10,
-      paddingRight: 10,
+      paddingLeft: 15,
+      paddingRight: 15,
       paddingBottom: grouped ? 10 : 5,
       ...sectionTitle(isDarkScheme)
     },
     footer: {
-      height: 50
+      height: 50,
+      color: '#ced6e8'
+    },
+    itemFirst: {
+      borderTopLeftRadius: 10,
+      borderTopRightRadius: 10,
+      overflow: 'hidden',
+      marginHorizontal: 15,
+      borderBottomColor: isDarkScheme ? '#505155' : '#e7e8f0',
+      borderBottomWidth: 0.75
+    },
+    itemLast: {
+      borderBottomLeftRadius: 10,
+      borderBottomRightRadius: 10,
+      overflow: 'hidden',
+      marginHorizontal: 15
     },
     item: {
-      borderBottomColor: isDarkScheme ? '#505155' : '#dfe1ee',
-      borderBottomWidth: 0.75
+      borderBottomColor: isDarkScheme ? '#505155' : '#e7e8f0',
+      borderBottomWidth: 0.75,
+      marginHorizontal: grouped ? 15 : 0
     },
     itemContent: {
       backgroundColor: isDarkScheme ? '#2c2e36' : '#ffffff'

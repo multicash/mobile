@@ -26,7 +26,7 @@ export default {
             {
               title: 'Create a new wallet',
               subtitle: 'Never used MultiCash before? This is the one for you!',
-              leftAvatar: { source: require('@/assets/new-wallet1.png'), size: 40 },
+              leftAvatar: { source: require('@/assets/new.png'), size: 40 },
               onPress: () => {
                 this.navigation.navigate('preferences', { restore: false })
               }
@@ -59,7 +59,7 @@ export default {
         isDarkScheme,
         'Add wallet',
         "Add a new or an existing wallet to MultiCash\nand use money like it's supposed to!",
-        require('@/assets/new-wallet2.png')
+        require('@/assets/coin-wallet.png')
       )
     }
   }

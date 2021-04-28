@@ -21,7 +21,7 @@
           title="No Contacts"
           subtitle="Add a contact to send them MCX easily"
           :image-background="require('@/assets/contact-book.png')"
-          :image-foreground="require('@/assets/new-wallet1.png')"
+          :image-foreground="require('@/assets/new.png')"
         />
       </view>
     </table-view>
