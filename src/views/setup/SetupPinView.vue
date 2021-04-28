@@ -1,6 +1,6 @@
 <template>
   <safe-area-view :style="styles.safeAreaView">
-    <status-bar barStyle="light-content" />
+    <status-bar :bar-style="isDarkScheme ? 'light-content' : 'dark-content'" />
     <view :style="{ flex: 1 }">
       <header-view
         title="Setup PIN"

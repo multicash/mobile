@@ -75,20 +75,26 @@ const styleStore = (isDarkScheme) => {
     fromMessage: {
       backgroundColor: '#04c140',
       borderRadius: 20,
-      borderTopLeftRadius: 0,
+      borderTopLeftRadius: 5,
       marginBottom: 20,
       padding: 15,
       maxWidth: '75%',
-      float: 'left'
+      float: 'left',
+      shadowColor: '#00ff4f',
+      shadowRadius: 40,
+      shadowOpacity: isDarkScheme ? 0.25 : 0.5
     },
 
     toMessage: {
       backgroundColor: '#0f76e3',
       borderRadius: 20,
-      borderTopRightRadius: 0,
+      borderTopRightRadius: 5,
       marginBottom: 20,
       padding: 15,
-      maxWidth: '75%'
+      maxWidth: '75%',
+      shadowColor: '#007aff',
+      shadowRadius: 40,
+      shadowOpacity: isDarkScheme ? 0.25 : 0.5
     },
 
     messageText: {

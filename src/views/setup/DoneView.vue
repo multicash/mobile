@@ -1,5 +1,6 @@
 <template>
   <safe-area-view :style="styles.safeArea">
+    <status-bar bar-style="light-content" />
     <colors-background
       :full-screen="false"
       :style="{ height: '25%' }"
@@ -19,6 +20,7 @@
 <script>
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { mapActions } from 'vuex'
+import { sectionTitle, subtitle } from '@/core/support/styles'
 
 export default {
   components: { SafeAreaView },
@@ -46,7 +48,7 @@ const stylesStore = (isDarkScheme) => {
   return {
     safeArea: {
       height: '100%',
-      backgroundColor: '#0f1c37',
+      backgroundColor: isDarkScheme ? '#0f0f11' : '#e8e8f3',
       flex: 1,
       padding: 20
     },
@@ -65,17 +67,17 @@ const stylesStore = (isDarkScheme) => {
     },
 
     title: {
-      color: 'white',
+      color: sectionTitle(isDarkScheme).color,
       fontSize: 28,
-      fontWeight: '800',
+      fontWeight: '900',
       paddingBottom: 10,
       textAlign: 'center'
     },
 
     subtitle: {
-      color: '#e6e6e6',
+      color: subtitle(isDarkScheme).color,
       fontSize: 16,
-      fontWeight: '600',
+      fontWeight: 'bold',
       textAlign: 'center'
     }
   }

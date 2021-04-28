@@ -1,6 +1,6 @@
 <template>
   <touchable-opacity
-    :active-opacity="0.6"
+    :active-opacity="touchable ? 0.6 : 1"
     :on-press="() => $emit('wallet-selected', value)"
     :style="styles.walletCard"
   >
@@ -64,6 +64,11 @@ export default {
     value: {
       type: Object,
       required: true
+    },
+
+    touchable: {
+      type: Boolean,
+      default: true
     }
   }
 }

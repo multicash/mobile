@@ -264,7 +264,7 @@ const stylesStore = (isDarkScheme, insets, expand) => {
     noWalletTitle: {
       color: isDarkScheme ? 'white' : 'black',
       fontSize: 24,
-      fontWeight: '600',
+      fontWeight: '900',
       textAlign: 'center',
       marginBottom: 5
     },
