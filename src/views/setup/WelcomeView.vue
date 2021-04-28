@@ -6,10 +6,15 @@
       :max-height-percentage="80"
     />
     <view :style="styles.container">
-      <image
-        :style="styles.logo"
-        :source="require('@/assets/logo-light.png')"
-      />
+      <view
+        :style="styles.content"
+      >
+        <image
+          :style="styles.logo"
+          :source="require('@/assets/logo-light.png')"
+        />
+        <text :style="styles.slogan">You are in control</text>
+      </view>
       <rounded-button
         :style="{ width: '100%' }"
         title="Let's get started"
@@ -47,10 +52,24 @@ const stylesStore = () => {
       alignItems: 'center'
     },
 
-    logo: {
+    content: {
       flex: 1,
       width: '80%',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+
+    logo: {
+      width: '100%',
+      height: 50,
       resizeMode: 'contain'
+    },
+
+    slogan: {
+      color: 'white',
+      fontSize: 20,
+      fontWeight: '900',
+      textAlign: 'center'
     }
   }
 }

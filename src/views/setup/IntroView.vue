@@ -1,25 +1,23 @@
 <template>
   <safe-area-view :style="styles.safeArea">
-    <status-bar barStyle="light-content" />
+    <status-bar :bar-style="isDarkScheme ? 'light-content' : 'dark-content'" />
     <scroll-view
       :style="styles.scrollView"
       pagingEnabled
       horizontal
       :showsHorizontalScrollIndicator="false"
+      :onScroll="(nice) => onScroll(nice)"
+      :scrollEventThrottle="4"
     >
-      <view v-for="page in pages" :key="page.title" :style="styles.page">
-        <view :style="{ flexDirection: 'row' }">
-          <image :style="styles.headerImage1" :source="page.header1"/>
-          <image :style="styles.headerImage2" :source="page.header2"/>
-        </view>
-        <text :style="styles.title">{{ page.title }}</text>
-        <text :style="styles.description">{{ page.description }}</text>
-      </view>
+      <wallet-tags :style="styles.page"/>
+      <multiple-wallets :style="styles.page"/>
+      <save-and-secure :style="styles.page"/>
     </scroll-view>
     <view :style="styles.container">
+      <page-indicator :current-page="currentPage" :pages="3" :style="styles.pageIndicator" />
       <rounded-button
         :style="{ width: '100%' }"
-        title="Proceed"
+        :title="currentPage === 2 ? 'Proceed' : 'Skip'"
         @on-press="navigation.navigate('setupPin')"
       />
     </view>
@@ -29,51 +27,55 @@
 <script>
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Dimensions } from 'react-native'
+import WalletTags from '@/views/setup/intros/WalletTags'
+import MultipleWallets from '@/views/setup/intros/MultipleWallets'
+import SaveAndSecure from '@/views/setup/intros/SaveAndSecure'
+import PageIndicator from '@/components/views/PageIndicator'
 
 export default {
-  components: { SafeAreaView },
+  components: {
+    PageIndicator,
+    SafeAreaView,
+    WalletTags,
+    MultipleWallets,
+    SaveAndSecure
+  },
 
   data () {
     return {
-      pages: [
-        {
-          title: 'Store, manage, and protect your MultiCash.',
-          description: 'Keep your MultiCash always within reach in a secure and safe bank-like app with the benefits of the future.',
-          header1: require('@/assets/key.png'),
-          header2: require('@/assets/safe.png')
-        },
-        {
-          title: 'Multiple Wallets!',
-          description: 'MultiCash allows you to create multiple wallets. Create your main wallet and perhaps a savings wallet. Add up to 10 wallets to MultiCash!',
-          header1: require('@/assets/new.png'),
-          header2: require('@/assets/coin-wallet.png')
-        },
-        {
-          title: 'Wallet Tags!',
-          description: 'MultiCash allows you to create wallet tags! Which will enable you to easily send and receive MCX to friends, family and businesses!',
-          header1: require('@/assets/add-tag.png'),
-          header2: require('@/assets/wallet.png')
-        }
-      ]
+      currentPage: 0
     }
   },
 
   computed: {
     styles () {
-      return stylesStore()
+      return stylesStore(this.isDarkScheme)
     },
 
     dimensions () {
       return Dimensions
     }
+  },
+
+  methods: {
+    pageStyle (page) {
+      return {
+        ...this.styles.page,
+        backgroundColor: page.backgroundColor
+      }
+    },
+
+    onScroll (event) {
+      this.currentPage = Math.round(event.nativeEvent.contentOffset.x / (event.nativeEvent.contentSize.width / 3))
+    }
   }
 }
 
-const stylesStore = () => {
+const stylesStore = (isDarkScheme) => {
   return {
     safeArea: {
       height: '100%',
-      backgroundColor: '#0f1c37',
+      backgroundColor: isDarkScheme ? '#0f0f11' : '#e8e8f3',
       flex: 1
     },
 
@@ -96,33 +98,8 @@ const stylesStore = () => {
       alignItems: 'center'
     },
 
-    headerImage1: {
-      zIndex: 10,
-      width: 120,
-      height: 120,
-      marginTop: -15,
-      marginRight: -70,
-      resizeMode: 'contain'
-    },
-
-    headerImage2: {
-      width: 150,
-      height: 150,
-      resizeMode: 'contain'
-    },
-
-    title: {
-      color: 'white',
-      fontSize: 20,
-      fontWeight: '600',
-      textAlign: 'center',
-      marginTop: 40,
-      marginBottom: 10
-    },
-
-    description: {
-      color: 'grey',
-      textAlign: 'center'
+    pageIndicator: {
+      marginBottom: 20
     }
   }
 }
