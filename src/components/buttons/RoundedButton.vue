@@ -69,12 +69,7 @@ export default {
 const stylesStore = (isDarkScheme, innerStyle, disabled) => {
   return {
     roundedButtonOuter: {
-      borderRadius: 10,
-      shadowColor: isDarkScheme ? '#494971' : 'white',
-      shadowRadius: 3,
-      shadowOpacity: disabled ? 0 : 0.2,
-      shadowOffset: { width: -3, height: -3 },
-      elevation: disabled ? 0 : 10
+      borderRadius: 10
     },
 
     roundedButton: {
@@ -89,10 +84,6 @@ const stylesStore = (isDarkScheme, innerStyle, disabled) => {
       alignItems: 'center',
       paddingLeft: 20,
       paddingRight: 20,
-      shadowColor: isDarkScheme ? 'black' : '#c0c0ff',
-      shadowRadius: 3,
-      shadowOpacity: disabled ? 0 : 0.5,
-      shadowOffset: { width: 3, height: 3 },
       flexDirection: 'row'
     },
 

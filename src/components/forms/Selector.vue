@@ -51,11 +51,6 @@ const stylesStore = (isDarkScheme) => {
       minHeight: 50,
       paddingVertical: 10,
       paddingHorizontal: 15,
-      shadowColor: isDarkScheme ? 'black' : '#c0c0ff',
-      shadowRadius: 3,
-      shadowOpacity: 0.5,
-      shadowOffset: { width: 3, height: 3 },
-      elevation: 10,
       marginBottom: 10
     },
 

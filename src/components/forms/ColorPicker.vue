@@ -148,11 +148,6 @@ const stylesStore = (isDarkScheme) => {
   return {
     containerOuter: {
       borderRadius: 10,
-      shadowColor: isDarkScheme ? '#494971' : 'white',
-      shadowRadius: 3,
-      shadowOpacity: 0.2,
-      shadowOffset: { width: -3, height: -3 },
-      elevation: 10,
       overflow: 'visible'
     },
 
@@ -160,10 +155,6 @@ const stylesStore = (isDarkScheme) => {
       backgroundColor: isDarkScheme ? 'black' : 'darkgrey',
       borderRadius: 10,
       padding: 5,
-      shadowColor: isDarkScheme ? 'black' : '#c0c0ff',
-      shadowRadius: 3,
-      shadowOpacity: 0.5,
-      shadowOffset: { width: 3, height: 3 },
       overflow: 'visible'
     },
 

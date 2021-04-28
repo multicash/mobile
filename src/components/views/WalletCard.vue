@@ -80,10 +80,11 @@ const stylesStore = (isDarkScheme) => {
       display: 'flex',
       alignItems: 'center',
       flexDirection: 'row',
-      marginBottom: 10
+      marginBottom: 5
     },
     walletCardInfo: {
-      marginLeft: 10
+      marginHorizontal: 10,
+      flex: 1
     },
     walletCardName: {
       fontSize: 15,

@@ -44,9 +44,7 @@ const stylesStore = (isDarkScheme) => {
       backgroundColor: isDarkScheme ? 'black' : 'white',
       borderRadius: 10,
       paddingVertical: 5,
-      paddingHorizontal: 10,
-      shadowOpacity: 0,
-      elevation: 0
+      paddingHorizontal: 10
     },
 
     actionButtonContainer: {

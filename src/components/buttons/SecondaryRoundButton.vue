@@ -45,8 +45,6 @@ const stylesStore = (isDarkScheme) => {
       borderRadius: 100,
       paddingVertical: 5,
       paddingHorizontal: 10,
-      shadowOpacity: 0,
-      elevation: 0,
       height: 50,
       width: 50,
       justifyContent: 'center',

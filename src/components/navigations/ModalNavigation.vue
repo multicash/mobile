@@ -39,17 +39,21 @@ export default {
     colorsBackground: {
       type: Boolean,
       default: false
+    },
+    smallTitle: {
+      type: Boolean,
+      default: false
     }
   },
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme, this.colorsBackground)
+      return stylesStore(this.isDarkScheme, this.colorsBackground, this.smallTitle)
     }
   }
 }
 
-const stylesStore = (isDarkScheme, colorsBackground) => {
+const stylesStore = (isDarkScheme, colorsBackground, smallTitle) => {
   return {
     modalNavigation: {
       backgroundColor: isDarkScheme ? '#2c2e36' : '#ededf3',
@@ -68,7 +72,7 @@ const stylesStore = (isDarkScheme, colorsBackground) => {
     modalNavigationTitle: {
       color: text(isDarkScheme).color,
       fontWeight: 'bold',
-      fontSize: 25
+      fontSize: smallTitle ? 15 : 25
     }
   }
 }

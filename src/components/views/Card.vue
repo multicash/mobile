@@ -29,8 +29,6 @@ const stylesStore = (isDarkScheme, backgroundColor) => {
     card: {
       ...cards(isDarkScheme),
       backgroundColor: backgroundColor || (isDarkScheme ? '#464955' : '#f1f1f1'),
-      shadowOpacity: 0.1,
-      elevation: 1,
       borderRadius: 10
     }
   }

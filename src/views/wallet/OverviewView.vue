@@ -2,6 +2,8 @@
   <view :style="{ flex: 1 }">
     <status-bar bar-style="light-content" />
     <modal-navigation
+      :title="wallet.name"
+      small-title
       has-close-button
       @on-dismiss="navigation.goBack()"
     >
@@ -11,15 +13,13 @@
     </modal-navigation>
     <scroll-view :style="{ backgroundColor: isDarkScheme ? '#222429' : '#ededf3' }">
       <view-background v-if="wallet">
-        <view :style="styles.nameContainer">
-          <wallet-icon :icon="wallet.icon" :size="40"/>
-          <view :style="{ marginLeft: 10 }">
-            <text :style="styles.name">{{ wallet.name }}</text>
-            <text :style="styles.tag">{{ wallet.tag }}</text>
-          </view>
-        </view>
-
         <view :style="styles.amountContainer">
+          <view :style="styles.nameContainer">
+            <wallet-icon :icon="wallet.icon" :size="40"/>
+            <view :style="{ marginLeft: 10 }">
+              <text :style="styles.tag">{{ wallet.tag }}</text>
+            </view>
+          </view>
           <money
             crypto
             :amount="wallet.totalAmount"
@@ -68,6 +68,7 @@ import Transactions from '@/assets/examples/transactions'
 import TransactionsContainer from '@/components/views/TransactionsContainer'
 import AddressesContainer from '@/components/views/AddressesContainer'
 import { mapGetters } from 'vuex'
+import { cards } from '@/core/support/styles'
 
 export default {
   name: 'OverviewView',
@@ -100,50 +101,38 @@ const stylesStore = (isDarkScheme) => {
     nameContainer: {
       flexDirection: 'row',
       alignItems: 'center',
-      marginBottom: 20,
-      paddingHorizontal: 20
+      marginBottom: 0,
+      paddingHorizontal: 0
     },
 
-    name: {
-      color: isDarkScheme ? 'white' : 'black',
+    tag: {
+      color: isDarkScheme ? '#B95C8B' : '#931A5A',
       fontWeight: 'bold',
       fontSize: 20
     },
 
     amountContainer: {
-      backgroundColor: isDarkScheme ? '#2c2e36' : 'white',
-      borderRadius: 10,
-      padding: 15,
+      ...cards(isDarkScheme),
+      backgroundColor: isDarkScheme ? '#2C2E36' : 'white',
       marginBottom: 20,
       overflow: 'hidden'
     },
 
     amount: {
-      color: isDarkScheme ? '#ffffff' : 'black',
+      color: isDarkScheme ? '#FFFFFF' : 'black',
       fontSize: 35,
       fontWeight: 'bold'
     },
 
     fiatAmount: {
-      color: isDarkScheme ? '#a7bbc1' : '#7e97a0',
+      color: isDarkScheme ? '#A7BBC1' : '#7e97a0',
       fontSize: 15,
       fontWeight: '600'
     },
 
     addressTitle: {
-      color: isDarkScheme ? '#ffffff' : 'black',
+      color: isDarkScheme ? '#FFFFFF' : 'black',
       fontSize: 11
-    },
-
-    tag: {
-      color: isDarkScheme ? '#b95c8b' : '#931A5A',
-      fontSize: 16
-    },
-
-    address: {
-      fontSize: 11,
-      fontWeight: 'bold',
-      color: isDarkScheme ? '#6d6de3' : '#1b2483'
     },
 
     actionsContainer: {
@@ -158,7 +147,7 @@ const stylesStore = (isDarkScheme) => {
     },
 
     sectionContainer: {
-      backgroundColor: isDarkScheme ? '#191a20' : '#dfe1ee',
+      backgroundColor: isDarkScheme ? '#191A20' : '#DFE1EE',
       borderRadius: 15,
       overflow: 'hidden',
       marginBottom: 20,

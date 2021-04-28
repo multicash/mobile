@@ -48,12 +48,7 @@ const stylesStore = (isDarkScheme, transparentShadow) => {
     roundButtonOuter: {
       width: 36,
       height: 36,
-      borderRadius: 100,
-      shadowColor: isDarkScheme ? '#494971' : 'white',
-      shadowRadius: 2,
-      elevation: 10,
-      shadowOffset: { width: -2, height: -2 },
-      shadowOpacity: transparentShadow ? 0.4 : 0
+      borderRadius: 100
     },
 
     roundButton: {
@@ -63,11 +58,7 @@ const stylesStore = (isDarkScheme, transparentShadow) => {
       borderRadius: 100,
       display: 'flex',
       justifyContent: 'center',
-      alignItems: 'center',
-      shadowColor: isDarkScheme ? 'black' : '#c0c0ff',
-      shadowRadius: 2,
-      shadowOffset: { width: 2, height: 2 },
-      shadowOpacity: transparentShadow ? 0.4 : 0
+      alignItems: 'center'
     },
 
     content: {
