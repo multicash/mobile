@@ -93,7 +93,7 @@ const stylesStore = (isDarkScheme) => {
     },
     walletCardName: {
       fontSize: 15,
-      fontWeight: '600',
+      fontWeight: 'bold',
       color: text(isDarkScheme).color
     },
     walletCardTag: {

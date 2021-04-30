@@ -121,6 +121,7 @@ const stylesStore = (isDarkScheme) => {
       flex: 1,
       width: '100%',
       maxWidth: 300,
+      maxHeight: 350,
       marginHorizontal: 50
     },
 

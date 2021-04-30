@@ -1,30 +1,38 @@
 <template>
   <safe-area-view :style="styles.safeArea">
     <status-bar :bar-style="isDarkScheme ? 'light-content' : 'dark-content'" />
-    <scroll-view
-      :style="styles.scrollView"
-      pagingEnabled
-      horizontal
-      :showsHorizontalScrollIndicator="false"
-      :onScroll="(nice) => onScroll(nice)"
-      :scrollEventThrottle="4"
-    >
-      <wallet-tags :style="styles.page"/>
-      <multiple-wallets :style="styles.page"/>
-      <save-and-secure :style="styles.page"/>
-    </scroll-view>
-    <view :style="styles.container">
-      <page-indicator :current-page="currentPage" :pages="3" :style="styles.pageIndicator" />
+    <view :style="styles.contentContainer">
+      <scroll-view
+        :style="styles.scrollView"
+        :contentContainerStyle="styles.scrollContentView"
+        pagingEnabled
+        horizontal
+        :showsHorizontalScrollIndicator="false"
+        :onScroll="(nice) => onScroll(nice)"
+        :scrollEventThrottle="4"
+      >
+        <wallet-tags :style="styles.page" :active="currentPage === 0"/>
+        <multiple-wallets :style="styles.page" :active="currentPage === 1"/>
+        <save-and-secure :style="styles.page" :active="currentPage === 2"/>
+      </scroll-view>
+    </view>
+    <view :style="styles.actionsContainer">
+      <page-indicator
+        :current-page="currentPage"
+        :pages="3"
+        :style="styles.pageIndicator"
+      />
       <rounded-button
-        :style="{ width: '100%' }"
+        :style="{ maxWidth: 350, width: '100%' }"
         :title="currentPage === 2 ? 'Proceed' : 'Skip'"
-        @on-press="navigation.navigate('setupPin')"
+        @on-press="navigation.navigate('pinExplanation')"
       />
     </view>
   </safe-area-view>
 </template>
 
 <script>
+import { Platform } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Dimensions } from 'react-native'
 import WalletTags from '@/views/setup/intros/WalletTags'
@@ -54,6 +62,10 @@ export default {
 
     dimensions () {
       return Dimensions
+    },
+
+    platform () {
+      return Platform
     }
   },
 
@@ -79,13 +91,26 @@ const stylesStore = (isDarkScheme) => {
       flex: 1
     },
 
+    contentContainer: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+
     scrollView: {
       flex: 1,
       width: '100%',
+      maxWidth: 450,
+      maxHeight: 600,
       overflow: 'visible'
     },
 
-    container: {
+    scrollContentView: {
+      width: Dimensions.get('screen').width * 3,
+      maxWidth: 450 * 3
+    },
+
+    actionsContainer: {
       padding: 20,
       justifyContent: 'center',
       alignItems: 'center'

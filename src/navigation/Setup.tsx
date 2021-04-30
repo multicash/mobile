@@ -2,6 +2,7 @@ import * as React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import WelcomeView from '@/views/setup/WelcomeView.vue'
 import IntroView from '@/views/setup/IntroView.vue'
+import PinExplanationView from '@/views/setup/PinExplanationView.vue'
 import SetupPinView from '@/views/setup/SetupPinView.vue'
 import DoneView from '@/views/setup/DoneView.vue'
 
@@ -20,6 +21,10 @@ export default () => {
       <Stack.Screen
         name="intro"
         component={IntroView as any}
+      />
+      <Stack.Screen
+        name="pinExplanation"
+        component={PinExplanationView as any}
       />
       <Stack.Screen
         name="setupPin"

@@ -1,29 +1,49 @@
+import { Platform } from 'react-native'
+
 export const cards = (isDarkScheme) => {
   return {
     display: 'flex',
     backgroundColor: isDarkScheme ? '#2c2e36' : 'white',
-    elevation: 10,
     borderRadius: 20,
     padding: 20
   }
 }
 
-export const text = (isDarkTheme) => {
+export const text = (isDarkScheme) => {
   return {
-    color: isDarkTheme ? '#ffffff' : '#000000'
+    color: isDarkScheme ? '#ffffff' : '#000000'
   }
 }
 
-export const subtitle = (isDarkTheme) => {
+export const subtitle = (isDarkScheme) => {
   return {
-    fontWeight: '600',
-    color: isDarkTheme ? '#a0a3bd' : '#8386a0'
+    fontWeight: Platform.OS === 'ios' ? '600' : 'bold',
+    color: isDarkScheme ? '#a0a3bd' : '#8386a0'
   }
 }
 
-export const sectionTitle = (isDarkTheme) => {
+export const sectionTitle = (isDarkScheme) => {
   return {
-    fontWeight: '600',
-    color: isDarkTheme ? '#aeb0c1' : '#303034'
+    fontWeight: Platform.OS === 'ios' ? '600' : 'bold',
+    color: isDarkScheme ? '#aeb0c1' : '#303034'
+  }
+}
+
+export const pageTitle = (isDarkScheme) => {
+  return {
+    fontSize: 30,
+    fontWeight: Platform.OS === 'ios' ? '900' : 'bold',
+    textAlign: 'center',
+    color: isDarkScheme ? '#aeb0c1' : '#303034'
+  }
+}
+
+export const pageSubtitle = (isDarkScheme) => {
+  return {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 40,
+    color: isDarkScheme ? '#a0a3bd' : '#8386a0'
   }
 }

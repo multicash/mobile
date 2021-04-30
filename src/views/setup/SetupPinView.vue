@@ -4,7 +4,6 @@
     <view :style="{ flex: 1 }">
       <header-view
         title="Setup PIN"
-        subtitle="Your wallet PIN will be used to open this app, and to send MCX with. When you'll forget it, you'll need to restore your wallets to access them again."
         :image-background="require('@/assets/pin.png')"
       />
 

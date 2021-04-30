@@ -32,38 +32,45 @@
 </template>
 
 <script>
-import { sectionTitle, subtitle } from '@/core/support/styles'
+import { pageSubtitle, pageTitle } from '@/core/support/styles'
 
 export default {
   name: 'WalletTags',
 
+  props: {
+    active: {
+      type: Boolean,
+      default: false
+    }
+  },
+
   computed: {
     styles () {
-      return styleStore(this.isDarkScheme)
+      return styleStore(this.isDarkScheme, this.active)
     }
   }
 }
 
-const styleStore = (isDarkScheme) => {
+const styleStore = (isDarkScheme, active) => {
   return {
 
-    container: { alignItems: 'center' },
+    container: {
+      alignItems: 'center',
+      opacity: active ? 1 : 0.5
+    },
 
-    image: { width: 60, height: 60, cover: 'contain' },
+    image: {
+      width: 60,
+      height: 60,
+      cover: 'contain'
+    },
 
     title: {
-      fontSize: 30,
-      fontWeight: '900',
-      textAlign: 'center',
-      color: sectionTitle(isDarkScheme).color
+      ...pageTitle(isDarkScheme)
     },
 
     subtitle: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      textAlign: 'center',
-      marginBottom: 40,
-      color: subtitle(isDarkScheme).color
+      ...pageSubtitle(isDarkScheme)
     },
 
     exampleContainer: {

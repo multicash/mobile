@@ -16,7 +16,7 @@
         <text :style="styles.slogan">You are in control</text>
       </view>
       <rounded-button
-        :style="{ width: '100%' }"
+        :style="{ maxWidth: 350, width: '100%' }"
         title="Let's get started"
         @on-press="navigation.navigate('intro')"
       />
@@ -26,6 +26,7 @@
 
 <script>
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { Platform } from 'react-native'
 
 export default {
   components: { SafeAreaView },
@@ -55,6 +56,7 @@ const stylesStore = () => {
     content: {
       flex: 1,
       width: '80%',
+      maxWidth: 350,
       justifyContent: 'center',
       alignItems: 'center'
     },
@@ -68,7 +70,7 @@ const stylesStore = () => {
     slogan: {
       color: 'white',
       fontSize: 20,
-      fontWeight: '900',
+      fontWeight: Platform.OS === 'ios' ? '900' : 'bold',
       textAlign: 'center'
     }
   }

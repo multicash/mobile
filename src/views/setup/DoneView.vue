@@ -11,6 +11,7 @@
       <text :style="styles.subtitle">Keep your MultiCash always within reach in a secure and safe bank-like app with the benefits of the future.</text>
     </view>
     <rounded-button
+      :style="{ maxWidth: 350, width: '100%' }"
       title="Finish setup"
       @on-press="done"
     />
@@ -50,20 +51,27 @@ const stylesStore = (isDarkScheme) => {
       height: '100%',
       backgroundColor: isDarkScheme ? '#0f0f11' : '#e8e8f3',
       flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
       padding: 20
     },
 
     container: {
       flex: 1,
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      maxWidth: 450
     },
 
     image1: {
       width: 100,
       height: 100,
+      borderRadius: 1000,
       marginBottom: 10,
-      resizeMode: 'contain'
+      resizeMode: 'contain',
+      shadowColor: '#3ae900',
+      shadowRadius: 60,
+      shadowOpacity: isDarkScheme ? 0.35 : 0.7
     },
 
     title: {
