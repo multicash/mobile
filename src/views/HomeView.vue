@@ -19,6 +19,9 @@
           </round-button>
         </view>
         <total-amount-section v-if="hasWallets" />
+        <view v-else :style="styles.welcomeContainer">
+          <text :style="styles.welcomeTitle">Welcome to MultiCash</text>
+        </view>
       </app-header-view>
       <view :style="styles.content">
         <wallets-section
@@ -37,6 +40,7 @@
         <scroll-view
           v-else
           :style="styles.noWalletContainer"
+          :contentContainerStyle="styles.noWalletContentContainer"
           :showsVerticalScrollIndicator="false"
           :contentInset="{ top: 0, left: 0, bottom: insets.bottom || 0, right: 0 }"
         >
@@ -89,6 +93,7 @@ import { mapActions, mapGetters } from 'vuex'
 import ManagerConfig from '@/core/wallet/ManagerConfig.ts'
 import AppHeaderView from '@/components/views/AppHeaderView'
 import PayLinkParser from '@/core/transaction/PayLinkParser'
+import { pageTitle } from '@/core/support/styles'
 
 const Log = global.Logger.extend('APP')
 
@@ -217,6 +222,15 @@ const stylesStore = (isDarkScheme, insets, expand) => {
       paddingRight: 30
     },
 
+    welcomeContainer: {
+      padding: 40
+    },
+
+    welcomeTitle: {
+      ...pageTitle(isDarkScheme),
+      color: 'white'
+    },
+
     content: {
       flex: expand ? undefined : 1,
       paddingLeft: 30,
@@ -226,6 +240,10 @@ const stylesStore = (isDarkScheme, insets, expand) => {
     noWalletContainer: {
       flex: 1,
       marginBottom: -insets.bottom
+    },
+
+    noWalletContentContainer: {
+      paddingTop: 10
     },
 
     noWalletCard: {

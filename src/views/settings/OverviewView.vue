@@ -1,13 +1,12 @@
 <template>
   <view-background no-padding>
     <modal-navigation title="Settings" has-close-button @on-dismiss="navigation.goBack()"/>
-    <table-view :sections="data" :header="renderTableHeader"/>
+    <table-view :sections="data"/>
   </view-background>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
-import TableHeaderView from '@/react/components/TableHeaderView'
 import exampleContacts from '@/assets/examples/contacts'
 import exampleWallets from '@/assets/examples/wallets'
 
@@ -149,16 +148,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['updateIsSetup', 'setDefaultWallet', 'removeAllWallets', 'removeWalletOrder']),
-
-    renderTableHeader (isDarkScheme) {
-      return TableHeaderView(
-        isDarkScheme,
-        undefined,
-        'Manage your MultiCash settings',
-        require('@/assets/settings.png')
-      )
-    }
+    ...mapActions(['updateIsSetup', 'setDefaultWallet', 'removeAllWallets', 'removeWalletOrder'])
   }
 }
 

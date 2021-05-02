@@ -56,7 +56,7 @@ const stylesStore = (isDarkScheme, type) => {
 
     primary: {
       actionNotification: {
-        backgroundColor: '#3298dc'
+        backgroundColor: '#00b0ee'
       },
       actionNotificationTitle: {
         color: 'white'
@@ -68,7 +68,7 @@ const stylesStore = (isDarkScheme, type) => {
 
     success: {
       actionNotification: {
-        backgroundColor: '#48c774'
+        backgroundColor: '#00ae5a'
       },
       actionNotificationTitle: {
         color: 'white'

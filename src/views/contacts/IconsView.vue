@@ -6,6 +6,17 @@
       @on-dismiss="navigation.goBack()"
     />
     <view-background no-padding>
+      <text>Pick a color</text>
+      <view :style="styles.colorsContainer">
+        <touchable-opacity
+          v-for="color in colors"
+          :key="color"
+          :style="{ marginRight: 5, backgroundColor: color, borderRadius: 999, width: 40, height: 40 }"
+          :active-opacity="0.8"
+          :on-press="() => onColorSelect(color)"
+        />
+      </view>
+      <text>Pick an icon</text>
       <view
         :style="{ margin: 10, marginBottom: 0 }"
       >
@@ -17,11 +28,11 @@
       </view>
       <flat-list
         :style="styles.flatList"
+        :contentContainerStyle="styles.contentContainer"
         :data="icons"
         :keyExtractor="(item, index) => item + index"
         :renderItem="(item) => renderItem(item)"
         :numColumns="4"
-        :columnWrapperStyle="styles.columnWrapper"
       />
     </view-background>
   </view>
@@ -37,7 +48,15 @@ export default {
 
   data () {
     return {
-      search: ''
+      search: '',
+      color: 'purple',
+      colors: [
+        'purple',
+        'blue',
+        'yellow',
+        'green',
+        'red'
+      ]
     }
   },
 
@@ -72,11 +91,15 @@ export default {
           activeOpacity={0.8}
         >
           <View style={this.styles.iconView}>
-            <Icon name={item.item} size={50} color={this.isDarkScheme ? 'white' : 'black'}/>
+            <Icon name={item.item} size={50} color={this.color}/>
             <Text style={this.styles.iconText} ellipsizeMode="middle" numberOfLines={1}>{ item.item }</Text>
           </View>
         </TouchableOpacity>
       )
+    },
+
+    onColorSelect (color) {
+      this.color = color
     },
 
     onSelect (item) {
@@ -88,13 +111,18 @@ export default {
 
 const stylesStore = (isDarkScheme) => {
   return {
+    colorsContainer: {
+      padding: 10,
+      flexDirection: 'row'
+    },
+
     flatList: {
-      paddingVertical: 5,
+      paddingTop: 5,
       paddingHorizontal: 5
     },
 
-    columnWrapper: {
-      justifyContent: 'space-between'
+    contentContainer: {
+      paddingBottom: 30
     },
 
     iconContainer: {

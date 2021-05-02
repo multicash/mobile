@@ -94,7 +94,7 @@ const styleStore = (isDarkScheme, active) => {
       opacity: active ? 1 : 0.5
     },
 
-    image: { width: 60, height: 60, cover: 'contain' },
+    image: { width: 60, height: 60, resizeMode: 'contain' },
 
     title: {
       ...pageTitle(isDarkScheme),

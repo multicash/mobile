@@ -13,23 +13,8 @@
       </round-button>
     </modal-navigation>
     <view-background>
-      <selector name="Icon" @on-press="selectIcon">
-        <view slot="value" :style="styles.iconContainer">
-          <icon :name="contact.icon.name" :color="contact.icon.color" :size="40" />
-          <spacer />
-          <text :style="styles.iconText">{{ contact.icon.name }}</text>
-        </view>
-      </selector>
 
-      <color-picker
-        @input="setColor"
-        @onDrag="navigation.setOptions({ gestureEnabled: false })"
-        @onDragRelease="navigation.setOptions({ gestureEnabled: true })"
-      />
-
-      <spacer />
-      <spacer />
-
+      <input-description>The contacts name can be anything you want it to be.</input-description>
       <rounded-text-input
         title="Name"
         placeholder="Martin"
@@ -39,6 +24,7 @@
 
       <spacer />
 
+      <input-description>Fill in the contacts account tag or account address which will be used when selecting this contact for a new transaction.</input-description>
       <rounded-text-input
         title="Tag/Address"
         placeholder="@lutherKing"
@@ -48,10 +34,24 @@
 
       <spacer />
 
-      <view :style="styles.isFavoriteContainer">
-        <text :style="styles.isFavoriteText">Favorite</text>
-        <switch v-model="contact.isFavorite"/>
-      </view>
+      <input-description>Make this contact even more recognizable by choosing a contact icon.</input-description>
+      <selector name="Icon" @on-press="selectIcon">
+        <view slot="value" :style="styles.iconContainer">
+          <icon :name="contact.icon.name" :color="contact.icon.color" :size="40" />
+          <spacer />
+          <text :style="styles.iconText">{{ contact.icon.name }}</text>
+        </view>
+      </selector>
+
+      <spacer />
+
+      <input-description>By selecting this contact as a favorite is will be placed on top of contact lists.</input-description>
+      <switch-notification
+        :value="contact.isFavorite"
+        @input="contact.isFavorite = $event"
+        label="Favorite"
+        type="success"
+      />
 
       <spacer :style="{ flex: 1 }" />
 

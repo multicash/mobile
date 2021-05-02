@@ -35,8 +35,7 @@ const stylesStore = (isDarkScheme, noPadding) => {
     viewBackground: {
       flex: 1,
       padding: noPadding ? 0 : 20,
-      flexDirection: 'column',
-      backgroundColor: isDarkScheme ? '#222429' : '#ededf3'
+      flexDirection: 'column'
     }
   }
 }

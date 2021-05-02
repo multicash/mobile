@@ -62,7 +62,7 @@ const styleStore = (isDarkScheme, active) => {
     image: {
       width: 60,
       height: 60,
-      cover: 'contain'
+      resizeMode: 'contain'
     },
 
     title: {

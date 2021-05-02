@@ -73,7 +73,7 @@ const stylesStore = (isDarkScheme) => {
     image1: {
       width: 120,
       height: 120,
-      cover: 'contain',
+      resizeMode: 'contain',
       transform: [
         { translateX: -60 },
         { rotate: '5deg' }
@@ -87,7 +87,7 @@ const stylesStore = (isDarkScheme) => {
     image2: {
       width: 60,
       height: 60,
-      cover: 'contain',
+      resizeMode: 'contain',
       transform: [
         { translateX: 60 },
         { translateY: -20 },
@@ -104,7 +104,7 @@ const stylesStore = (isDarkScheme) => {
     image3: {
       width: 120,
       height: 120,
-      cover: 'contain',
+      resizeMode: 'contain',
       transform: [
         { rotate: '-3deg' }
       ],

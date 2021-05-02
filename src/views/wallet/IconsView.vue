@@ -8,11 +8,11 @@
     <view-background no-padding>
       <flat-list
         :style="styles.flatList"
+        :contentContainerStyle="styles.contentContainer"
         :data="icons"
         :keyExtractor="(item, index) => item + index"
         :renderItem="(item) => renderItem(item)"
         :numColumns="4"
-        :columnWrapperStyle="styles.columnWrapper"
       />
     </view-background>
   </view>
@@ -70,12 +70,12 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     flatList: {
-      paddingVertical: 5,
+      paddingTop: 5,
       paddingHorizontal: 5
     },
 
-    columnWrapper: {
-      justifyContent: 'space-between'
+    contentContainer: {
+      paddingBottom: 30
     },
 
     iconContainer: {

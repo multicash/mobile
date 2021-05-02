@@ -156,7 +156,6 @@ const stylesStore = (isDarkScheme) => {
       color: isDarkScheme ? '#f744e4' : '#b00dfa'
     },
     defaultContainer: {
-      backgroundColor: isDarkScheme ? 'black' : '#ededf3',
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',

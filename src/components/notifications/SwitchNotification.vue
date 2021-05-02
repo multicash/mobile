@@ -86,7 +86,7 @@ const stylesStore = (isDarkScheme, type) => {
 
     primary: {
       switchNotification: {
-        backgroundColor: '#3298dc'
+        backgroundColor: '#00b0ee'
       },
       switchNotificationText: {
         color: 'white'
@@ -99,7 +99,7 @@ const stylesStore = (isDarkScheme, type) => {
 
     success: {
       switchNotification: {
-        backgroundColor: '#48c774'
+        backgroundColor: '#00ae5a'
       },
       switchNotificationText: {
         color: 'white'

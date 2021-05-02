@@ -7,19 +7,19 @@
     />
     <view-background scrollable>
 
-      <input-description>Choose a wallet name for this wallet to recognize it among your other wallets.</input-description>
-      <rounded-text-input title="Wallet name" placeholder="Main account" :value="name" @input="name = $event"/>
+      <input-description>Choose an account name for this account to recognize it among your other accounts.</input-description>
+      <rounded-text-input title="Account name" placeholder="Main account" :value="name" @input="name = $event"/>
 
       <spacer />
 
       <view v-if="!route.params.restore">
-        <input-description>Choose a wallet tag which will be shareable and enables other MultiCash users to easily recognize your account.</input-description>
-        <rounded-text-input title="Wallet tag" placeholder="myWalletTag" :value="tag" @input="tag = $event"/>
+        <input-description>Choose an account tag which will be shareable and enables other MultiCash users to easily recognize your account.</input-description>
+        <rounded-text-input title="Account tag" placeholder="myAccountTag" :value="tag" @input="tag = $event"/>
 
         <spacer />
       </view>
 
-      <input-description>Make your wallet even more recognizable by choosing a wallet icon.</input-description>
+      <input-description>Make your account even more recognizable by choosing an account icon.</input-description>
       <selector name="Icon" @on-press="selectIcon">
         <view slot="value" :style="styles.iconContainer">
           <wallet-icon :icon="icon.name" />

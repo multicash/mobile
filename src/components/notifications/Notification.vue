@@ -78,7 +78,7 @@ const stylesStore = (isDarkScheme, type) => {
 
     primary: {
       notification: {
-        backgroundColor: '#3298dc'
+        backgroundColor: '#00b0ee'
       },
       notificationIcon: {
         color: 'white'
@@ -93,7 +93,7 @@ const stylesStore = (isDarkScheme, type) => {
 
     success: {
       notification: {
-        backgroundColor: '#48c774'
+        backgroundColor: '#00ae5a'
       },
       notificationIcon: {
         color: 'white'
