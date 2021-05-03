@@ -7,9 +7,8 @@
       :start="{ x: 0, y: 0 }"
       :end="{ x: 1, y: 1 }"
     >
-      <animated:view
+      <view
         :style="{
-          transform: [{rotate: spin}],
           width: 200,
           height: 200,
           marginBottom: 10,
@@ -19,7 +18,7 @@
           :style="styles.image"
           :source="require('@/assets/loading.png')"
         />
-      </animated:view>
+      </view>
       <text :style="styles.title">Payment in progress</text>
       <text :style="styles.subtitle">one sec...</text>
     </linear-gradient>
