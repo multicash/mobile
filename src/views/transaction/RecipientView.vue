@@ -28,6 +28,7 @@ export default {
           title: contact.name,
           subtitle: contact.tagOrAddress,
           leftIcon: { name: contact.icon.name, color: contact.icon.color, size: 40 },
+          rightIcon: contact.isFavorite ? { name: 'star', color: '#FFDD57', size: 20 } : undefined,
           meta: {
             isFavorite: contact.isFavorite
           },
@@ -43,6 +44,10 @@ export default {
 
     favorites () {
       return this.contactsList.filter(contact => contact.meta.isFavorite)
+    },
+
+    recents () {
+      return this.contactsList.filter(contact => !contact.meta.isFavorite)
     },
 
     data () {
@@ -73,17 +78,17 @@ export default {
         }
       ]
 
-      if (this.contactsList.length > 0) {
-        data.push({
-          title: 'Recent',
-          data: this.contactsList
-        })
-      }
-
       if (this.favorites.length > 0) {
         data.push({
           title: 'Favorites',
           data: this.favorites
+        })
+      }
+
+      if (this.recents.length > 0) {
+        data.push({
+          title: 'Recent',
+          data: this.recents
         })
       }
 

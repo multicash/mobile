@@ -6,26 +6,30 @@
       @on-dismiss="navigation.goBack()"
     />
     <view-background no-padding>
-      <text>Pick a color</text>
-      <view :style="styles.colorsContainer">
+      <text :style="styles.title">Pick a color</text>
+      <scroll-view
+        :style="styles.colorsContainer"
+        :contentContainerStyle="styles.colorsContainerContent"
+        horizontal
+        :showsHorizontalScrollIndicator="false"
+      >
         <touchable-opacity
           v-for="color in colors"
           :key="color"
-          :style="{ marginRight: 5, backgroundColor: color, borderRadius: 999, width: 40, height: 40 }"
+          :style="{
+            marginRight: 10,
+            backgroundColor: color,
+            borderRadius: 999,
+            width: 60,
+            height: 60,
+            borderWidth: color === currentColor ? 4 : 0,
+            borderColor: isDarkScheme ? '#dedede' : '#333333',
+          }"
           :active-opacity="0.8"
           :on-press="() => onColorSelect(color)"
         />
-      </view>
-      <text>Pick an icon</text>
-      <view
-        :style="{ margin: 10, marginBottom: 0 }"
-      >
-        <rounded-text-input
-          placeholder="Search an icon"
-          :value="search"
-          @input="search = $event"
-        />
-      </view>
+      </scroll-view>
+      <text :style="styles.title">Pick an icon</text>
       <flat-list
         :style="styles.flatList"
         :contentContainerStyle="styles.contentContainer"
@@ -33,6 +37,7 @@
         :keyExtractor="(item, index) => item + index"
         :renderItem="(item) => renderItem(item)"
         :numColumns="4"
+        :extra-data="currentColor"
       />
     </view-background>
   </view>
@@ -42,6 +47,7 @@
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { View, Text, TouchableOpacity } from 'react-native'
+import { sectionTitle } from '@/core/support/styles'
 
 export default {
   name: 'IconsView',
@@ -49,34 +55,76 @@ export default {
   data () {
     return {
       search: '',
-      color: 'purple',
+      currentColor: '#931A5A',
       colors: [
-        'purple',
-        'blue',
-        'yellow',
-        'green',
-        'red'
+        '#931A5A',
+        '#B95C8B',
+        '#8757ff',
+        '#00B0EE',
+        '#00AE5A',
+        '#FFDD57',
+        '#ff9d57',
+        '#F14668'
+      ],
+      icons: [
+        'person',
+        'body',
+        'man',
+        'woman',
+        'walk',
+        'people',
+        'people-circle',
+        'chatbubbles',
+        'glasses',
+        'happy',
+        'sad',
+        'heart',
+        'heart-circle',
+        'heart-half',
+        'paw',
+        'home',
+        'planet',
+        'rocket',
+
+        'car',
+        'bicycle',
+        'bus',
+        'train',
+        'airplane',
+
+        'restaurant',
+        'pizza',
+        'ice-cream',
+        'beer',
+
+        'american-football',
+
+        // 'logo-alipay',
+        // 'logo-paypal',
+        'logo-amazon',
+        'logo-apple',
+        'logo-apple-appstore',
+        'logo-google',
+        'logo-google-playstore',
+        'logo-android',
+        'logo-playstation',
+        'logo-xbox',
+        'logo-steam',
+        'logo-bitcoin',
+        'logo-usd',
+        'logo-euro',
+        'logo-yen'
       ]
     }
   },
 
-  computed: {
-    icons () {
-      return Object
-        .keys(Icon.getRawGlyphMap())
-        .filter(icon => {
-          return icon.includes(this.search.toLowerCase())
-        })
-        .filter(icon => {
-          return (
-            !icon.endsWith('-outline') &&
-            !icon.endsWith('-sharp') &&
-            !icon.startsWith('ios-') &&
-            !icon.startsWith('md-')
-          )
-        })
-    },
+  created () {
+    if (this.route.params && this.route.params.contact) {
+      this.currentColor = this.route.params.contact.icon.color
+    }
+  },
 
+  computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
     }
@@ -91,7 +139,7 @@ export default {
           activeOpacity={0.8}
         >
           <View style={this.styles.iconView}>
-            <Icon name={item.item} size={50} color={this.color}/>
+            <Icon name={item.item} size={50} color={this.currentColor}/>
             <Text style={this.styles.iconText} ellipsizeMode="middle" numberOfLines={1}>{ item.item }</Text>
           </View>
         </TouchableOpacity>
@@ -99,21 +147,38 @@ export default {
     },
 
     onColorSelect (color) {
-      this.color = color
+      this.currentColor = color
     },
 
     onSelect (item) {
-      this.route.params.resolve(item)
-      this.navigation.goBack()
+      this.navigation.navigate('contact', {
+        contact: {
+          ...this.route.params.contact,
+          icon: {
+            name: item.item,
+            color: this.currentColor
+          }
+        }
+      })
     }
   }
 }
 
 const stylesStore = (isDarkScheme) => {
   return {
+    title: {
+      paddingTop: 10,
+      paddingHorizontal: 10,
+      ...sectionTitle(isDarkScheme)
+    },
+
     colorsContainer: {
-      padding: 10,
-      flexDirection: 'row'
+      height: 100
+    },
+
+    colorsContainerContent: {
+      paddingVertical: 10,
+      paddingLeft: 10
     },
 
     flatList: {

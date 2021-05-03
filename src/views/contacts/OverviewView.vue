@@ -53,6 +53,7 @@ export default {
               title: contact.name,
               subtitle: contact.tagOrAddress,
               leftIcon: { name: contact.icon.name, color: contact.icon.color, size: 40 },
+              rightIcon: contact.isFavorite ? { name: 'star', color: '#FFDD57', size: 20 } : undefined,
               onPress: () => {
                 this.navigation.navigate('contact', { contactIdentifier: contact.identifier })
               }

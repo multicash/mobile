@@ -84,8 +84,8 @@ export default {
         tagOrAddress: '',
         isFavorite: false,
         icon: {
-          name: 'person-circle',
-          color: 'cyan'
+          name: 'person',
+          color: '#931A5A'
         }
       }
     }
@@ -136,13 +136,16 @@ export default {
     },
 
     selectIcon () {
-      this.navigation.navigate('icons', {
-        goBack: true,
-        resolve: (value) => {
-          this.contact.icon.name = value.item
+      const unsubscribe = this.navigation.addListener('focus', () => {
+        if (this.route.params && this.route.params.contact) {
+          this.contact = this.route.params.contact
           this.changed = true
         }
+
+        this.navigation.removeListener('focus', unsubscribe)
       })
+
+      this.navigation.navigate('icons', { contact: this.contact })
     },
 
     dismissUnsavedContact () {
