@@ -34,7 +34,7 @@
       />
     </view>
 
-    <view :style="styles.moneyView">
+    <view v-if="richDisplay" :style="styles.moneyView">
       <money
         convert
         :amount="value.totalAmount"
@@ -56,7 +56,7 @@ export default {
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme)
+      return stylesStore(this.isDarkScheme, this.richDisplay)
     }
   },
 
@@ -69,11 +69,16 @@ export default {
     touchable: {
       type: Boolean,
       default: true
+    },
+
+    richDisplay: {
+      type: Boolean,
+      default: false
     }
   }
 }
 
-const stylesStore = (isDarkScheme) => {
+const stylesStore = (isDarkScheme, richDisplay) => {
   return {
     walletCard: {
       ...cards(isDarkScheme),
@@ -110,7 +115,8 @@ const stylesStore = (isDarkScheme) => {
       color: text(isDarkScheme).color,
       fontSize: 35,
       fontWeight: 'bold',
-      width: '100%'
+      width: '100%',
+      marginTop: richDisplay ? undefined : 15
     },
     walletCardFiatAmount: {
       color: isDarkScheme ? '#a7bbc1' : '#7e97a0',

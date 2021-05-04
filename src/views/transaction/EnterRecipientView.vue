@@ -8,6 +8,7 @@
 
     <view-background>
       <rounded-text-input
+        ref="address"
         title="Address or Tag"
         placeholder="Enter an address or recipient tag"
         :style="{ marginBottom: 10 }"
@@ -15,6 +16,7 @@
         @input="address = $event"
       />
       <rounded-text-input
+        ref="name"
         title="Name (optional)"
         placeholder="Recipient name"
         :style="{ marginBottom: 10 }"
@@ -52,6 +54,12 @@ export default {
     }
   },
 
+  created () {
+    this.navigation.addListener('focus', () => {
+      this.$refs.address.focus()
+    })
+  },
+
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
@@ -72,8 +80,8 @@ export default {
         tagOrAddress: this.address,
         isFavorite: this.addToFavorites,
         icon: {
-          name: 'star',
-          color: '#6d6de3'
+          name: 'person',
+          color: '#931A5A'
         }
       }
 

@@ -1,11 +1,14 @@
 <template>
-  <view :style="{ flex: 1 }">
+  <keyboard-avoiding-view
+    :style="{ flex: 1 }"
+    :behavior="behavior"
+  >
     <modal-navigation
       title="Import a wallet"
       has-back-button
       @on-dismiss="navigation.goBack()"
     />
-    <view-background :style="{ paddingBottom: 50 }" scrollable>
+    <view-background ref="scrollView" :style="{ paddingBottom: 50 }" scrollable>
 
       <header-view
         title="Import an existing wallet"
@@ -20,6 +23,7 @@
         :fontSize="12"
         :value="pastedContents"
         @input="pastedContents = $event"
+        :onFocus="contentsFocussed"
       />
       <text v-if="pastedContents === ''" :style="styles.orLabel">Or</text>
       <rounded-button
@@ -54,14 +58,14 @@
       title="Import wallet"
       @on-press="createWallet"
     />
-  </view>
+  </keyboard-avoiding-view>
 </template>
 
 <script>
 import DocumentPicker from 'react-native-document-picker'
 import FileSystem from 'react-native-fs'
 import ExportImportManager, { DecryptError } from '@/core/wallet/ExportImportManager'
-import { Alert, Platform } from 'react-native'
+import { Alert, Platform, KeyboardAvoidingView } from 'react-native'
 import AndroidPrompt from 'react-native-prompt-android'
 
 const Log = global.Logger.extend('IMPORT')
@@ -69,6 +73,8 @@ const exportImportManager = new ExportImportManager()
 
 export default {
   name: 'ImportView',
+
+  components: { KeyboardAvoidingView },
 
   data () {
     return {
@@ -82,10 +88,23 @@ export default {
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
+    },
+
+    behavior () {
+      return Platform.OS === 'ios' ? 'padding' : null
     }
   },
 
   methods: {
+    contentsFocussed () {
+      // Scroll text input into view
+      if (this.$refs.scrollView) {
+        setTimeout(() => {
+          this.$refs.scrollView.scrollTo({ x: 0, y: 2000, animated: true })
+        }, 250)
+      }
+    },
+
     async importFile () {
       try {
         const res = await DocumentPicker.pick({

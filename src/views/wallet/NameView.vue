@@ -8,6 +8,7 @@
     <view-background scrollable>
       <input-description>Choose a wallet name for this wallet to recognize it among your other wallets.</input-description>
       <rounded-text-input
+        ref="name"
         title="Wallet name"
         placeholder="Main account"
         :value="name"
@@ -30,6 +31,10 @@ export default {
 
   created () {
     this.name = this.wallet.name
+
+    this.navigation.addListener('focus', () => {
+      this.$refs.name.focus()
+    })
   },
 
   methods: {

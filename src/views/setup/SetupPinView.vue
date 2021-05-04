@@ -3,7 +3,7 @@
     <status-bar :bar-style="isDarkScheme ? 'light-content' : 'dark-content'" />
     <view :style="{ flex: 1 }">
       <header-view
-        title="Setup PIN"
+        title="MultiCash PIN Setup"
         :image-background="require('@/assets/pin.png')"
       />
 

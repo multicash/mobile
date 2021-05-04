@@ -23,6 +23,7 @@
           <view :style="styles.amountContainer">
             <text :style="styles.amountCurrencyText">MCX</text>
             <text-input
+              ref="amount"
               :style="styles.amountTextInput"
               keyboard-type="numeric"
               placeholder="0.00"
@@ -65,6 +66,10 @@ export default {
   },
 
   created () {
+    this.navigation.addListener('focus', () => {
+      this.$refs.amount.focus()
+    })
+
     const listener = Keyboard.addListener('keyboardDidShow', event => {
       this.keyboardHeight = event.endCoordinates ? event.endCoordinates.height : 0
 

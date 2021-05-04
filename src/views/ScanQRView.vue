@@ -87,7 +87,7 @@ export default {
 
         this.navigation.replace('pay', {
           screen: 'confirm',
-          params: qrData.getPayParamsWithSource(sourceWallet, 'qr-code', '#3edd8a')
+          params: qrData.getPayParamsWithSource(sourceWallet, 'qr-code', '#00AE5A')
         })
       } catch (e) {
         console.log(e)

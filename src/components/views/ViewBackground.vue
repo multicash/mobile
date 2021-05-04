@@ -1,5 +1,5 @@
 <template>
-  <scroll-view v-if="scrollable" :style="styles.viewBackground">
+  <scroll-view ref="scrollView" v-if="scrollable" :style="styles.viewBackground">
     <slot/>
   </scroll-view>
   <view v-else :style="styles.viewBackground">
@@ -26,6 +26,14 @@ export default {
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme, this.noPadding)
+    }
+  },
+
+  methods: {
+    scrollTo (options) {
+      if (this.$refs.scrollView) {
+        this.$refs.scrollView.scrollTo(options)
+      }
     }
   }
 }

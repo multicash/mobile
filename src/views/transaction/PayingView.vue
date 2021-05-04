@@ -7,20 +7,9 @@
       :start="{ x: 0, y: 0 }"
       :end="{ x: 1, y: 1 }"
     >
-      <view
-        :style="{
-          width: 200,
-          height: 200,
-          marginBottom: 10,
-        }"
-      >
-        <image
-          :style="styles.image"
-          :source="require('@/assets/loading.png')"
-        />
-      </view>
       <text :style="styles.title">Payment in progress</text>
       <text :style="styles.subtitle">one sec...</text>
+      <progress-view :progress="paymentSteps"/>
     </linear-gradient>
     <linear-gradient
       v-if="done"
@@ -40,23 +29,25 @@
 
 <script>
 import LinearGradient from 'react-native-linear-gradient'
-import { Animated, Easing } from 'react-native'
+import ProgressView from '@/components/views/ProgressView'
 
 export default {
   name: 'PayingView',
 
-  components: { LinearGradient },
+  components: { ProgressView, LinearGradient },
 
   data () {
     return {
       done: false,
-      spinValue: 0,
-      spin: '0deg',
-      animatedValueRotate: 0
+      paymentSteps: 0.2
     }
   },
 
   created () {
+    const interval = setInterval(() => {
+      this.paymentSteps += 0.2
+    }, 500)
+
     setTimeout(() => {
       this.done = true
 
@@ -64,13 +55,9 @@ export default {
         const screenName = this.route.params.walletIdentifier ? 'wallet' : 'home'
 
         this.navigation.navigate(screenName)
+        clearInterval(interval)
       }, 3000)
     }, 3000)
-
-    this.spinValue = new Animated.Value(0)
-    this.animatedValueRotate = new Animated.Value(0)
-
-    this.animationRotate()
   },
 
   computed: {
@@ -79,27 +66,7 @@ export default {
     }
   },
 
-  methods: {
-    animationRotate () {
-      this.spinValue.setValue(0)
-      this.animatedValueRotate.setValue(0)
-
-      Animated.timing(this.spinValue, {
-        toValue: 1,
-        duration: 1250,
-        easing: Easing.linear,
-        useNativeDriver: true
-      })
-        .start(() => {
-          this.animationRotate()
-        })
-
-      this.spin = this.spinValue.interpolate({
-        inputRange: [0, 1],
-        outputRange: ['0deg', '360deg']
-      })
-    }
-  }
+  methods: {}
 }
 
 const stylesStore = () => {

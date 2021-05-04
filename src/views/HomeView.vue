@@ -185,7 +185,7 @@ export default {
 
     async scanNFC () {
       this.startNfcTagReader().then(tag => {
-        this.openPayment(tag, 'pricetags', '#0027da')
+        this.openPayment(tag, 'pricetags', '#F14668')
       })
     },
 

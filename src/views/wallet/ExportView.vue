@@ -8,7 +8,7 @@
       title="Export wallet"
       @on-dismiss="navigation.goBack()"
     />
-    <view-background :style="{ paddingBottom: 50 }" scrollable>
+    <view-background ref="scrollView" :style="{ paddingBottom: 50 }" scrollable>
       <header-view
         title="Export your wallet"
         subtitle="In order to recover your wallet you need the restore key. Use the export option to conveniently store your wallet in a save place."
@@ -18,16 +18,18 @@
 
       <switch-notification
         :value.sync="encryptFile"
-        @input="encryptFile = $event"
+        @input="switchEncryption"
         label="File encryption"
       >
         <view v-if="encryptFile">
           <text :style="styles.encryptFileText">Because the export file contains all the data to your wallet we encourage you to encrypt your export file with a password.</text>
           <rounded-text-input
+            ref="password"
             title="Password"
             secureTextEntry
             :value="encryptionPassword"
             @input="encryptionPassword = $event"
+            :onFocus="passwordFocussed"
           />
         </view>
       </switch-notification>
@@ -85,6 +87,25 @@ export default {
   },
 
   methods: {
+    switchEncryption (encryptFile) {
+      this.encryptFile = encryptFile
+
+      if (this.encryptFile) {
+        setTimeout(() => {
+          this.$refs.password.focus()
+        }, 250)
+      }
+    },
+
+    passwordFocussed () {
+      // Scroll text input into view
+      if (this.$refs.scrollView) {
+        setTimeout(() => {
+          this.$refs.scrollView.scrollTo({ x: 0, y: 2000, animated: true })
+        }, 250)
+      }
+    },
+
     showShareSheet () {
       const exportContent = base64.encode(ExportImportManager.getExportContent(
         this.wallet,

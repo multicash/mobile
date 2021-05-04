@@ -2,7 +2,7 @@ export default [
   {
     identifier: 'main-account',
     name: 'Main Account',
-    icon: 'wallet',
+    icon: 'money',
     tag: '@ArmandoArcuri',
     address: 'MskAT35r9sE2mmS5Ksg9U4egwRsHKqdAoxz',
     coin: 'mcx',
@@ -13,7 +13,7 @@ export default [
   {
     identifier: 'savings-account',
     name: 'Savings Account',
-    icon: 'gift',
+    icon: 'moneyBox',
     tag: '@arcuriSavings',
     address: 'MsnDg65r9sE2mmS5Ksg9U4egwRsHKqd9JeL',
     coin: 'mcx',

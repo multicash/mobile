@@ -2,8 +2,10 @@
   <view :style="styles.container">
     <text v-if="title" :style="styles.title">{{ title }}</text>
     <text-input
+      ref="input"
       :onChangeText="onChangeText"
       :onEndEditing="onEndEditing"
+      :onFocus="onFocus"
       :value="value"
       :style="styles.textInput"
       :placeholder="placeholder"
@@ -62,6 +64,16 @@ export default {
     fontSize: {
       type: Number,
       default: 18
+    },
+    focus: {
+      type: Function,
+      default () {
+        this.$refs.input.focus()
+      }
+    },
+    onFocus: {
+      type: Function,
+      default () {}
     }
   },
 
