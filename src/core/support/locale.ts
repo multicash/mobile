@@ -7,7 +7,7 @@ export default class Locale {
         ? NativeModules.SettingsManager.settings.AppleLanguages[0]
         : NativeModules.I18nManager.localeIdentifier.substring(0, 2)
     } catch (e) {
-      return 'en'
+      return 'en_EN'
     }
   }
 }

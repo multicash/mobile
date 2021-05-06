@@ -30,7 +30,7 @@ export default {
             .map(wallet => {
               return {
                 title: wallet.name,
-                subtitle: this.formatAmountFromSatoshis(wallet.totalAmount, 'en'),
+                subtitle: this.formatAmountFromSatoshis(wallet.totalAmount),
                 leftAvatar: { source: resolveIcon(wallet.icon), size: 40 },
                 onPress: () => this.navigate(wallet)
               }

@@ -36,6 +36,7 @@
 
     <view v-if="richDisplay" :style="styles.moneyView">
       <money
+        approximately
         convert
         :amount="value.totalAmount"
         :style="styles.walletCardFiatAmount"

@@ -63,7 +63,6 @@
 
 <script>
 import Constants from '@/core/support/constants'
-import Locale from '@/core/support/locale'
 import { Share } from 'react-native'
 import Wallet from '@/core/wallet/Wallet'
 import Contact from '@/core/contacts/models/Contact'
@@ -160,7 +159,7 @@ export default {
         }
 
         const wallet = this.$walletManager.getWallet(this.transaction.to.identifier)
-        const amount = this.getFormattedCrypto(this.transaction.amount, Locale.getCurrentLocale(), 'MCX')
+        const amount = this.getFormattedCrypto(this.transaction.amount, 'MCX')
         let url = `${Constants.payLink}/?id=${this.id}&address=${wallet.address}&tag=${wallet.tag}&amount=${this.transaction.amount}`
 
         if (this.transaction.label !== '' && this.transaction.label !== null) {

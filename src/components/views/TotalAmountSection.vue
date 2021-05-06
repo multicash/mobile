@@ -7,6 +7,7 @@
       :style="styles.totalAmount"
     />
     <money
+      approximately
       convert
       :amount="totalAmount"
       :style="styles.totalFiatAmount"

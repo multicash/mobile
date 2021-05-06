@@ -63,7 +63,6 @@
 
 <script>
 import { Share } from 'react-native'
-import Locale from '@/core/support/locale'
 import Constants from '@/core/support/constants'
 import UUID from '@/core/support/UUID'
 import { encode } from 'html-entities'
@@ -116,7 +115,7 @@ export default {
     },
 
     showShareSheet () {
-      const amount = this.getFormattedCrypto(this.route.params.transaction.amount, Locale.getCurrentLocale(), 'MCX')
+      const amount = this.getFormattedCrypto(this.route.params.transaction.amount, 'MCX')
 
       Share.share({
         message: `${this.qrValue}\n\nWould you like to pay me ${amount}`

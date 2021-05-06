@@ -1,5 +1,5 @@
 <template>
-  <view :style="{ flex: 1 }">
+  <view v-if="wallet" :style="{ flex: 1 }">
     <status-bar bar-style="light-content" />
     <modal-navigation
       :title="wallet.name"
@@ -12,7 +12,7 @@
       </round-button>
     </modal-navigation>
     <scroll-view :style="{ backgroundColor: isDarkScheme ? '#222429' : '#ededf3' }">
-      <view-background v-if="wallet">
+      <view-background>
         <view :style="styles.amountContainer">
           <view :style="styles.nameContainer">
             <wallet-icon :icon="wallet.icon" :size="40"/>
@@ -31,6 +31,7 @@
             :style="styles.amount"
           />
           <money
+            approximately
             convert
             :amount="wallet.totalAmount"
             :style="styles.fiatAmount"

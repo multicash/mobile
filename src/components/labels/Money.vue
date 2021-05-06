@@ -4,13 +4,15 @@
     :adjustsFontSizeToFit="true"
     :numberOfLines="1"
     :style="style || {}"
-  >{{ amountFormatted }}</text>
+  >
+    <text v-if="approximately">≈ </text>
+    {{ amountFormatted }}
+  </text>
 </template>
 
 <script>
 import constants from '@/core/support/constants'
 import { mapGetters } from 'vuex'
-import Locale from '@/core/support/locale'
 
 export default {
   name: 'money',
@@ -35,6 +37,10 @@ export default {
     style: {
       type: Array,
       default: null
+    },
+    approximately: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -42,15 +48,13 @@ export default {
     ...mapGetters(['currentCurrencyCode']),
 
     amountFormatted () {
-      const locale = Locale.getCurrentLocale()
-
       if (this.crypto) {
-        return this.getFormattedCrypto(this.amount / constants.satoshiDivider, locale, this.currency)
+        return this.getFormattedCrypto(this.amount / constants.satoshiDivider, this.currency)
       }
 
       if (this.convert) {
         const amount = (this.amount / constants.satoshiDivider) * 0.65 // this.currentRate
-        return this.getFormattedCurrency(amount, locale, this.currentCurrencyCode)
+        return this.getFormattedCurrency(amount, this.currentCurrencyCode)
       }
 
       return ''
