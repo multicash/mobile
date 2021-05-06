@@ -5,13 +5,13 @@
   >
     <modal-navigation
       has-back-button
-      title="Export wallet"
+      title="Export account"
       @on-dismiss="navigation.goBack()"
     />
     <view-background ref="scrollView" :style="{ paddingBottom: 50 }" scrollable>
       <header-view
-        title="Export your wallet"
-        subtitle="In order to recover your wallet you need the restore key. Use the export option to conveniently store your wallet in a save place."
+        title="Export your account"
+        subtitle="In order to recover your account you need the restore key. Use the export option to conveniently store your account in a save place."
         :image-background="require('@/assets/export.png')"
         :image-foreground="require('@/assets/open-box.png')"
       />
@@ -22,7 +22,7 @@
         label="File encryption"
       >
         <view v-if="encryptFile">
-          <text :style="styles.encryptFileText">Because the export file contains all the data to your wallet we encourage you to encrypt your export file with a password.</text>
+          <text :style="styles.encryptFileText">Because the export file contains all the data to your account we encourage you to encrypt your export file with a password.</text>
           <rounded-text-input
             ref="password"
             title="Password"
@@ -37,7 +37,7 @@
       <switch-notification
         :value.sync="acceptedTerm"
         @input="acceptedTerm = $event"
-        label="I understand what I'm doing and want to export my wallet into a separate file."
+        label="I understand what I'm doing and want to export my account into a separate file."
         type="warning"
       />
 
@@ -112,7 +112,7 @@ export default {
         this.encryptFile ? this.encryptionPassword : null
       ))
 
-      const title = `Export MultiCash wallet ${this.wallet.name}.json`
+      const title = `Export MultiCash account ${this.wallet.name}.json`
       const url = `data:application/json;base64,${exportContent}`
 
       const options = Platform.select({
@@ -139,7 +139,7 @@ export default {
 
       Share.open(options)
         .then(() => {
-          Log.info(Messages.wallet('Successfully exported wallet', this.wallet))
+          Log.info(Messages.wallet('Successfully exported account', this.wallet))
 
           this.encryptFile = false
           this.acceptedTerm = false

@@ -1,20 +1,55 @@
 <template>
   <view-section title="Actions">
-    <view :style="styles.actions">
-      <action-button
-        title="Pay"
-        :icon="require('@/assets/send.png')"
-        @on-press="$emit('pay')"
-      />
+    <scroll-view
+      :style="{ margin: -30 }"
+      horizontal
+      :showsHorizontalScrollIndicator="false"
+    >
+      <view
+        :style="styles.actions"
+      >
+        <action-button
+          title="Pay"
+          :icon="require('@/assets/send.png')"
+          @on-press="$emit('pay')"
+        />
 
-      <spacer/>
+        <spacer/>
 
-      <action-button
-        title="Receive"
-        :icon="require('@/assets/receive.png')"
-        @on-press="$emit('receive')"
-      />
-    </view>
+        <action-button
+          title="Receive"
+          :icon="require('@/assets/receive.png')"
+          @on-press="$emit('receive')"
+        />
+
+        <spacer/>
+
+        <action-button
+          title="Top up"
+          :icon="require('@/assets/add-dollar.png')"
+          type="success"
+          @on-press="$emit('topUp')"
+        />
+
+        <spacer/>
+
+        <action-button
+          title="Invest"
+          :icon="require('@/assets/duration-finance.png')"
+          type="warning"
+          @on-press="$emit('invest')"
+        />
+
+        <spacer/>
+
+        <action-button
+          title="Change"
+          :icon="require('@/assets/dollar-bitcoin-exchange.png')"
+          type="secondary"
+          @on-press="$emit('change')"
+        />
+      </view>
+    </scroll-view>
 
     <spacer />
 
@@ -53,6 +88,7 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     actions: {
+      margin: 30,
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between'

@@ -2,11 +2,11 @@
   <view :style="{ flex: 1 }">
     <modal-navigation
       has-back-button
-      title="Wallet name"
+      title="Account name"
       @on-dismiss="navigation.goBack()"
     />
     <view-background scrollable>
-      <input-description>Choose a wallet name for this wallet to recognize it among your other wallets.</input-description>
+      <input-description>Choose an account name for this account to recognize it among your other accounts.</input-description>
       <rounded-text-input
         ref="name"
         title="Wallet name"

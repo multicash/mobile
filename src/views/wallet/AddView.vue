@@ -1,7 +1,7 @@
 <template>
   <view-background no-padding>
     <modal-navigation
-      title="Add wallet"
+      title="Add account"
       has-close-button
       @on-dismiss="navigation.goBack()"
     />
@@ -21,10 +21,10 @@ export default {
     return {
       tableItems: [
         {
-          title: 'Ways to add a wallet',
+          title: 'Ways to add an account',
           data: [
             {
-              title: 'Create a new wallet',
+              title: 'Create a new account',
               subtitle: 'Never used MultiCash before? This is the one for you!',
               leftAvatar: { source: require('@/assets/new.png'), size: 40 },
               onPress: () => {
@@ -32,16 +32,16 @@ export default {
               }
             },
             {
-              title: 'Restore an existing wallet',
-              subtitle: 'Are you restoring your mobile device or did you reinstall the MultiCash app? Restore your already created wallet here.',
+              title: 'Restore an existing account',
+              subtitle: 'Are you restoring your mobile device or did you reinstall the MultiCash app? Restore your already created account here.',
               leftAvatar: { source: require('@/assets/restore.png'), size: 40 },
               onPress: () => {
                 this.navigation.navigate('preferences', { restore: true })
               }
             },
             {
-              title: 'Import an existing wallet',
-              subtitle: 'Did you previously export your wallet? Import and restore your wallet using this option.',
+              title: 'Import an existing account',
+              subtitle: 'Did you previously export your account? Import and restore your account using this option.',
               leftAvatar: { source: require('@/assets/import.png'), size: 40 },
               onPress: () => {
                 this.navigation.navigate('import')
@@ -57,8 +57,8 @@ export default {
     renderTableHeader (isDarkScheme) {
       return TableHeaderView(
         isDarkScheme,
-        'Add wallet',
-        "Add a new or an existing wallet to MultiCash\nand use money like it's supposed to!",
+        'Add Account',
+        "Add a new or an existing account to MultiCash\nand use money like it's supposed to!",
         require('@/assets/coin-wallet.png')
       )
     }

@@ -1,7 +1,7 @@
 <template>
   <view-background no-padding>
     <modal-navigation
-      title="Wallets"
+      title="Accounts"
       has-back-button
       @on-dismiss="navigation.goBack()"
     />

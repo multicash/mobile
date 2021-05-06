@@ -1,21 +1,21 @@
 <template>
   <view-background no-padding>
     <modal-navigation
-      title="Order wallets"
+      title="Order accounts"
       has-close-button
       @on-dismiss="navigation.goBack()"
     />
     <header-view
       :style="{ marginTop: 10 }"
-      title="Order wallets"
-      subtitle="Rearrange your wallets in your desired order and select your default wallet."
+      title="Order accounts"
+      subtitle="Rearrange your accounts in your desired order and select your default account."
       :image-background="require('@/assets/sorting.png')"
       :image-foreground="require('@/assets/wallet.png')"
     />
     <view :style="styles.defaultContainer">
       <action-notification
-        title="Default wallet"
-        label="Select your default wallet by pressing longer on one of the wallets below"
+        title="Default account"
+        label="Select your default account by pressing longer on one of the accounts below"
       >
         <text :style="styles.defaultContainerWallet">{{ defaultWalletName }}</text>
       </action-notification>

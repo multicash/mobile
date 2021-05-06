@@ -13,7 +13,7 @@
       >
         <view :style="styles.sourceContainer">
           <selector
-            :name="route.params.isReceive ? 'Receiving wallet' : 'From wallet'"
+            :name="route.params.isReceive ? 'Receiving account' : 'From account'"
             :value="sourceWallet.name"
             @on-press="selectSourceWallet"
           />
@@ -31,6 +31,19 @@
               :placeholder-text-color="isDarkScheme ? '#111111' : '#dadada'"
               v-model="amount"
             />
+<!--            inputAccessoryViewID="inputAccessoryView"-->
+<!--            <input-accessory-view nativeID="inputAccessoryView">-->
+<!--              <view :style="styles.inputAccessoryView">-->
+<!--                <touchable-opacity-->
+<!--                  v-for="calculationButton in calculationButtons"-->
+<!--                  :style="styles.inputAccessoryViewButton"-->
+<!--                  :key="calculationButton"-->
+<!--                  :activeOpacity="0.8"-->
+<!--                >-->
+<!--                  <text :style="styles.inputAccessoryViewButtonText">{{ calculationButton }}</text>-->
+<!--                </touchable-opacity>-->
+<!--              </view>-->
+<!--            </input-accessory-view>-->
           </view>
           <view :style="styles.calculatedAmountContainer">
             <money :style="styles.calculatedAmountTextInput" :amount="amountNumber" convert/>
@@ -61,7 +74,14 @@ export default {
     return {
       amount: '',
       sourceWallet: null,
-      keyboardHeight: 0
+      keyboardHeight: 0,
+      calculationButtons: [
+        '+',
+        '-',
+        '×',
+        '÷',
+        '='
+      ]
     }
   },
 
@@ -169,6 +189,28 @@ const stylesStore = (isDarkScheme, keyboardHeight) => {
       paddingHorizontal: 10,
       minWidth: 100,
       color: isDarkScheme ? '#6b47e1' : '#4c00ff'
+    },
+
+    inputAccessoryView: {
+      backgroundColor: isDarkScheme ? 'black' : 'grey',
+      flexDirection: 'row',
+      paddingVertical: 5,
+      paddingHorizontal: 2.5,
+    },
+
+    inputAccessoryViewButton: {
+      flexGrow: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      position: 'relative',
+      backgroundColor: isDarkScheme ? 'black' : 'white',
+      borderRadius: 5,
+      padding: 5,
+      marginHorizontal: 2.5
+    },
+
+    inputAccessoryViewButtonText: {
+      fontSize: 20
     },
 
     calculatedAmountContainer: {

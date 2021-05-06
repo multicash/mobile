@@ -29,35 +29,65 @@ export default {
     },
     icon: {
       default: null
+    },
+    type: {
+      type: String,
+      default: null
     }
   },
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme)
+      return stylesStore(this.isDarkScheme, this.type)
     }
   }
 }
 
-const stylesStore = (isDarkScheme) => {
+const stylesStore = (isDarkScheme, type) => {
+  let typeBackgroundColor = cards(isDarkScheme).backgroundColor
+  let typeTextColor = isDarkScheme ? 'white' : 'black'
+
+  switch (type) {
+    case 'success':
+      typeBackgroundColor = '#00ae5a'
+      typeTextColor = 'white'
+      break
+    case 'warning':
+      typeBackgroundColor = '#ffdd57'
+      typeTextColor = '#3b3b3b'
+      break
+    case 'primary':
+      typeBackgroundColor = '#00b0ee'
+      typeTextColor = 'white'
+      break
+    case 'secondary':
+      typeBackgroundColor = '#f744e4'
+      typeTextColor = 'white'
+      break
+    default:
+      break
+  }
+
   return {
     actionButton: {
       ...cards(isDarkScheme),
       flex: 1,
-      height: 150,
       justifyContent: 'center',
       alignItems: 'center',
-      padding: 30
+      paddingVertical: 20,
+      paddingHorizontal: 35,
+      minWidth: 130,
+      backgroundColor: typeBackgroundColor
     },
 
     actionButtonIcon: {
-      width: 55,
-      height: 55,
+      width: 50,
+      height: 50,
       resizeMode: 'contain'
     },
 
     actionButtonTitle: {
-      color: isDarkScheme ? 'white' : 'black',
+      color: typeTextColor,
       fontSize: 17,
       fontWeight: '600'
     },

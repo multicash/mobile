@@ -55,7 +55,7 @@ export default {
         {
           data: [
             {
-              title: 'My wallets',
+              title: 'My accounts',
               leftAvatar: { source: require('@/assets/coin-wallet.png'), size: 40 },
               onPress: () => {
                 this.navigation.navigate('wallets', { navigate: 'confirm', ...this.route.params })

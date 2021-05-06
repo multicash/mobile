@@ -2,13 +2,13 @@
   <view :style="{ flex: 1 }">
     <modal-navigation
       has-back-button
-      title="Wallet restore key"
+      title="Account restore key"
       @on-dismiss="navigation.goBack()"
     />
     <view-background scrollable>
       <header-view
-        title="Your wallets restore key"
-        subtitle="In order to recover your wallet you need the restore key."
+        title="Your accounts restore key"
+        subtitle="In order to recover your account you need the restore key."
         :image-background="require('@/assets/signing-a-document.png')"
         :image-foreground="require('@/assets/protect.png')"
       />

@@ -1,5 +1,5 @@
 <template>
-  <view-section :style="styles.flexGrow" title="Wallets">
+  <view-section :style="styles.flexGrow" title="Accounts">
     <view slot="options" :style="styles.actionsContainer">
       <secondary-action-button
         v-if="orderedWallets.length > 1"

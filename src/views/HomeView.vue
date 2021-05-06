@@ -34,6 +34,9 @@
           v-if="hasWallets"
           @pay="navigation.navigate('pay')"
           @receive="navigation.navigate('receive')"
+          @topUp="notImplemented"
+          @invest="notImplemented"
+          @change="notImplemented"
           @scanQR="navigation.navigate('scanQR')"
           @scanNFC="scanNFC"
         />
@@ -53,13 +56,13 @@
                 <image :style="styles.noWalletIcon1" :source="require('@/assets/new.png')"/>
                 <image :style="styles.noWalletIcon2" :source="require('@/assets/coin-wallet.png')"/>
               </view>
-              <text :style="styles.noWalletTitle">Add a MultiCash wallet</text>
-              <text :style="styles.noWalletSubtitle">Add a new or an existing wallet to MultiCash and use money like it's supposed to!</text>
+              <text :style="styles.noWalletTitle">Add a MultiCash account</text>
+              <text :style="styles.noWalletSubtitle">Add a new or an existing account to MultiCash and use money like it's supposed to!</text>
             </view>
             <rounded-button
               :style="{ width: '100%' }"
               icon="add"
-              title="Add wallet"
+              title="Add account"
               @on-press="navigation.navigate('add')"
             />
           </card>
@@ -67,7 +70,7 @@
           <notification
             :image="require('@/assets/contact-book.png')"
             title="Contacts"
-            label="Add MultiCash contacts to receive and send MultiCash after setting up your wallet"
+            label="Add MultiCash contacts to receive and send MultiCash after setting up your account"
             @on-press="navigation.navigate('contacts')"
             type="success"
           />
@@ -88,7 +91,7 @@
 
 <script>
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { AppState, Linking } from 'react-native'
+import { Alert, AppState, Linking } from 'react-native'
 import { mapActions, mapGetters } from 'vuex'
 import ManagerConfig from '@/core/wallet/ManagerConfig.ts'
 import AppHeaderView from '@/components/views/AppHeaderView'
@@ -197,6 +200,13 @@ export default {
         screen: 'confirm',
         params: payLink.getPayParamsWithSource(sourceWallet, icon, color)
       })
+    },
+
+    notImplemented () {
+      Alert.alert(
+        'Not Implemented',
+        'Yet... if ever... :)'
+      )
     }
   }
 }

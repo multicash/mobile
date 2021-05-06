@@ -10,7 +10,7 @@
         </view>
         <text :style="styles.headerTitle">Awesome, you've done it!</text>
         <text :style="styles.headerSubtitle">
-          Your wallet has been successfully created!
+          Your account has been successfully created!
         </text>
       </view>
 
@@ -47,9 +47,12 @@
         />
       </action-notification>
 
+      <spacer :style="{ flex: 1 }"/>
+
+      <rounded-button title="Done" @on-press="navigation.navigate('home')">
     </view>
     <view v-else :style="styles.creatingContainer">
-      <animated:view
+      <view
         :style="{
           transform: [{rotate: spin}],
           width: 200,
@@ -61,9 +64,9 @@
           :style="styles.image"
           :source="require('@/assets/loading.png')"
         />
-      </animated:view>
+      </view>
       <text :style="styles.creatingTitle">In progress</text>
-      <text :style="styles.creatingSubtitle">Your wallet is being created...</text>
+      <text :style="styles.creatingSubtitle">Your account is being created...</text>
     </view>
 
   </view-background>
@@ -71,7 +74,6 @@
 
 <script>
 import { Alert } from 'react-native'
-import { Animated, Easing } from 'react-native'
 
 export default {
   name: 'CreateView',
@@ -87,11 +89,6 @@ export default {
   },
 
   created () {
-    this.spinValue = new Animated.Value(0)
-    this.animatedValueRotate = new Animated.Value(0)
-
-    this.animationRotate()
-
     const walletConfig = this.$walletManager.getTempWallet(this.route.params.identifier)
 
     this.$walletManager.addWallet(walletConfig).then(wallet => {
@@ -118,28 +115,6 @@ export default {
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
-    }
-  },
-
-  methods: {
-    animationRotate () {
-      this.spinValue.setValue(0)
-      this.animatedValueRotate.setValue(0)
-
-      Animated.timing(this.spinValue, {
-        toValue: 1,
-        duration: 1250,
-        easing: Easing.linear,
-        useNativeDriver: true
-      })
-        .start(() => {
-          this.animationRotate()
-        })
-
-      this.spin = this.spinValue.interpolate({
-        inputRange: [0, 1],
-        outputRange: ['0deg', '360deg']
-      })
     }
   }
 }

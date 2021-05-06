@@ -23,7 +23,7 @@ export default {
           data: [
             {
               title: 'Name',
-              subtitle: 'The wallets name is needed because you can have multiple wallets inside this awesome application!',
+              subtitle: 'The accounts name is needed because you can have multiple accounts inside this awesome application!',
               leftAvatar: { source: require('@/assets/dog-tag.png'), size: 40 },
               onPress: () => {
                 this.navigation.navigate('name', { walletIdentifier: this.wallet.identifier })
@@ -31,7 +31,7 @@ export default {
             },
             {
               title: 'Icon',
-              subtitle: 'Choose an icon that fits the purpose of this wallet perfectly',
+              subtitle: 'Choose an icon that fits the purpose of this account perfectly',
               leftAvatar: { source: require('@/assets/paint-palette.png'), size: 40 },
               onPress: () => {
                 this.navigation.navigate('icon', { walletIdentifier: this.wallet.identifier })
@@ -44,7 +44,7 @@ export default {
           data: [
             {
               title: 'Restore key',
-              subtitle: 'The restore key enables you to restore this wallet. If you lose it you can never recover it and you\'ll loose access to your MCX. So make absolutely sure to keep it very safe.',
+              subtitle: 'The restore key enables you to restore this account. If you lose it you can never recover it and you\'ll loose access to your MCX. So make absolutely sure to keep it very safe.',
               leftAvatar: { source: require('@/assets/signing-document.png'), size: 40 },
               onPress: () => {
                 this.$authManager.authenticate().then(authenticated => {
@@ -55,8 +55,8 @@ export default {
               }
             },
             {
-              title: 'Export your wallet',
-              subtitle: 'Creating an extra backup of your wallet credentials can be a smart thing to do. Either store it safely on a removable drive or another secure place.',
+              title: 'Export your account',
+              subtitle: 'Creating an extra backup of your account credentials can be a smart thing to do. Either store it safely on a removable drive or another secure place.',
               leftAvatar: { source: require('@/assets/export.png'), size: 40 },
               onPress: () => {
                 this.$authManager.authenticate().then(authenticated => {
@@ -73,13 +73,13 @@ export default {
           data: [
             {
               title: 'Delete',
-              subtitle: 'This will delete your wallet from this application. Your wallet can still be restored by using your restore key and pass phrase. Please make absolutely sure you\'ve written down your restore key and know your pass phrase. Remember that your restore key + pass phrase is the only way to restore your current wallet.',
+              subtitle: 'This will delete your account from this application. Your account can still be restored by using your restore key and pass phrase. Please make absolutely sure you\'ve written down your restore key and know your pass phrase. Remember that your restore key + pass phrase is the only way to restore your current account.',
               leftAvatar: { source: require('@/assets/delete-bin.png'), size: 40 },
               noChevron: true,
               onPress: () => {
                 Alert.alert(
-                  'Delete wallet',
-                  `Are you sure you want to delete your wallet ${this.wallet.name}?`,
+                  'Delete account',
+                  `Are you sure you want to delete your account ${this.wallet.name}?`,
                   [
                     {
                       text: 'Cancel',

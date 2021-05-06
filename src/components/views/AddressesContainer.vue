@@ -49,8 +49,7 @@
     <template v-else>
       <view :style="styles.noTransactionsContainer">
         <view :style="{ flexDirection: 'row' }">
-          <image :style="styles.noTransactionsImage1" :source="require('@/assets/map-marker.png')"/>
-          <image :style="styles.noTransactionsImage2" :source="require('@/assets/empty-box.png')"/>
+          <image :style="styles.noTransactionsImage" :source="require('@/assets/address-book.png')"/>
         </view>
         <text :style="styles.noTransactionsLabel">No addresses created yet</text>
       </view>
@@ -123,20 +122,11 @@ const stylesStore = (isDarkScheme) => {
       paddingVertical: 20
     },
 
-    noTransactionsImage1: {
+    noTransactionsImage: {
       width: 60,
       height: 60,
-      marginTop: 0,
-      marginRight: -20,
+      marginBottom: 10,
       resizeMode: 'contain'
-    },
-
-    noTransactionsImage2: {
-      width: 60,
-      height: 60,
-      resizeMode: 'contain',
-      marginTop: 20,
-      marginBottom: 5
     },
 
     noTransactionsLabel: {

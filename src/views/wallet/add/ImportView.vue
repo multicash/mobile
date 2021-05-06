@@ -4,15 +4,15 @@
     :behavior="behavior"
   >
     <modal-navigation
-      title="Import a wallet"
+      title="Import an account"
       has-back-button
       @on-dismiss="navigation.goBack()"
     />
     <view-background ref="scrollView" :style="{ paddingBottom: 50 }" scrollable>
 
       <header-view
-        title="Import an existing wallet"
-        subtitle="Import an exported wallet file or paste the file contents here."
+        title="Import an existing account"
+        subtitle="Import an exported account file or paste the file contents here."
         :image-background="require('@/assets/import.png')"
         :image-foreground="require('@/assets/credit-card-cash-withdrawal.png')"
       />
@@ -37,7 +37,7 @@
         v-if="checkingRestoreKey || successfullyRestored"
         :loading="checkingRestoreKey"
         icon="checkmark-circle"
-        label="With the given restore key we successfully found an existing wallet!"
+        label="With the given restore key we successfully found an existing account!"
         type="success"
       />
 
@@ -55,7 +55,7 @@
     <rounded-button
       v-if="resolvedWalletConfig"
       :style="styles.proceedButton"
-      title="Import wallet"
+      title="Import account"
       @on-press="createWallet"
     />
   </keyboard-avoiding-view>
@@ -133,7 +133,7 @@ export default {
 
             Alert.alert(
               'Given file is not valid',
-              'The file doesn\'t contain any valid wallet configuration.',
+              'The file doesn\'t contain any valid account configuration.',
               [
                 {
                   text: 'Ok',

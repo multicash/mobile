@@ -18,14 +18,14 @@
       <switch-notification
         :value.sync="term1"
         @input="term1 = $event"
-        label="I understand that the only way to restore this wallet is by providing the restore key. If the restore key is lost or differs from this setup there is no way to recover it. I'm solely responsible for the restore key."
+        label="I understand that the only way to restore this account is by providing the restore key. If the restore key is lost or differs from this setup there is no way to recover it. I'm solely responsible for the restore key."
         type="primary"
       />
 
       <switch-notification
         :value.sync="term2"
         @input="term2 = $event"
-        label="I understand that this wallets restore key is stored securely on this device. And that this restore key isn't covered by automatic backup."
+        label="I understand that this accounts restore key is stored securely on this device. And that this restore key isn't covered by automatic backup."
         type="primary"
       />
 

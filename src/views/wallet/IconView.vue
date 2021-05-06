@@ -2,11 +2,11 @@
   <view :style="{ flex: 1 }">
     <modal-navigation
       has-back-button
-      title="Wallet icon"
+      title="Account icon"
       @on-dismiss="navigation.goBack()"
     />
     <view-background scrollable>
-      <input-description>Make your wallet even more recognizable by choosing a wallet icon.</input-description>
+      <input-description>Make your account even more recognizable by choosing an account icon.</input-description>
       <selector name="Icon" @on-press="selectIcon">
         <view slot="value" :style="styles.iconContainer">
           <wallet-icon :icon="wallet.icon" />

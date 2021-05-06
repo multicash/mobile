@@ -9,7 +9,7 @@
 
       <header-view
         title="Enter your restore key!"
-        subtitle="Enter your restore key to recreate your wallet! It should be 12 words all lowercased."
+        subtitle="Enter your restore key to recreate your account! It should be 12 words all lowercased."
         :image-background="require('@/assets/safe.png')"
         :image-foreground="require('@/assets/key.png')"
       />
@@ -33,7 +33,7 @@
         v-if="checkingRestoreKey || successfullyRestored"
         :loading="checkingRestoreKey"
         icon="checkmark-circle"
-        label="With the given restore key we successfully found an existing wallet!"
+        label="With the given restore key we successfully found an existing account!"
         type="success"
       />
 

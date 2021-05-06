@@ -10,7 +10,7 @@
 
       <view v-if="targetWallet" :style="styles.sourceContainer">
         <selector
-          name="Receiving wallet"
+          name="Receiving account"
           :value="targetWallet.name"
           @on-press="selectSourceWallet"
         />
