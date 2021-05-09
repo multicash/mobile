@@ -1,0 +1,208 @@
+<template>
+  <view :style="{ flex: 1 }">
+    <modal-navigation
+      title="Account tag"
+      has-back-button
+      @on-dismiss="navigation.goBack()"
+    />
+    <view-background scrollable>
+
+      <view :style="styles.exampleContainer">
+
+        <view :style="styles.fromMessage">
+          <text :style="styles.messageText">Hé send me your MCX tag, so I can pay you back for the coffee ☕️</text>
+        </view>
+
+        <view :style="{ alignItems: 'flex-end' }">
+          <view :style="styles.toMessage">
+            <text :style="styles.messageText">Ah sweet! My accounts tag is <text :style="{ fontWeight: 'bold' }">@MyAccount</text></text>
+          </view>
+        </view>
+
+      </view>
+
+      <header-view
+        title="Account Tag"
+        subtitle="Choose a unique tag for your wallet. This allows you to share your tag with other MCX owners and let them send funds to your tag. A tag can easily be compared to your credit card number."
+      />
+
+      <view :style="styles.tagContainer">
+        <text :style="styles.tagAt">@</text>
+        <rounded-text-input
+          title="Your account tag"
+          :style="styles.tagInput"
+          :value="tag"
+          @input="onTagInput"
+          placeholder="MyUniqueTag"
+        />
+      </view>
+      <view v-if="!$v.tag.minLength">
+        <spacer />
+        <notification
+          type="danger"
+          title="Invalid Tag"
+          :label="invalidTagLabel"
+        />
+      </view>
+      <spacer />
+      <rounded-button
+        v-if="!$v.$invalid"
+        title="Proceed"
+        @on-press="proceed"
+      />
+    </view-background>
+  </view>
+</template>
+
+<script>
+import { Platform } from 'react-native'
+import { required, minLength, maxLength } from 'vuelidate/lib/validators'
+
+export default {
+  name: 'TagView',
+
+  data () {
+    return {
+      tag: '',
+      touchMap: null
+    }
+  },
+
+  computed: {
+    styles () {
+      return styleStore(this.isDarkScheme)
+    },
+
+    isUnique () {
+      return false
+    },
+
+    invalidTagLabel () {
+      if (!this.$v.tag.minLength) {
+        return 'The chosen tag is too short, we need minimal 8 characters.'
+      }
+
+      if (!this.$v.tag.maxLength) {
+        return 'The chosen tag is too long, a tag cannot contain more than 25 charaters.'
+      }
+
+      return 'The chosen tag is containing an unknown error'
+    }
+  },
+
+  validations: {
+    tag: {
+      required,
+      minLength: minLength(8),
+      maxLength: maxLength(25)
+    }
+  },
+
+  methods: {
+    proceed () {
+      const params = {
+        ...this.route.params,
+        tag: this.tag
+      }
+
+      this.navigation.navigate('preferences', params)
+    },
+
+    onTagInput ($event) {
+      this.tag = $event
+      this.delayTouch(this.$v.tag)
+    },
+
+    delayTouch ($v) {
+      $v.$reset()
+      if (this.touchMap) {
+        clearTimeout(this.touchMap)
+      }
+      this.touchMap = setTimeout($v.$touch, 5000)
+    }
+  }
+}
+
+const styleStore = (isDarkScheme) => {
+  return {
+    exampleContainer: {
+      width: '100%',
+      flex: 1,
+      justifyContent: 'center',
+      transform: [
+        { scale: 0.85 }
+      ]
+    },
+
+    fromMessage: {
+      backgroundColor: '#04c140',
+      borderRadius: 20,
+      borderTopLeftRadius: 5,
+      marginBottom: 20,
+      padding: 15,
+      maxWidth: '75%',
+      float: 'left',
+      shadowColor: '#00ff4f',
+      shadowRadius: 40,
+      shadowOpacity: isDarkScheme ? 0.25 : 0.5
+    },
+
+    toMessage: {
+      backgroundColor: '#0f76e3',
+      borderRadius: 20,
+      borderTopRightRadius: 5,
+      marginBottom: 20,
+      padding: 15,
+      maxWidth: '75%',
+      shadowColor: '#007aff',
+      shadowRadius: 40,
+      shadowOpacity: isDarkScheme ? 0.25 : 0.5
+    },
+
+    messageText: {
+      color: 'white',
+      fontSize: 16
+    },
+
+    tagContainer: {
+      backgroundColor: isDarkScheme ? 'black' : 'white',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 5
+    },
+
+    tagAt: {
+      paddingHorizontal: 15,
+      fontSize: 20,
+      fontWeight: Platform.OS === 'ios' ? '600' : 'bold'
+    },
+
+    tagInput: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+      flex: 1
+    },
+
+    checkpointsContainer: {},
+
+    checkpointsTitle: {
+      fontSize: 15,
+      fontWeight: Platform.OS === 'ios' ? '600' : 'bold',
+      marginBottom: 10
+    },
+
+    checkpoint: {
+      fontSize: 18,
+      color: isDarkScheme ? '#868686' : '#868686',
+      marginVertical: 5
+    },
+
+    checkpointValid: {
+      fontSize: 18,
+      color: isDarkScheme ? '#00ae5a' : '#00ae5a',
+      marginVertical: 5
+    }
+  }
+}
+</script>

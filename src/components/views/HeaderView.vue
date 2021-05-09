@@ -2,7 +2,7 @@
   <view :style="styles.headerContainer">
     <view :style="{ flexDirection: 'row' }">
       <image v-if="imageForeground" :style="styles.headerImage1" :source="imageForeground"/>
-      <image :style="styles.headerImage2" :source="imageBackground"/>
+      <image v-if="imageBackground" :style="styles.headerImage2" :source="imageBackground"/>
     </view>
     <text :style="styles.headerTitle">{{ title }}</text>
     <text v-if="subtitle" :style="styles.headerSubtitle">{{ subtitle }}</text>
@@ -22,7 +22,7 @@ export default {
       type: String
     },
     imageBackground: {
-      required: true
+      default: null
     },
     imageForeground: {
       default: null

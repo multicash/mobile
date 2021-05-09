@@ -11,6 +11,7 @@
       :keyExtractor="(item, index) => item + index"
       :renderItem="(item) => renderList(item)"
       :renderSectionHeader="({ section }) => renderSectionHeader(section)"
+      :renderSectionFooter="({ section }) => renderSectionFooter(section)"
       :stickySectionHeadersEnabled="false"
       :ListHeaderComponent="renderListHeader"
       :ListFooterComponent="renderListFooter"
@@ -22,7 +23,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import { ListItem, Avatar, Icon } from 'react-native-elements'
-import { text, subtitle, sectionTitle } from '@/core/support/styles'
+import { text, subtitle, sectionTitle, sectionFooter } from '@/core/support/styles'
 
 export default {
   name: 'TableView',
@@ -128,6 +129,10 @@ export default {
       return this.grouped || section.title ? (<Text style={this.styles.header}>{ section.title }</Text>) : null
     },
 
+    renderSectionFooter (section) {
+      return this.grouped || section.footer ? (<Text style={this.styles.sectionFooter}>{ section.footer }</Text>) : null
+    },
+
     renderListHeader () {
       if (this.header) {
         return this.header(this.isDarkScheme)
@@ -191,6 +196,14 @@ const stylesStore = (isDarkScheme, type, grouped) => {
       paddingRight: 15,
       paddingBottom: grouped ? 10 : 5,
       ...sectionTitle(isDarkScheme)
+    },
+    sectionFooter: {
+      backgroundColor: grouped ? 'transparent' : (isDarkScheme ? '#222429' : '#ededf3'),
+      paddingTop: 5,
+      paddingLeft: 15,
+      paddingRight: 15,
+      paddingBottom: grouped ? 10 : 5,
+      ...sectionFooter(isDarkScheme)
     },
     footer: {
       height: 50,

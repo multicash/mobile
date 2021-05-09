@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { resolveIcon } from '@/core/support/walletIcons'
+import { resolveIcon } from '@/core/assets/walletIcons'
 
 export default {
   name: 'WalletIcon',

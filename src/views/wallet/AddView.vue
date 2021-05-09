@@ -28,7 +28,7 @@ export default {
               subtitle: 'Never used MultiCash before? This is the one for you!',
               leftAvatar: { source: require('@/assets/new.png'), size: 40 },
               onPress: () => {
-                this.navigation.navigate('preferences', { restore: false })
+                this.navigation.navigate('coin', { restore: false })
               }
             },
             {

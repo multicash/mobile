@@ -36,7 +36,7 @@ import { TouchableWithoutFeedback } from 'react-native'
 import { ListItem, Avatar } from 'react-native-elements'
 import DraggableFlatList from 'react-native-draggable-flatlist'
 import { mapActions, mapGetters } from 'vuex'
-import { resolveIcon } from '@/core/support/walletIcons'
+import { resolveIcon } from '@/core/assets/walletIcons'
 import { text, subtitle } from '@/core/support/styles'
 
 export default {

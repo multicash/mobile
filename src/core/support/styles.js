@@ -29,6 +29,12 @@ export const sectionTitle = (isDarkScheme) => {
   }
 }
 
+export const sectionFooter = (isDarkScheme) => {
+  return {
+    color: isDarkScheme ? '#9a9baa' : '#63636d'
+  }
+}
+
 export const pageTitle = (isDarkScheme) => {
   return {
     fontSize: 30,

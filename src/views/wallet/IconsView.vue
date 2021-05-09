@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import WalletIcons from '@/core/support/walletIcons'
+import WalletIcons from '@/core/assets/walletIcons'
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 

@@ -52,6 +52,7 @@ export default {
     return {
       name: '',
       tag: '',
+      coin: '',
       icon: {
         name: 'wallet'
       }
@@ -77,6 +78,9 @@ export default {
   },
 
   created () {
+    this.coin = this.route.params.coin
+    this.tag = this.route.params.tag
+
     if (this.route.params.restore) {
       this.tag = '12345678'
     }
@@ -102,10 +106,10 @@ export default {
         name: this.name,
         tag: this.tag,
         icon: this.icon.name,
-        coin: constants.defaultCoin,
+        coin: this.coin,
         network: constants.defaultNetwork,
         apiEndpoint: constants.walletServiceApi,
-        singleAddress: true,
+        singleAddress: false,
         restoreKey: ''
       })
 
