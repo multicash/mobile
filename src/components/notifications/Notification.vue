@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { Platform } from 'react-native'
+
 export default {
   name: 'Notification',
 
@@ -158,7 +160,8 @@ const stylesStore = (isDarkScheme, type) => {
     },
 
     notificationText: {
-      color: typeColors[type].notificationText.color
+      color: typeColors[type].notificationText.color,
+      fontWeight: Platform.OS === 'ios' ? '600' : 'bold'
     },
 
     loadingContainer: {

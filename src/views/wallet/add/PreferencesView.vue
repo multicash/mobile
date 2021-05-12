@@ -12,13 +12,6 @@
 
       <spacer />
 
-      <view v-if="!route.params.restore">
-        <input-description>Choose an account tag which will be shareable and enables other MultiCash users to easily recognize your account.</input-description>
-        <rounded-text-input title="Account tag" placeholder="myAccountTag" :value="tag" @input="tag = $event"/>
-
-        <spacer />
-      </view>
-
       <input-description>Make your account even more recognizable by choosing an account icon.</input-description>
       <selector name="Icon" @on-press="selectIcon">
         <view slot="value" :style="styles.iconContainer">
@@ -63,11 +56,6 @@ export default {
     name: {
       required,
       minLength: minLength(2)
-    },
-    tag: {
-      required,
-      minLength: minLength(8),
-      maxLength: maxLength(25)
     }
   },
 

@@ -1,62 +1,82 @@
 <template>
-  <view :style="{ flex: 1 }">
+  <view
+    :style="{ flex: 1 }"
+  >
     <modal-navigation
       title="Account tag"
       has-back-button
       @on-dismiss="navigation.goBack()"
     />
-    <view-background scrollable>
+    <keyboard-avoiding-view>
+      <view-background ref="scrollView" scrollable>
 
-      <view :style="styles.exampleContainer">
+        <view :style="styles.exampleContainer">
 
-        <view :style="styles.fromMessage">
-          <text :style="styles.messageText">Hé send me your MCX tag, so I can pay you back for the coffee ☕️</text>
+          <view :style="styles.fromMessage">
+            <text :style="styles.messageText">Hé send me your MCX tag, so I can pay you back for the coffee ☕️</text>
+          </view>
+
+          <view :style="{ alignItems: 'flex-end' }">
+            <view :style="styles.toMessage">
+              <text :style="styles.messageText">Ah sweet! My accounts tag is <text :style="{ fontWeight: 'bold' }">@MyAccount</text></text>
+            </view>
+          </view>
+
         </view>
 
-        <view :style="{ alignItems: 'flex-end' }">
-          <view :style="styles.toMessage">
-            <text :style="styles.messageText">Ah sweet! My accounts tag is <text :style="{ fontWeight: 'bold' }">@MyAccount</text></text>
+        <header-view
+          title="Account Tag"
+        />
+
+        <input-description label="Come up with an unique tag for your new account. This allows you to share your tag with other MCX owners and let them send funds to your tag. A tag can be compared with a credit card number or something similar." />
+
+        <view :style="styles.tagContainer">
+          <view :style="styles.tagInputContainer">
+            <text :style="styles.tagAt">@</text>
+            <rounded-text-input
+              title="Your account tag"
+              :style="styles.tagInput"
+              :value="tag"
+              @input="onTagInput"
+              placeholder="MyUniqueTag"
+              autoCapitalize="none"
+              :autoCorrect="false"
+            />
           </view>
         </view>
 
-      </view>
-
-      <header-view
-        title="Account Tag"
-        subtitle="Choose a unique tag for your wallet. This allows you to share your tag with other MCX owners and let them send funds to your tag. A tag can easily be compared to your credit card number."
-      />
-
-      <view :style="styles.tagContainer">
-        <text :style="styles.tagAt">@</text>
-        <rounded-text-input
-          title="Your account tag"
-          :style="styles.tagInput"
-          :value="tag"
-          @input="onTagInput"
-          placeholder="MyUniqueTag"
-        />
-      </view>
-      <view v-if="!$v.tag.minLength">
-        <spacer />
-        <notification
-          type="danger"
-          title="Invalid Tag"
-          :label="invalidTagLabel"
-        />
-      </view>
-      <spacer />
-      <rounded-button
-        v-if="!$v.$invalid"
-        title="Proceed"
-        @on-press="proceed"
-      />
-    </view-background>
+        <view v-if="(tag !== '' && $v.$invalid) || fetchingTagStatus">
+          <spacer  />
+          <notification
+            type="danger"
+            icon="alert-circle"
+            :label="invalidTagLabel"
+            :loading="fetchingTagStatus"
+          />
+        </view>
+        <view v-else-if="tag !== '' && !fetchingTagStatus">
+          <spacer />
+          <notification
+            :loading="false"
+            type="success"
+            icon="checkmark-circle"
+            label="Your chosen tag is perfect!"
+          />
+          <spacer />
+          <rounded-button
+            v-if="!$v.$invalid"
+            title="Proceed"
+            @on-press="proceed"
+          />
+        </view>
+      </view-background>
+    </keyboard-avoiding-view>
   </view>
 </template>
 
 <script>
 import { Platform } from 'react-native'
-import { required, minLength, maxLength } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength, helpers } from 'vuelidate/lib/validators'
 
 export default {
   name: 'TagView',
@@ -64,7 +84,8 @@ export default {
   data () {
     return {
       tag: '',
-      touchMap: null
+      touchMap: null,
+      fetchingTagStatus: false
     }
   },
 
@@ -73,17 +94,25 @@ export default {
       return styleStore(this.isDarkScheme)
     },
 
+    behavior () {
+      return Platform.OS === 'ios' ? 'padding' : null
+    },
+
     isUnique () {
       return false
     },
 
     invalidTagLabel () {
       if (!this.$v.tag.minLength) {
-        return 'The chosen tag is too short, we need minimal 8 characters.'
+        return 'The chosen tag is too short, we need minimal 6 characters.'
       }
 
       if (!this.$v.tag.maxLength) {
         return 'The chosen tag is too long, a tag cannot contain more than 25 charaters.'
+      }
+
+      if (!this.$v.tag.alphaNum) {
+        return 'The chosen tag can only contain letters, numbers and \'_\''
       }
 
       return 'The chosen tag is containing an unknown error'
@@ -93,8 +122,9 @@ export default {
   validations: {
     tag: {
       required,
-      minLength: minLength(8),
-      maxLength: maxLength(25)
+      minLength: minLength(6),
+      maxLength: maxLength(25),
+      characters: helpers.regex('characters', /^[a-zA-Z0-9_]*$/)
     }
   },
 
@@ -102,7 +132,7 @@ export default {
     proceed () {
       const params = {
         ...this.route.params,
-        tag: this.tag
+        tag: `@${this.tag}`
       }
 
       this.navigation.navigate('preferences', params)
@@ -114,11 +144,14 @@ export default {
     },
 
     delayTouch ($v) {
+      this.fetchingTagStatus = true
       $v.$reset()
       if (this.touchMap) {
         clearTimeout(this.touchMap)
       }
-      this.touchMap = setTimeout($v.$touch, 5000)
+      this.touchMap = setTimeout(() => {
+        this.fetchingTagStatus = false
+      }, 500)
     }
   }
 }
@@ -166,10 +199,13 @@ const styleStore = (isDarkScheme) => {
 
     tagContainer: {
       backgroundColor: isDarkScheme ? 'black' : 'white',
+      borderRadius: 5
+    },
+
+    tagInputContainer: {
       flexDirection: 'row',
       justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 5
+      alignItems: 'center'
     },
 
     tagAt: {
@@ -182,26 +218,6 @@ const styleStore = (isDarkScheme) => {
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0,
       flex: 1
-    },
-
-    checkpointsContainer: {},
-
-    checkpointsTitle: {
-      fontSize: 15,
-      fontWeight: Platform.OS === 'ios' ? '600' : 'bold',
-      marginBottom: 10
-    },
-
-    checkpoint: {
-      fontSize: 18,
-      color: isDarkScheme ? '#868686' : '#868686',
-      marginVertical: 5
-    },
-
-    checkpointValid: {
-      fontSize: 18,
-      color: isDarkScheme ? '#00ae5a' : '#00ae5a',
-      marginVertical: 5
     }
   }
 }

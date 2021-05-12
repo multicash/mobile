@@ -1,49 +1,50 @@
 <template>
-  <keyboard-avoiding-view
+  <view
     :style="{ flex: 1 }"
-    :behavior="behavior"
   >
     <modal-navigation
       title="Import an account"
       has-back-button
       @on-dismiss="navigation.goBack()"
     />
-    <view-background ref="scrollView" :style="{ paddingBottom: 50 }" scrollable>
+    <keyboard-avoiding-view>
+      <view-background ref="scrollView" :style="{ paddingBottom: 50 }" scrollable>
 
-      <header-view
-        title="Import an existing account"
-        subtitle="Import an exported account file or paste the file contents here."
-        :image-background="require('@/assets/import.png')"
-        :image-foreground="require('@/assets/credit-card-cash-withdrawal.png')"
-      />
+        <header-view
+          title="Import an existing account"
+          subtitle="Import an exported account file or paste the file contents here."
+          :image-background="require('@/assets/import.png')"
+          :image-foreground="require('@/assets/credit-card-cash-withdrawal.png')"
+        />
 
-      <rounded-text-input
-        title="Paste import file contents"
-        multiline
-        :fontSize="12"
-        :value="pastedContents"
-        @input="pastedContents = $event"
-        :onFocus="contentsFocussed"
-      />
-      <text v-if="pastedContents === ''" :style="styles.orLabel">Or</text>
-      <rounded-button
-        v-if="pastedContents === ''"
-        title="Choose an import file"
-        @on-press="importFile"
-      />
+        <rounded-text-input
+          title="Paste import file contents"
+          multiline
+          :fontSize="12"
+          :value="pastedContents"
+          @input="pastedContents = $event"
+          :onFocus="focusInput"
+        />
+        <text v-if="pastedContents === ''" :style="styles.orLabel">Or</text>
+        <rounded-button
+          v-if="pastedContents === ''"
+          title="Choose an import file"
+          @on-press="importFile"
+        />
 
-      <spacer v-if="checkingRestoreKey || successfullyRestored"/>
-      <notification
-        v-if="checkingRestoreKey || successfullyRestored"
-        :loading="checkingRestoreKey"
-        icon="checkmark-circle"
-        label="With the given restore key we successfully found an existing account!"
-        type="success"
-      />
+        <spacer v-if="checkingRestoreKey || successfullyRestored"/>
+        <notification
+          v-if="checkingRestoreKey || successfullyRestored"
+          :loading="checkingRestoreKey"
+          icon="checkmark-circle"
+          label="With the given restore key we successfully found an existing account!"
+          type="success"
+        />
 
-      <view :style="styles.proceedButtonPlaceholder"/>
+        <view :style="styles.proceedButtonPlaceholder"/>
 
-    </view-background>
+      </view-background>
+    </keyboard-avoiding-view>
 
     <rounded-button
       v-if="pastedContents !== '' && !checkingRestoreKey && resolvedWalletConfig === null"
@@ -58,14 +59,14 @@
       title="Import account"
       @on-press="createWallet"
     />
-  </keyboard-avoiding-view>
+  </view>
 </template>
 
 <script>
 import DocumentPicker from 'react-native-document-picker'
 import FileSystem from 'react-native-fs'
 import ExportImportManager, { DecryptError } from '@/core/wallet/ExportImportManager'
-import { Alert, Platform, KeyboardAvoidingView } from 'react-native'
+import { Alert, Platform } from 'react-native'
 import AndroidPrompt from 'react-native-prompt-android'
 
 const Log = global.Logger.extend('IMPORT')
@@ -73,8 +74,6 @@ const exportImportManager = new ExportImportManager()
 
 export default {
   name: 'ImportView',
-
-  components: { KeyboardAvoidingView },
 
   data () {
     return {
@@ -88,23 +87,10 @@ export default {
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
-    },
-
-    behavior () {
-      return Platform.OS === 'ios' ? 'padding' : null
     }
   },
 
   methods: {
-    contentsFocussed () {
-      // Scroll text input into view
-      if (this.$refs.scrollView) {
-        setTimeout(() => {
-          this.$refs.scrollView.scrollTo({ x: 0, y: 2000, animated: true })
-        }, 250)
-      }
-    },
-
     async importFile () {
       try {
         const res = await DocumentPicker.pick({

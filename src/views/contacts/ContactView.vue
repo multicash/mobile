@@ -12,7 +12,7 @@
         <icon name="checkmark"/>
       </round-button>
     </modal-navigation>
-    <view-background>
+    <view-background scrollable>
 
       <input-description>The contacts name can be anything you want it to be.</input-description>
       <rounded-text-input
@@ -53,7 +53,7 @@
         type="success"
       />
 
-      <spacer :style="{ flex: 1 }" />
+      <spacer />
 
       <rounded-button
         v-if="contact.identifier !== null"

@@ -8,7 +8,7 @@
     >
     </modal-navigation>
     <view-background
-      :style="{ alignItems: 'center' }"
+      scrollable
     >
       <view :style="styles.headerContainer">
         <source-icon

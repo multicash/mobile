@@ -6,58 +6,61 @@
       :has-close-button="payLink"
       @on-dismiss="navigation.goBack()"
     />
-    <view-background
-      :style="{ alignItems: 'center' }"
-    >
-      <view :style="styles.headerContainer">
-        <source-icon
-          v-if="transaction.from"
-          :transaction-icon="transaction.fromIcon"
-          @on-press="selectFromWallet(transaction.from)"
-        />
-        <icon
-          name="arrow-forward-outline"
-          :size="50"
-        />
-        <source-icon
-          v-if="transaction.to"
-          :transaction-icon="transaction.toIcon"
-          @on-press="selectToWallet(transaction.to)"
-        />
-      </view>
+    <keyboard-avoiding-view :keyboard-vertical-offset="-150">
+      <view-background
+        ref="scrollView"
+        scrollable
+      >
+        <view :style="styles.headerContainer">
+          <source-icon
+            v-if="transaction.from"
+            :transaction-icon="transaction.fromIcon"
+            @on-press="selectFromWallet(transaction.from)"
+          />
+          <icon
+            name="arrow-forward-outline"
+            :size="50"
+          />
+          <source-icon
+            v-if="transaction.to"
+            :transaction-icon="transaction.toIcon"
+            @on-press="selectToWallet(transaction.to)"
+          />
+        </view>
 
-      <view :style="styles.amountContainer">
-        <money
-          crypto
-          :amount="transaction.amount * 100000000"
-          :style="styles.amount"
-        />
-        <money
-          convert
-          :amount="(transaction.amount * 100000000) || 0"
-          :style="styles.calculatedAmount"
-        />
-        <text
-          v-if="notEnoughBalance"
-          :style="styles.notEnoughBalanceText">
-          Not enough balance
-        </text>
-      </view>
+        <view :style="styles.amountContainer">
+          <money
+            crypto
+            :amount="transaction.amount * 100000000"
+            :style="styles.amount"
+          />
+          <money
+            convert
+            :amount="(transaction.amount * 100000000) || 0"
+            :style="styles.calculatedAmount"
+          />
+          <text
+            v-if="notEnoughBalance"
+            :style="styles.notEnoughBalanceText">
+            Not enough balance
+          </text>
+        </view>
 
-      <rounded-button
-        :disabled="notEnoughBalance"
-        :title="transaction.isReceive && !transaction.to.walletIdentifier ? 'Share request' : 'Send payment'"
-        :style="styles.sendPaymentButton"
-        @on-press="proceed"
-      />
+        <rounded-button
+          :disabled="notEnoughBalance"
+          :title="transaction.isReceive && !transaction.to.walletIdentifier ? 'Share request' : 'Send payment'"
+          :style="styles.sendPaymentButton"
+          @on-press="proceed"
+        />
 
-      <rounded-text-input
-        title="Description"
-        placeholder="Why this payment?"
-        :value="transaction.label"
-        @input="transaction.label = $event"
-      />
-    </view-background>
+        <rounded-text-input
+          title="Description"
+          placeholder="Why this payment?"
+          :value="transaction.label"
+          @input="transaction.label = $event"
+        />
+      </view-background>
+    </keyboard-avoiding-view>
   </view>
 </template>
 

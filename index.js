@@ -12,5 +12,6 @@ import '@/components'
 import '@/mixins/ColorScheme'
 import '@/mixins/Money'
 import '@/mixins/Router'
+import '@/mixins/TextInput'
 
 AppRegistry.registerComponent(appName, () => App)

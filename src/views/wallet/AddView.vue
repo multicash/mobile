@@ -36,7 +36,7 @@ export default {
               subtitle: 'Are you restoring your mobile device or did you reinstall the MultiCash app? Restore your already created account here.',
               leftAvatar: { source: require('@/assets/restore.png'), size: 40 },
               onPress: () => {
-                this.navigation.navigate('preferences', { restore: true })
+                this.navigation.navigate('coin', { restore: true })
               }
             },
             {

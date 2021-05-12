@@ -5,41 +5,44 @@
       has-back-button
       @on-dismiss="navigation.goBack()"
     />
-    <view-background :style="{ paddingBottom: 50 }" scrollable>
+    <keyboard-avoiding-view :keyboardVerticalOffset="-150">
+      <view-background ref="scrollView" :style="{ paddingBottom: 50 }" scrollable>
 
-      <header-view
-        title="Enter your restore key!"
-        subtitle="Enter your restore key to recreate your account! It should be 12 words all lowercased."
-        :image-background="require('@/assets/safe.png')"
-        :image-foreground="require('@/assets/key.png')"
-      />
-
-      <view :style="styles.wordsContainer">
-        <rounded-text-input
-          title="Restore key"
-          multiline
-          auto-capitalize="none"
-          auto-complete-type="off"
-          :auto-correct="false"
-          @input="onKeyup"
+        <header-view
+          title="Enter your restore key!"
+          subtitle="Enter your restore key to recreate your account! It should be 12 words all lowercased."
+          :image-background="require('@/assets/safe.png')"
+          :image-foreground="require('@/assets/key.png')"
         />
-        <view :style="styles.wordsCounter">
-          <text :style="styles.wordsCounterText">{{ words.length }}/12 words</text>
+
+        <view :style="styles.wordsContainer">
+          <rounded-text-input
+            title="Restore key"
+            multiline
+            auto-capitalize="none"
+            auto-complete-type="off"
+            :auto-correct="false"
+            @input="onKeyup"
+            :on-focus="focusInput"
+          />
+          <view :style="styles.wordsCounter">
+            <text :style="styles.wordsCounterText">{{ words.length }}/12 words</text>
+          </view>
         </view>
-      </view>
 
-      <spacer v-if="checkingRestoreKey || successfullyRestored" />
-      <notification
-        v-if="checkingRestoreKey || successfullyRestored"
-        :loading="checkingRestoreKey"
-        icon="checkmark-circle"
-        label="With the given restore key we successfully found an existing account!"
-        type="success"
-      />
+        <spacer v-if="checkingRestoreKey || successfullyRestored" />
+        <notification
+          v-if="checkingRestoreKey || successfullyRestored"
+          :loading="checkingRestoreKey"
+          icon="checkmark-circle"
+          label="With the given restore key we successfully found an existing account!"
+          type="success"
+        />
 
-      <view :style="styles.proceedButtonPlaceholder" />
+        <view :style="styles.proceedButtonPlaceholder" />
 
-    </view-background>
+      </view-background>
+    </keyboard-avoiding-view>
 
     <rounded-button
       v-if="words.length === 12 && !checkingRestoreKey"

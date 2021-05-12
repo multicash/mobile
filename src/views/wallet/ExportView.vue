@@ -1,49 +1,50 @@
 <template>
-  <keyboard-avoiding-view
+  <view
     :style="{ flex: 1 }"
-    :behavior="behavior"
   >
     <modal-navigation
       has-back-button
       title="Export account"
       @on-dismiss="navigation.goBack()"
     />
-    <view-background ref="scrollView" :style="{ paddingBottom: 50 }" scrollable>
-      <header-view
-        title="Export your account"
-        subtitle="In order to recover your account you need the restore key. Use the export option to conveniently store your account in a save place."
-        :image-background="require('@/assets/export.png')"
-        :image-foreground="require('@/assets/open-box.png')"
-      />
+    <keyboard-avoiding-view>
+      <view-background ref="scrollView" :style="{ paddingBottom: 50 }" scrollable>
+        <header-view
+          title="Export your account"
+          subtitle="In order to recover your account you need the restore key. Use the export option to conveniently store your account in a save place."
+          :image-background="require('@/assets/export.png')"
+          :image-foreground="require('@/assets/open-box.png')"
+        />
 
-      <switch-notification
-        :value.sync="encryptFile"
-        @input="switchEncryption"
-        label="File encryption"
-      >
-        <view v-if="encryptFile">
-          <text :style="styles.encryptFileText">Because the export file contains all the data to your account we encourage you to encrypt your export file with a password.</text>
-          <rounded-text-input
-            ref="password"
-            title="Password"
-            secureTextEntry
-            :value="encryptionPassword"
-            @input="encryptionPassword = $event"
-            :onFocus="passwordFocussed"
-          />
-        </view>
-      </switch-notification>
+        <switch-notification
+          :value.sync="encryptFile"
+          @input="switchEncryption"
+          label="File encryption"
+        >
+          <view v-if="encryptFile">
+            <text :style="styles.encryptFileText">Because the export file contains all the data to your account we encourage you to encrypt your export file with a password.</text>
+            <rounded-text-input
+              ref="password"
+              title="Password"
+              secureTextEntry
+              :value="encryptionPassword"
+              @input="encryptionPassword = $event"
+              :onFocus="focusInput"
+            />
+          </view>
+        </switch-notification>
 
-      <switch-notification
-        :value.sync="acceptedTerm"
-        @input="acceptedTerm = $event"
-        label="I understand what I'm doing and want to export my account into a separate file."
-        type="warning"
-      />
+        <switch-notification
+          :value.sync="acceptedTerm"
+          @input="acceptedTerm = $event"
+          label="I understand what I'm doing and want to export my account into a separate file."
+          type="warning"
+        />
 
-      <view :style="styles.exportButtonPlaceholder" />
+        <view :style="styles.exportButtonPlaceholder" />
 
-    </view-background>
+      </view-background>
+    </keyboard-avoiding-view>
 
     <rounded-button
       v-if="acceptedTerm"
@@ -51,11 +52,11 @@
       title="Export"
       @on-press="showShareSheet"
     />
-  </keyboard-avoiding-view>
+  </view>
 </template>
 
 <script>
-import { Platform, KeyboardAvoidingView } from 'react-native'
+import { Platform } from 'react-native'
 import Share from 'react-native-share'
 import ExportImportManager from '@/core/wallet/ExportImportManager'
 import base64 from 'react-native-base64'
@@ -65,8 +66,6 @@ const Log = global.Logger.extend('EXPORT')
 
 export default {
   name: 'ExportView',
-
-  components: { KeyboardAvoidingView },
 
   data () {
     return {
@@ -79,10 +78,6 @@ export default {
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
-    },
-
-    behavior () {
-      return Platform.OS === 'ios' ? 'padding' : null
     }
   },
 
@@ -93,15 +88,6 @@ export default {
       if (this.encryptFile) {
         setTimeout(() => {
           this.$refs.password.focus()
-        }, 250)
-      }
-    },
-
-    passwordFocussed () {
-      // Scroll text input into view
-      if (this.$refs.scrollView) {
-        setTimeout(() => {
-          this.$refs.scrollView.scrollTo({ x: 0, y: 2000, animated: true })
         }, 250)
       }
     },
