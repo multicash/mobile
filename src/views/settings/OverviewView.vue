@@ -134,6 +134,15 @@ export default {
                   this.$walletManager.addWallet(wallet)
                 }
               }
+            },
+            {
+              title: 'Reset announcements',
+              subtitle: 'Announcements only show once. Removing their version tags will show them again.',
+              leftIcon: { name: 'chatbox-outline' },
+              noChevron: true,
+              onPress: () => {
+                this.$store.dispatch('showAllAnnouncements')
+              }
             }
           ]
         }

@@ -34,7 +34,7 @@
           v-if="hasWallets"
           @pay="navigation.navigate('pay')"
           @receive="navigation.navigate('receive')"
-          @topUp="notImplemented"
+          @topUp="navigation.navigate('topUp')"
           @invest="notImplemented"
           @change="notImplemented"
           @scanQR="navigation.navigate('scanQR')"
@@ -150,6 +150,13 @@ export default {
           this.openPayment(this.receivedDeepLink, 'qr-code', '#3edd8a')
 
           this.receivedDeepLink = null
+        } else {
+          // Check for announcements
+          this.hasAnnouncement('home').then(hasAnnouncement => {
+            if (hasAnnouncement) {
+              this.navigation.navigate('whatsNew')
+            }
+          })
         }
       })
 
@@ -168,7 +175,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['startNfcTagReader']),
+    ...mapActions(['startNfcTagReader', 'hasAnnouncement']),
 
     onAppStateChange (state) {
       if (!this.isSetup) {

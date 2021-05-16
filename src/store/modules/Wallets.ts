@@ -72,8 +72,8 @@ const getters = {
 }
 
 export default {
-  state: state,
-  mutations: mutations,
-  actions: actions,
-  getters: getters
+  state,
+  mutations,
+  actions,
+  getters
 }

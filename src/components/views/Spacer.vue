@@ -1,16 +1,32 @@
 <template>
-  <view class="spacer"/>
+  <view :style="styles.spacer"/>
 </template>
-
-<style>
-  .spacer {
-    width: 20px;
-    height: 20px;
-  }
-</style>
 
 <script>
 export default {
-  name: 'Spacer'
+  name: 'Spacer',
+
+  props: {
+    stretch: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  computed: {
+    styles () {
+      return styleStore(this.isDarkScheme, this.stretch)
+    }
+  }
+}
+
+const styleStore = (isDarkScheme, stretch) => {
+  return {
+    spacer: {
+      width: 20,
+      height: 20,
+      flex: stretch ? 1 : undefined
+    }
+  }
 }
 </script>

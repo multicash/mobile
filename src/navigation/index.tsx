@@ -15,6 +15,8 @@ import Contacts from '@/navigation/Contact'
 import Pay from '@/navigation/Pay'
 import Receive from '@/navigation/Receive'
 import Settings from '@/navigation/Settings'
+import TopUpExplainView from '@/views/topUp/TopUpExplainView.vue'
+import TopUp from '@/navigation/TopUp'
 import Wallet from '@/navigation/Wallet'
 
 // Authentication views
@@ -25,6 +27,7 @@ import HomeView from '@/views/HomeView.vue'
 import ScanQRView from '@/views/ScanQRView.vue'
 import SupportView from '@/views/settings/SupportView.vue'
 import OrderWalletsView from '@/views/wallet/OrderWalletsView.vue'
+import WhatsNewView from '@/views/WhatsNewView.vue'
 
 const PinView = AuthenticationPinView
 const Stack = createStackNavigator()
@@ -73,6 +76,14 @@ export const AppNavigator = () => {
         component={Receive}
       />
       <Stack.Screen
+        name="topUp.explain"
+        component={TopUpExplainView as any}
+      />
+      <Stack.Screen
+        name="topUp"
+        component={TopUp}
+      />
+      <Stack.Screen
         name="wallet"
         component={Wallet}
       />
@@ -87,6 +98,10 @@ export const AppNavigator = () => {
       <Stack.Screen
         name="scanQR"
         component={ScanQRView as any}
+      />
+      <Stack.Screen
+        name="whatsNew"
+        component={WhatsNewView as any}
       />
       <Stack.Screen
         name="pin"
