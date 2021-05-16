@@ -273,4 +273,8 @@ export default class Wallet {
   public getCredentials (): CredentialsInterface {
     return this.getClient().credentials
   }
+
+  public get coin (): string {
+    return this.info?.wallet?.coin || 'MCX'
+  }
 }

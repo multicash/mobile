@@ -744,11 +744,11 @@ Vue.mixin({
       }
     },
 
-    formatAmountFromSatoshis: (satoshis: number) => {
+    formatAmountFromSatoshis: (satoshis: number, currency: string = 'MCX') => {
       try {
         return new Intl.NumberFormat(Locale.getCurrentLocale(), {
           style: 'currency',
-          currency: 'MCX',
+          currency: currency,
           minimumFractionDigits: 2
         }).format(satoshis / 10 ** constants.decimalPerSatoshi)
       } catch (error) {

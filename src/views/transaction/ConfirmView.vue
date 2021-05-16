@@ -31,6 +31,7 @@
         <view :style="styles.amountContainer">
           <money
             crypto
+            :currency="transaction.isReceive ? transaction.to.coin : transaction.from.coin"
             :amount="transaction.amount * 100000000"
             :style="styles.amount"
           />

@@ -29,6 +29,7 @@
     <view :style="styles.moneyView">
       <money
         crypto
+        :currency="value.coin"
         :amount="value.totalAmount"
         :style="styles.walletCardAmount"
       />

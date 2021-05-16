@@ -16,7 +16,7 @@ export default [
     icon: 'moneyBox',
     tag: '@arcuriSavings',
     address: 'MsnDg65r9sE2mmS5Ksg9U4egwRsHKqd9JeL',
-    coin: 'mcx',
+    coin: 'btc',
     network: 'livenet',
     restoreKey: 'output sphere drift town world sail gauge mechanic track core tiny into',
     singleAddress: true

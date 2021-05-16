@@ -21,7 +21,7 @@
         <view :style="styles.inputContainer">
           <text :style="styles.title">How much?</text>
           <view :style="styles.amountContainer">
-            <text :style="styles.amountCurrencyText">MCX</text>
+            <text :style="styles.amountCurrencyText">{{ coin }}</text>
             <text-input
               ref="amount"
               :style="styles.amountTextInput"
@@ -72,6 +72,7 @@ export default {
 
   data () {
     return {
+      coin: '',
       amount: '',
       sourceWallet: null,
       keyboardHeight: 0,
@@ -101,6 +102,8 @@ export default {
     } else {
       this.sourceWallet = this.$walletManager.getWallet(this.getDefaultWallet) || this.$walletManager.defaultWallet()
     }
+
+    this.coin = this.sourceWallet.coin.toUpperCase()
   },
 
   computed: {
