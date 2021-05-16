@@ -55,7 +55,8 @@ export default {
   validations: {
     name: {
       required,
-      minLength: minLength(2)
+      minLength: minLength(2),
+      maxLength: maxLength(15)
     }
   },
 

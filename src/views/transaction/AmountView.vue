@@ -195,7 +195,7 @@ const stylesStore = (isDarkScheme, keyboardHeight) => {
       backgroundColor: isDarkScheme ? 'black' : 'grey',
       flexDirection: 'row',
       paddingVertical: 5,
-      paddingHorizontal: 2.5,
+      paddingHorizontal: 2.5
     },
 
     inputAccessoryViewButton: {
