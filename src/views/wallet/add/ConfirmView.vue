@@ -37,7 +37,7 @@
 
       <link-button title="Terms of Use" :style="{ marginTop: -10 }"/>
 
-      <spacer :style="{ flex: 1 }" />
+      <spacer stretch />
 
       <view :style="styles.proceedButtonPlaceholder" />
 

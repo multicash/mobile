@@ -1,7 +1,7 @@
 <template>
   <view-background no-padding>
     <modal-navigation
-      title="Top UP"
+      title="Top Up"
       has-close-button
       @on-dismiss="navigation.goBack()"
     />

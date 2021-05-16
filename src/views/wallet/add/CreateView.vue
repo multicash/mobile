@@ -47,7 +47,7 @@
         />
       </action-notification>
 
-      <spacer :style="{ flex: 1 }"/>
+      <spacer stretch/>
 
       <rounded-button title="Done" @on-press="navigation.navigate('home')">
     </view>
