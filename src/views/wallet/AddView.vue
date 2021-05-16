@@ -58,7 +58,7 @@ export default {
       return TableHeaderView(
         isDarkScheme,
         'Add Account',
-        "Add a new or an existing account to MultiCash\nand use money like it's supposed to!",
+        "Add a new or an existing account to MultiCash and use money like it's supposed to!",
         require('@/assets/coin-wallet.png')
       )
     }

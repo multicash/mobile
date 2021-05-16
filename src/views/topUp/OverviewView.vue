@@ -60,7 +60,7 @@ export default {
       return TableHeaderView(
         isDarkScheme,
         'Account Top Up',
-        'Top Up your accounts from within MultiCash provided by our partner ChangeNOW.\n\nChoose the account you want to Top Up to proceed.',
+        'Top Up your accounts from within MultiCash provided by our partner ChangeNOW.',
         require('@/assets/add-dollar.png')
       )
     }

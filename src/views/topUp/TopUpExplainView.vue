@@ -1,10 +1,10 @@
 <template>
-  <view-background>
+  <view-background scrollable>
     <view :style="styles.container">
       <image :style="styles.image" :source="require('@/assets/add-dollar.png')" />
       <view>
         <text :style="styles.title">Account Top Up</text>
-        <text :style="styles.subtitle">Pay each other by using your created account tags.</text>
+        <text :style="styles.subtitle">Top Up your accounts from within MultiCash provided by our partner ChangeNOW.</text>
       </view>
     </view>
     <view
@@ -18,12 +18,11 @@
         <text :style="styles.featureDescription">{{ feature.description }}</text>
       </view>
     </view>
-    <spacer stretch />
+    <spacer large />
     <rounded-button
       title="Continue"
       @on-press="continues"
     />
-    <spacer />
   </view-background>
 </template>
 

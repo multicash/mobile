@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { pageSubtitle, pageTitle } from '@/core/support/styles'
+
 export default {
   name: 'HeaderView',
 
@@ -40,41 +42,34 @@ const stylesStore = (isDarkScheme, hasImageForeground) => {
   return {
     headerContainer: {
       marginHorizontal: 20,
-      marginBottom: 30,
+      marginTop: 20,
       justifyContent: 'center',
       alignItems: 'center'
     },
 
     headerTitle: {
-      fontSize: 24,
-      fontWeight: '600',
-      color: isDarkScheme ? 'white' : 'black',
-      marginVertical: 5,
-      textAlign: 'center'
+      ...pageTitle(isDarkScheme)
     },
 
     headerSubtitle: {
-      fontSize: 14,
-      color: isDarkScheme ? '#b3aabe' : '#4a4350',
-      marginVertical: 5,
-      textAlign: 'center'
+      ...pageSubtitle(isDarkScheme)
     },
 
     headerImage1: {
       zIndex: 10,
-      width: 80,
-      height: 80,
+      width: 40,
+      height: 40,
       marginTop: 0,
-      marginRight: hasImageForeground ? -40 : 0,
+      marginRight: hasImageForeground ? -25 : 0,
       resizeMode: 'contain'
     },
 
     headerImage2: {
-      width: 100,
-      height: 100,
+      width: 60,
+      height: 60,
       resizeMode: 'contain',
-      marginTop: 20,
-      marginBottom: 5
+      marginTop: 10,
+      marginBottom: 2.5
     }
   }
 }

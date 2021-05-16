@@ -49,7 +49,7 @@ export const pageSubtitle = (isDarkScheme) => {
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 40,
+    marginBottom: 20,
     color: isDarkScheme ? '#a0a3bd' : '#8386a0'
   }
 }

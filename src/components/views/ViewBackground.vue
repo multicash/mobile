@@ -1,5 +1,12 @@
 <template>
-  <scroll-view ref="scrollView" v-if="scrollable" :style="styles.viewBackground">
+<!--  <safe-area-view :style="styles.safeArea">-->
+  <scroll-view
+    ref="scrollView"
+    v-if="scrollable"
+    :style="styles.viewBackground"
+    :contentContainerStyle="styles.contentContainer"
+    contentInsetAdjustmentBehavior="automatic"
+  >
     <slot/>
   </scroll-view>
   <view v-else :style="styles.viewBackground">
@@ -25,7 +32,7 @@ export default {
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme, this.noPadding)
+      return stylesStore(this.isDarkScheme, this.noPadding, this.scrollable)
     }
   },
 
@@ -38,13 +45,22 @@ export default {
   }
 }
 
-const stylesStore = (isDarkScheme, noPadding) => {
+const stylesStore = (isDarkScheme, noPadding, scrollable) => {
   return {
+    safeArea: {
+      flex: 1,
+      backgroundColor: isDarkScheme ? '#222429' : '#ededf3'
+    },
+
     viewBackground: {
       flex: 1,
-      padding: noPadding ? 0 : 20,
+      padding: scrollable ? undefined : (noPadding ? 0 : 20),
       flexDirection: 'column',
       backgroundColor: isDarkScheme ? '#222429' : '#ededf3'
+    },
+
+    contentContainer: {
+      padding: noPadding ? 0 : 20
     }
   }
 }

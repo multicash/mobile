@@ -7,7 +7,17 @@ export default {
   name: 'Spacer',
 
   props: {
+    small: {
+      type: Boolean,
+      default: false
+    },
+
     stretch: {
+      type: Boolean,
+      default: false
+    },
+
+    large: {
       type: Boolean,
       default: false
     }
@@ -15,16 +25,16 @@ export default {
 
   computed: {
     styles () {
-      return styleStore(this.isDarkScheme, this.stretch)
+      return styleStore(this.isDarkScheme, this.small, this.large, this.stretch)
     }
   }
 }
 
-const styleStore = (isDarkScheme, stretch) => {
+const styleStore = (isDarkScheme, small, large, stretch) => {
   return {
     spacer: {
-      width: 20,
-      height: 20,
+      width: small ? 10 : (large ? 40 : 20),
+      height: small ? 10 : (large ? 40 : 20),
       flex: stretch ? 1 : undefined
     }
   }

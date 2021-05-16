@@ -70,7 +70,8 @@ const styleStore = (isDarkScheme, active) => {
     },
 
     subtitle: {
-      ...pageSubtitle(isDarkScheme)
+      ...pageSubtitle(isDarkScheme),
+      marginBottom: 40
     },
 
     exampleContainer: {
