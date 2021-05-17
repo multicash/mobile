@@ -130,7 +130,7 @@ export default {
     },
 
     renderSectionFooter (section) {
-      return this.grouped || section.footer ? (<Text style={this.styles.sectionFooter}>{ section.footer }</Text>) : null
+      return this.grouped && section.footer ? (<Text style={this.styles.sectionFooter}>{ section.footer }</Text>) : null
     },
 
     renderListHeader () {
