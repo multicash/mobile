@@ -211,7 +211,8 @@ const styleStore = (isDarkScheme) => {
     tagAt: {
       paddingHorizontal: 15,
       fontSize: 20,
-      fontWeight: Platform.OS === 'ios' ? '600' : 'bold'
+      fontWeight: Platform.OS === 'ios' ? '600' : 'bold',
+      color: isDarkScheme ? 'white' : 'black'
     },
 
     tagInput: {

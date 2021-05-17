@@ -72,7 +72,7 @@ const stylesStore = (isDarkScheme, colorsBackground, smallTitle) => {
     modalNavigationTitle: {
       color: text(isDarkScheme).color,
       fontWeight: 'bold',
-      fontSize: smallTitle ? 15 : 25
+      fontSize: smallTitle ? 15 : 20
     }
   }
 }

@@ -18,7 +18,7 @@ export const text = (isDarkScheme) => {
 export const subtitle = (isDarkScheme) => {
   return {
     fontWeight: Platform.OS === 'ios' ? '600' : 'bold',
-    color: isDarkScheme ? '#a0a3bd' : '#8386a0'
+    color: isDarkScheme ? '#a0a3bd' : '#6e7086'
   }
 }
 
