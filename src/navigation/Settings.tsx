@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
+import AboutView from '@/views/settings/AboutView.vue'
 import SettingsOverviewView from '@/views/settings/OverviewView.vue'
 import BiometricAuthenticationView from '@/views/settings/BiometricAuthenticationView.vue'
 import ChangePinView from '@/views/settings/ChangePinView.vue'
@@ -33,6 +34,10 @@ export default () => {
       <Stack.Screen
         name="support"
         component={SupportView as any}
+      />
+      <Stack.Screen
+        name="about"
+        component={AboutView as any}
       />
     </Stack.Navigator>
   )

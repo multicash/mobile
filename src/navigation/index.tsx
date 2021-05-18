@@ -1,13 +1,8 @@
 // eslint-disable-next-line no-use-before-define
 import * as React from 'react'
-import { Easing, Platform } from 'react-native'
-import {
-  createStackNavigator,
-  TransitionPresets,
-  TransitionSpecs,
-  CardStyleInterpolators,
-  HeaderStyleInterpolators
-} from '@react-navigation/stack'
+import { Appearance } from 'react-native'
+import { createNativeStackNavigator } from 'react-native-screens/native-stack'
+import { enableScreens } from 'react-native-screens'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import Add from '@/navigation/Add'
@@ -29,8 +24,9 @@ import SupportView from '@/views/settings/SupportView.vue'
 import OrderWalletsView from '@/views/wallet/OrderWalletsView.vue'
 import WhatsNewView from '@/views/WhatsNewView.vue'
 
+enableScreens()
 const PinView = AuthenticationPinView
-const Stack = createStackNavigator()
+const Stack = createNativeStackNavigator()
 
 export const AppNavigator = () => {
   return (
@@ -39,13 +35,11 @@ export const AppNavigator = () => {
       screenOptions={{
         headerShown: false,
         gestureEnabled: true,
-        cardOverlayEnabled: true,
-        ...Platform.select({
-          ios: TransitionPresets.ModalPresentationIOS,
-          default: TransitionPresets.FadeFromBottomAndroid
-        })
+        stackPresentation: 'modal',
+        contentStyle: {
+          backgroundColor: Appearance.getColorScheme() === 'dark' ? '#222429' : '#ededf3'
+        }
       }}
-      headerMode="none"
     >
       <Stack.Screen
         name="home"
@@ -106,6 +100,12 @@ export const AppNavigator = () => {
       <Stack.Screen
         name="pin"
         component={PinView as any}
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+          stackAnimation: 'flip',
+          stackPresentation: 'containedModal'
+        }}
       />
       <Stack.Screen
         name="authenticate"
@@ -113,20 +113,8 @@ export const AppNavigator = () => {
         options={{
           headerShown: false,
           gestureEnabled: false,
-          cardOverlayEnabled: false,
-          gestureDirection: 'vertical',
-          transitionSpec: {
-            open: {
-              animation: 'timing',
-              config: {
-                duration: 0,
-                easing: Easing.out(Easing.poly(5))
-              }
-            },
-            close: TransitionSpecs.FadeOutToBottomAndroidSpec
-          },
-          cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
-          headerStyleInterpolator: HeaderStyleInterpolators.forFade
+          stackAnimation: 'fade',
+          stackPresentation: 'fullScreenModal'
         }}
       />
     </Stack.Navigator>

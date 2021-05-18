@@ -15,7 +15,11 @@
           :label="character"
           @keydown="keyDown(character)"
         >
-          <icon v-if="character === 'auth' && biometryTypeIcon" :name="biometryTypeIcon" />
+          <image
+            v-if="character === 'auth' && biometryTypeIcon"
+            :source="biometryTypeIcon"
+            :style="styles.biometryTypeIcon"
+          />
           <icon v-else-if="character === 'del'" name="backspace" />
         </keyboard-key>
         <view
@@ -66,10 +70,11 @@ export default {
     biometryTypeIcon () {
       switch (this.biometryType) {
         case ReactNativeBiometrics.FaceID:
-          return 'happy'
+          return require('@/assets/face-id.png')
         case ReactNativeBiometrics.Biometrics:
+          return require('@/assets/fingerprint.png')
         case ReactNativeBiometrics.TouchID:
-          return 'finger-print'
+          return require('@/assets/touch-id.png')
         default:
           return false
       }
@@ -130,6 +135,12 @@ const stylesStore = (isDarkScheme) => {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center'
+    },
+
+    biometryTypeIcon: {
+      width: 40,
+      height: 40,
+      resizeMode: 'contain'
     }
   }
 }

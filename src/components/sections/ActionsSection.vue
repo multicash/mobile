@@ -60,9 +60,12 @@
         @on-press="$emit('scanQR')"
       />
 
-      <spacer/>
+      <spacer
+        v-if="hasNfcSupported"
+      />
 
       <secondary-round-button
+        v-if="hasNfcSupported"
         @on-press="$emit('scanNFC')"
       >
         <image
@@ -75,13 +78,31 @@
 </template>
 
 <script>
+import NfcManager from 'react-native-nfc-manager'
+import { isEmulatorSync, isCameraPresentSync } from 'react-native-device-info'
+
 export default {
   name: 'ActionsSection',
+
+  data () {
+    return {
+      hasCamera: isCameraPresentSync,
+      hasNfcSupported: isEmulatorSync
+    }
+  },
 
   computed: {
     styles () {
       return stylesStore(this.isDarkScheme)
     }
+  },
+
+  created () {
+    NfcManager.isSupported().then(isSupported => {
+      if (!isEmulatorSync) {
+        this.hasNfcSupported = isSupported
+      }
+    })
   }
 }
 

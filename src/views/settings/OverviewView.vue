@@ -9,13 +9,58 @@
 import { mapActions } from 'vuex'
 import exampleContacts from '@/assets/examples/contacts'
 import exampleWallets from '@/assets/examples/wallets'
+import ReactNativeBiometrics from 'react-native-biometrics'
 
 export default {
   name: 'OverviewView',
 
   data () {
     return {
-      data: [
+      biometricsAvailable: false,
+      biometryType: null
+    }
+  },
+
+  created () {
+    ReactNativeBiometrics.isSensorAvailable()
+      .then(({ available, biometryType }) => {
+        this.biometricsAvailable = available
+        this.biometryType = biometryType
+      })
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    },
+
+    biometricAuthentication () {
+      switch (this.biometryType) {
+        case 'TouchID':
+          return {
+            title: 'Touch ID',
+            subtitle: 'Manage how MultiCash works with Touch ID.',
+            leftAvatar: { source: require('@/assets/touch-id.png') }
+          }
+        case 'FaceID':
+          return {
+            title: 'Face ID',
+            subtitle: 'Manage how MultiCash works with Face ID.',
+            leftAvatar: { source: require('@/assets/face-id.png') }
+          }
+        case 'Biometrics':
+          return {
+            title: 'Biometric Authentication',
+            subtitle: 'Manage how MultiCash works with biometric authentication.',
+            leftAvatar: { source: require('@/assets/fingerprint.png') }
+          }
+        default:
+          return null
+      }
+    },
+
+    data () {
+      return [
         {
           title: 'Manage MultiCash',
           data: [
@@ -38,16 +83,18 @@ export default {
                   }
                 })
               }
-            }
-            // {
-            //   title: 'Biometric Authentication',
-            //   subtitle: 'Manage how MultiCash works with biometric authentication',
-            //   leftIcon: { name: 'finger-print' },
-            //   onPress: () => {
-            //     this.navigation.navigate('biometricAuthentication')
-            //   }
-            // }
-          ]
+            },
+            this.biometricsAvailable ? {
+              title: this.biometricAuthentication.title,
+              subtitle: this.biometricAuthentication.subtitle,
+              leftAvatar: this.biometricAuthentication.leftAvatar,
+              onPress: () => {
+                this.navigation.navigate('biometricAuthentication', {
+                  biometryType: this.biometryType
+                })
+              }
+            } : null
+          ].filter(x => !!x)
         },
         {
           title: 'More',
@@ -64,6 +111,13 @@ export default {
               title: 'Rate MultiCash',
               subtitle: 'Let others know how much you like MultiCash',
               leftAvatar: { source: require('@/assets/rating.png'), size: 40 }
+            },
+            {
+              title: 'About MultiCash',
+              leftAvatar: { source: require('@/assets/coins/MCX.png'), size: 40 },
+              onPress: () => {
+                this.navigation.navigate('about')
+              }
             }
           ]
         },
@@ -147,12 +201,6 @@ export default {
           ]
         }
       ]
-    }
-  },
-
-  computed: {
-    styles () {
-      return stylesStore(this.isDarkScheme)
     }
   },
 
