@@ -43,6 +43,7 @@ import Card from '@/components/views/Card.vue'
 import ColorsBackground from '@/components/views/ColorsBackground.vue'
 import HeaderView from '@/components/views/HeaderView.vue'
 import KeyboardAvoidingView from '@/components/views/KeyboardAvoidingView.vue'
+import ModalView from '@/components/views/ModalView.vue'
 import RestoreKeyGridView from '@/components/views/RestoreKeyGridView.vue'
 import Spacer from '@/components/views/Spacer.vue'
 import TotalAmountSection from '@/components/views/TotalAmountSection.vue'
@@ -95,6 +96,7 @@ Vue.component('card', Card)
 Vue.component('colors-background', ColorsBackground)
 Vue.component('header-view', HeaderView)
 Vue.component('keyboard-avoiding-view', KeyboardAvoidingView)
+Vue.component('modal-view', ModalView)
 Vue.component('restore-key-grid-view', RestoreKeyGridView)
 Vue.component('spacer', Spacer)
 Vue.component('total-amount-section', TotalAmountSection)

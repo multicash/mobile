@@ -1,12 +1,16 @@
 <template>
-  <view-background no-padding>
-    <modal-navigation
-      has-back-button
-      title="Currency"
-      @on-dismiss="navigation.goBack()"
+  <modal-view
+    title="Currency"
+    has-back-button
+    @on-dismiss="navigation.goBack()"
+    no-padding
+    :header="header"
+  >
+    <table-view
+      :sections="currenciesList"
+      :header="tableHeader"
     />
-    <table-view :sections="currenciesList"/>
-  </view-background>
+  </modal-view>
 </template>
 
 <script>
@@ -15,6 +19,18 @@ import Currencies from '@/core/assets/currencies'
 
 export default {
   name: 'CurrencyView',
+
+  props: {
+    header: {
+      type: Boolean,
+      default: true
+    },
+
+    tableHeader: {
+      type: Function,
+      default: undefined
+    }
+  },
 
   computed: {
     ...mapGetters(['currentCurrencyCode']),
@@ -31,6 +47,7 @@ export default {
               checked: selectedCurrency === currency.code,
               onPress: () => {
                 this.updateCurrency(currency.code)
+                this.$emit('selected', currency)
               }
             }
           })

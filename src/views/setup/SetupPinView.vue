@@ -81,7 +81,11 @@ export default {
     pinConfirmed () {
       if (this.confirmPin.join('') === this.pin.join('')) {
         this.updatePin(this.pin.join(''))
-        this.navigation.navigate('done')
+        this.navigation.goBack()
+
+        setTimeout(() => {
+          this.navigation.navigate('biometricAuthentication')
+        }, 10)
 
         return
       }

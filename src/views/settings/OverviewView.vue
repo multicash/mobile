@@ -136,6 +136,9 @@ export default {
                   }, 250)
                 })
 
+                this.setUnlockApplication(false)
+                this.setUnlockRestoreKey(false)
+                this.setUnlockExport(false)
                 this.updateIsSetup(false)
               }
             },
@@ -205,7 +208,15 @@ export default {
   },
 
   methods: {
-    ...mapActions(['updateIsSetup', 'setDefaultWallet', 'removeAllWallets', 'removeWalletOrder'])
+    ...mapActions([
+      'updateIsSetup',
+      'setDefaultWallet',
+      'removeAllWallets',
+      'removeWalletOrder',
+      'setUnlockApplication',
+      'setUnlockRestoreKey',
+      'setUnlockExport'
+    ])
   }
 }
 

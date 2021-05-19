@@ -1,39 +1,38 @@
 <template>
-  <view :style="{ flex: 1 }">
-    <modal-navigation
-      has-back-button
+  <modal-view
+    has-back-button
+    :title="info.title"
+    @on-dismiss="navigation.goBack()"
+    scrollable
+    :header="header"
+  >
+    <header-view
       :title="info.title"
-      @on-dismiss="navigation.goBack()"
+      :subtitle="info.subtitle"
+      :image-background="info.image"
     />
-    <view-background scrollable>
-      <header-view
-        :title="info.title"
-        :subtitle="info.subtitle"
-        :image-background="info.image"
-      />
 
-      <switch-notification
-        label="Unlock the application"
-        :value.sync="applicationOptions.unlock.application"
-        @input="setUnlockApplication($event)"
-      />
-      <input-description :label="`If you enable ${info.title} to unlock the application, anyone who can unlock this ${info.deviceName} using either ${info.title} or the ${info.deviceName}'s Passcode will be able to log in to your MultiCash accounts.`" />
+    <switch-notification
+      label="Unlock the application"
+      :value.sync="applicationOptions.unlock.application"
+      @input="setUnlockApplication($event)"
+    />
+    <input-description :label="`If you enable ${info.title} to unlock the application, anyone who can unlock this ${info.deviceName} using either ${info.title} or the ${info.deviceName}'s Passcode will be able to log in to your MultiCash accounts.`" />
 
-      <spacer />
+    <spacer />
 
-      <switch-notification
-        label="Unlock account restore keys"
-        :value.sync="applicationOptions.unlock.restoreKey"
-        @input="setUnlockRestoreKey($event)"
-      />
+    <switch-notification
+      label="Unlock account restore keys"
+      :value.sync="applicationOptions.unlock.restoreKey"
+      @input="setUnlockRestoreKey($event)"
+    />
 
-      <switch-notification
-        label="Unlock account export"
-        :value.sync="applicationOptions.unlock.export"
-        @input="setUnlockExport($event)"
-      />
-    </view-background>
-  </view>
+    <switch-notification
+      label="Unlock account export"
+      :value.sync="applicationOptions.unlock.export"
+      @input="setUnlockExport($event)"
+    />
+  </modal-view>
 </template>
 
 <script>
@@ -46,6 +45,18 @@ export default {
   data () {
     return {
       biometryType: null
+    }
+  },
+
+  props: {
+    header: {
+      type: Boolean,
+      default: true
+    },
+
+    hasBiometryType: {
+      type: String,
+      default: null
     }
   },
 
@@ -85,7 +96,13 @@ export default {
   },
 
   created () {
-    this.biometryType = this.route.params.biometryType
+    if (this.route && this.route.params && this.route.params.biometryType) {
+      this.biometryType = this.route.params.biometryType
+    }
+
+    if (this.hasBiometryType) {
+      this.biometryType = this.hasBiometryType
+    }
   },
 
   methods: {
