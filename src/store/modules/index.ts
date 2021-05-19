@@ -1,5 +1,6 @@
 export default {
   announcements: require('@/store/modules/Announcements').default,
+  applicationOptions: require('@/store/modules/ApplicationOptions').default,
   contacts: require('@/store/modules/Contacts').default,
   currency: require('@/store/modules/Currency').default,
   defaultWallet: require('@/store/modules/DefaultWallet').default,

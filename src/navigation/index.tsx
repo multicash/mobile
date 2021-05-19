@@ -110,6 +110,7 @@ export const AppNavigator = () => {
       <Stack.Screen
         name="authenticate"
         component={AuthenticationPinView as any}
+        initialParams={{ unlock: 'application' }}
         options={{
           headerShown: false,
           gestureEnabled: false,

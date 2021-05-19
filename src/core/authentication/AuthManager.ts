@@ -11,7 +11,7 @@ export default class AuthManager {
     this.$eventBus = $eventBus
   }
 
-  public authenticate (level: string = 'view'): Promise<boolean> {
+  public authenticate (level: string = 'view', params: object): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (undefined === this.navigation) {
         Log.error('Navigator hasn\'t been set on AuthManager')
@@ -21,7 +21,7 @@ export default class AuthManager {
 
       this.navigation!.navigate(
         (level === 'view' ? 'pin' : 'authenticate'),
-        { showCloseButton: level === 'view' }
+        { showCloseButton: level === 'view', ...params }
       )
 
       this.$eventBus.$once('authenticated', () => {

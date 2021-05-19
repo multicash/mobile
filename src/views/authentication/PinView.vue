@@ -27,6 +27,7 @@
 
       <pin-keyboard
         v-model="pin"
+        :biometric-unlockable="biometricUnlockable"
         :biometry-type="biometryType"
         :max-length="pinLength"
         @input="pinUpdated"
@@ -56,7 +57,24 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['getPin']),
+    ...mapGetters(['getPin', 'applicationOptions']),
+
+    biometricUnlockable () {
+      if (this.route.params && this.route.params.unlock) {
+        switch (this.route.params.unlock) {
+          case 'application':
+            return this.applicationOptions.unlock.application
+          case 'restoreKey':
+            return this.applicationOptions.unlock.restoreKey
+          case 'export':
+            return this.applicationOptions.unlock.export
+          default:
+            return false
+        }
+      }
+
+      return false
+    },
 
     digits () {
       return Array(this.pinLength)
@@ -101,6 +119,10 @@ export default {
 
     authRequested () {
       if (!this.biometricsAvailable) {
+        return
+      }
+
+      if (!this.applicationOptions.unlock.application) {
         return
       }
 

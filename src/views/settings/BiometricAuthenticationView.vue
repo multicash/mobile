@@ -14,8 +14,8 @@
 
       <switch-notification
         label="Unlock the application"
-        :value.sync="unlock.application"
-        @input="unlock.application = $event"
+        :value.sync="applicationOptions.unlock.application"
+        @input="setUnlockApplication($event)"
       />
       <input-description :label="`If you enable ${info.title} to unlock the application, anyone who can unlock this ${info.deviceName} using either ${info.title} or the ${info.deviceName}'s Passcode will be able to log in to your MultiCash accounts.`" />
 
@@ -23,14 +23,14 @@
 
       <switch-notification
         label="Unlock account restore keys"
-        :value.sync="unlock.restoreKey"
-        @input="unlock.restoreKey = $event"
+        :value.sync="applicationOptions.unlock.restoreKey"
+        @input="setUnlockRestoreKey($event)"
       />
 
       <switch-notification
         label="Unlock account export"
-        :value.sync="unlock.export"
-        @input="unlock.export = $event"
+        :value.sync="applicationOptions.unlock.export"
+        @input="setUnlockExport($event)"
       />
     </view-background>
   </view>
@@ -38,22 +38,20 @@
 
 <script>
 import { getModel } from 'react-native-device-info'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'BiometricAuthenticationView',
 
   data () {
     return {
-      biometryType: null,
-      unlock: {
-        application: false,
-        restoreKey: false,
-        export: false
-      }
+      biometryType: null
     }
   },
 
   computed: {
+    ...mapGetters(['applicationOptions']),
+
     info () {
       switch (this.biometryType) {
         case 'TouchID':
@@ -88,6 +86,10 @@ export default {
 
   created () {
     this.biometryType = this.route.params.biometryType
+  },
+
+  methods: {
+    ...mapActions(['setUnlockApplication', 'setUnlockRestoreKey', 'setUnlockExport'])
   }
 }
 

@@ -55,6 +55,11 @@ export default {
       required: true
     },
 
+    biometricUnlockable: {
+      type: Boolean,
+      default: false
+    },
+
     biometryType: {
       type: String,
       default: null
@@ -68,6 +73,10 @@ export default {
 
   computed: {
     biometryTypeIcon () {
+      if (!this.biometricUnlockable) {
+        return false
+      }
+
       switch (this.biometryType) {
         case ReactNativeBiometrics.FaceID:
           return require('@/assets/face-id.png')

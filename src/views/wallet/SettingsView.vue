@@ -47,7 +47,7 @@ export default {
               subtitle: 'The restore key enables you to restore this account. If you lose it you can never recover it and you\'ll loose access to your MCX. So make absolutely sure to keep it very safe.',
               leftAvatar: { source: require('@/assets/signing-document.png'), size: 40 },
               onPress: () => {
-                this.$authManager.authenticate().then(authenticated => {
+                this.$authManager.authenticate('view', { unlock: 'restoreKey' }).then(authenticated => {
                   if (authenticated) {
                     this.navigation.navigate('restoreKey', { walletIdentifier: this.wallet.identifier })
                   }
@@ -59,7 +59,7 @@ export default {
               subtitle: 'Creating an extra backup of your account credentials can be a smart thing to do. Either store it safely on a removable drive or another secure place.',
               leftAvatar: { source: require('@/assets/export.png'), size: 40 },
               onPress: () => {
-                this.$authManager.authenticate().then(authenticated => {
+                this.$authManager.authenticate('view', { unlock: 'export' }).then(authenticated => {
                   if (authenticated) {
                     this.navigation.navigate('export', { walletIdentifier: this.wallet.identifier })
                   }
