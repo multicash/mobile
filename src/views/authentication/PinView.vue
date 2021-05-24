@@ -1,10 +1,7 @@
 <template>
   <view-background no-padding>
-    <colors-background
-      v-if="!showCloseButton"
-      :full-screen="false"
-      :style="styles.colorsBackground"
-    />
+    <status-bar :bar-style="isDarkScheme ? 'light-content' : 'dark-content'" />
+
     <modal-navigation
       v-if="showCloseButton"
       has-close-button
@@ -200,10 +197,6 @@ export default {
 
 const stylesStore = (isDarkScheme, showCloseButton) => {
   return {
-    colorsBackground: {
-      height: 90
-    },
-
     container: {
       padding: showCloseButton ? 0 : 30,
       flex: 1,

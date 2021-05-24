@@ -139,6 +139,7 @@ export default {
                 this.setUnlockApplication(false)
                 this.setUnlockRestoreKey(false)
                 this.setUnlockExport(false)
+                this.showAllAnnouncements()
                 this.updateIsSetup(false)
               }
             },
@@ -149,7 +150,7 @@ export default {
               noChevron: true,
               onPress: () => {
                 for (const contact of this.$store.getters.contacts) {
-                  this.$store.dispatch('removeContact', contact)
+                  this.removeContact(contact)
                 }
               }
             },
@@ -160,7 +161,7 @@ export default {
               noChevron: true,
               onPress: () => {
                 for (const contact of exampleContacts) {
-                  this.$store.dispatch('addContact', contact)
+                  this.addContact(contact)
                 }
               }
             },
@@ -198,7 +199,7 @@ export default {
               leftIcon: { name: 'chatbox-outline' },
               noChevron: true,
               onPress: () => {
-                this.$store.dispatch('showAllAnnouncements')
+                this.showAllAnnouncements()
               }
             }
           ]
@@ -211,11 +212,14 @@ export default {
     ...mapActions([
       'updateIsSetup',
       'setDefaultWallet',
+      'removeContact',
+      'addContact',
       'removeAllWallets',
       'removeWalletOrder',
       'setUnlockApplication',
       'setUnlockRestoreKey',
-      'setUnlockExport'
+      'setUnlockExport',
+      'showAllAnnouncements'
     ])
   }
 }

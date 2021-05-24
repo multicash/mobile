@@ -34,6 +34,7 @@
 
 <script>
 import { SafeAreaView } from 'react-native-safe-area-context'
+import ReactNativeBiometrics from 'react-native-biometrics'
 import { mapActions } from 'vuex'
 
 export default {
@@ -84,7 +85,10 @@ export default {
         this.navigation.goBack()
 
         setTimeout(() => {
-          this.navigation.navigate('biometricAuthentication')
+          ReactNativeBiometrics.isSensorAvailable()
+            .then(({ available }) => {
+              this.navigation.navigate(available ? 'biometricAuthentication' : 'currency')
+            })
         }, 10)
 
         return

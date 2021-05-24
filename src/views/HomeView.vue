@@ -85,13 +85,23 @@
         </scroll-view>
       </view>
     </safe-area-view>
-    <view v-if="showLoadingHideContainer" :style="styles.loadingHideContainer" />
+    <view
+      v-if="showLoadingHideContainer"
+      :style="styles.loadingHideContainer"
+    >
+      <colors-background />
+      <image
+        :style="styles.logo"
+        :source="require('@/assets/logo-light.png')"
+      />
+    </view>
   </view>
 </template>
 
 <script>
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Alert, AppState, Linking } from 'react-native'
+import RNBootSplash from 'react-native-bootsplash'
 import { mapActions, mapGetters } from 'vuex'
 import ManagerConfig from '@/core/wallet/ManagerConfig.ts'
 import AppHeaderView from '@/components/views/AppHeaderView'
@@ -135,14 +145,17 @@ export default {
 
       setTimeout(() => {
         this.$authManager.setNavigationComponent(this.navigation)
-        this.$authManager.authenticate('app')
-        this.showLoadingHideContainer = false
+        this.$authManager.authenticate('app').then(() => {
+          this.showLoadingHideContainer = false
+        })
 
         Linking.getInitialURL().then(url => {
           Log.info(`Received pay link: ${url}`)
 
           this.receivedDeepLink = url
         })
+
+        RNBootSplash.hide({ fade: true })
       }, 250)
 
       this.$eventBus.$on('authenticated', () => {
@@ -165,6 +178,8 @@ export default {
 
         this.receivedDeepLink = url
       })
+    } else {
+      RNBootSplash.hide({ fade: true })
     }
 
     AppState.addEventListener('change', this.onAppStateChange)
@@ -310,13 +325,20 @@ const stylesStore = (isDarkScheme, insets, expand) => {
       marginBottom: 20
     },
 
+    logo: {
+      width: '100%',
+      resizeMode: 'contain'
+    },
+
     loadingHideContainer: {
-      backgroundColor: isDarkScheme ? '#222429' : '#ededf3',
       position: 'absolute',
       top: 0,
       bottom: 0,
       left: 0,
-      right: 0
+      right: 0,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 60
     }
   }
 }

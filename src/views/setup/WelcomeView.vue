@@ -27,6 +27,7 @@
 <script>
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Platform } from 'react-native'
+import RNBootSplash from 'react-native-bootsplash'
 
 export default {
   components: { SafeAreaView },
@@ -35,6 +36,10 @@ export default {
     styles () {
       return stylesStore()
     }
+  },
+
+  created () {
+    RNBootSplash.hide({ fade: true })
   }
 }
 
