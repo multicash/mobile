@@ -7,13 +7,12 @@
     />
     <view-background :style="{ paddingBottom: 50 }" scrollable>
 
-      <view :style="styles.headerContainer">
-        <view :style="{ flexDirection: 'row' }">
-          <image :style="styles.headerImage1" :source="require('@/assets/todo-list.png')"/>
-          <image :style="styles.headerImage2" :source="require('@/assets/check-all.png')"/>
-        </view>
-        <text :style="styles.headerTitle">Almost Done!</text>
-      </view>
+      <header-view
+        title="Almost Done!"
+        subtitle="Please read and agree with the below statements carefully before proceeding."
+        :image-foreground="require('@/assets/todo-list.png')"
+        :image-background="require('@/assets/check-all.png')"
+      />
 
       <switch-notification
         :value.sync="term1"
@@ -73,37 +72,6 @@ export default {
 
 const stylesStore = (isDarkScheme) => {
   return {
-    headerContainer: {
-      marginHorizontal: 20,
-      marginBottom: 30,
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-
-    headerTitle: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      color: isDarkScheme ? 'white' : 'black',
-      marginVertical: 5
-    },
-
-    headerImage1: {
-      width: 100,
-      height: 100,
-      resizeMode: 'contain',
-      marginTop: 20,
-      marginBottom: 5
-    },
-
-    headerImage2: {
-      zIndex: 10,
-      width: 80,
-      height: 80,
-      marginTop: 10,
-      marginLeft: -40,
-      resizeMode: 'contain'
-    },
-
     proceedButtonPlaceholder: {
       height: 120
     },

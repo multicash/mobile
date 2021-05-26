@@ -1,21 +1,36 @@
 <template>
-  <safe-area-view :style="styles.safeArea">
-    <status-bar bar-style="light-content" />
-    <colors-background
-      :full-screen="false"
-      :style="{ height: '25%' }"
-    />
-    <view :style="styles.container">
-      <image :style="styles.image1" :source="require('@/assets/checked.png')" />
-      <text :style="styles.title">MultiCash is ready</text>
-      <text :style="styles.subtitle">Keep your MultiCash always within reach in a secure and safe bank-like app with the benefits of the future.</text>
-    </view>
-    <rounded-button
-      :style="{ maxWidth: 350, width: '100%' }"
-      title="Finish setup"
-      @on-press="done"
-    />
-  </safe-area-view>
+  <view-background scrollable>
+    <safe-area-view :style="styles.safeArea">
+      <status-bar :bar-style="isDarkScheme ? 'light-content' : 'dark-content'" />
+      <view :style="styles.container">
+        <view :style="styles.imageContainer">
+          <image :style="styles.image" :source="require('@/assets/check-all.png')" />
+        </view>
+        <text :style="styles.title">We're ready to go!</text>
+        <text :style="styles.subtitle">The basic setup is done! You setup an application PIN and selected a default well-known currency. Now it's time to setup your first account.</text>
+
+        <spacer />
+
+        <feature
+          v-for="feature in features"
+          :style="styles.feature"
+          :key="feature.title"
+          :title="feature.title"
+          :description="feature.description"
+          :image="feature.image"
+        />
+      </view>
+
+      <spacer large/>
+
+      <rounded-button
+        :style="{ maxWidth: 350, width: '100%' }"
+        title="Proceed"
+        @on-press="done"
+        type="primary"
+      />
+    </safe-area-view>
+  </view-background>
 </template>
 
 <script>
@@ -27,7 +42,25 @@ export default {
   components: { SafeAreaView },
 
   data () {
-    return {}
+    return {
+      features: [
+        {
+          image: require('@/assets/checked.png'),
+          title: 'The first steps',
+          description: 'Buying MCX or other currencies with USD or EUR is easier than ever! MultiCash provides an easy and secure way to Top Up your accounts.'
+        },
+        {
+          image: require('@/assets/coins/MCX.png'),
+          title: 'Setup your first account',
+          description: 'You can easily buy multiple currencies with a low fee right from within MultiCash. Just select your account, the amount, pay and you\'re done!'
+        },
+        {
+          image: require('@/assets/support.png'),
+          title: 'Reach out for help',
+          description: 'With ChangeNOW as our partner MultiCash can provide a seamlessly great service on topping up your accounts.'
+        }
+      ]
+    }
   },
 
   computed: {
@@ -48,12 +81,7 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     safeArea: {
-      height: '100%',
-      backgroundColor: isDarkScheme ? '#0f0f11' : '#e8e8f3',
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 20
+      flex: 1
     },
 
     container: {
@@ -63,12 +91,16 @@ const stylesStore = (isDarkScheme) => {
       maxWidth: 450
     },
 
-    image1: {
+    image: {
       width: 100,
       height: 100,
-      borderRadius: 1000,
+      resizeMode: 'contain'
+    },
+
+    imageContainer: {
+      width: 100,
+      height: 100,
       marginBottom: 10,
-      resizeMode: 'contain',
       shadowColor: '#3ae900',
       shadowRadius: 60,
       shadowOpacity: isDarkScheme ? 0.35 : 0.7

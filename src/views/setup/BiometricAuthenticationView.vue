@@ -8,6 +8,7 @@
     />
     <rounded-button
       title="Continue"
+      type="primary"
       :style="styles.continue"
       @on-press="navigation.navigate('currency')"
     />

@@ -1,6 +1,6 @@
 <template>
   <view :style="styles.container">
-    <colors-background />
+    <colors-background v-if="colorsBackground" />
     <view :style="styles.contentContainer">
       <slot />
     </view>
@@ -11,27 +11,17 @@
 export default {
   name: 'AppHeaderView',
 
-  data () {
-    return {
-      colors: [
-        '#f744e4',
-        '#e033eb',
-        '#cb22f2',
-        '#bf19f4',
-        '#b00dfa',
-        '#05ad25',
-        '#0bbcda',
-        '#00ade7'
-      ]
-    }
-  },
-
   props: {
     insets: {
       type: Object
     },
 
     expand: {
+      type: Boolean,
+      default: true
+    },
+
+    colorsBackground: {
       type: Boolean,
       default: true
     }
@@ -48,7 +38,11 @@ const stylesStore = (isDarkScheme, insets, expand) => {
   return {
     container: {
       flex: expand ? 1 : undefined,
-      backgroundColor: 'transparent',
+      backgroundColor: isDarkScheme ? '#2c2e36' : '#ededf3',
+      shadowBlur: 10,
+      shadowRadius: 10,
+      shadowOpacity: 0.1,
+      shadowColor: '#000000',
       marginTop: -insets.top
     },
 

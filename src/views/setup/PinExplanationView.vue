@@ -12,13 +12,14 @@
         <view>
           <text :style="styles.title">Setup a PIN</text>
           <text :style="styles.subtitle">It's time to setup your MultiCash app PIN.</text>
-          <text :style="styles.subtitle2">Your app PIN will be used to unlock this app, it's settings and to verify yourself by paying with MCX. When you forget the PIN, you'll need to restore your accounts to access them again.</text>
+          <text :style="styles.subtitle2">Your app PIN will be used to unlock this app, its settings and to verify yourself by paying with MCX. When you forget the PIN, you'll need to restore your accounts to access them again.</text>
         </view>
       </view>
 
       <rounded-button
         :style="{ maxWidth: 350, width: '100%' }"
         title="Setup PIN"
+        type="primary"
         @on-press="navigation.navigate('setupPin')"
       />
     </view>

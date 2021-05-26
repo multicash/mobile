@@ -10,7 +10,7 @@
           v-if="icon"
           :style="styles.roundedButtonIcon"
           :name="icon"
-          :color="isDarkScheme ? '#6d6de3' : '#1e1e4d'"
+          :color="styles.roundedButtonText.color"
           :size="20"
         />
         <text :style="styles.roundedButtonText">{{ title }}</text>
@@ -54,6 +54,11 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+
+    type: {
+      type: String,
+      default: null
     }
   },
 
@@ -61,21 +66,30 @@ export default {
     styles () {
       const innerStyle = this.style[0] || {}
 
-      return stylesStore(this.isDarkScheme, innerStyle, this.disabled)
+      return stylesStore(this.isDarkScheme, innerStyle, this.disabled, this.type)
     }
   }
 }
 
-const stylesStore = (isDarkScheme, innerStyle, disabled) => {
+const stylesStore = (isDarkScheme, innerStyle, disabled, type) => {
+  let backgroundColor = isDarkScheme
+    ? (disabled ? '#1b1d1d' : 'black')
+    : (disabled ? '#f4f4f4' : '#f8f8f8')
+  let color = disabled ? '#868686' : (isDarkScheme ? '#6d6de3' : '#3b3b89')
+
+  switch (type) {
+    case 'primary':
+      backgroundColor = disabled ? (isDarkScheme ? '#3d3d3d' : '#868686') : (isDarkScheme ? '#6d6de3' : '#3b3b89')
+      color = disabled ? (isDarkScheme ? '#9c9c9c' : '#cecece') : 'white'
+  }
+
   return {
     roundedButtonOuter: {
       borderRadius: 10
     },
 
     roundedButton: {
-      backgroundColor: isDarkScheme
-        ? (disabled ? '#1b1d1d' : 'black')
-        : (disabled ? '#f4f4f4' : '#f8f8f8'),
+      backgroundColor: backgroundColor,
       minWidth: 36,
       height: innerStyle.height || 50,
       borderRadius: 10,
@@ -92,7 +106,7 @@ const stylesStore = (isDarkScheme, innerStyle, disabled) => {
     },
 
     roundedButtonText: {
-      color: disabled ? '#868686' : (isDarkScheme ? '#6d6de3' : '#1e1e4d'),
+      color: color,
       fontWeight: 'bold',
       fontSize: 15
     }

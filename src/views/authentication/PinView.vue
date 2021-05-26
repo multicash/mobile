@@ -2,36 +2,39 @@
   <view-background no-padding>
     <status-bar :bar-style="isDarkScheme ? 'light-content' : 'dark-content'" />
 
-    <modal-navigation
-      v-if="showCloseButton"
-      has-close-button
-      colors-background
-      @on-dismiss="onDismiss"
-    />
-
-    <safe-area-view :style="styles.container">
-
-      <view :style="styles.pinContainer">
-        <image
-          :source="require('@/assets/pin.png')"
-          :style="styles.logoImage"
-        />
-
-        <text :style="styles.title">Enter your PIN</text>
-
-        <dot-input :value.sync="pin" />
-      </view>
-
-      <pin-keyboard
-        v-model="pin"
-        :biometric-unlockable="biometricUnlockable"
-        :biometry-type="biometryType"
-        :max-length="pinLength"
-        @input="pinUpdated"
-        @auth-requested="authRequested"
+    <safe-area-view :style="styles.safeAreaView">
+      <header-view
+        :title="showCloseButton ? 'Verify Yourself' : 'Unlock MultiCash'"
+        :image-background="showCloseButton ? require('@/assets/cyber-security.png') : require('@/assets/pin.png')"
       />
 
+      <view :style="styles.container">
+        <view :style="styles.pinContainer">
+          <text :style="styles.title">Enter your PIN</text>
+
+          <dot-input :value.sync="pin" />
+        </view>
+
+        <pin-keyboard
+          v-model="pin"
+          :biometric-unlockable="biometricUnlockable"
+          :biometry-type="biometryType"
+          :max-length="pinLength"
+          @input="pinUpdated"
+          @auth-requested="authRequested"
+        />
+
+      </view>
     </safe-area-view>
+
+    <round-button
+      v-if="showCloseButton"
+      @on-press="onDismiss"
+      :style="{ position: 'absolute', top: 20, left: 20 }"
+    >
+      <icon name="close" />
+    </round-button>
+
   </view-background>
 </template>
 
@@ -197,18 +200,22 @@ export default {
 
 const stylesStore = (isDarkScheme, showCloseButton) => {
   return {
+    safeAreaView: {
+      flex: 1
+    },
+
     container: {
-      padding: showCloseButton ? 0 : 30,
+      padding: showCloseButton ? 0 : 20,
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center'
     },
 
     pinContainer: {
-      flex: 1,
       width: '100%',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      marginBottom: 50
     },
 
     logoImage: {

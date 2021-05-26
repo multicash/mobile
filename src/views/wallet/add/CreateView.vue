@@ -2,17 +2,12 @@
   <view-background :no-padding="!created" :scrollable="created">
 
     <view v-if="created">
-
-      <view :style="styles.headerContainer">
-        <view :style="{ flexDirection: 'row' }">
-          <image :style="styles.headerImage1" :source="require('@/assets/new.png')"/>
-          <image :style="styles.headerImage2" :source="require('@/assets/coin-wallet.png')"/>
-        </view>
-        <text :style="styles.headerTitle">Awesome, you've done it!</text>
-        <text :style="styles.headerSubtitle">
-          Your account has been successfully created!
-        </text>
-      </view>
+      <header-view
+        title="Awesome!"
+        subtitle="Your account has been successfully created!"
+        :image-foreground="require('@/assets/new.png')"
+        :image-background="require('@/assets/coin-wallet.png')"
+      />
 
       <text :style="styles.nextTitle">What to do next?</text>
 
@@ -49,7 +44,11 @@
 
       <spacer stretch/>
 
-      <rounded-button title="Done" @on-press="navigation.navigate('home')">
+      <rounded-button
+        title="Done"
+        type="primary"
+        @on-press="navigation.navigate('home')"
+      />
     </view>
     <view v-else :style="styles.creatingContainer">
       <view
@@ -121,45 +120,6 @@ export default {
 
 const stylesStore = (isDarkScheme) => {
   return {
-    headerContainer: {
-      marginHorizontal: 20,
-      marginVertical: 30,
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-
-    headerTitle: {
-      fontSize: 24,
-      fontWeight: '600',
-      color: isDarkScheme ? 'white' : 'black',
-      marginTop: 5
-    },
-
-    headerSubtitle: {
-      fontSize: 15,
-      fontWeight: '600',
-      color: '#0a9f67',
-      marginVertical: 5,
-      textAlign: 'center'
-    },
-
-    headerImage1: {
-      zIndex: 10,
-      width: 80,
-      height: 80,
-      marginTop: 0,
-      marginRight: -40,
-      resizeMode: 'contain'
-    },
-
-    headerImage2: {
-      width: 100,
-      height: 100,
-      resizeMode: 'contain',
-      marginTop: 20,
-      marginBottom: 5
-    },
-
     image: {
       width: 200,
       height: 200,

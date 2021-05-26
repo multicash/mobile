@@ -25,6 +25,7 @@
       <rounded-button
         :style="{ maxWidth: 350, width: '100%' }"
         :title="currentPage === 2 ? 'Proceed' : 'Skip'"
+        :type="currentPage === 2 ? 'primary' : null"
         @on-press="navigation.navigate('pinExplanation')"
       />
     </view>

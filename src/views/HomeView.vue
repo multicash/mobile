@@ -1,8 +1,12 @@
 <template>
   <view :style="styles.container">
-    <status-bar bar-style="light-content" />
+    <status-bar :bar-style="hasWallets ? 'light-content' : (isDarkScheme ? 'light-content' : 'dark-content')" />
     <safe-area-view :style="styles.safeArea">
-      <app-header-view :insets="insets" :expand="hasWallets">
+      <app-header-view
+        :insets="insets"
+        :expand="hasWallets"
+        :colors-background="hasWallets"
+      >
         <view :style="styles.navigation">
           <round-button
             :style="{ marginRight: 10 }"
@@ -19,9 +23,6 @@
           </round-button>
         </view>
         <total-amount-section v-if="hasWallets" />
-        <view v-else :style="styles.welcomeContainer">
-          <text :style="styles.welcomeTitle">Welcome to MultiCash</text>
-        </view>
       </app-header-view>
       <view :style="styles.content">
         <wallets-section
@@ -47,6 +48,11 @@
           :showsVerticalScrollIndicator="false"
           :contentInset="{ top: 0, left: 0, bottom: insets.bottom || 0, right: 0 }"
         >
+          <header-view
+            title="Welcome To MultiCash"
+            subtitle="Below you'll find a few options to start with the MultiCash application!"
+            :image-background="require('@/assets/coins/MCX.png')"
+          />
           <card
             :background-color="isDarkScheme ? '#2c2e36' : 'white'"
             :style="styles.noWalletCard"
@@ -63,6 +69,7 @@
               :style="{ width: '100%' }"
               icon="add"
               title="Add account"
+              type="primary"
               @on-press="navigation.navigate('add')"
             />
           </card>

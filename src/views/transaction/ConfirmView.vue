@@ -51,6 +51,7 @@
           :disabled="notEnoughBalance"
           :title="transaction.isReceive && !transaction.to.walletIdentifier ? 'Share request' : 'Send payment'"
           :style="styles.sendPaymentButton"
+          type="primary"
           @on-press="proceed"
         />
 

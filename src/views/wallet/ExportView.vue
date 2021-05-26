@@ -50,6 +50,7 @@
       v-if="acceptedTerm"
       :style="styles.exportButton"
       title="Export"
+      type="primary"
       @on-press="showShareSheet"
     />
   </view>

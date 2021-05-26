@@ -7,20 +7,18 @@
         <text :style="styles.subtitle">Top Up your accounts from within MultiCash provided by our partner ChangeNOW.</text>
       </view>
     </view>
-    <view
+    <feature
       v-for="feature in features"
       :style="styles.feature"
       :key="feature.title"
-    >
-      <image :style="styles.featureIcon" :source="feature.image"/>
-      <view :style="styles.featureContent">
-        <text :style="styles.featureTitle">{{ feature.title }}</text>
-        <text :style="styles.featureDescription">{{ feature.description }}</text>
-      </view>
-    </view>
+      :title="feature.title"
+      :description="feature.description"
+      :image="feature.image"
+    />
     <spacer large />
     <rounded-button
       title="Continue"
+      type="primary"
       @on-press="continues"
     />
   </view-background>
@@ -28,7 +26,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-import { pageSubtitle, pageTitle, sectionFooter, sectionTitle } from '@/core/support/styles'
+import { pageSubtitle, pageTitle } from '@/core/support/styles'
 
 export default {
   name: 'TopUpExplainView',
@@ -91,32 +89,6 @@ const styleStore = (isDarkScheme) => {
 
     subtitle: {
       ...pageSubtitle(isDarkScheme)
-    },
-
-    feature: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      padding: 10
-    },
-
-    featureIcon: {
-      width: 50,
-      height: 50,
-      resizeMode: 'contain',
-      marginRight: 10
-    },
-
-    featureContent: {
-      flex: 1
-    },
-
-    featureTitle: {
-      ...sectionTitle(isDarkScheme),
-      paddingBottom: 2.5
-    },
-
-    featureDescription: {
-      ...sectionFooter(isDarkScheme)
     }
   }
 }

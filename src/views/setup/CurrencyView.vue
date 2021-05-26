@@ -1,5 +1,5 @@
 <template>
-  <safe-area-view :style="styles.safeArea">
+  <safe-area-view :style="styles.safeArea" :edges="['right', 'top', 'left']">
     <status-bar :bar-style="isDarkScheme ? 'light-content' : 'dark-content'" />
     <settings-currency-view
       :header="false"
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { SafeAreaView } from 'react-native-safe-area-context'
 import SettingsCurrencyView from '@/views/settings/CurrencyView'
 import TableHeaderView from '@/react/components/TableHeaderView'
 
@@ -17,7 +18,8 @@ export default {
   name: 'CurrencyView',
 
   components: {
-    SettingsCurrencyView
+    SettingsCurrencyView,
+    SafeAreaView
   },
 
   computed: {

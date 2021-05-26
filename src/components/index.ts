@@ -27,6 +27,7 @@ import InputDescription from '@/components/labels/InputDescription.vue'
 import DetailList from '@/components/lists/DetailList.vue'
 import DetailListItem from '@/components/lists/DetailListItem.vue'
 import DetailListTitle from '@/components/lists/DetailListTitle.vue'
+import Feature from '@/components/lists/Feature.vue'
 
 import ModalNavigation from '@/components/navigations/ModalNavigation.vue'
 
@@ -80,6 +81,7 @@ Vue.component('input-description', InputDescription)
 Vue.component('detail-list', DetailList)
 Vue.component('detail-list-item', DetailListItem)
 Vue.component('detail-list-title', DetailListTitle)
+Vue.component('feature', Feature)
 
 Vue.component('modal-navigation', ModalNavigation)
 

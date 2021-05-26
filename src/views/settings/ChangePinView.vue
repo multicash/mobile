@@ -6,9 +6,11 @@
       @on-dismiss="navigation.goBack()"
     />
     <view-background>
+      <header-view
+        title="Change PIN"
+        subtitle="Your app PIN will be used to unlock this app, its settings and to verify yourself by paying with MCX."
+      />
       <view :style="styles.container">
-        <text :style="styles.description">Your wallet PIN will be used to open this app, and to send MCX with. When you'll forget it, you'll need to restore your wallets to access them again.</text>
-
         <view :style="styles.pinContainer">
           <text v-if="confirm" :style="styles.title">Confirm new PIN</text>
           <text v-else :style="styles.title">Enter a new PIN</text>
@@ -96,23 +98,15 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     container: {
-      padding: 20,
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center'
     },
 
     pinContainer: {
-      flex: 1,
       width: '100%',
       justifyContent: 'center',
       alignItems: 'center'
-    },
-
-    description: {
-      textAlign: 'center',
-      fontSize: 12,
-      color: isDarkScheme ? '#cccccc' : '#484848'
     },
 
     title: {

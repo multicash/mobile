@@ -53,6 +53,7 @@
       <rounded-button
         title="Share"
         icon="share-outline"
+        type="primary"
         :style="styles.shareButton"
         @on-press="showShareSheet"
       />
