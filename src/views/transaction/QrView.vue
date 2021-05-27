@@ -160,7 +160,7 @@ const stylesStore = (isDarkScheme) => {
 
     amount: {
       fontSize: 40,
-      color: isDarkScheme ? '#f744e4' : '#b00dfa',
+      color: isDarkScheme ? '#B95C8B' : '#931A5A',
       fontWeight: '600'
     },
 

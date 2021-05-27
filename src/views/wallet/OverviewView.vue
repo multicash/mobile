@@ -76,6 +76,7 @@ import TransactionsContainer from '@/components/views/TransactionsContainer'
 import AddressesContainer from '@/components/views/AddressesContainer'
 import { mapGetters } from 'vuex'
 import { cards } from '@/core/support/styles'
+import { Platform } from 'react-native'
 
 export default {
   name: 'OverviewView',
@@ -113,6 +114,11 @@ const stylesStore = (isDarkScheme) => {
     },
 
     tag: {
+      backgroundColor: isDarkScheme ? '#191A20' : '#DFE1EE',
+      paddingVertical: 3,
+      paddingHorizontal: 8,
+      borderRadius: 10,
+      overflow: 'hidden',
       color: isDarkScheme ? '#B95C8B' : '#931A5A',
       fontWeight: 'bold',
       fontSize: 25
@@ -128,11 +134,11 @@ const stylesStore = (isDarkScheme) => {
     amount: {
       color: isDarkScheme ? '#FFFFFF' : 'black',
       fontSize: 25,
-      fontWeight: 'bold'
+      fontWeight: Platform.OS === 'ios' ? '900' : 'bold'
     },
 
     fiatAmount: {
-      color: isDarkScheme ? '#A7BBC1' : '#7e97a0',
+      color: isDarkScheme ? '#A7BBC1' : '#7E97A0',
       fontSize: 15,
       fontWeight: '600'
     },

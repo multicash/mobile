@@ -145,15 +145,15 @@ const stylesStore = (isDarkScheme) => {
       color: subtitle(isDarkScheme).color
     },
     defaultLabel: {
-      color: isDarkScheme ? '#f744e4' : '#b00dfa',
+      color: isDarkScheme ? '#B95C8B' : '#931A5A',
       fontSize: 10,
       padding: 2.5,
       borderWidth: 1,
-      borderColor: isDarkScheme ? '#f744e4' : '#b00dfa',
+      borderColor: isDarkScheme ? '#B95C8B' : '#931A5A',
       borderRadius: 5
     },
     checkedChevron: {
-      color: isDarkScheme ? '#f744e4' : '#b00dfa'
+      color: isDarkScheme ? '#B95C8B' : '#931A5A'
     },
     defaultContainer: {
       display: 'flex',

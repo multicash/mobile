@@ -51,7 +51,6 @@
           :disabled="notEnoughBalance"
           :title="transaction.isReceive && !transaction.to.walletIdentifier ? 'Share request' : 'Send payment'"
           :style="styles.sendPaymentButton"
-          type="primary"
           @on-press="proceed"
         />
 
@@ -68,7 +67,7 @@
 
 <script>
 import Constants from '@/core/support/constants'
-import { Share } from 'react-native'
+import { Platform, Share } from 'react-native'
 import Wallet from '@/core/wallet/Wallet'
 import Contact from '@/core/contacts/models/Contact'
 import UUID from '@/core/support/UUID'
@@ -204,8 +203,8 @@ const stylesStore = (isDarkScheme, notEnoughBalance) => {
 
     amount: {
       fontSize: 40,
-      color: notEnoughBalance ? (isDarkScheme ? '#585858' : '#868686') : (isDarkScheme ? '#f744e4' : '#b00dfa'),
-      fontWeight: '600'
+      color: notEnoughBalance ? (isDarkScheme ? '#585858' : '#868686') : (isDarkScheme ? '#B95C8B' : '#931A5A'),
+      fontWeight: Platform.OS === 'ios' ? '900' : 'bold'
     },
 
     calculatedAmount: {

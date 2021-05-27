@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { ReactElement } from 'react'
-import { View, Text, Image, StyleSheet, ImageURISource, Platform } from 'react-native'
+import { View, Text, Image, StyleSheet, ImageURISource } from 'react-native'
 import { pageSubtitle, pageTitle } from '@/core/support/styles'
 
 export default function <T> (isDarkScheme: boolean, title: string, subtitle: string, image: ImageURISource): ReactElement {

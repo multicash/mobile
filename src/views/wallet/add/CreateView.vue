@@ -1,6 +1,8 @@
 <template>
-  <view-background :no-padding="!created" :scrollable="created">
-
+  <view-background
+    :style="created ? {} : styles.container"
+    :scrollable="created"
+  >
     <view v-if="created">
       <header-view
         title="Awesome!"
@@ -42,7 +44,7 @@
         />
       </action-notification>
 
-      <spacer stretch/>
+      <spacer />
 
       <rounded-button
         title="Done"
@@ -50,22 +52,12 @@
         @on-press="navigation.navigate('home')"
       />
     </view>
-    <view v-else :style="styles.creatingContainer">
-      <view
-        :style="{
-          transform: [{rotate: spin}],
-          width: 200,
-          height: 200,
-          marginBottom: 10,
-        }"
-      >
-        <image
-          :style="styles.image"
-          :source="require('@/assets/loading.png')"
-        />
-      </view>
-      <text :style="styles.creatingTitle">In progress</text>
-      <text :style="styles.creatingSubtitle">Your account is being created...</text>
+    <view v-else>
+      <ActivityIndicator size="large" :color="isDarkScheme ? '#6868ff' : '#0000ff'" />
+      <header-view
+        title="Creating Your Account"
+        subtitle="one sec..."
+      />
     </view>
 
   </view-background>
@@ -73,6 +65,7 @@
 
 <script>
 import { Alert } from 'react-native'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'CreateView',
@@ -80,10 +73,7 @@ export default {
   data () {
     return {
       created: false,
-      newWallet: null,
-      spinValue: 0,
-      spin: '0deg',
-      animatedValueRotate: 0
+      newWallet: null
     }
   },
 
@@ -93,6 +83,10 @@ export default {
     this.$walletManager.addWallet(walletConfig).then(wallet => {
       this.created = true
       this.newWallet = wallet
+
+      if (this.$walletManager.wallets.length === 1) {
+        this.setDefaultWallet(wallet.identifier)
+      }
     }).catch(error => {
       console.error(error)
 
@@ -115,16 +109,17 @@ export default {
     styles () {
       return stylesStore(this.isDarkScheme)
     }
+  },
+
+  methods: {
+    ...mapActions(['setDefaultWallet'])
   }
 }
 
 const stylesStore = (isDarkScheme) => {
   return {
-    image: {
-      width: 200,
-      height: 200,
-      resizeMode: 'contain'
-
+    container: {
+      justifyContent: 'center'
     },
 
     nextTitle: {
@@ -134,43 +129,6 @@ const stylesStore = (isDarkScheme) => {
       marginBottom: 10,
       marginLeft: 10,
       color: isDarkScheme ? 'white' : 'black'
-    },
-
-    creatingContainer: {
-      flex: 1,
-      backgroundColor: '#4c00ff',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 30
-    },
-
-    creatingTitle: {
-      color: 'white',
-      fontWeight: 'bold',
-      fontSize: 35,
-      textAlign: 'center'
-    },
-
-    creatingSubtitle: {
-      color: 'white',
-      fontWeight: '600'
-    },
-
-    creatingImage1: {
-      zIndex: 10,
-      width: 100,
-      height: 100,
-      marginTop: 0,
-      marginRight: -60,
-      resizeMode: 'contain'
-    },
-
-    creatingImage2: {
-      width: 120,
-      height: 120,
-      resizeMode: 'contain',
-      marginTop: 20,
-      marginBottom: 5
     }
   }
 }

@@ -21,9 +21,9 @@
 
 <script>
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Platform } from 'react-native'
 import { ListItem, Avatar, Icon } from 'react-native-elements'
-import { text, subtitle, sectionTitle, sectionFooter } from '@/core/support/styles'
+import { sectionTitle, sectionFooter, tableSubtitle } from '@/core/support/styles'
 
 export default {
   name: 'TableView',
@@ -50,12 +50,16 @@ export default {
     grouped: {
       type: Boolean,
       default: true
+    },
+    subtitle: {
+      type: String,
+      default: null
     }
   },
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme, this.type, this.grouped)
+      return stylesStore(this.isDarkScheme, this.type, this.grouped, this.subtitle)
     }
   },
 
@@ -183,7 +187,7 @@ export default {
   }
 }
 
-const stylesStore = (isDarkScheme, type, grouped) => {
+const stylesStore = (isDarkScheme, type, grouped, subtitle) => {
   return {
     container: {
       flex: 1,
@@ -232,21 +236,24 @@ const stylesStore = (isDarkScheme, type, grouped) => {
       backgroundColor: isDarkScheme ? '#2c2e36' : '#ffffff'
     },
     itemTitle: {
-      color: text(isDarkScheme).color
+      color: isDarkScheme ? '#aeb0c1' : '#414147',
+      fontSize: 18,
+      fontWeight: Platform.OS === 'ios' ? '600' : 'bold'
     },
     itemSubtitle: {
-      color: subtitle(isDarkScheme).color,
+      color: isDarkScheme ? '#a0a3bd' : '#75778e',
       fontSize: 14,
-      paddingTop: 2
+      paddingTop: 2,
+      ...tableSubtitle(subtitle, isDarkScheme)
     },
     itemLeftIcon: {
-      color: isDarkScheme ? '#e033eb' : '#b00dfa'
+      color: isDarkScheme ? '#B95C8B' : '#931A5A'
     },
     itemRightIcon: {
       color: isDarkScheme ? 'white' : 'black'
     },
     checkedChevron: {
-      color: isDarkScheme ? '#e033eb' : '#b00dfa'
+      color: isDarkScheme ? '#B95C8B' : '#931A5A'
     }
   }
 }

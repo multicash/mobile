@@ -57,14 +57,17 @@
             :background-color="isDarkScheme ? '#2c2e36' : 'white'"
             :style="styles.noWalletCard"
           >
-            <view :style="styles.noWalletContent">
-              <view :style="{ flexDirection: 'row' }">
-                <image :style="styles.noWalletIcon1" :source="require('@/assets/new.png')"/>
-                <image :style="styles.noWalletIcon2" :source="require('@/assets/coin-wallet.png')"/>
-              </view>
-              <text :style="styles.noWalletTitle">Add a MultiCash account</text>
-              <text :style="styles.noWalletSubtitle">Add a new or an existing account to MultiCash and use money like it's supposed to!</text>
-            </view>
+            <header-view
+              :image-foreground="require('@/assets/new.png')"
+              :image-background="require('@/assets/coin-wallet.png')"
+              title="Add a MultiCash account"
+              subtitle="Add a new or an existing account to MultiCash and use money like it's supposed to!"
+            />
+            <notification
+              type="warning"
+              title="Limited Offer!"
+              label="Get 10 MCX for free when creating a new MCX account right now!"
+            />
             <rounded-button
               :style="{ width: '100%' }"
               icon="add"
@@ -113,7 +116,6 @@ import { mapActions, mapGetters } from 'vuex'
 import ManagerConfig from '@/core/wallet/ManagerConfig.ts'
 import AppHeaderView from '@/components/views/AppHeaderView'
 import PayLinkParser from '@/core/transaction/PayLinkParser'
-import { pageTitle } from '@/core/support/styles'
 
 const Log = global.Logger.extend('APP')
 
@@ -261,15 +263,6 @@ const stylesStore = (isDarkScheme, insets, expand) => {
       paddingRight: 30
     },
 
-    welcomeContainer: {
-      padding: 40
-    },
-
-    welcomeTitle: {
-      ...pageTitle(isDarkScheme),
-      color: 'white'
-    },
-
     content: {
       flex: expand ? undefined : 1,
       paddingLeft: 30,
@@ -292,44 +285,6 @@ const stylesStore = (isDarkScheme, insets, expand) => {
       alignItems: 'center',
       marginBottom: 10,
       marginTop: 20
-    },
-
-    noWalletContent: {
-      flex: 1,
-      width: '100%',
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-
-    noWalletIcon1: {
-      zIndex: 10,
-      width: 80,
-      height: 80,
-      marginTop: 0,
-      marginRight: -40,
-      resizeMode: 'contain'
-    },
-
-    noWalletIcon2: {
-      width: 100,
-      height: 100,
-      resizeMode: 'contain',
-      marginTop: 20,
-      marginBottom: 20
-    },
-
-    noWalletTitle: {
-      color: isDarkScheme ? 'white' : 'black',
-      fontSize: 24,
-      fontWeight: '900',
-      textAlign: 'center',
-      marginBottom: 5
-    },
-
-    noWalletSubtitle: {
-      color: isDarkScheme ? '#c2c2c2' : '#5e5e5e',
-      textAlign: 'center',
-      marginBottom: 20
     },
 
     logo: {

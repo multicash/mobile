@@ -12,7 +12,11 @@
         <icon name="person-add" :size="20"/>
       </round-button>
     </modal-navigation>
-    <table-view :sections="contactsList" :grouped="false">
+    <table-view
+      :sections="contactsList"
+      :grouped="false"
+      subtitle="primary"
+    >
       <view
         :style="styles.noContactsContainer"
         slot="empty"
@@ -30,6 +34,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { contactSubtitle } from '@/core/support/styles'
 
 export default {
   name: 'OverviewView',
@@ -52,7 +57,7 @@ export default {
             return {
               title: contact.name,
               subtitle: contact.tagOrAddress,
-              leftIcon: { name: contact.icon.name, color: contact.icon.color, size: 40 },
+              leftIcon: { name: contact.icon.name, color: contact.icon.color, size: 30 },
               rightIcon: contact.isFavorite ? { name: 'star', color: '#FFDD57', size: 20 } : undefined,
               onPress: () => {
                 this.navigation.navigate('contact', { contactIdentifier: contact.identifier })

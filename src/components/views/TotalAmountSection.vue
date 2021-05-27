@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { Platform } from 'react-native'
+
 export default {
   name: 'TotalAmountSection',
 
@@ -46,7 +48,7 @@ const stylesStore = (isDarkScheme) => {
       color: '#ffffff',
       width: '100%',
       fontSize: 35,
-      fontWeight: 'bold'
+      fontWeight: Platform.OS === 'ios' ? '900' : 'bold'
     },
 
     totalFiatAmount: {

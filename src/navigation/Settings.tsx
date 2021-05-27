@@ -1,19 +1,27 @@
 import * as React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
 import AboutView from '@/views/settings/AboutView.vue'
 import SettingsOverviewView from '@/views/settings/OverviewView.vue'
 import BiometricAuthenticationView from '@/views/settings/BiometricAuthenticationView.vue'
 import ChangePinView from '@/views/settings/ChangePinView.vue'
 import CurrencyView from '@/views/settings/CurrencyView.vue'
 import SupportView from '@/views/settings/SupportView.vue'
+import { enableScreens } from 'react-native-screens'
+import { createNativeStackNavigator } from 'react-native-screens/native-stack'
+import { Appearance } from 'react-native'
 
-const Stack = createStackNavigator()
+enableScreens()
+const Stack = createNativeStackNavigator()
 
 export default () => {
   return (
     <Stack.Navigator
       initialRouteName="overview"
-      headerMode="none"
+      screenOptions={{
+        headerShown: false,
+        contentStyle: {
+          backgroundColor: Appearance.getColorScheme() === 'dark' ? '#222429' : '#ededf3'
+        }
+      }}
     >
       <Stack.Screen
         name="overview"

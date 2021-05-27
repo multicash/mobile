@@ -181,12 +181,12 @@ const stylesStore = (isDarkScheme, keyboardHeight) => {
       paddingTop: 10,
       color: isDarkScheme ? '#6b47e1' : '#4c00ff',
       fontSize: 35,
-      fontWeight: 'bold'
+      fontWeight: Platform.OS === 'ios' ? '900' : 'bold'
     },
 
     amountTextInput: {
       fontSize: 35,
-      fontWeight: 'bold',
+      fontWeight: Platform.OS === 'ios' ? '900' : 'bold',
       padding: 0,
       paddingTop: 10,
       paddingHorizontal: 10,

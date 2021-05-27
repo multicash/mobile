@@ -50,6 +50,7 @@
 import { cards, text } from '@/core/support/styles'
 import WalletIcon from '@/components/icons/WalletIcon'
 import Money from '@/components/labels/Money'
+import { Platform } from 'react-native'
 
 export default {
   name: 'WalletCard',
@@ -104,7 +105,7 @@ const stylesStore = (isDarkScheme, richDisplay) => {
       color: text(isDarkScheme).color
     },
     walletCardTag: {
-      color: isDarkScheme ? '#b95c8b' : '#931A5A',
+      color: isDarkScheme ? '#B95C8B' : '#931A5A',
       fontWeight: '600',
       fontSize: 12
     },
@@ -116,12 +117,12 @@ const stylesStore = (isDarkScheme, richDisplay) => {
     walletCardAmount: {
       color: text(isDarkScheme).color,
       fontSize: 35,
-      fontWeight: 'bold',
+      fontWeight: Platform.OS === 'ios' ? '900' : 'bold',
       width: '100%',
       marginTop: richDisplay ? undefined : 15
     },
     walletCardFiatAmount: {
-      color: isDarkScheme ? '#a7bbc1' : '#7e97a0',
+      color: isDarkScheme ? '#A7BBC1' : '#7E97A0',
       fontSize: 15,
       fontWeight: '600'
     }

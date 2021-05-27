@@ -18,6 +18,7 @@
 <script>
 import Money from '@/components/labels/Money'
 import WalletIcon from '@/components/icons/WalletIcon'
+import { Platform } from 'react-native'
 
 export default {
   name: 'SourceIcon',
@@ -49,7 +50,7 @@ const stylesStore = (isDarkScheme) => {
       height: 64,
       width: 64,
       borderRadius: 32,
-      backgroundColor: isDarkScheme ? '#494949' : '#d6d5d5',
+      backgroundColor: isDarkScheme ? '#494949' : '#fafafa',
       justifyContent: 'center',
       alignItems: 'center',
       marginBottom: 10
@@ -57,6 +58,7 @@ const stylesStore = (isDarkScheme) => {
 
     walletTitle: {
       color: isDarkScheme ? 'white' : 'black',
+      fontWeight: Platform.OS === 'ios' ? '900' : 'bold',
       fontSize: 12
     },
 

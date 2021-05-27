@@ -5,7 +5,7 @@
       has-back-button
       @on-dismiss="navigation.goBack()"
     />
-    <table-view :sections="data" type="small"/>
+    <table-view :sections="data" type="small" subtitle="primary"/>
   </view-background>
 </template>
 

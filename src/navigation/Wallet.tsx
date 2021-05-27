@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
 import OverviewView from '@/views/wallet/OverviewView.vue'
 import WalletSettingsView from '@/views/wallet/SettingsView.vue'
 import TransactionView from '@/views/wallet/TransactionView.vue'
@@ -8,14 +7,23 @@ import IconView from '@/views/wallet/IconView.vue'
 import RestoreKeyView from '@/views/wallet/RestoreKeyView.vue'
 import ExportView from '@/views/wallet/ExportView.vue'
 import WalletIconsView from '@/views/wallet/IconsView.vue'
+import { enableScreens } from 'react-native-screens'
+import { createNativeStackNavigator } from 'react-native-screens/native-stack'
+import { Appearance } from 'react-native'
 
-const Stack = createStackNavigator()
+enableScreens()
+const Stack = createNativeStackNavigator()
 
 export default () => {
   return (
     <Stack.Navigator
       initialRouteName="overview"
-      headerMode="none"
+      screenOptions={{
+        headerShown: false,
+        contentStyle: {
+          backgroundColor: Appearance.getColorScheme() === 'dark' ? '#222429' : '#ededf3'
+        }
+      }}
     >
       <Stack.Screen
         name="overview"
