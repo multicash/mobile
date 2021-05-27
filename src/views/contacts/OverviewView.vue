@@ -34,7 +34,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { contactSubtitle } from '@/core/support/styles'
 
 export default {
   name: 'OverviewView',
