@@ -1,59 +1,52 @@
 <template>
-  <view
-    :style="{ flex: 1 }"
+  <modal-view
+    has-back-button
+    title="Export account"
+    @on-dismiss="navigation.goBack()"
+    scrollable
   >
-    <modal-navigation
-      has-back-button
-      title="Export account"
-      @on-dismiss="navigation.goBack()"
-    />
     <keyboard-avoiding-view>
-      <view-background ref="scrollView" :style="{ paddingBottom: 50 }" scrollable>
-        <header-view
-          title="Export your account"
-          subtitle="In order to recover your account you need the restore key. Use the export option to conveniently store your account in a save place."
-          :image-background="require('@/assets/export.png')"
-          :image-foreground="require('@/assets/open-box.png')"
-        />
+      <header-view
+        title="Export your account"
+        subtitle="In order to recover your account you need the restore key. Use the export option to conveniently store your account in a save place."
+        :image-background="require('@/assets/export.png')"
+        :image-foreground="require('@/assets/open-box.png')"
+      />
 
-        <switch-notification
-          :value.sync="encryptFile"
-          @input="switchEncryption"
-          label="File encryption"
-        >
-          <view v-if="encryptFile">
-            <text :style="styles.encryptFileText">Because the export file contains all the data to your account we encourage you to encrypt your export file with a password.</text>
-            <rounded-text-input
-              ref="password"
-              title="Password"
-              secureTextEntry
-              :value="encryptionPassword"
-              @input="encryptionPassword = $event"
-              :onFocus="focusInput"
-            />
-          </view>
-        </switch-notification>
+      <switch-notification
+        :value.sync="encryptFile"
+        @input="switchEncryption"
+        label="File encryption"
+      >
+        <view v-if="encryptFile">
+          <text :style="styles.encryptFileText">Because the export file contains all the data to your account we encourage you to encrypt your export file with a password.</text>
+          <rounded-text-input
+            ref="password"
+            title="Password"
+            secureTextEntry
+            :value="encryptionPassword"
+            @input="encryptionPassword = $event"
+          />
+        </view>
+      </switch-notification>
 
-        <switch-notification
-          :value.sync="acceptedTerm"
-          @input="acceptedTerm = $event"
-          label="I understand what I'm doing and want to export my account into a separate file."
-          type="warning"
-        />
+      <switch-notification
+        :value.sync="acceptedTerm"
+        @input="acceptedTerm = $event"
+        label="I understand what I'm doing and want to export my account into a separate file."
+        type="warning"
+      />
 
-        <view :style="styles.exportButtonPlaceholder" />
+<!--      <view :style="styles.exportButtonPlaceholder" />-->
 
-      </view-background>
+      <rounded-button
+        v-if="acceptedTerm"
+        title="Export"
+        type="primary"
+        @on-press="showShareSheet"
+      />
     </keyboard-avoiding-view>
-
-    <rounded-button
-      v-if="acceptedTerm"
-      :style="styles.exportButton"
-      title="Export"
-      type="primary"
-      @on-press="showShareSheet"
-    />
-  </view>
+  </modal-view>
 </template>
 
 <script>
@@ -140,25 +133,10 @@ export default {
 
 const stylesStore = (isDarkScheme) => {
   return {
-    container: {
-
-    },
-
     encryptFileText: {
       color: isDarkScheme ? '#b3aabe' : '#72677b',
       fontSize: 12,
       paddingBottom: 10
-    },
-
-    exportButtonPlaceholder: {
-      height: 120
-    },
-
-    exportButton: {
-      position: 'absolute',
-      bottom: 30,
-      left: 20,
-      right: 20
     }
   }
 }

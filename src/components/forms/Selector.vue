@@ -43,13 +43,12 @@ const stylesStore = (isDarkScheme) => {
   return {
     container: {
       flexDirection: 'row',
+      flexGrow: 1,
       alignItems: 'center',
       justifyContent: 'space-between',
-      backgroundColor: isDarkScheme ? 'black' : '#ffffff',
+      backgroundColor: isDarkScheme ? 'black' : 'white',
       borderRadius: 10,
-      width: '100%',
-      minHeight: 50,
-      paddingVertical: 10,
+      paddingVertical: 7.5,
       paddingHorizontal: 15,
       marginBottom: 10
     },

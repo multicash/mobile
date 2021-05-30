@@ -1,12 +1,10 @@
 <template>
-  <view :style="{ flex: 1 }">
-    <modal-navigation
-      title="Enter recipient"
-      has-back-button
-      @on-dismiss="navigation.goBack()"
-    />
-
-    <view-background>
+  <modal-view
+    title="Enter recipient"
+    has-back-button
+    @on-dismiss="navigation.goBack()"
+  >
+    <view>
       <rounded-text-input
         ref="address"
         title="Address or Tag"
@@ -23,19 +21,19 @@
         :value="name"
         @input="name = $event"
       />
+    </view>
 
-      <view :style="styles.addFavoritesContainer">
-        <text :style="styles.addFavoritesText">Add to favorites</text>
-        <switch v-model="addToFavorites"/>
-      </view>
+    <view :style="styles.addFavoritesContainer">
+      <text :style="styles.addFavoritesText">Add to favorites</text>
+      <switch v-model="addToFavorites"/>
+    </view>
 
-      <rounded-button
-        title="Next"
-        v-if="showNext"
-        @on-press="toConfirm"
-      />
-    </view-background>
-  </view>
+    <rounded-button
+      title="Next"
+      v-if="showNext"
+      @on-press="toConfirm"
+    />
+  </modal-view>
 </template>
 
 <script>

@@ -6,6 +6,7 @@
     :style="styles.viewBackground"
     :contentContainerStyle="styles.contentContainer"
     contentInsetAdjustmentBehavior="automatic"
+    :disableScrollViewPanResponder="true"
   >
     <slot/>
   </scroll-view>

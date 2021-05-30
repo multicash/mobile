@@ -8,7 +8,13 @@
     <view-background scrollable>
 
       <input-description>Choose an account name for this account to recognize it among your other accounts.</input-description>
-      <rounded-text-input title="Account name" placeholder="Main account" :value="name" @input="name = $event"/>
+      <rounded-text-input
+        title="Account name"
+        placeholder="Main account"
+        :value="name"
+        @input="name = $event"
+        auto-focus
+      />
 
       <spacer />
 

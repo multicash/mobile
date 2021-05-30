@@ -36,7 +36,6 @@
           <money
             :amount="transaction.amount"
             crypto
-            currency=""
             :style="styles.itemAmount"
           />
         </touchable-opacity>

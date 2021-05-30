@@ -1,77 +1,73 @@
 <template>
-  <view
-    :style="{ flex: 1 }"
+  <modal-view
+    title="Account tag"
+    has-back-button
+    @on-dismiss="navigation.goBack()"
+    scrollable
   >
-    <modal-navigation
-      title="Account tag"
-      has-back-button
-      @on-dismiss="navigation.goBack()"
-    />
-    <keyboard-avoiding-view>
-      <view-background ref="scrollView" scrollable>
+    <keyboard-avoiding-view
+      :keyboard-vertical-offset="291"
+    >
+      <view :style="styles.exampleContainer">
 
-        <view :style="styles.exampleContainer">
-
-          <view :style="styles.fromMessage">
-            <text :style="styles.messageText">Hé send me your MCX tag, so I can pay you back for the coffee ☕️</text>
-          </view>
-
-          <view :style="{ alignItems: 'flex-end' }">
-            <view :style="styles.toMessage">
-              <text :style="styles.messageText">Ah sweet! My accounts tag is <text :style="{ fontWeight: 'bold' }">@MyAccount</text></text>
-            </view>
-          </view>
-
+        <view :style="styles.fromMessage">
+          <text :style="styles.messageText">Hé send me your MCX tag, so I can pay you back for the coffee ☕️</text>
         </view>
 
-        <header-view
-          title="Account Tag"
+        <view :style="{ alignItems: 'flex-end' }">
+          <view :style="styles.toMessage">
+            <text :style="styles.messageText">Ah sweet! My accounts tag is <text :style="{ fontWeight: 'bold' }">@MyAccount</text></text>
+          </view>
+        </view>
+
+      </view>
+
+      <header-view
+        title="Account Tag"
+      />
+
+      <input-description label="Come up with an unique tag for your new account. This allows you to share your tag with other MCX owners and let them send funds to your tag. A tag can be compared with a credit card number or something similar." />
+
+      <view :style="styles.tagContainer">
+        <view :style="styles.tagInputContainer">
+          <text :style="styles.tagAt">@</text>
+          <rounded-text-input
+            title="Your account tag"
+            :style="styles.tagInput"
+            :value="tag"
+            @input="onTagInput"
+            placeholder="MyUniqueTag"
+            autoCapitalize="none"
+            :autoCorrect="false"
+          />
+        </view>
+      </view>
+
+      <view v-if="(tag !== '' && $v.$invalid) || fetchingTagStatus">
+        <spacer  />
+        <notification
+          type="danger"
+          icon="alert-circle"
+          :label="invalidTagLabel"
+          :loading="fetchingTagStatus"
         />
-
-        <input-description label="Come up with an unique tag for your new account. This allows you to share your tag with other MCX owners and let them send funds to your tag. A tag can be compared with a credit card number or something similar." />
-
-        <view :style="styles.tagContainer">
-          <view :style="styles.tagInputContainer">
-            <text :style="styles.tagAt">@</text>
-            <rounded-text-input
-              title="Your account tag"
-              :style="styles.tagInput"
-              :value="tag"
-              @input="onTagInput"
-              placeholder="MyUniqueTag"
-              autoCapitalize="none"
-              :autoCorrect="false"
-            />
-          </view>
-        </view>
-
-        <view v-if="(tag !== '' && $v.$invalid) || fetchingTagStatus">
-          <spacer  />
-          <notification
-            type="danger"
-            icon="alert-circle"
-            :label="invalidTagLabel"
-            :loading="fetchingTagStatus"
-          />
-        </view>
-        <view v-else-if="tag !== '' && !fetchingTagStatus">
-          <spacer />
-          <notification
-            :loading="false"
-            type="success"
-            icon="checkmark-circle"
-            label="Your chosen tag is perfect!"
-          />
-          <spacer />
-          <rounded-button
-            v-if="!$v.$invalid"
-            title="Proceed"
-            @on-press="proceed"
-          />
-        </view>
-      </view-background>
+      </view>
+      <view v-else-if="tag !== '' && !fetchingTagStatus">
+        <spacer />
+        <notification
+          :loading="false"
+          type="success"
+          icon="checkmark-circle"
+          label="Your chosen tag is perfect!"
+        />
+        <rounded-button
+          v-if="!$v.$invalid"
+          title="Proceed"
+          @on-press="proceed"
+        />
+      </view>
     </keyboard-avoiding-view>
-  </view>
+  </modal-view>
 </template>
 
 <script>

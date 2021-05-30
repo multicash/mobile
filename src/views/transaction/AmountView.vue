@@ -1,64 +1,38 @@
 <template>
-  <view :style="{ flex: 1 }">
-    <modal-navigation
-      title="Amount"
-      has-close-button
-      @on-dismiss="navigation.goBack()"
-    />
-    <view-background
-      :style="{ alignItems: 'center' }"
+  <modal-view
+    title="Amount"
+    header
+    has-close-button
+    @on-dismiss="navigation.goBack()"
+  >
+    <view
+      :style="styles.container"
     >
-      <view
-        :style="styles.container"
-      >
-        <view :style="styles.sourceContainer">
-          <selector
-            :name="route.params.isReceive ? 'Receiving account' : 'From account'"
-            :value="sourceWallet.name"
-            @on-press="selectSourceWallet"
-          />
-        </view>
-        <view :style="styles.inputContainer">
-          <text :style="styles.title">How much?</text>
-          <view :style="styles.amountContainer">
-            <text :style="styles.amountCurrencyText">{{ coin }}</text>
-            <text-input
-              ref="amount"
-              :style="styles.amountTextInput"
-              keyboard-type="numeric"
-              placeholder="0.00"
-              auto-focus
-              :placeholder-text-color="isDarkScheme ? '#111111' : '#dadada'"
-              v-model="amount"
-            />
-<!--            inputAccessoryViewID="inputAccessoryView"-->
-<!--            <input-accessory-view nativeID="inputAccessoryView">-->
-<!--              <view :style="styles.inputAccessoryView">-->
-<!--                <touchable-opacity-->
-<!--                  v-for="calculationButton in calculationButtons"-->
-<!--                  :style="styles.inputAccessoryViewButton"-->
-<!--                  :key="calculationButton"-->
-<!--                  :activeOpacity="0.8"-->
-<!--                >-->
-<!--                  <text :style="styles.inputAccessoryViewButtonText">{{ calculationButton }}</text>-->
-<!--                </touchable-opacity>-->
-<!--              </view>-->
-<!--            </input-accessory-view>-->
-          </view>
-          <view :style="styles.calculatedAmountContainer">
-            <money :style="styles.calculatedAmountTextInput" :amount="amountNumber" convert/>
-          </view>
-        </view>
-        <spacer v-if="amountNumber === 0" :style="{height: 50}"/>
-        <rounded-button
-          v-if="amountNumber > 0"
-          title="Recipient"
-          :style="styles.recipientButton"
-          @on-press="confirm"
+      <view :style="styles.sourceContainer">
+        <selector
+          :name="route.params.isReceive ? 'Receiving account' : 'From account'"
+          :value="sourceWallet.name"
+          @on-press="selectSourceWallet"
         />
       </view>
-    </view-background>
-  </view>
+      <view :style="styles.inputContainer">
+        <amount-input
+          ref="amount"
+          :coin="coin"
+          :value="amount"
+          @input="amount = $event"
+          auto-focus
+        />
+      </view>
+      <spacer v-if="amountNumber === 0" :style="{height: 50}"/>
+      <rounded-button
+        v-if="amountNumber > 0"
+        title="Recipient"
+        :style="styles.recipientButton"
+        @on-press="confirm"
+      />
+    </view>
+  </modal-view>
 </template>
 
 <script>
@@ -87,10 +61,6 @@ export default {
   },
 
   created () {
-    this.navigation.addListener('focus', () => {
-      this.$refs.amount.focus()
-    })
-
     const listener = Keyboard.addListener('keyboardDidShow', event => {
       this.keyboardHeight = event.endCoordinates ? event.endCoordinates.height : 0
 

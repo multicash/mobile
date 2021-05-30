@@ -1,5 +1,6 @@
 <template>
   <keyboard-avoiding-view
+    ref="view"
     :style="styles.contentContainer"
     :behavior="behavior"
     :contentContainerStyle="styles.contentContainer"
@@ -17,6 +18,20 @@ export default {
 
   components: { KeyboardAvoidingView },
 
+  props: {
+    keyboardVerticalOffset: {
+      type: Number,
+      default () {
+        switch (Platform.OS) {
+          case 'ios':
+            return 200
+          default:
+            return 0
+        }
+      }
+    }
+  },
+
   computed: {
     styles () {
       return styleStore(this.isDarkScheme)
@@ -25,22 +40,11 @@ export default {
     behavior () {
       return Platform.OS === 'ios' ? 'position' : null
     }
-  },
-
-  props: {
-    keyboardVerticalOffset: {
-      type: Number,
-      default: -50
-    }
   }
 }
 
 const styleStore = (isDarkScheme) => {
   return {
-    container: {
-      flex: 1
-    },
-
     contentContainer: {
       flex: 1
     }

@@ -3,6 +3,7 @@
     <view :style="{ flexDirection: 'row' }">
       <image v-if="imageForeground" :style="styles.headerImage1" :source="imageForeground"/>
       <image v-if="imageBackground" :style="styles.headerImage2" :source="imageBackground"/>
+      <image v-else-if="image" :style="styles.image" :source="image"/>
     </view>
     <text :style="styles.headerTitle">{{ title }}</text>
     <text v-if="subtitle" :style="styles.headerSubtitle">{{ subtitle }}</text>
@@ -27,6 +28,9 @@ export default {
       default: null
     },
     imageForeground: {
+      default: null
+    },
+    image: {
       default: null
     }
   },
@@ -53,6 +57,12 @@ const stylesStore = (isDarkScheme, hasImageForeground) => {
 
     headerSubtitle: {
       ...pageSubtitle(isDarkScheme)
+    },
+
+    image: {
+      width: 60,
+      height: 60,
+      resizeMode: 'contain'
     },
 
     headerImage1: {

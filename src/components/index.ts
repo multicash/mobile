@@ -16,8 +16,10 @@ import RoundedButton from '@/components/buttons/RoundedButton.vue'
 import SecondaryActionButton from '@/components/buttons/SecondaryActionButton.vue'
 import SecondaryRoundButton from '@/components/buttons/SecondaryRoundButton.vue'
 
+import AmountInput from '@/components/forms/AmountInput.vue'
 import ColorPicker from '@/components/forms/ColorPicker.vue'
 import DotInput from '@/components/forms/DotInput.vue'
+import GroupedField from '@/components/forms/GroupedField.vue'
 import RoundedTextInput from '@/components/forms/RoundedTextInput.vue'
 import Selector from '@/components/forms/Selector.vue'
 
@@ -61,9 +63,11 @@ Vue.component('rounded-button', RoundedButton)
 Vue.component('secondary-action-button', SecondaryActionButton)
 Vue.component('secondary-round-button', SecondaryRoundButton)
 
+Vue.component('amount-input', AmountInput)
 // @ts-ignore
 Vue.component('color-picker', ColorPicker)
 Vue.component('dot-input', DotInput)
+Vue.component('grouped-field', GroupedField)
 Vue.component('rounded-text-input', RoundedTextInput)
 Vue.component('selector', Selector)
 

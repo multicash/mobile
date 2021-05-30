@@ -1,68 +1,64 @@
 <template>
-  <view :style="{ flex: 1 }">
-    <modal-navigation
-      :title="transaction.isReceive ? 'New request' : 'New payment'"
-      :has-back-button="!payLink"
-      :has-close-button="payLink"
-      @on-dismiss="navigation.goBack()"
-    />
-    <keyboard-avoiding-view :keyboard-vertical-offset="-150">
-      <view-background
-        ref="scrollView"
-        scrollable
-      >
-        <view :style="styles.headerContainer">
-          <source-icon
-            v-if="transaction.from"
-            :transaction-icon="transaction.fromIcon"
-            @on-press="selectFromWallet(transaction.from)"
-          />
-          <icon
-            name="arrow-forward-outline"
-            :size="50"
-          />
-          <source-icon
-            v-if="transaction.to"
-            :transaction-icon="transaction.toIcon"
-            @on-press="selectToWallet(transaction.to)"
-          />
-        </view>
-
-        <view :style="styles.amountContainer">
-          <money
-            crypto
-            :currency="transaction.isReceive ? transaction.to.coin : transaction.from.coin"
-            :amount="transaction.amount * 100000000"
-            :style="styles.amount"
-          />
-          <money
-            convert
-            :amount="(transaction.amount * 100000000) || 0"
-            :style="styles.calculatedAmount"
-          />
-          <text
-            v-if="notEnoughBalance"
-            :style="styles.notEnoughBalanceText">
-            Not enough balance
-          </text>
-        </view>
-
-        <rounded-button
-          :disabled="notEnoughBalance"
-          :title="transaction.isReceive && !transaction.to.walletIdentifier ? 'Share request' : 'Send payment'"
-          :style="styles.sendPaymentButton"
-          @on-press="proceed"
+  <modal-view
+    :title="transaction.isReceive ? 'New request' : 'New payment'"
+    :has-back-button="!payLink"
+    :has-close-button="payLink"
+    @on-dismiss="navigation.goBack()"
+    scrollable
+  >
+    <keyboard-avoiding-view>
+      <view :style="styles.headerContainer">
+        <source-icon
+          v-if="transaction.from"
+          :transaction-icon="transaction.fromIcon"
+          @on-press="selectFromWallet(transaction.from)"
         />
-
-        <rounded-text-input
-          title="Description"
-          placeholder="Why this payment?"
-          :value="transaction.label"
-          @input="transaction.label = $event"
+        <icon
+          name="arrow-forward-outline"
+          :size="50"
         />
-      </view-background>
+        <source-icon
+          v-if="transaction.to"
+          :transaction-icon="transaction.toIcon"
+          @on-press="selectToWallet(transaction.to)"
+        />
+      </view>
+
+      <view :style="styles.amountContainer">
+        <money
+          crypto
+          :currency="transaction.isReceive ? transaction.to.coin : transaction.from.coin"
+          :amount="transaction.amount * 100000000"
+          :style="styles.amount"
+        />
+        <money
+          convert
+          approximately
+          :amount="(transaction.amount * 100000000) || 0"
+          :style="styles.calculatedAmount"
+        />
+        <text
+          v-if="notEnoughBalance"
+          :style="styles.notEnoughBalanceText">
+          Not enough balance
+        </text>
+      </view>
+
+      <rounded-button
+        :disabled="notEnoughBalance"
+        :title="transaction.isReceive && !transaction.to.walletIdentifier ? 'Share request' : 'Send payment'"
+        :style="styles.sendPaymentButton"
+        @on-press="proceed"
+      />
+
+      <rounded-text-input
+        title="Description"
+        placeholder="Why this payment?"
+        :value="transaction.label"
+        @input="transaction.label = $event"
+      />
     </keyboard-avoiding-view>
-  </view>
+  </modal-view>
 </template>
 
 <script>

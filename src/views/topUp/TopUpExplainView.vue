@@ -1,11 +1,11 @@
 <template>
   <view-background scrollable>
     <view :style="styles.container">
-      <image :style="styles.image" :source="require('@/assets/add-dollar.png')" />
-      <view>
-        <text :style="styles.title">Account Top Up</text>
-        <text :style="styles.subtitle">Top Up your accounts from within MultiCash provided by our partner ChangeNOW.</text>
-      </view>
+      <header-view
+        :image="require('@/assets/add-dollar.png')"
+        title="Account Top Up"
+        subtitle="Top Up your accounts from within MultiCash provided by our partner ChangeNOW."
+      />
     </view>
     <feature
       v-for="feature in features"
@@ -26,7 +26,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-import { pageSubtitle, pageTitle } from '@/core/support/styles'
 
 export default {
   name: 'TopUpExplainView',
@@ -75,20 +74,6 @@ const styleStore = (isDarkScheme) => {
     container: {
       alignItems: 'center',
       marginVertical: 20
-    },
-
-    image: {
-      width: 60,
-      height: 60,
-      resizeMode: 'contain'
-    },
-
-    title: {
-      ...pageTitle(isDarkScheme)
-    },
-
-    subtitle: {
-      ...pageSubtitle(isDarkScheme)
     }
   }
 }

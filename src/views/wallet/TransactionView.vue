@@ -30,12 +30,13 @@
       <view :style="styles.amountContainer">
         <money
           crypto
-          :amount="route.params.transaction.amount"
+          :amount="route.params.transaction.amount /* 100000000*/"
           :style="styles.amount"
         />
         <money
           convert
-          :amount="route.params.transaction.amount / 1000000"
+          approximately
+          :amount="(route.params.transaction.amount /* 100000000*/) || 0"
           :style="styles.calculatedAmount"
         />
       </view>
@@ -55,6 +56,8 @@
 </template>
 
 <script>
+import { Platform } from 'react-native'
+
 export default {
   name: 'TransactionView',
 
@@ -83,7 +86,7 @@ const stylesStore = (isDarkScheme) => {
     amount: {
       fontSize: 40,
       color: isDarkScheme ? '#B95C8B' : '#931A5A',
-      fontWeight: '600'
+      fontWeight: Platform.OS === 'ios' ? '900' : 'bold'
     },
 
     calculatedAmount: {

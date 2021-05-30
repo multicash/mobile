@@ -1,13 +1,12 @@
 <template>
-  <view-background no-padding>
-    <modal-navigation
-      title="Top Up"
-      has-close-button
-      @on-dismiss="navigation.goBack()"
-    />
-
+  <modal-view
+    title="Top Up"
+    has-close-button
+    @on-dismiss="navigation.goBack()"
+    no-padding
+  >
     <table-view :sections="wallets" :header="renderTableHeader"/>
-  </view-background>
+  </modal-view>
 </template>
 
 <script>
@@ -53,7 +52,9 @@ export default {
     ...mapActions(['hasAnnouncement', 'announcementSeen']),
 
     navigate (wallet) {
-
+      this.navigation.navigate('buy', {
+        walletIdentifier: wallet.identifier
+      })
     },
 
     renderTableHeader (isDarkScheme) {

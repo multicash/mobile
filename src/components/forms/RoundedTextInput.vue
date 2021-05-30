@@ -15,6 +15,8 @@
       :autoCapitalize="autoCapitalize"
       :autoCompleteType="autoCompleteType"
       :autoCorrect="autoCorrect"
+      :keyboardType="keyboardType"
+      :auto-focus="autoFocus"
     />
   </view>
 </template>
@@ -61,9 +63,17 @@ export default {
       type: Boolean,
       default: true
     },
+    keyboardType: {
+      type: String,
+      default: 'default'
+    },
     fontSize: {
       type: Number,
       default: 18
+    },
+    autoFocus: {
+      type: Boolean,
+      default: false
     },
     focus: {
       type: Function,
@@ -98,8 +108,8 @@ const stylesStore = (isDarkScheme, multiline, fontSize) => {
   return {
     container: {
       backgroundColor: isDarkScheme ? '#2e2e36' : '#d0d7e1',
-      borderRadius: 5,
-      width: '100%',
+      borderRadius: 10,
+      flexGrow: 1,
       height: multiline ? undefined : 60,
       padding: 10,
       justifyContent: 'center'

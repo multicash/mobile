@@ -10,6 +10,7 @@
       />
     </slot>
     <view-background
+      ref="scrollView"
       :scrollable="scrollable"
       :no-padding="noPadding"
     >
@@ -57,6 +58,14 @@ export default {
   computed: {
     styles () {
       return styleStore(this.isDarkScheme)
+    }
+  },
+
+  methods: {
+    scrollTo (options) {
+      if (this.$refs.scrollView) {
+        this.$refs.scrollView.scrollTo(options)
+      }
     }
   }
 }

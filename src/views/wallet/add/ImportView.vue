@@ -1,65 +1,64 @@
 <template>
-  <view
-    :style="{ flex: 1 }"
+  <modal-view
+    title="Import an account"
+    has-back-button
+    @on-dismiss="navigation.goBack()"
+    scrollable
   >
-    <modal-navigation
-      title="Import an account"
-      has-back-button
-      @on-dismiss="navigation.goBack()"
-    />
-    <keyboard-avoiding-view>
-      <view-background ref="scrollView" :style="{ paddingBottom: 50 }" scrollable>
+    <keyboard-avoiding-view
+      :keyboard-vertical-offset="160"
+    >
+      <header-view
+        title="Import an existing account"
+        subtitle="Import an exported account file or paste the file contents here."
+        :image-background="require('@/assets/import.png')"
+        :image-foreground="require('@/assets/credit-card-cash-withdrawal.png')"
+      />
 
-        <header-view
-          title="Import an existing account"
-          subtitle="Import an exported account file or paste the file contents here."
-          :image-background="require('@/assets/import.png')"
-          :image-foreground="require('@/assets/credit-card-cash-withdrawal.png')"
-        />
+      <rounded-text-input
+        title="Paste import file contents"
+        multiline
+        :fontSize="12"
+        :value="pastedContents"
+        @input="pastedContents = $event"
+      />
+      <text v-if="pastedContents === ''" :style="styles.orLabel">Or</text>
+      <rounded-button
+        v-if="pastedContents === ''"
+        title="Choose an import file"
+        @on-press="importFile"
+      />
 
-        <rounded-text-input
-          title="Paste import file contents"
-          multiline
-          :fontSize="12"
-          :value="pastedContents"
-          @input="pastedContents = $event"
-          :onFocus="focusInput"
-        />
-        <text v-if="pastedContents === ''" :style="styles.orLabel">Or</text>
+      <spacer v-if="checkingRestoreKey || successfullyRestored"/>
+      <notification
+        v-if="checkingRestoreKey || successfullyRestored"
+        :loading="checkingRestoreKey"
+        icon="checkmark-circle"
+        label="With the given restore key we successfully found an existing account!"
+        type="success"
+      />
+
+      <view
+        v-if="pastedContents !== '' && !checkingRestoreKey && resolvedWalletConfig === null"
+      >
+        <spacer />
         <rounded-button
-          v-if="pastedContents === ''"
-          title="Choose an import file"
-          @on-press="importFile"
+          title="Proceed"
+          @on-press="importPastedContents"
         />
+      </view>
 
-        <spacer v-if="checkingRestoreKey || successfullyRestored"/>
-        <notification
-          v-if="checkingRestoreKey || successfullyRestored"
-          :loading="checkingRestoreKey"
-          icon="checkmark-circle"
-          label="With the given restore key we successfully found an existing account!"
-          type="success"
+      <view
+        v-if="resolvedWalletConfig"
+      >
+        <spacer />
+        <rounded-button
+          title="Import account"
+          @on-press="createWallet"
         />
-
-        <view :style="styles.proceedButtonPlaceholder"/>
-
-      </view-background>
+      </view>
     </keyboard-avoiding-view>
-
-    <rounded-button
-      v-if="pastedContents !== '' && !checkingRestoreKey && resolvedWalletConfig === null"
-      :style="styles.proceedButton"
-      title="Proceed"
-      @on-press="importPastedContents"
-    />
-
-    <rounded-button
-      v-if="resolvedWalletConfig"
-      :style="styles.proceedButton"
-      title="Import account"
-      @on-press="createWallet"
-    />
-  </view>
+  </modal-view>
 </template>
 
 <script>
@@ -193,17 +192,6 @@ const stylesStore = (isDarkScheme) => {
       fontWeight: '600',
       textAlign: 'center',
       marginVertical: 10
-    },
-
-    proceedButtonPlaceholder: {
-      height: 120
-    },
-
-    proceedButton: {
-      position: 'absolute',
-      bottom: 30,
-      left: 20,
-      right: 20
     }
   }
 }

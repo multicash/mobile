@@ -1,11 +1,10 @@
 <template>
-  <view :style="{ flex: 1 }">
-    <modal-navigation
-      has-back-button
-      title="Account name"
-      @on-dismiss="navigation.goBack()"
-    />
-    <view-background scrollable>
+  <modal-view
+    has-back-button
+    title="Account name"
+    @on-dismiss="navigation.goBack()"
+  >
+    <view>
       <input-description>Choose an account name for this account to recognize it among your other accounts.</input-description>
       <rounded-text-input
         ref="name"
@@ -14,9 +13,10 @@
         :value="name"
         @input="name = $event"
         @on-end-editing="updateName"
+        auto-focus
       />
-    </view-background>
-  </view>
+    </view>
+  </modal-view>
 </template>
 
 <script>

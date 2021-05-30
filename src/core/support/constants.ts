@@ -26,5 +26,6 @@ export default {
   defaultCurrencyCode: DEFAULT_CURRENCY_CODE || 'USD',
   defaultCoin: DEFAULT_COIN || 'mcx',
   defaultNetwork: DEFAULT_NETWORK || 'livenet',
-  paperKeyLength: PAPER_KEY_LENGTH || 12
+  paperKeyLength: PAPER_KEY_LENGTH || 12,
+  supportBuyCurrencies: ['USD', 'EUR', 'GPB']
 }

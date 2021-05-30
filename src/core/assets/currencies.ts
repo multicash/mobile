@@ -60,3 +60,18 @@ export default [
     name: 'United States Dollar'
   }
 ]
+
+export const buyCurrencies = [
+  {
+    code: 'USD',
+    name: 'United States Dollar'
+  },
+  {
+    code: 'EUR',
+    name: 'Euro'
+  },
+  {
+    code: 'GBP',
+    name: 'British Pound'
+  }
+]
