@@ -5,6 +5,7 @@
     :behavior="behavior"
     :contentContainerStyle="styles.contentContainer"
     :keyboardVerticalOffset="keyboardVerticalOffset"
+    :enabled="true"
   >
     <slot />
   </keyboard-avoiding-view>
@@ -23,6 +24,7 @@ export default {
       type: Number,
       default () {
         switch (Platform.OS) {
+          case 'android':
           case 'ios':
             return 200
           default:
@@ -38,7 +40,7 @@ export default {
     },
 
     behavior () {
-      return Platform.OS === 'ios' ? 'position' : null
+      return 'position'
     }
   }
 }

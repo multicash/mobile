@@ -195,7 +195,7 @@ const styleStore = (isDarkScheme) => {
 
     tagContainer: {
       backgroundColor: isDarkScheme ? 'black' : 'white',
-      borderRadius: 5
+      borderRadius: 10
     },
 
     tagInputContainer: {
