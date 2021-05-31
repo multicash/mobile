@@ -136,6 +136,11 @@ export default {
                   }, 250)
                 })
 
+                for (const contact of this.$store.getters.contacts) {
+                  this.removeContact(contact)
+                }
+
+                this.updateCurrency('')
                 this.setUnlockApplication(false)
                 this.setUnlockRestoreKey(false)
                 this.setUnlockExport(false)
@@ -219,7 +224,8 @@ export default {
       'setUnlockApplication',
       'setUnlockRestoreKey',
       'setUnlockExport',
-      'showAllAnnouncements'
+      'showAllAnnouncements',
+      'updateCurrency'
     ])
   }
 }

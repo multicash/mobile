@@ -21,9 +21,8 @@
 </template>
 
 <script>
-import { Platform } from 'react-native'
+import { Appearance } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { AppNavigator } from '@/navigation'
 import SetupNavigator from '@/navigation/Setup'
@@ -34,8 +33,11 @@ import store from '@/store'
 import AuthManager from '@/plugins/AuthManager'
 import EventBus from '@/plugins/EventBus'
 import WalletManager from '@/plugins/WalletManager'
+import { createNativeStackNavigator } from 'react-native-screens/native-stack'
+import { enableScreens } from 'react-native-screens'
 
-const Stack = createStackNavigator()
+enableScreens()
+const Stack = createNativeStackNavigator()
 const StackNavigator = Stack.Navigator
 const StackScreen = Stack.Screen
 
@@ -77,11 +79,10 @@ export default {
       return {
         headerShown: false,
         gestureEnabled: false,
-        cardOverlayEnabled: true,
-        ...Platform.select({
-          ios: TransitionPresets.FadeFromBottomAndroid,
-          default: TransitionPresets.RevealFromBottomAndroid
-        })
+        stackAnimation: 'fade',
+        contentStyle: {
+          backgroundColor: Appearance.getColorScheme() === 'dark' ? '#222429' : '#ededf3'
+        }
       }
     }
   },

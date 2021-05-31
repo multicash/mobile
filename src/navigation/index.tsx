@@ -18,11 +18,11 @@ import Wallet from '@/navigation/Wallet'
 import AuthenticationPinView from '@/views/authentication/PinView.vue'
 
 // Main application views
-import HomeView from '@/views/HomeView.vue'
-import ScanQRView from '@/views/ScanQRView.vue'
+import HomeView from '@/views/home/HomeView.vue'
+import ScanQRView from '@/views/home/ScanQRView.vue'
 import SupportView from '@/views/settings/SupportView.vue'
 import OrderWalletsView from '@/views/wallet/OrderWalletsView.vue'
-import WhatsNewView from '@/views/WhatsNewView.vue'
+import WhatsNewView from '@/views/home/WhatsNewView.vue'
 
 enableScreens()
 const PinView = AuthenticationPinView

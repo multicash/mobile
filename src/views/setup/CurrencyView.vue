@@ -4,7 +4,7 @@
     <settings-currency-view
       :header="false"
       :table-header="renderTableHeader"
-      @selected="navigation.navigate('done')"
+      @selected="done"
     />
   </safe-area-view>
 </template>
@@ -13,6 +13,7 @@
 import { SafeAreaView } from 'react-native-safe-area-context'
 import SettingsCurrencyView from '@/views/settings/CurrencyView'
 import TableHeaderView from '@/react/components/TableHeaderView'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'CurrencyView',
@@ -36,6 +37,12 @@ export default {
         'Choose your favorite well-known currency. All calculated amounts will be displayed in this currency.',
         require('@/assets/currency-exchange.png')
       )
+    },
+
+    ...mapActions(['updateIsSetup']),
+
+    done () {
+      this.updateIsSetup(true)
     }
   }
 }

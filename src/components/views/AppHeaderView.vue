@@ -29,12 +29,12 @@ export default {
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme, this.insets, this.expand)
+      return stylesStore(this.isDarkScheme, this.insets, this.expand, this.colorsBackground)
     }
   }
 }
 
-const stylesStore = (isDarkScheme, insets, expand) => {
+const stylesStore = (isDarkScheme, insets, expand, colorsBackground) => {
   return {
     container: {
       flex: expand ? 1 : undefined,
@@ -43,7 +43,9 @@ const stylesStore = (isDarkScheme, insets, expand) => {
       shadowRadius: 10,
       shadowOpacity: 0.1,
       shadowColor: '#000000',
-      marginTop: -insets.top
+      marginTop: -insets.top,
+      minHeight: colorsBackground ? 200 : undefined,
+      maxHeight: 400
     },
 
     contentContainer: {
