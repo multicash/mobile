@@ -57,7 +57,7 @@ export default {
         return this.getFormattedCurrency(amount, this.currentCurrencyCode)
       }
 
-      return ''
+      return this.getFormattedCurrency(this.amount, this.currency)
     }
   }
 }

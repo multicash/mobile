@@ -41,7 +41,7 @@
         />
       </view>
 
-      <detail-list :style="styles.detailsContainer">
+      <detail-list>
         <detail-list-item title="Payed on" value="17 sep. 2020 14:00" icon="calendar-outline"/>
         <detail-list-item title="Description" value="McDonald's Bruh" icon="chatbubble-ellipses"/>
         <detail-list-title title="Extra details"/>
@@ -98,12 +98,6 @@ const stylesStore = (isDarkScheme) => {
     sendPaymentButton: {
       width: '100%',
       marginBottom: 10
-    },
-
-    detailsContainer: {
-      backgroundColor: isDarkScheme ? '#191a20' : 'white',
-      borderRadius: 15,
-      padding: 20
     },
 
     explorerButtonText: {

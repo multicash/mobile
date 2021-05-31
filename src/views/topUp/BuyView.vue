@@ -8,8 +8,8 @@
     <grouped-field>
       <rounded-text-input
         ref="amount"
-        :value="amount"
-        @input="amount = $event"
+        :value="buy"
+        @input="buyInput"
         title="You Pay"
         placeholder="0.00"
         keyboard-type="numeric"
@@ -38,6 +38,7 @@
       <rounded-text-input
         ref="estimation"
         :value="estimation"
+        @input="estimationInput"
         title="You Get"
         placeholder="0.00"
         keyboard-type="numeric"
@@ -56,6 +57,7 @@
       title="Buy"
       icon="card"
       type="primary"
+      @on-press="confirm"
     />
 
     <spacer />
@@ -68,12 +70,15 @@
 import { mapGetters } from 'vuex'
 import constants from '@/core/support/constants'
 
+const price = 2.4334554
+
 export default {
   name: 'AmountView',
 
   data () {
     return {
-      amount: '1500',
+      buy: '1500',
+      estimation: (1500 / price).toFixed(5).toString(),
       buyCurrency: constants.defaultCurrencyCode
     }
   },
@@ -83,10 +88,6 @@ export default {
 
     styles () {
       return styleStore(this.isDarkScheme)
-    },
-
-    estimation () {
-      return (parseFloat(this.amount) * 2.4334554 || 0).toFixed(5).toString()
     },
 
     currency () {
@@ -101,6 +102,16 @@ export default {
   },
 
   methods: {
+    buyInput (amount) {
+      this.buy = amount
+      this.estimation = ((parseFloat(amount) / 2.4334554) || 0).toFixed(5).toString()
+    },
+
+    estimationInput (amount) {
+      this.estimation = amount
+      this.buy = ((parseFloat(amount) * 2.4334554) || 0).toFixed(2).toString()
+    },
+
     selectBuyCurrency () {
       const unsubscribe = this.navigation.addListener('focus', () => {
         if (this.route.params.currency) {
@@ -113,6 +124,16 @@ export default {
         currency: this.buyCurrency,
         returnView: 'buy'
       })
+    },
+
+    confirm () {
+      this.navigation.navigate('confirm', {
+        buy: parseFloat(this.buy),
+        buyCurrency: this.buyCurrency,
+        estimation: parseFloat(this.estimation),
+        estimationCurrency: this.currency,
+        walletIdentifier: this.wallet.identifier
+      })
     }
   }
 }
@@ -120,7 +141,7 @@ export default {
 const styleStore = (isDarkScheme) => {
   return {
     currency: {
-      flex: 0.1
+      maxWidth: 140
     },
 
     dottedLine: {
@@ -146,7 +167,7 @@ const styleStore = (isDarkScheme) => {
     },
 
     getCurrency: {
-      minWidth: 153,
+      width: 140,
       alignItems: 'center',
       justifyContent: 'space-between',
       backgroundColor: isDarkScheme ? 'black' : 'white',

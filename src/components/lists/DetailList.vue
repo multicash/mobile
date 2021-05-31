@@ -18,7 +18,10 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     detailListContainer: {
-      width: '100%'
+      width: '100%',
+      backgroundColor: isDarkScheme ? '#191a20' : 'white',
+      borderRadius: 15,
+      padding: 20
     }
   }
 }
