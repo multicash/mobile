@@ -6,14 +6,14 @@
         :screenOptions="screenOptions"
       >
         <stack-screen
-          v-if="isSetup"
-          name="app"
-          :component="app"
-        />
-        <stack-screen
           v-if="!isSetup"
           name="setup"
           :component="setup"
+        />
+        <stack-screen
+          v-if="isSetup"
+          name="app"
+          :component="app"
         />
       </stack-navigator>
     </navigation-container>
@@ -79,7 +79,7 @@ export default {
       return {
         headerShown: false,
         gestureEnabled: false,
-        stackAnimation: 'fade',
+        replaceAnimation: 'push',
         contentStyle: {
           backgroundColor: Appearance.getColorScheme() === 'dark' ? '#222429' : '#ededf3'
         }
