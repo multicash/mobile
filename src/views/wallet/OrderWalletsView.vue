@@ -32,7 +32,7 @@
 
 <script>
 import React from 'react'
-import { TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, TouchableWithoutFeedback } from 'react-native'
 import { ListItem, Avatar } from 'react-native-elements'
 import DraggableFlatList from 'react-native-draggable-flatlist'
 import { mapActions, mapGetters } from 'vuex'
@@ -126,7 +126,7 @@ const stylesStore = (isDarkScheme) => {
     },
     item: {
       borderBottomColor: isDarkScheme ? '#505155' : '#dfe1ee',
-      borderBottomWidth: 0.75
+      borderBottomWidth: StyleSheet.hairlineWidth
     },
     itemContent: {
       backgroundColor: isDarkScheme ? '#2c2e36' : '#ffffff'

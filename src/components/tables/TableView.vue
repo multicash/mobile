@@ -21,7 +21,7 @@
 
 <script>
 import React from 'react'
-import { View, Text, Platform } from 'react-native'
+import { View, Text, Platform, StyleSheet } from 'react-native'
 import { ListItem, Avatar, Icon } from 'react-native-elements'
 import { sectionTitle, sectionFooter, tableSubtitle } from '@/core/support/styles'
 
@@ -219,7 +219,7 @@ const stylesStore = (isDarkScheme, type, grouped, subtitle) => {
       overflow: 'hidden',
       marginHorizontal: 15,
       borderBottomColor: isDarkScheme ? '#505155' : '#e7e8f0',
-      borderBottomWidth: 0.75
+      borderBottomWidth: StyleSheet.hairlineWidth
     },
     itemLast: {
       borderBottomLeftRadius: 10,
@@ -229,7 +229,7 @@ const stylesStore = (isDarkScheme, type, grouped, subtitle) => {
     },
     item: {
       borderBottomColor: isDarkScheme ? '#505155' : '#e7e8f0',
-      borderBottomWidth: 0.75,
+      borderBottomWidth: StyleSheet.hairlineWidth,
       marginHorizontal: grouped ? 15 : 0
     },
     itemContent: {

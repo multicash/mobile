@@ -1,16 +1,25 @@
 <template>
-  <modal-view>
-    <text>ChangeNOW pay view</text>
-    <rounded-button
-      title="simulate pay"
-      @on-press="payed"
-    />
+  <modal-view
+    title="Top Up"
+  >
+<!--    <web-view-->
+<!--      :style="styles.webView"-->
+<!--      :source="{ uri: 'https://payments.guardarian.com/checkout?tid=4865078210' }"-->
+<!--    />-->
+    <text>Placeholder for (I guess) ChangeNOW pay portal</text>
+    <rounded-button title="Pay" @on-press="navigation.navigate('payed')" icon="logo-euro"/>
   </modal-view>
 </template>
 
 <script>
+// import WebView from 'react-native-webview'
+
 export default {
   name: 'PayView',
+
+  components: {
+    // WebView
+  },
 
   computed: {
     styles () {
@@ -32,6 +41,10 @@ export default {
 }
 
 const styleStore = (isDarkScheme) => {
-  return {}
+  return {
+    webView: {
+      flex: 1
+    }
+  }
 }
 </script>

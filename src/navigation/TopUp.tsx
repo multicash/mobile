@@ -41,12 +41,33 @@ export default () => {
       />
       <Stack.Screen
         name="pay"
-        component={PayView as any}
-      />
-      <Stack.Screen
-        name="payed"
-        component={PayedView as any}
-      />
+        options={{
+          gestureEnabled: false,
+          stackPresentation: 'modal'
+        }}
+      >
+        {() => (
+          <Stack.Navigator
+            initialRouteName="nice"
+            screenOptions={{
+              headerShown: false,
+              gestureEnabled: false,
+              contentStyle: {
+                backgroundColor: Appearance.getColorScheme() === 'dark' ? '#222429' : '#ededf3'
+              }
+            }}
+          >
+            <Stack.Screen
+              name="nice"
+              component={PayView as any}
+            />
+            <Stack.Screen
+              name="payed"
+              component={PayedView as any}
+            />
+          </Stack.Navigator>
+        )}
+      </Stack.Screen>
     </Stack.Navigator>
   )
 }
