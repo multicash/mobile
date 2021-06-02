@@ -12,6 +12,8 @@ import Receive from '@/navigation/Receive'
 import Settings from '@/navigation/Settings'
 import TopUpExplainView from '@/views/topUp/TopUpExplainView.vue'
 import TopUp from '@/navigation/TopUp'
+import InvestExplainView from '@/views/invest/InvestExplainView.vue'
+import Invest from '@/navigation/Invest'
 import Wallet from '@/navigation/Wallet'
 
 // Authentication views
@@ -76,6 +78,14 @@ export const AppNavigator = () => {
       <Stack.Screen
         name="topUp"
         component={TopUp}
+      />
+      <Stack.Screen
+        name="invest.explain"
+        component={InvestExplainView as any}
+      />
+      <Stack.Screen
+        name="invest"
+        component={Invest}
       />
       <Stack.Screen
         name="wallet"

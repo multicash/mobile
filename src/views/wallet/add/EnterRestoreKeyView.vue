@@ -23,7 +23,6 @@
             auto-complete-type="off"
             :auto-correct="false"
             @input="onKeyup"
-            :on-focus="focusInput"
           />
           <view :style="styles.wordsCounter">
             <text :style="styles.wordsCounterText">{{ words.length }}/12 words</text>

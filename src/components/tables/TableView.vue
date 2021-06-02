@@ -79,6 +79,7 @@ export default {
             size={item.item.leftAvatar.size || 40}
             rounded={item.item.leftAvatar.rounded || false}
             placeholderStyle={{ backgroundColor: 'transparent' }}
+            containerStyle={ item.item.leftAvatar.style || {} }
           />
           }
 

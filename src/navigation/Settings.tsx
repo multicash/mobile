@@ -1,5 +1,6 @@
 import * as React from 'react'
 import AboutView from '@/views/settings/AboutView.vue'
+import AppIconView from '@/views/settings/AppIconView.vue'
 import SettingsOverviewView from '@/views/settings/OverviewView.vue'
 import BiometricAuthenticationView from '@/views/settings/BiometricAuthenticationView.vue'
 import ChangePinView from '@/views/settings/ChangePinView.vue'
@@ -46,6 +47,10 @@ export default () => {
       <Stack.Screen
         name="about"
         component={AboutView as any}
+      />
+      <Stack.Screen
+        name="appIcon"
+        component={AppIconView as any}
       />
     </Stack.Navigator>
   )

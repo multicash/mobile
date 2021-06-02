@@ -85,5 +85,56 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+  <key>CFBundleIcons</key>
+  <dict>
+      <key>CFBundlePrimaryIcon</key>
+      <dict>
+          <key>CFBundleIconFiles</key>
+          <array>
+              <string>AppIcon</string>
+          </array>
+          <key>UIPrerenderedIcon</key>
+          <false/>
+      </dict>
+      <key>CFBundleAlternateIcons</key>
+      <dict>
+          <key>Colors</key>
+          <dict>
+              <key>CFBundleIconFiles</key>
+              <array>
+                  <string>Colors</string>
+              </array>
+              <key>UIPrerenderedIcon</key>
+              <false/>
+          </dict>
+          <key>StripesInverted</key>
+          <dict>
+              <key>CFBundleIconFiles</key>
+              <array>
+                  <string>StripesInverted</string>
+              </array>
+              <key>UIPrerenderedIcon</key>
+              <false/>
+          </dict>
+          <key>Stripes</key>
+          <dict>
+              <key>CFBundleIconFiles</key>
+              <array>
+                  <string>Stripes</string>
+              </array>
+              <key>UIPrerenderedIcon</key>
+              <false/>
+          </dict>
+          <key>X1Chip</key>
+          <dict>
+              <key>CFBundleIconFiles</key>
+              <array>
+                  <string>X1Chip</string>
+              </array>
+              <key>UIPrerenderedIcon</key>
+              <false/>
+          </dict>
+      </dict>
+  </dict>
 </dict>
 </plist>

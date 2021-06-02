@@ -36,7 +36,7 @@
           @pay="navigation.navigate('pay')"
           @receive="navigation.navigate('receive')"
           @topUp="navigation.navigate('topUp')"
-          @invest="notImplemented"
+          @invest="navigation.navigate('invest')"
           @change="notImplemented"
           @scanQR="navigation.navigate('scanQR')"
           @scanNFC="scanNFC"

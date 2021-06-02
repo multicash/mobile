@@ -10,6 +10,7 @@ import { mapActions } from 'vuex'
 import exampleContacts from '@/assets/examples/contacts'
 import exampleWallets from '@/assets/examples/wallets'
 import ReactNativeBiometrics from 'react-native-biometrics'
+import { Platform } from 'react-native'
 
 export default {
   name: 'OverviewView',
@@ -107,19 +108,26 @@ export default {
                 this.navigation.navigate('support')
               }
             },
-            {
-              title: 'Rate MultiCash',
-              subtitle: 'Let others know how much you like MultiCash',
-              leftAvatar: { source: require('@/assets/rating.png'), size: 40 }
-            },
+            Platform.OS === 'ios' ? {
+              title: 'App Icon',
+              leftAvatar: { source: require('@/assets/ios-app-icon-shape.png'), size: 40 },
+              onPress: () => {
+                this.navigation.navigate('appIcon')
+              }
+            } : null,
             {
               title: 'About MultiCash',
               leftAvatar: { source: require('@/assets/coins/MCX.png'), size: 40 },
               onPress: () => {
                 this.navigation.navigate('about')
               }
+            },
+            {
+              title: 'Rate MultiCash',
+              subtitle: 'Let others know how much you like MultiCash',
+              leftAvatar: { source: require('@/assets/rating.png'), size: 40 }
             }
-          ]
+          ].filter(x => !!x)
         },
         {
           title: 'Development',

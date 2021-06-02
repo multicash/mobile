@@ -20,6 +20,15 @@
 		2DCD954D1E0B4F2C00145EB5 /* MultiCashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MultiCashTests.m */; };
 		2F4127D0A5B8948C50D03613 /* libPods-MultiCash.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFAFCD92818C036A2CEF4E67 /* libPods-MultiCash.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		A3F9C8E926683B3000A56D53 /* Colors@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F9C8E726683B3000A56D53 /* Colors@2x.png */; };
+		A3F9C8EA26683B3000A56D53 /* Colors@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F9C8E826683B3000A56D53 /* Colors@3x.png */; };
+		A3F9C8ED26683B4700A56D53 /* UIApplicationModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F9C8EB26683B4700A56D53 /* UIApplicationModule.m */; };
+		A3F9C8F0266844B600A56D53 /* Stripes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F9C8EE266844B600A56D53 /* Stripes@2x.png */; };
+		A3F9C8F1266844B600A56D53 /* Stripes@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F9C8EF266844B600A56D53 /* Stripes@3x.png */; };
+		A3F9C8F4266845F500A56D53 /* StripesInverted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F9C8F2266845F500A56D53 /* StripesInverted@2x.png */; };
+		A3F9C8F5266845F500A56D53 /* StripesInverted@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F9C8F3266845F500A56D53 /* StripesInverted@3x.png */; };
+		A3F9C8FC26684A8C00A56D53 /* X1Chip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F9C8FA26684A8C00A56D53 /* X1Chip@2x.png */; };
+		A3F9C8FD26684A8C00A56D53 /* X1Chip@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F9C8FB26684A8C00A56D53 /* X1Chip@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +85,16 @@
 		9D99B71A3D7E44C7A7FBE741 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		A383103E2538E6C80064238E /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		A3BA726225A9DD7500325D78 /* MultiCash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = MultiCash.entitlements; path = MultiCash/MultiCash.entitlements; sourceTree = "<group>"; };
+		A3F9C8E726683B3000A56D53 /* Colors@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Colors@2x.png"; path = "MultiCash/Icons/Colors@2x.png"; sourceTree = "<group>"; };
+		A3F9C8E826683B3000A56D53 /* Colors@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Colors@3x.png"; path = "MultiCash/Icons/Colors@3x.png"; sourceTree = "<group>"; };
+		A3F9C8EB26683B4700A56D53 /* UIApplicationModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIApplicationModule.m; path = MultiCash/Modules/UIApplicationModule.m; sourceTree = "<group>"; };
+		A3F9C8EC26683B4700A56D53 /* UIApplicationModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIApplicationModule.h; path = MultiCash/Modules/UIApplicationModule.h; sourceTree = "<group>"; };
+		A3F9C8EE266844B600A56D53 /* Stripes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Stripes@2x.png"; path = "MultiCash/Icons/Stripes@2x.png"; sourceTree = "<group>"; };
+		A3F9C8EF266844B600A56D53 /* Stripes@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Stripes@3x.png"; path = "MultiCash/Icons/Stripes@3x.png"; sourceTree = "<group>"; };
+		A3F9C8F2266845F500A56D53 /* StripesInverted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StripesInverted@2x.png"; path = "MultiCash/Icons/StripesInverted@2x.png"; sourceTree = "<group>"; };
+		A3F9C8F3266845F500A56D53 /* StripesInverted@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StripesInverted@3x.png"; path = "MultiCash/Icons/StripesInverted@3x.png"; sourceTree = "<group>"; };
+		A3F9C8FA26684A8C00A56D53 /* X1Chip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "X1Chip@2x.png"; path = "MultiCash/Icons/X1Chip@2x.png"; sourceTree = "<group>"; };
+		A3F9C8FB26684A8C00A56D53 /* X1Chip@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "X1Chip@3x.png"; path = "MultiCash/Icons/X1Chip@3x.png"; sourceTree = "<group>"; };
 		BCC4946180FC47D39057D047 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		C775F6F1C4134110A22ADCB2 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		CA549A1B32394E8F98BD1BC7 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
@@ -159,6 +178,8 @@
 		13B07FAE1A68108700A75B9A /* MultiCash */ = {
 			isa = PBXGroup;
 			children = (
+				A3F9C8E626683AAC00A56D53 /* Modules */,
+				A3F9C8E526683AA200A56D53 /* Icons */,
 				A3BA726225A9DD7500325D78 /* MultiCash.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -217,6 +238,30 @@
 				2D02E4901E0B4A5D006451C7 /* MultiCash-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A3F9C8E526683AA200A56D53 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				A3F9C8FA26684A8C00A56D53 /* X1Chip@2x.png */,
+				A3F9C8FB26684A8C00A56D53 /* X1Chip@3x.png */,
+				A3F9C8F2266845F500A56D53 /* StripesInverted@2x.png */,
+				A3F9C8F3266845F500A56D53 /* StripesInverted@3x.png */,
+				A3F9C8EE266844B600A56D53 /* Stripes@2x.png */,
+				A3F9C8EF266844B600A56D53 /* Stripes@3x.png */,
+				A3F9C8E726683B3000A56D53 /* Colors@2x.png */,
+				A3F9C8E826683B3000A56D53 /* Colors@3x.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
+		A3F9C8E626683AAC00A56D53 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				A3F9C8EC26683B4700A56D53 /* UIApplicationModule.h */,
+				A3F9C8EB26683B4700A56D53 /* UIApplicationModule.m */,
+			);
+			name = Modules;
 			sourceTree = "<group>";
 		};
 		ECC398861CD8477B91217AA6 /* Resources */ = {
@@ -388,8 +433,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3F9C8F1266844B600A56D53 /* Stripes@3x.png in Resources */,
+				A3F9C8E926683B3000A56D53 /* Colors@2x.png in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				A3F9C8EA26683B3000A56D53 /* Colors@3x.png in Resources */,
+				A3F9C8F4266845F500A56D53 /* StripesInverted@2x.png in Resources */,
+				A3F9C8FD26684A8C00A56D53 /* X1Chip@3x.png in Resources */,
+				A3F9C8FC26684A8C00A56D53 /* X1Chip@2x.png in Resources */,
+				A3F9C8F0266844B600A56D53 /* Stripes@2x.png in Resources */,
+				A3F9C8F5266845F500A56D53 /* StripesInverted@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,6 +734,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				A3F9C8ED26683B4700A56D53 /* UIApplicationModule.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
