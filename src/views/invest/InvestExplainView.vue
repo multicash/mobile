@@ -1,10 +1,10 @@
 <template>
-
+  <text>invest explain view</text>
 </template>
 
 <script>
 export default {
-  name: 'InvestExplenationView',
+  name: 'InvestExplainView',
 
   computed: {
     styles () {
