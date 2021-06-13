@@ -42,6 +42,31 @@ export default {
           name: 'X1 Chip',
           value: 'X1Chip',
           source: require('./../../../ios/MultiCash/Icons/X1Chip.png')
+        },
+        {
+          name: 'X1X Chip',
+          value: 'X1XChip',
+          source: require('./../../../ios/MultiCash/Icons/X1XChip.png')
+        },
+        {
+          name: 'Black on Black',
+          value: 'Bob',
+          source: require('./../../../ios/MultiCash/Icons/Bob.png')
+        },
+        {
+          name: 'White on White',
+          value: 'Wow',
+          source: require('./../../../ios/MultiCash/Icons/Wow.png')
+        },
+        {
+          name: 'Gold',
+          value: 'Gold',
+          source: require('./../../../ios/MultiCash/Icons/Gold.png')
+        },
+        {
+          name: 'Silver',
+          value: 'Silver',
+          source: require('./../../../ios/MultiCash/Icons/Silver.png')
         }
       ]
     }

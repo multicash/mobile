@@ -134,6 +134,51 @@
               <key>UIPrerenderedIcon</key>
               <false/>
           </dict>
+          <key>X1XChip</key>
+          <dict>
+              <key>CFBundleIconFiles</key>
+              <array>
+                  <string>X1XChip</string>
+              </array>
+              <key>UIPrerenderedIcon</key>
+              <false/>
+          </dict>
+          <key>Bob</key>
+          <dict>
+              <key>CFBundleIconFiles</key>
+              <array>
+                  <string>Bob</string>
+              </array>
+              <key>UIPrerenderedIcon</key>
+              <false/>
+          </dict>
+          <key>Wow</key>
+          <dict>
+              <key>CFBundleIconFiles</key>
+              <array>
+                  <string>Wow</string>
+              </array>
+              <key>UIPrerenderedIcon</key>
+              <false/>
+          </dict>
+          <key>Gold</key>
+          <dict>
+              <key>CFBundleIconFiles</key>
+              <array>
+                  <string>Gold</string>
+              </array>
+              <key>UIPrerenderedIcon</key>
+              <false/>
+          </dict>
+          <key>Silver</key>
+          <dict>
+              <key>CFBundleIconFiles</key>
+              <array>
+                  <string>Silver</string>
+              </array>
+              <key>UIPrerenderedIcon</key>
+              <false/>
+          </dict>
       </dict>
   </dict>
 </dict>

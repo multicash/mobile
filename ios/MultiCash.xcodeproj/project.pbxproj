@@ -20,6 +20,16 @@
 		2DCD954D1E0B4F2C00145EB5 /* MultiCashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MultiCashTests.m */; };
 		2F4127D0A5B8948C50D03613 /* libPods-MultiCash.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFAFCD92818C036A2CEF4E67 /* libPods-MultiCash.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		A376AE182676BA8F0028FD98 /* Bob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A376AE132676BA8F0028FD98 /* Bob@2x.png */; };
+		A376AE192676BA8F0028FD98 /* Gold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A376AE142676BA8F0028FD98 /* Gold@2x.png */; };
+		A376AE1A2676BA8F0028FD98 /* Bob@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A376AE152676BA8F0028FD98 /* Bob@3x.png */; };
+		A376AE1B2676BA8F0028FD98 /* Gold@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A376AE162676BA8F0028FD98 /* Gold@3x.png */; };
+		A376AE1C2676BA8F0028FD98 /* Silver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A376AE172676BA8F0028FD98 /* Silver@2x.png */; };
+		A376AE202676BAA10028FD98 /* Silver@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A376AE1D2676BAA10028FD98 /* Silver@3x.png */; };
+		A376AE212676BAA10028FD98 /* Wow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A376AE1E2676BAA10028FD98 /* Wow@3x.png */; };
+		A376AE222676BAA10028FD98 /* Wow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A376AE1F2676BAA10028FD98 /* Wow@2x.png */; };
+		A37C0422266996D4003768FF /* X1XChip@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A37C0420266996D4003768FF /* X1XChip@3x.png */; };
+		A37C0423266996D4003768FF /* X1XChip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A37C0421266996D4003768FF /* X1XChip@2x.png */; };
 		A3F9C8E926683B3000A56D53 /* Colors@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F9C8E726683B3000A56D53 /* Colors@2x.png */; };
 		A3F9C8EA26683B3000A56D53 /* Colors@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3F9C8E826683B3000A56D53 /* Colors@3x.png */; };
 		A3F9C8ED26683B4700A56D53 /* UIApplicationModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F9C8EB26683B4700A56D53 /* UIApplicationModule.m */; };
@@ -83,6 +93,16 @@
 		92311E46CCB54259A9A828CF /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		96B3B1D55EF2427F921139D9 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-ionicons/fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		9D99B71A3D7E44C7A7FBE741 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		A376AE132676BA8F0028FD98 /* Bob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Bob@2x.png"; path = "MultiCash/Icons/Bob@2x.png"; sourceTree = "<group>"; };
+		A376AE142676BA8F0028FD98 /* Gold@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Gold@2x.png"; path = "MultiCash/Icons/Gold@2x.png"; sourceTree = "<group>"; };
+		A376AE152676BA8F0028FD98 /* Bob@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Bob@3x.png"; path = "MultiCash/Icons/Bob@3x.png"; sourceTree = "<group>"; };
+		A376AE162676BA8F0028FD98 /* Gold@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Gold@3x.png"; path = "MultiCash/Icons/Gold@3x.png"; sourceTree = "<group>"; };
+		A376AE172676BA8F0028FD98 /* Silver@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Silver@2x.png"; path = "MultiCash/Icons/Silver@2x.png"; sourceTree = "<group>"; };
+		A376AE1D2676BAA10028FD98 /* Silver@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Silver@3x.png"; path = "MultiCash/Icons/Silver@3x.png"; sourceTree = "<group>"; };
+		A376AE1E2676BAA10028FD98 /* Wow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Wow@3x.png"; path = "MultiCash/Icons/Wow@3x.png"; sourceTree = "<group>"; };
+		A376AE1F2676BAA10028FD98 /* Wow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Wow@2x.png"; path = "MultiCash/Icons/Wow@2x.png"; sourceTree = "<group>"; };
+		A37C0420266996D4003768FF /* X1XChip@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "X1XChip@3x.png"; path = "MultiCash/Icons/X1XChip@3x.png"; sourceTree = "<group>"; };
+		A37C0421266996D4003768FF /* X1XChip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "X1XChip@2x.png"; path = "MultiCash/Icons/X1XChip@2x.png"; sourceTree = "<group>"; };
 		A383103E2538E6C80064238E /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		A3BA726225A9DD7500325D78 /* MultiCash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = MultiCash.entitlements; path = MultiCash/MultiCash.entitlements; sourceTree = "<group>"; };
 		A3F9C8E726683B3000A56D53 /* Colors@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Colors@2x.png"; path = "MultiCash/Icons/Colors@2x.png"; sourceTree = "<group>"; };
@@ -243,8 +263,18 @@
 		A3F9C8E526683AA200A56D53 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				A376AE1D2676BAA10028FD98 /* Silver@3x.png */,
+				A376AE1F2676BAA10028FD98 /* Wow@2x.png */,
+				A376AE1E2676BAA10028FD98 /* Wow@3x.png */,
+				A376AE132676BA8F0028FD98 /* Bob@2x.png */,
+				A376AE152676BA8F0028FD98 /* Bob@3x.png */,
+				A376AE142676BA8F0028FD98 /* Gold@2x.png */,
+				A376AE162676BA8F0028FD98 /* Gold@3x.png */,
+				A376AE172676BA8F0028FD98 /* Silver@2x.png */,
 				A3F9C8FA26684A8C00A56D53 /* X1Chip@2x.png */,
 				A3F9C8FB26684A8C00A56D53 /* X1Chip@3x.png */,
+				A37C0421266996D4003768FF /* X1XChip@2x.png */,
+				A37C0420266996D4003768FF /* X1XChip@3x.png */,
 				A3F9C8F2266845F500A56D53 /* StripesInverted@2x.png */,
 				A3F9C8F3266845F500A56D53 /* StripesInverted@3x.png */,
 				A3F9C8EE266844B600A56D53 /* Stripes@2x.png */,
@@ -434,15 +464,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3F9C8F1266844B600A56D53 /* Stripes@3x.png in Resources */,
+				A376AE1C2676BA8F0028FD98 /* Silver@2x.png in Resources */,
 				A3F9C8E926683B3000A56D53 /* Colors@2x.png in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				A376AE202676BAA10028FD98 /* Silver@3x.png in Resources */,
+				A37C0423266996D4003768FF /* X1XChip@2x.png in Resources */,
+				A376AE1A2676BA8F0028FD98 /* Bob@3x.png in Resources */,
+				A376AE192676BA8F0028FD98 /* Gold@2x.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				A3F9C8EA26683B3000A56D53 /* Colors@3x.png in Resources */,
+				A37C0422266996D4003768FF /* X1XChip@3x.png in Resources */,
 				A3F9C8F4266845F500A56D53 /* StripesInverted@2x.png in Resources */,
+				A376AE222676BAA10028FD98 /* Wow@2x.png in Resources */,
 				A3F9C8FD26684A8C00A56D53 /* X1Chip@3x.png in Resources */,
 				A3F9C8FC26684A8C00A56D53 /* X1Chip@2x.png in Resources */,
 				A3F9C8F0266844B600A56D53 /* Stripes@2x.png in Resources */,
+				A376AE182676BA8F0028FD98 /* Bob@2x.png in Resources */,
+				A376AE212676BAA10028FD98 /* Wow@3x.png in Resources */,
 				A3F9C8F5266845F500A56D53 /* StripesInverted@3x.png in Resources */,
+				A376AE1B2676BA8F0028FD98 /* Gold@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
