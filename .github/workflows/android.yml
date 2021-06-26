@@ -54,23 +54,22 @@ jobs:
           java-version: 8
       - name: Build with Gradle
         run: ./gradlew bundleRelease
-        working-directory: ./android
+        working-directory: ${{ github.workspace }}/android
       - name: Sign Release
         uses: Tlaster/android-sign@v1
         with:
-          releaseDirectory: android/app/build
+          releaseDirectory: ${{ github.workspace }}/android/app/build
           signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
           alias: ${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_SIGNING_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
-        env:
-          BUILD_TOOLS_VERSION: "30.0.2"
+          output: {{ github.workspace }}/build/signed
       - name: Upload Release
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.ANDROID_UPLOAD_SERVICE_ACCOUNT_JSON }}
           packageName: com.multicash
-          releaseFiles: build/signed/*.aab
+          releaseFiles: {{ github.workspace }}/build/signed/*.aab
           track: alpha
           inAppUpdatePriority: 2
           userFraction: 1.0

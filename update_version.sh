@@ -4,13 +4,15 @@ GRADLE_FILE=./android/app/build.gradle
 XPROJECT_FILE=./ios/MultiCash.xcodeproj/project.pbxproj
 PACKAGE_FILE=./package.json
 
-if [ $# -ne 2 ]; then
+if [ $# -ne 1 ]; then
     echo "Missing arguments 'versionCode' 'versionName'"
     exit 1
 fi
 
-VERSION_CODE=$1
-VERSION_NAME=$2
+VERSION_CODE_TMP=$(grep "versionCode " $GRADLE_FILE | awk '{print $2}')
+VERSION_CODE=$(echo $VERSION_TMP | sed -e 's/^"//'  -e 's/"$//')
+VERSION_CODE=$(($VERSION+1))
+VERSION_NAME=$1
 
 update_android_gradle()
 {
@@ -37,3 +39,10 @@ echo "iOS project.pbxproj updated"
 
 update_package_json ${PACKAGE_FILE} ${VERSION_NAME}
 echo "Package.json updated"
+
+git add $GRADLE_FILE
+git add $XPROJECT_FILE
+git add $PACKAGE_FILE
+git commit -m "bump version to ${VERSION_NAME}"
+git tag -a $VERSION_NAME -m "release version ${VERSION_NAME}"
+echo "Created git commit and tag"
