@@ -133,8 +133,8 @@ android {
         applicationId "com.multicash"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 202105006
-        versionName "0.23.0"
+        versionCode 1
+        versionName "0.24.0"
         multiDexEnabled true
         missingDimensionStrategy 'react-native-camera', 'general'
     }
