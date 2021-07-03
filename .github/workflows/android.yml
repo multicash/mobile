@@ -56,21 +56,26 @@ jobs:
         run: ./gradlew bundleRelease
         working-directory: ${{ github.workspace }}/android
       - name: Sign Release
-        uses: Tlaster/android-sign@v1.2.2
+        uses: r0adkll/sign-android-release@v1
+        id: sign_app
         with:
           releaseDirectory: ${{ github.workspace }}/android/app/build/outputs/bundle/release
-          buildDirectory: ${{ github.workspace }}/android/build
-          output: ${{ github.workspace }}/android/app/build/signed
           signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
           alias: ${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_SIGNING_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
-      - name: Upload Release
+      - name: Upload Release to Android Developers Console
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.ANDROID_UPLOAD_SERVICE_ACCOUNT_JSON }}
           packageName: com.multicash
-          releaseFiles: ${{ github.workspace }}/android/app/build/signed/*.aab
+          releaseFiles: ${{ steps.sign_app.outputs.signedReleaseFile }}
           track: alpha
           inAppUpdatePriority: 2
           userFraction: 1.0
+      - name: Upload Release to GitHub
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ steps.sign_app.outputs.signedReleaseFile }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
