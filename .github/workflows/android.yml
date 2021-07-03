@@ -56,14 +56,15 @@ jobs:
         run: ./gradlew bundleRelease
         working-directory: ${{ github.workspace }}/android
       - name: Sign Release
-        uses: Tlaster/android-sign@v1
+        uses: Tlaster/android-sign@v1.2.2
         with:
           releaseDirectory: ${{ github.workspace }}/android/app/build/outputs/bundle/release
+          buildDirectory: ${{ github.workspace }}/android/build
+          output: ${{ github.workspace }}/android/app/build/signed
           signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
           alias: ${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_SIGNING_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
-          output: ${{ github.workspace }}/android/app/build/signed
       - name: Upload Release
         uses: r0adkll/upload-google-play@v1
         with:
