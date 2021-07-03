@@ -4,11 +4,17 @@ on: [push, pull_request]
 
 jobs:
   build:
+    if: startsWith(github.ref, 'refs/tags/') != true
     runs-on: macOS-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Cache modules
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
