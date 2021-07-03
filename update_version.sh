@@ -10,8 +10,8 @@ if [ $# -ne 1 ]; then
 fi
 
 VERSION_CODE_TMP=$(grep "versionCode " $GRADLE_FILE | awk '{print $2}')
-VERSION_CODE=$(echo $VERSION_TMP | sed -e 's/^"//'  -e 's/"$//')
-VERSION_CODE=$(($VERSION+1))
+VERSION_CODE=$(echo $VERSION_CODE_TMP | sed -e 's/^"//'  -e 's/"$//')
+VERSION_CODE=$(($VERSION_CODE+1))
 VERSION_NAME=$1
 
 update_android_gradle()

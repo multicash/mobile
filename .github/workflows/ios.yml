@@ -24,13 +24,50 @@ jobs:
       - name: Install iOS Cocoa Pods
         run: pod install
         working-directory: ios
-#      - name: Xcode Build
-#        run: |
-#          xcodebuild \
-#                  -workspace ios/MultiCash.xcworkspace \
-#                  -scheme MultiCash \
-#                  archive \
-#                  -sdk iphoneos \
-#                  -configuration Debug \
-#                  -archivePath $PWD/MultiCash \
-#                  CODE_SIGNING_ALLOWED=NO
+      - name: Build with Xcode
+      - uses: yukiarrr/ios-build-action@v1.4.0
+        with:
+          project-path: ${{ github.workspace }}/ios/MultiCash.xcodeproj
+          workspace-path: ${{ github.workspace }}/ios/MultiCash.xcworkspace
+          p12-base64: ${{ secrets.IOS_P12_BASE64 }}
+          mobileprovision-base64: ${{ secrets.IOS_MOBILEPROVISION_BASE64 }}
+          code-signing-identity: ${{ secrets.IOS_CODE_SIGNING_IDENTITY }}
+          team-id: ${{ secrets.IOS_TEAM_ID }}
+          export-method: package
+          configuration: Debug
+          scheme: MultiCash
+
+  deploy:
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: macOS-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache modules
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+      - name: Install Yarn Modules
+        run: yarn
+      - name: Install iOS Cocoa Pods
+        run: pod install
+        working-directory: ios
+      - name: Build with Xcode
+      - uses: yukiarrr/ios-build-action@v1.4.0
+        with:
+          project-path: ${{ github.workspace }}/ios/MultiCash.xcodeproj
+          workspace-path: ${{ github.workspace }}/ios/MultiCash.xcworkspace
+          p12-base64: ${{ secrets.IOS_P12_BASE64 }}
+          certificate-password: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
+          mobileprovision-base64: ${{ secrets.IOS_MOBILEPROVISION_BASE64 }}
+          code-signing-identity: ${{ secrets.IOS_CODE_SIGNING_IDENTITY }}
+          team-id: ${{ secrets.IOS_TEAM_ID }}
+          export-method: app-store
+          configuration: Release
+          scheme: MultiCash
