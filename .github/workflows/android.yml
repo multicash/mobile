@@ -74,7 +74,6 @@ jobs:
           releaseFiles: ${{ steps.sign_app.outputs.signedReleaseFile }}
           track: alpha
           inAppUpdatePriority: 2
-          userFraction: 1.0
       - name: Upload Release to GitHub
         uses: softprops/action-gh-release@v1
         with:
