@@ -25,7 +25,7 @@ jobs:
         run: pod install
         working-directory: ios
       - name: Build with Xcode
-      - uses: yukiarrr/ios-build-action@v1.4.0
+        uses: yukiarrr/ios-build-action@v1.4.0
         with:
           project-path: ${{ github.workspace }}/ios/MultiCash.xcodeproj
           workspace-path: ${{ github.workspace }}/ios/MultiCash.xcworkspace
@@ -58,11 +58,12 @@ jobs:
       - name: Install iOS Cocoa Pods
         run: pod install
         working-directory: ios
-      - name: Build with Xcode
-      - uses: yukiarrr/ios-build-action@v1.4.0
+      - name: Build with Xcode and upload to AppStore Connect
+        uses: yukiarrr/ios-build-action@v1.4.0
         with:
           project-path: ${{ github.workspace }}/ios/MultiCash.xcodeproj
           workspace-path: ${{ github.workspace }}/ios/MultiCash.xcworkspace
+          output-path: ${{ github.workspace }}/ios/app-release.ipa
           p12-base64: ${{ secrets.IOS_P12_BASE64 }}
           certificate-password: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
           mobileprovision-base64: ${{ secrets.IOS_MOBILEPROVISION_BASE64 }}
@@ -71,3 +72,9 @@ jobs:
           export-method: app-store
           configuration: Release
           scheme: MultiCash
+      - name: Upload Release to GitHub
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ github.workspace }}/ios/app-release.ipa
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
