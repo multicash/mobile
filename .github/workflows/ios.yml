@@ -58,7 +58,7 @@ jobs:
       - name: Install iOS Cocoa Pods
         run: pod install
         working-directory: ios
-      - name: Build with Xcode and upload to AppStore Connect
+      - name: Build with Fastlane
         uses: yukiarrr/ios-build-action@v1.4.0
         with:
           project-path: ${{ github.workspace }}/ios/MultiCash.xcodeproj
@@ -72,6 +72,9 @@ jobs:
           export-method: app-store
           configuration: Release
           scheme: MultiCash
+      - name: Upload to App Store Connect
+        run: |
+          xcrun altool --upload-app -t ios -f "${{ github.workspace }}/ios/app-release.ipa" -u "${{ secrets.IOS_UPLOAD_USER }}" -p "${{ secrets.IOS_UPLOAD_PASSWORD }}"
       - name: Upload Release to GitHub
         uses: softprops/action-gh-release@v1
         with:
