@@ -16,8 +16,10 @@
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+// @ts-nocheck
 import Vue from 'vue-native-core'
 import { Appearance, AppState, AppStateStatus } from 'react-native'
+import { mapGetters } from 'vuex'
 
 interface ColorStore extends Vue {
   colorScheme?: string,
@@ -41,7 +43,6 @@ const store: ColorStore = new Vue({
   },
   methods: {
     setColorScheme (colorScheme: string) {
-      // @ts-ignore
       this.colorScheme = colorScheme
     }
   }
@@ -59,16 +60,22 @@ const mixin: ColorMixin = {
   },
 
   computed: {
-    colorScheme () {
+    ...mapGetters(['applicationOptions']),
+
+    colorScheme (): 'light'|'dark' {
+      if (this.applicationOptions.appearance !== null) {
+        return this.applicationOptions.appearance
+      }
+
       return store.colorScheme!
     },
 
-    isDarkScheme () {
-      return store.colorScheme === 'dark'
+    isDarkScheme (): boolean {
+      return this.colorScheme === 'dark'
     },
 
-    isLightScheme () {
-      return store.colorScheme === 'light'
+    isLightScheme (): boolean {
+      return this.colorScheme === 'light'
     }
   },
 

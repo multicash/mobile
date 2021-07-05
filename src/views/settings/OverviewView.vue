@@ -15,10 +15,14 @@
 <!--along with this program.  If not, see <https://www.gnu.org/licenses/>.-->
 
 <template>
-  <view-background no-padding>
-    <modal-navigation title="Settings" has-close-button @on-dismiss="navigation.goBack()"/>
+  <modal-view
+    no-padding
+    title="Settings"
+    has-close-button
+    @on-dismiss="navigation.goBack()"
+  >
     <table-view :sections="data"/>
-  </view-background>
+  </modal-view>
 </template>
 
 <script>
@@ -122,6 +126,13 @@ export default {
               leftAvatar: { source: require('@/assets/faq.png'), size: 40 },
               onPress: () => {
                 this.navigation.navigate('support')
+              }
+            },
+            {
+              title: 'Appearance',
+              leftAvatar: { source: require('@/assets/change-theme.png'), size: 40 },
+              onPress: () => {
+                this.navigation.navigate('appearance')
               }
             },
             Platform.OS === 'ios' ? {

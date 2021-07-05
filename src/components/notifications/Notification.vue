@@ -59,6 +59,11 @@ export default {
       default: 'default'
     },
 
+    size: {
+      type: String,
+      default: 'md'
+    },
+
     loading: {
       type: Boolean,
       default: false
@@ -67,7 +72,7 @@ export default {
 
   computed: {
     styles () {
-      return stylesStore(this.isDarkScheme, this.loading ? 'default' : this.type)
+      return stylesStore(this.isDarkScheme, this.loading ? 'default' : this.type, this.size)
     },
 
     isPressable () {
@@ -76,7 +81,7 @@ export default {
   }
 }
 
-const stylesStore = (isDarkScheme, type) => {
+const stylesStore = (isDarkScheme, type, size) => {
   const typeColors = {
 
     default: {
@@ -156,13 +161,31 @@ const stylesStore = (isDarkScheme, type) => {
 
   }
 
+  const sizes = {
+    sm: {
+      notification: {
+        padding: 8
+      }
+    },
+    md: {
+      notification: {
+        padding: 15
+      }
+    },
+    lg: {
+      notification: {
+        padding: 20
+      }
+    }
+  }
+
   return {
     notification: {
       flexDirection: 'row',
       alignItems: 'center',
       backgroundColor: typeColors[type].notification.backgroundColor,
       borderRadius: 10,
-      padding: 15,
+      padding: sizes[size].notification.padding,
       marginBottom: 10
     },
 

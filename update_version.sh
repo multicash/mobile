@@ -43,6 +43,6 @@ echo "Package.json updated"
 git add $GRADLE_FILE
 git add $XPROJECT_FILE
 git add $PACKAGE_FILE
-git commit -m "bump version to ${VERSION_NAME}"
-git tag -a $VERSION_NAME -m "release version ${VERSION_NAME}"
+git commit -m "Release version ${VERSION_NAME}"
+git tag -a $VERSION_NAME -m "Release version ${VERSION_NAME}"
 echo "Created git commit and tag"

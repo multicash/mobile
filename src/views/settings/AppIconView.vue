@@ -21,7 +21,7 @@
     @on-dismiss="navigation.goBack()"
     no-padding
   >
-    <table-view :sections="sections" />
+    <table-view :sections="sections" type="small" />
   </modal-view>
 </template>
 

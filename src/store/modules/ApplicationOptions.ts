@@ -18,12 +18,15 @@
 
 import { Store } from 'vuex'
 
+export type Appearance = 'dark'|'light'|null
+
 interface ApplicationOptions {
   unlock: {
     application: boolean
     restoreKey: boolean
     export: boolean
-  }
+  },
+  appearance: Appearance
 }
 
 const state: ApplicationOptions = {
@@ -31,7 +34,8 @@ const state: ApplicationOptions = {
     application: false,
     restoreKey: false,
     export: false
-  }
+  },
+  appearance: null
 }
 
 const mutations = {
@@ -45,6 +49,10 @@ const mutations = {
 
   SET_UNLOCK_EXPORT (state: ApplicationOptions, value: boolean): void {
     state.unlock.export = value
+  },
+
+  SET_APPEARANCE (state: ApplicationOptions, value: Appearance): void {
+    state.appearance = value
   }
 }
 
@@ -59,6 +67,10 @@ const actions = {
 
   setUnlockExport (context: Store<ApplicationOptions>, value: boolean): void {
     context.commit('SET_UNLOCK_EXPORT', value)
+  },
+
+  setAppearance (context: Store<ApplicationOptions>, value: Appearance): void {
+    context.commit('SET_APPEARANCE', value)
   }
 }
 
