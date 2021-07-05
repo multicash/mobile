@@ -12,8 +12,14 @@ jobs:
       - name: Cache modules
         uses: actions/cache@v2
         with:
-          path: ${{ github.workspace }}/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          path: |
+            ${{ github.workspace }}/node_modules
+            ${{ github.workspace }}/android/.gradle/caches
+            ${{ github.workspace }}/android/.gradle/wrapper
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock', '**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-gradle-
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
