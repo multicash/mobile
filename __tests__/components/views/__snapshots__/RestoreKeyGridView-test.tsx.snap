@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render restore key grid view component renders correctly 1`] = `
+<import __react__vue__Vue, { observer as __react__vue__observer } from 'vue-native-core'
+import __react__vue__ReactNative from 'react-native'
+import __react__vue__PropType from 'prop-types'
+import { buildNativeComponent as __react__vue__buildNativeComponent } from 'vue-native-helper'
+import { bindNativeClass as __react__vue__bindClass,bindNativeStyle as __react__vue__bindStyle,mergeNativeStyleAndNativeClass as __react__vue__mergeNativeStyleAndNativeClass,mergeProps as __react__vue__mergeProps,renderList as __react__vue__renderList,_toString as __react__vue__toString } from 'vue-native-helper'
+import {
+      createElement as __react__vue__createElement,
+      Component as __react__vue__Component
+    } from 'react'
+
+
+const __react__vue__options =  {
+  name: 'RestoreKeyGridView',
+
+  props: ['words'],
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme) => {
+  return {
+    wordsGrid: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      flexWrap: 'wrap',
+      marginBottom: 20
+    },
+
+    wordContainer: {
+      backgroundColor: isDarkScheme ? 'black' : 'white',
+      width: '30%',
+      borderRadius: 5,
+      marginBottom: 10,
+      alignItems: 'stretch',
+      justifyContent: 'center',
+      flexDirection: 'row',
+      overflow: 'hidden'
+    },
+
+    wordNumber: {
+      backgroundColor: '#32b680',
+      paddingHorizontal: 10,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+
+    number: {
+      color: 'white',
+      fontSize: 12,
+      fontWeight: 'bold'
+    },
+
+    word: {
+      flex: 1,
+      textAlign: 'center',
+      paddingHorizontal: 5,
+      paddingVertical: 10,
+      color: isDarkScheme ? 'white' : 'black'
+    }
+  }
+}
+
+const __react__vue__render = function render(vm) {
+    return __react__vue__createElement(vm.$options.components['View'], __react__vue__mergeProps.call(this, this.props.__react__vue__nativeEvents, {
+        ref: ref => {
+            this.setRootRef(ref);
+            this.props['__react__vue__setRef'] && this.props['__react__vue__setRef'](ref);
+        },
+        style: __react__vue__mergeNativeStyleAndNativeClass(__react__vue__bindClass.call(this, {
+            parentClass: this.props.style
+        }), __react__vue__bindStyle(vm['styles'].wordsGrid, undefined, undefined))
+    }), __react__vue__renderList(vm['words'], function(word, i) {
+        return __react__vue__createElement(vm.$options.components['View'], {
+            key: word,
+            style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].wordContainer, undefined, undefined))
+        }, __react__vue__createElement(vm.$options.components['View'], {
+            style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].wordNumber, undefined, undefined))
+        }, __react__vue__createElement(vm.$options.components['Text'], {
+            style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].number, undefined, undefined))
+        }, __react__vue__toString(i + 1))), __react__vue__createElement(vm.$options.components['Text'], {
+            style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].word, undefined, undefined))
+        }, __react__vue__toString(word)));
+    }.bind(this)));
+};
+
+const __react__vue__css = {}
+
+const __react__vue__ComponentBuilded = __react__vue__buildNativeComponent(__react__vue__render, __react__vue__options, {Component: __react__vue__Component, PropTypes: __react__vue__PropType, Vue: __react__vue__Vue, ReactNative: __react__vue__ReactNative, css: __react__vue__css})
+
+export default __react__vue__observer(__react__vue__ComponentBuilded) />
+`;

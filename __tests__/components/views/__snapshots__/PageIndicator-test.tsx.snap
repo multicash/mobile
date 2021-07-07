@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render page indicator component renders correctly 1`] = `
+<import __react__vue__Vue, { observer as __react__vue__observer } from 'vue-native-core'
+import __react__vue__ReactNative from 'react-native'
+import __react__vue__PropType from 'prop-types'
+import { buildNativeComponent as __react__vue__buildNativeComponent } from 'vue-native-helper'
+import { bindNativeClass as __react__vue__bindClass,bindNativeStyle as __react__vue__bindStyle,mergeNativeStyleAndNativeClass as __react__vue__mergeNativeStyleAndNativeClass,mergeProps as __react__vue__mergeProps,renderList as __react__vue__renderList } from 'vue-native-helper'
+import {
+      createElement as __react__vue__createElement,
+      Component as __react__vue__Component
+    } from 'react'
+
+
+const __react__vue__options =  {
+  name: 'PageIndicator',
+
+  props: {
+    currentPage: {
+      type: Number,
+      required: true
+    },
+
+    pages: {
+      type: Number,
+      required: true
+    }
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme) => {
+  return {
+    container: {
+      flexDirection: 'row',
+      margin: 5
+    },
+
+    dotFilled: {
+      backgroundColor: isDarkScheme ? 'rgba(255,255,255,0.75)' : 'rgba(0,0,0,0.75)',
+      width: 10,
+      height: 10,
+      borderRadius: 10
+    },
+
+    dot: {
+      backgroundColor: isDarkScheme ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.25)',
+      width: 10,
+      height: 10,
+      borderRadius: 10
+    }
+  }
+}
+
+const __react__vue__render = function render(vm) {
+    return __react__vue__createElement(vm.$options.components['View'], __react__vue__mergeProps.call(this, this.props.__react__vue__nativeEvents, {
+        ref: ref => {
+            this.setRootRef(ref);
+            this.props['__react__vue__setRef'] && this.props['__react__vue__setRef'](ref);
+        },
+        style: __react__vue__mergeNativeStyleAndNativeClass(__react__vue__bindClass.call(this, {
+            parentClass: this.props.style
+        }), __react__vue__bindStyle(vm['styles'].container, undefined, undefined))
+    }), __react__vue__renderList(vm['pages'], function(index, i) {
+        return __react__vue__createElement(vm.$options.components['View'], {
+            key: i,
+            style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle({
+                paddingLeft: i === 0 ? 0 : 10
+            }, undefined, undefined))
+        }, vm['currentPage'] + 1 === index ? __react__vue__createElement(vm.$options.components['View'], {
+            style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].dotFilled, undefined, undefined))
+        }) : __react__vue__createElement(vm.$options.components['View'], {
+            style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].dot, undefined, undefined))
+        }));
+    }.bind(this)));
+};
+
+const __react__vue__css = {}
+
+const __react__vue__ComponentBuilded = __react__vue__buildNativeComponent(__react__vue__render, __react__vue__options, {Component: __react__vue__Component, PropTypes: __react__vue__PropType, Vue: __react__vue__Vue, ReactNative: __react__vue__ReactNative, css: __react__vue__css})
+
+export default __react__vue__observer(__react__vue__ComponentBuilded) />
+`;

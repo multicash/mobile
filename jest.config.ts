@@ -1,6 +1,6 @@
 /*
   MultiCash Mobile
-  Copyright (C) 2021  Swen van Zanten
+  Copyright (C) 2021  MultiCash Developers
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,13 +16,20 @@
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-module.exports = {
+import type { Config } from '@jest/types'
+
+// Sync object
+const config: Config.InitialOptions = {
   preset: 'react-native',
+  verbose: true,
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node', 'vue'],
   transform: {
     '.*\\.vue$': 'vue-jest'
   },
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1'
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '@/': '<rootDir>/src/$1'
   }
 }
+
+export default config

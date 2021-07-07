@@ -1,6 +1,6 @@
 /*
   MultiCash Mobile
-  Copyright (C) 2021  Swen van Zanten
+  Copyright (C) 2021  MultiCash Developers
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 
 import { Vue, CreateElement, CombinedVueInstance } from './vue'
 import { VNode, VNodeData, VNodeDirective, NormalizedScopedSlot } from './vnode'
+import React from 'react'
 
 type Constructor = {
   new (...args: any[]): any;
@@ -117,7 +118,7 @@ export interface ComponentOptions<
   serverPrefetch?(this: V): Promise<void>;
 
   directives?: { [key: string]: DirectiveFunction | DirectiveOptions };
-  components?: { [key: string]: Component<any, any, any, any> | AsyncComponent<any, any, any, any> };
+  components?: { [key: string]: Component<any, any, any, any> | AsyncComponent<any, any, any, any> | React.Component<any, any, any> };
   transitions?: { [key: string]: object };
   filters?: { [key: string]: Function };
 

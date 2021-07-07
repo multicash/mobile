@@ -1,9 +1,18 @@
 {
   "name": "multicash",
+  "description": "The MultiCash Mobile app provides all that MultiCash has to over on both Android and iOS",
   "version": "0.30.0",
   "private": true,
   "author": "MultiCash LLC",
   "license": "GPL-3.0+",
+  "bugs": {
+    "url": "https://github.com/multicash/mobile/issues"
+  },
+  "homepage": "https://multicash.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/multicash/mobile.git"
+  },
   "scripts": {
     "postinstall": "yarn nodeify && yarn disable:randombytes && yarn fix:multicore-lib:random && yarn fix:multicore-lib-cash:random && yarn fix:multicore-lib-mcx:random",
     "lint": "vue-cli-service lint",
@@ -85,6 +94,7 @@
   "devDependencies": {
     "@babel/core": "^7.13.16",
     "@babel/runtime": "^7.13.17",
+    "@jest/types": "^27.0.6",
     "@types/intl": "^1.2.0",
     "@types/jest": "^26.0.23",
     "@types/react": "^17.0.4",
@@ -107,6 +117,7 @@
     "jest": "^26.5.2",
     "metro-react-native-babel-preset": "^0.63.0",
     "react-test-renderer": "^16.13.1",
+    "ts-node": "^10.0.0",
     "typescript": "^4.1.5",
     "vue-jest": "^3.0.7",
     "vue-native-scripts": "^0.2.0"

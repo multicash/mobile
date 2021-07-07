@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render action button renders correctly 1`] = `
+<import __react__vue__Vue, { observer as __react__vue__observer } from 'vue-native-core'
+import __react__vue__ReactNative from 'react-native'
+import __react__vue__PropType from 'prop-types'
+import { buildNativeComponent as __react__vue__buildNativeComponent } from 'vue-native-helper'
+import { bindNativeClass as __react__vue__bindClass,bindNativeStyle as __react__vue__bindStyle,mergeNativeStyleAndNativeClass as __react__vue__mergeNativeStyleAndNativeClass,mergeProps as __react__vue__mergeProps,_toString as __react__vue__toString } from 'vue-native-helper'
+import {
+      createElement as __react__vue__createElement,
+      Component as __react__vue__Component
+    } from 'react'
+
+import { cards } from '@/core/support/styles'
+const __react__vue__options =  {
+  name: 'ActionButton',
+
+  props: {
+    title: {
+      type: String,
+      default: null
+    },
+    icon: {
+      default: null
+    },
+    type: {
+      type: String,
+      default: null
+    }
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme, this.type)
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme, type) => {
+  let typeBackgroundColor = cards(isDarkScheme).backgroundColor
+  let typeTextColor = isDarkScheme ? 'white' : 'black'
+
+  switch (type) {
+    case 'success':
+      typeBackgroundColor = '#00ae5a'
+      typeTextColor = 'white'
+      break
+    case 'warning':
+      typeBackgroundColor = '#ffdd57'
+      typeTextColor = '#3b3b3b'
+      break
+    case 'primary':
+      typeBackgroundColor = '#00b0ee'
+      typeTextColor = 'white'
+      break
+    case 'secondary':
+      typeBackgroundColor = '#f744e4'
+      typeTextColor = 'white'
+      break
+    default:
+      break
+  }
+
+  return {
+    actionButton: {
+      ...cards(isDarkScheme),
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingVertical: 20,
+      paddingHorizontal: 35,
+      minWidth: 130,
+      backgroundColor: typeBackgroundColor
+    },
+
+    actionButtonIcon: {
+      width: 50,
+      height: 50,
+      resizeMode: 'contain'
+    },
+
+    actionButtonTitle: {
+      color: typeTextColor,
+      fontSize: 17,
+      fontWeight: '600'
+    },
+
+    actionButtonGap: {
+      height: 20
+    }
+  }
+}
+
+const __react__vue__render = function render(vm) {
+    return __react__vue__createElement(vm.$options.components['TouchableOpacity'], __react__vue__mergeProps.call(this, this.props.__react__vue__nativeEvents, {
+        ref: ref => {
+            this.setRootRef(ref);
+            this.props['__react__vue__setRef'] && this.props['__react__vue__setRef'](ref);
+        },
+        activeOpacity: 0.6,
+        onPress: () => vm['$emit']('on-press'),
+        style: __react__vue__mergeNativeStyleAndNativeClass(__react__vue__bindClass.call(this, {
+            parentClass: this.props.style
+        }), __react__vue__bindStyle(vm['styles'].actionButton, undefined, undefined))
+    }), vm['icon'] ? __react__vue__createElement(vm.$options.components['Image'], {
+        source: vm['icon'],
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].actionButtonIcon, undefined, undefined))
+    }) : null, vm['icon'] && vm['title'] ? __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].actionButtonGap, undefined, undefined))
+    }) : null, vm['title'] ? __react__vue__createElement(vm.$options.components['Text'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].actionButtonTitle, undefined, undefined))
+    }, "" + __react__vue__toString(vm['title']) + "") : null);
+};
+
+const __react__vue__css = {}
+
+const __react__vue__ComponentBuilded = __react__vue__buildNativeComponent(__react__vue__render, __react__vue__options, {Component: __react__vue__Component, PropTypes: __react__vue__PropType, Vue: __react__vue__Vue, ReactNative: __react__vue__ReactNative, css: __react__vue__css})
+
+export default __react__vue__observer(__react__vue__ComponentBuilded) />
+`;

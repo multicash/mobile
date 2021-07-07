@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render color picker renders correctly 1`] = `
+<import __react__vue__Vue, { observer as __react__vue__observer } from 'vue-native-core'
+import __react__vue__ReactNative from 'react-native'
+import __react__vue__PropType from 'prop-types'
+import { buildNativeComponent as __react__vue__buildNativeComponent } from 'vue-native-helper'
+import { bindNativeClass as __react__vue__bindClass,bindNativeStyle as __react__vue__bindStyle,mergeNativeStyleAndNativeClass as __react__vue__mergeNativeStyleAndNativeClass,mergeProps as __react__vue__mergeProps } from 'vue-native-helper'
+import {
+      createElement as __react__vue__createElement,
+      Component as __react__vue__Component
+    } from 'react'
+
+import LinearGradient from 'react-native-linear-gradient'
+import Draggable from 'react-native-draggable'
+const __react__vue__options =  {
+  name: 'ColorPicker',
+
+  components: {
+    LinearGradient,
+    Draggable
+  },
+
+  data () {
+    return {
+      selectorPosition: 20,
+      layout: { x: 0, y: 0, width: 0, height: 0 },
+      colors: [
+        [
+          0,
+          [255, 0, 0]
+        ],
+        [
+          16.6666666666,
+          [240, 255, 15]
+        ],
+        [
+          33.3333333333,
+          [0, 255, 0]
+        ],
+        [
+          50,
+          [0, 255, 255]
+        ],
+        [
+          66.6666666666,
+          [0, 0, 255]
+        ],
+        [
+          83.3333333333,
+          [255, 15, 240]
+        ],
+        [
+          100,
+          [255, 0, 0]
+        ]
+      ]
+    }
+  },
+
+  props: {
+    enabled: {
+      type: Boolean,
+      value: false
+    }
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    }
+  },
+
+  methods: {
+    onLayout (event) {
+      const { x, y, width, height } = event.nativeEvent.layout
+      this.layout.x = x
+      this.layout.y = y
+      this.layout.width = width
+      this.layout.height = height
+    },
+
+    onDrag (event, gestureState) {
+      this.$emit('onDrag', { event, gestureState })
+
+      const normalizedLocation = gestureState.moveX - (event.nativeEvent.locationX / 2)
+      const normalizedPosition = Math.min(Math.max(parseInt(((normalizedLocation - 5) / (this.layout.width - (-5))) * 100), 1), 100)
+
+      let colorRange = []
+      for (let index = 0; index < this.colors.length; index++) {
+        const value = this.colors[index]
+        if (normalizedPosition <= value[0]) {
+          colorRange = [index - 1, index]
+          break
+        }
+      }
+
+      // Get the two closest colors
+      const firstColor = this.colors[colorRange[0]][1]
+      const secondColor = this.colors[colorRange[1]][1]
+
+      // Calculate ratio between the two closest colors
+      const firstColorX = this.layout.width * (this.colors[colorRange[0]][0] / 100)
+      const secondColorX = this.layout.width * (this.colors[colorRange[1]][0] / 100) - firstColorX
+      const sliderX = this.layout.width * (normalizedPosition / 100) - firstColorX
+      const ratio = sliderX / secondColorX
+
+      this.$emit('input', \`rgb(\${this.pickHex(secondColor, firstColor, ratio).join()})\`)
+    },
+
+    pickHex (color1, color2, weight) {
+      const w1 = ((weight * 2 - 1) + 1) / 2
+      const w2 = 1 - w1
+
+      return [
+        Math.round(color1[0] * w1 + color2[0] * w2),
+        Math.round(color1[1] * w1 + color2[1] * w2),
+        Math.round(color1[2] * w1 + color2[2] * w2)
+      ]
+    },
+
+    onDragRelease (...params) {
+      this.$emit('onDragRelease', { ...params })
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme) => {
+  return {
+    containerOuter: {
+      borderRadius: 10,
+      overflow: 'visible'
+    },
+
+    container: {
+      backgroundColor: isDarkScheme ? 'black' : 'darkgrey',
+      borderRadius: 10,
+      padding: 5,
+      overflow: 'visible'
+    },
+
+    linearGradient: {
+      borderRadius: 5,
+      justifyContent: 'center',
+      height: 60
+    },
+
+    colorSelector: {
+      zIndex: 1000,
+      borderColor: isDarkScheme ? 'black' : 'white',
+      borderWidth: 3,
+      borderRadius: 20,
+      width: 20,
+      height: 80
+    }
+  }
+}
+
+const __react__vue__render = function render(vm) {
+    return __react__vue__createElement(vm.$options.components['View'], __react__vue__mergeProps.call(this, this.props.__react__vue__nativeEvents, {
+        ref: ref => {
+            this.setRootRef(ref);
+            this.props['__react__vue__setRef'] && this.props['__react__vue__setRef'](ref);
+        },
+        onLayout: vm['onLayout'],
+        style: __react__vue__mergeNativeStyleAndNativeClass(__react__vue__bindClass.call(this, {
+            parentClass: this.props.style
+        }), __react__vue__bindStyle(vm['styles'].containerOuter, undefined, undefined))
+    }), __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].container, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['LinearGradient'], {
+        colors: ['red', '#ff0', 'lime', 'cyan', 'blue', '#f0f', 'red'],
+        start: {
+            x: 0,
+            y: 0.5
+        },
+        end: {
+            x: 1,
+            y: 0.5
+        },
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].linearGradient, undefined, undefined))
+    }), __react__vue__createElement(vm.$options.components['Draggable'], {
+        x: vm['layout'].width / 2,
+        y: -5,
+        minY: -5,
+        maxY: -5,
+        minX: -5,
+        maxX: vm['layout'].width + 5,
+        onPressIn: event => vm['$emit']('onDrag', event),
+        onDrag: vm['onDrag'],
+        onDragRelease: vm['onDragRelease'],
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle({
+            position: 'absolute'
+        }, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].colorSelector, undefined, undefined))
+    }))));
+};
+
+const __react__vue__css = {}
+
+const __react__vue__ComponentBuilded = __react__vue__buildNativeComponent(__react__vue__render, __react__vue__options, {Component: __react__vue__Component, PropTypes: __react__vue__PropType, Vue: __react__vue__Vue, ReactNative: __react__vue__ReactNative, css: __react__vue__css})
+
+export default __react__vue__observer(__react__vue__ComponentBuilded) />
+`;

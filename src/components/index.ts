@@ -1,6 +1,6 @@
 /*
   MultiCash Mobile
-  Copyright (C) 2021  Swen van Zanten
+  Copyright (C) 2021  MultiCash Developers
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -82,14 +82,12 @@ Vue.component('secondary-action-button', SecondaryActionButton)
 Vue.component('secondary-round-button', SecondaryRoundButton)
 
 Vue.component('amount-input', AmountInput)
-// @ts-ignore
 Vue.component('color-picker', ColorPicker)
 Vue.component('dot-input', DotInput)
 Vue.component('grouped-field', GroupedField)
 Vue.component('rounded-text-input', RoundedTextInput)
 Vue.component('selector', Selector)
 
-// @ts-ignore
 Vue.component('icon', Icon)
 Vue.component('source-icon', SourceIcon)
 Vue.component('wallet-icon', WalletIcon)

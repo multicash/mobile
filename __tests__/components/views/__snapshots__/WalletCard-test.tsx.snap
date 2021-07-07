@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render wallet card component renders correctly 1`] = `
+<import __react__vue__Vue, { observer as __react__vue__observer } from 'vue-native-core'
+import __react__vue__ReactNative from 'react-native'
+import __react__vue__PropType from 'prop-types'
+import { buildNativeComponent as __react__vue__buildNativeComponent } from 'vue-native-helper'
+import { bindNativeClass as __react__vue__bindClass,bindNativeStyle as __react__vue__bindStyle,mergeNativeStyleAndNativeClass as __react__vue__mergeNativeStyleAndNativeClass,mergeProps as __react__vue__mergeProps,_toString as __react__vue__toString } from 'vue-native-helper'
+import {
+      createElement as __react__vue__createElement,
+      Component as __react__vue__Component
+    } from 'react'
+
+import { cards, text } from '@/core/support/styles'
+import WalletIcon from '@/components/icons/WalletIcon'
+import Money from '@/components/labels/Money'
+import { Platform } from 'react-native'
+const __react__vue__options =  {
+  name: 'WalletCard',
+
+  components: { Money, WalletIcon },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme, this.richDisplay)
+    }
+  },
+
+  props: {
+    value: {
+      type: Object,
+      required: true
+    },
+
+    touchable: {
+      type: Boolean,
+      default: true
+    },
+
+    richDisplay: {
+      type: Boolean,
+      default: false
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme, richDisplay) => {
+  return {
+    walletCard: {
+      ...cards(isDarkScheme),
+      flex: 1,
+      height: '100%',
+      width: 250
+    },
+    walletCardHeader: {
+      display: 'flex',
+      alignItems: 'center',
+      flexDirection: 'row',
+      marginBottom: 5
+    },
+    walletCardInfo: {
+      marginHorizontal: 10,
+      flex: 1
+    },
+    walletCardName: {
+      fontSize: 15,
+      fontWeight: 'bold',
+      color: text(isDarkScheme).color
+    },
+    walletCardTag: {
+      color: isDarkScheme ? '#B95C8B' : '#931A5A',
+      fontWeight: '600',
+      fontSize: 12
+    },
+    moneyView: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center'
+    },
+    walletCardAmount: {
+      color: text(isDarkScheme).color,
+      fontSize: 35,
+      fontWeight: Platform.OS === 'ios' ? '900' : 'bold',
+      width: '100%',
+      marginTop: richDisplay ? undefined : 15
+    },
+    walletCardFiatAmount: {
+      color: isDarkScheme ? '#A7BBC1' : '#7E97A0',
+      fontSize: 15,
+      fontWeight: '600'
+    }
+  }
+}
+
+const __react__vue__render = function render(vm) {
+    return __react__vue__createElement(vm.$options.components['TouchableOpacity'], __react__vue__mergeProps.call(this, this.props.__react__vue__nativeEvents, {
+        ref: ref => {
+            this.setRootRef(ref);
+            this.props['__react__vue__setRef'] && this.props['__react__vue__setRef'](ref);
+        },
+        activeOpacity: vm['touchable'] ? 0.6 : 1,
+        onPress: () => vm['$emit']('wallet-selected', vm['value']),
+        style: __react__vue__mergeNativeStyleAndNativeClass(__react__vue__bindClass.call(this, {
+            parentClass: this.props.style
+        }), __react__vue__bindStyle(vm['styles'].walletCard, undefined, undefined))
+    }), __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].walletCardHeader, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['WalletIcon'], {
+        icon: vm['value'].icon,
+        size: 30,
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+    }), __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].walletCardInfo, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['Text'], {
+        adjustsFontSizeToFit: true,
+        minimumFontScale: 0.01,
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].walletCardName, undefined, undefined))
+    }, "" + __react__vue__toString(vm['value'].name) + ""), __react__vue__createElement(vm.$options.components['Text'], {
+        adjustsFontSizeToFit: true,
+        minimumFontScale: 0.01,
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].walletCardTag, undefined, undefined))
+    }, "" + __react__vue__toString(vm['value'].tag) + ""))), __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].moneyView, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['Money'], {
+        crypto: true,
+        currency: vm['value'].coin,
+        amount: vm['value'].totalAmount,
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].walletCardAmount, undefined, undefined))
+    })), vm['richDisplay'] ? __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].moneyView, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['Money'], {
+        approximately: true,
+        convert: true,
+        amount: vm['value'].totalAmount,
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].walletCardFiatAmount, undefined, undefined))
+    })) : null);
+};
+
+const __react__vue__css = {}
+
+const __react__vue__ComponentBuilded = __react__vue__buildNativeComponent(__react__vue__render, __react__vue__options, {Component: __react__vue__Component, PropTypes: __react__vue__PropType, Vue: __react__vue__Vue, ReactNative: __react__vue__ReactNative, css: __react__vue__css})
+
+export default __react__vue__observer(__react__vue__ComponentBuilded) />
+`;

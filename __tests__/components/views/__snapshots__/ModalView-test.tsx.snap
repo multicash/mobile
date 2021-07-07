@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render modal view component renders correctly 1`] = `
+<import __react__vue__Vue, { observer as __react__vue__observer } from 'vue-native-core'
+import __react__vue__ReactNative from 'react-native'
+import __react__vue__PropType from 'prop-types'
+import { buildNativeComponent as __react__vue__buildNativeComponent } from 'vue-native-helper'
+import { bindNativeClass as __react__vue__bindClass,bindNativeStyle as __react__vue__bindStyle,mergeNativeStyleAndNativeClass as __react__vue__mergeNativeStyleAndNativeClass,mergeProps as __react__vue__mergeProps,renderSlot as __react__vue__renderSlot,event as __react__vue__event } from 'vue-native-helper'
+import {
+      createElement as __react__vue__createElement,
+      Component as __react__vue__Component
+    } from 'react'
+
+
+const __react__vue__options =  {
+  name: 'ModalView',
+
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+
+    hasBackButton: {
+      type: Boolean,
+      default: false
+    },
+
+    hasCloseButton: {
+      type: Boolean,
+      default: false
+    },
+
+    header: {
+      type: Boolean,
+      default: true
+    },
+
+    scrollable: {
+      type: Boolean,
+      default: false
+    },
+
+    noPadding: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  computed: {
+    styles () {
+      return styleStore(this.isDarkScheme)
+    }
+  },
+
+  methods: {
+    scrollTo (options) {
+      if (this.$refs.scrollView) {
+        this.$refs.scrollView.scrollTo(options)
+      }
+    }
+  }
+}
+
+const styleStore = (isDarkScheme) => {
+  return {}
+}
+
+const __react__vue__render = function render(vm) {
+    const __react__vue__slotSet = __react__vue__renderSlot.call(this, ["header"], this.props.children);
+    return __react__vue__createElement(vm.$options.components['View'], __react__vue__mergeProps.call(this, this.props.__react__vue__nativeEvents, {
+        ref: ref => {
+            this.setRootRef(ref);
+            this.props['__react__vue__setRef'] && this.props['__react__vue__setRef'](ref);
+        },
+        style: __react__vue__mergeNativeStyleAndNativeClass(__react__vue__bindClass.call(this, {
+            parentClass: this.props.style
+        }), __react__vue__bindStyle({
+            flex: 1
+        }, undefined, undefined))
+    }), __react__vue__slotSet("header", {}) || [vm['header'] ? __react__vue__createElement(vm.$options.components['ModalNavigation'], {
+        hasBackButton: vm['hasBackButton'],
+        hasCloseButton: vm['hasCloseButton'],
+        title: vm['title'],
+        onOnDismiss: () => vm['$emit']('on-dismiss'),
+        key: 0,
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined),
+        '__react__vue__customEventon-dismiss': __react__vue__event(function($event) {
+            vm['$emit']('on-dismiss');
+        }.bind(this))
+    }) : null], __react__vue__createElement(vm.$options.components['ViewBackground'], {
+        ref: ref => {
+            this.setRef(ref, "scrollView", false);
+        },
+        scrollable: vm['scrollable'],
+        noPadding: vm['noPadding'],
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+    }, __react__vue__slotSet(undefined, {})));
+};
+
+const __react__vue__css = {}
+
+const __react__vue__ComponentBuilded = __react__vue__buildNativeComponent(__react__vue__render, __react__vue__options, {Component: __react__vue__Component, PropTypes: __react__vue__PropType, Vue: __react__vue__Vue, ReactNative: __react__vue__ReactNative, css: __react__vue__css})
+
+export default __react__vue__observer(__react__vue__ComponentBuilded) />
+`;

@@ -1,0 +1,199 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render amount input renders correctly 1`] = `
+<import __react__vue__Vue, { observer as __react__vue__observer } from 'vue-native-core'
+import __react__vue__ReactNative from 'react-native'
+import __react__vue__PropType from 'prop-types'
+import { buildNativeComponent as __react__vue__buildNativeComponent } from 'vue-native-helper'
+import { bindNativeClass as __react__vue__bindClass,bindNativeStyle as __react__vue__bindStyle,mergeNativeStyleAndNativeClass as __react__vue__mergeNativeStyleAndNativeClass,mergeProps as __react__vue__mergeProps,_toString as __react__vue__toString,event as __react__vue__event } from 'vue-native-helper'
+import {
+      createElement as __react__vue__createElement,
+      Component as __react__vue__Component
+    } from 'react'
+
+import { Platform } from 'react-native'
+import constants from '@/core/support/constants'
+const __react__vue__options =  {
+  name: 'AmountInput',
+
+  data () {
+    return {
+      calculationButtons: [
+        '+',
+        '-',
+        '×',
+        '÷',
+        '='
+      ]
+    }
+  },
+
+  props: {
+    value: {
+      type: String,
+      default: ''
+    },
+
+    coin: {
+      type: String,
+      required: true
+    },
+    autoFocus: {
+      type: Boolean,
+      default: false
+    },
+    focus: {
+      type: Function,
+      default () {
+        this.$refs.amount.focus()
+      }
+    },
+    onFocus: {
+      type: Function,
+      default () {}
+    }
+  },
+
+  computed: {
+    styles () {
+      return styleStore(this.isDarkScheme)
+    },
+
+    valueNumber () {
+      const value = parseFloat(this.value.replace(',', '.'))
+
+      return parseFloat(value * constants.satoshiDivider) || 0
+    }
+  },
+
+  methods: {
+    onChangeText (text) {
+      this.$emit('input', text)
+    },
+
+    onEndEditing (event) {
+      this.$emit('on-end-editing', event)
+    }
+  }
+}
+
+const styleStore = (isDarkScheme) => {
+  return {
+    inputContainer: {
+      flex: 1,
+      alignItems: 'center'
+    },
+
+    title: {
+      color: isDarkScheme ? '#c0c0c0' : '#717171',
+      fontWeight: '600',
+      fontSize: 18
+    },
+
+    amountContainer: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+
+    amountCurrencyText: {
+      paddingTop: 10,
+      color: isDarkScheme ? '#6b47e1' : '#4c00ff',
+      fontSize: 35,
+      fontWeight: Platform.OS === 'ios' ? '900' : 'bold'
+    },
+
+    amountTextInput: {
+      fontSize: 35,
+      fontWeight: Platform.OS === 'ios' ? '900' : 'bold',
+      padding: 0,
+      paddingTop: 10,
+      paddingHorizontal: 10,
+      minWidth: 100,
+      color: isDarkScheme ? '#6b47e1' : '#4c00ff'
+    },
+
+    inputAccessoryView: {
+      backgroundColor: isDarkScheme ? 'black' : 'grey',
+      flexDirection: 'row',
+      paddingVertical: 5,
+      paddingHorizontal: 2.5
+    },
+
+    inputAccessoryViewButton: {
+      flexGrow: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      position: 'relative',
+      backgroundColor: isDarkScheme ? 'black' : 'white',
+      borderRadius: 5,
+      padding: 5,
+      marginHorizontal: 2.5
+    },
+
+    inputAccessoryViewButtonText: {
+      fontSize: 20
+    },
+
+    calculatedAmountContainer: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+
+    calculatedAmountTextInput: {
+      color: isDarkScheme ? '#8374b2' : '#4d3f70',
+      fontSize: 20,
+      fontWeight: 'bold'
+    }
+  }
+}
+
+const __react__vue__render = function render(vm) {
+    return __react__vue__createElement(vm.$options.components['View'], __react__vue__mergeProps.call(this, this.props.__react__vue__nativeEvents, {
+        ref: ref => {
+            this.setRootRef(ref);
+            this.props['__react__vue__setRef'] && this.props['__react__vue__setRef'](ref);
+        },
+        style: __react__vue__mergeNativeStyleAndNativeClass(__react__vue__bindClass.call(this, {
+            parentClass: this.props.style
+        }), __react__vue__bindStyle(vm['styles'].inputContainer, undefined, undefined))
+    }), __react__vue__createElement(vm.$options.components['Text'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].title, undefined, undefined))
+    }, "How much?"), __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].amountContainer, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['Text'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].amountCurrencyText, undefined, undefined))
+    }, __react__vue__toString(vm['coin'])), __react__vue__createElement(vm.$options.components['TextInput'], {
+        ref: ref => {
+            this.setRef(ref, "amount", false);
+        },
+        onChangeText: vm['onChangeText'],
+        onEndEditing: vm['onEndEditing'],
+        onFocus: vm['onFocus'],
+        keyboardType: "numeric",
+        placeholder: "0.00",
+        autoFocus: vm['autoFocus'],
+        placeholderTextColor: vm['isDarkScheme'] ? '#111111' : '#dadada',
+        value: vm['value'],
+        onInput: () => vm['$emit']('input', vm['$event']),
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].amountTextInput, undefined, undefined)),
+        '__react__vue__customEventinput': __react__vue__event(function($event) {
+            vm['$emit']('input', $event);
+        }.bind(this))
+    })), __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].calculatedAmountContainer, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['Money'], {
+        amount: vm['valueNumber'],
+        convert: true,
+        approximately: true,
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].calculatedAmountTextInput, undefined, undefined))
+    })));
+};
+
+const __react__vue__css = {}
+
+const __react__vue__ComponentBuilded = __react__vue__buildNativeComponent(__react__vue__render, __react__vue__options, {Component: __react__vue__Component, PropTypes: __react__vue__PropType, Vue: __react__vue__Vue, ReactNative: __react__vue__ReactNative, css: __react__vue__css})
+
+export default __react__vue__observer(__react__vue__ComponentBuilded) />
+`;
