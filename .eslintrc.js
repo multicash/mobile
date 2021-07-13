@@ -19,7 +19,8 @@ module.exports = {
   ignorePatterns: [
     'vueTransformerPlugin.js',
     'src/core/support/sjcl.js',
-    'shim.js'
+    'shim.js',
+    '__tests__/**/*'
   ],
   overrides: [
     {

@@ -1,0 +1,228 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render notification renders correctly 1`] = `
+<import __react__vue__Vue, { observer as __react__vue__observer } from 'vue-native-core'
+import __react__vue__ReactNative from 'react-native'
+import __react__vue__PropType from 'prop-types'
+import { buildNativeComponent as __react__vue__buildNativeComponent } from 'vue-native-helper'
+import { bindNativeClass as __react__vue__bindClass,bindNativeStyle as __react__vue__bindStyle,mergeNativeStyleAndNativeClass as __react__vue__mergeNativeStyleAndNativeClass,mergeProps as __react__vue__mergeProps,_toString as __react__vue__toString } from 'vue-native-helper'
+import {
+      createElement as __react__vue__createElement,
+      Component as __react__vue__Component
+    } from 'react'
+
+import { Platform } from 'react-native'
+const __react__vue__options =  {
+  name: 'Notification',
+
+  props: {
+    icon: {
+      type: String,
+      default: 'information-circle'
+    },
+
+    title: {
+      type: String,
+      default: ''
+    },
+
+    label: {
+      type: String,
+      default: ''
+    },
+
+    type: {
+      type: String,
+      default: 'default'
+    },
+
+    size: {
+      type: String,
+      default: 'md'
+    },
+
+    loading: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme, this.loading ? 'default' : this.type, this.size)
+    },
+
+    isPressable () {
+      return !!this._events['on-press']
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme, type, size) => {
+  const typeColors = {
+
+    default: {
+      notification: {
+        backgroundColor: isDarkScheme ? '#191919' : 'white'
+      },
+      notificationIcon: {
+        color: isDarkScheme ? '#d4d4d4' : '#3b3b3b'
+      },
+      notificationTitle: {
+        color: isDarkScheme ? '#d4d4d4' : '#3b3b3b'
+      },
+      notificationText: {
+        color: isDarkScheme ? '#d4d4d4' : '#3b3b3b'
+      }
+    },
+
+    primary: {
+      notification: {
+        backgroundColor: '#00b0ee'
+      },
+      notificationIcon: {
+        color: 'white'
+      },
+      notificationTitle: {
+        color: 'white'
+      },
+      notificationText: {
+        color: 'white'
+      }
+    },
+
+    success: {
+      notification: {
+        backgroundColor: '#00ae5a'
+      },
+      notificationIcon: {
+        color: 'white'
+      },
+      notificationTitle: {
+        color: 'white'
+      },
+      notificationText: {
+        color: 'white'
+      }
+    },
+
+    warning: {
+      notification: {
+        backgroundColor: '#ffdd57'
+      },
+      notificationIcon: {
+        color: '#3b3b3b'
+      },
+      notificationTitle: {
+        color: '#3b3b3b'
+      },
+      notificationText: {
+        color: '#3b3b3b'
+      }
+    },
+
+    danger: {
+      notification: {
+        backgroundColor: '#f14668'
+      },
+      notificationIcon: {
+        color: 'white'
+      },
+      notificationTitle: {
+        color: 'white'
+      },
+      notificationText: {
+        color: 'white'
+      }
+    }
+
+  }
+
+  const sizes = {
+    sm: {
+      notification: {
+        padding: 8
+      }
+    },
+    md: {
+      notification: {
+        padding: 15
+      }
+    },
+    lg: {
+      notification: {
+        padding: 20
+      }
+    }
+  }
+
+  return {
+    notification: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: typeColors[type].notification.backgroundColor,
+      borderRadius: 10,
+      padding: sizes[size].notification.padding,
+      marginBottom: 10
+    },
+
+    notificationIcon: {
+      color: typeColors[type].notificationIcon.color
+    },
+
+    notificationTitle: {
+      color: typeColors[type].notificationTitle.color,
+      fontWeight: 'bold'
+    },
+
+    notificationText: {
+      color: typeColors[type].notificationText.color,
+      fontWeight: Platform.OS === 'ios' ? '600' : 'bold'
+    },
+
+    loadingContainer: {
+      flex: 1,
+      justifyContent: 'center'
+    }
+  }
+}
+
+const __react__vue__render = function render(vm) {
+    return __react__vue__createElement(vm.$options.components['TouchableOpacity'], __react__vue__mergeProps.call(this, this.props.__react__vue__nativeEvents, {
+        ref: ref => {
+            this.setRootRef(ref);
+            this.props['__react__vue__setRef'] && this.props['__react__vue__setRef'](ref);
+        },
+        onPress: () => vm['$emit']('on-press'),
+        activeOpacity: vm['isPressable'] ? 0.6 : 1,
+        style: __react__vue__mergeNativeStyleAndNativeClass(__react__vue__bindClass.call(this, {
+            parentClass: this.props.style
+        }), __react__vue__bindStyle(vm['styles'].notification, undefined, undefined))
+    }), !vm['loading'] ? __react__vue__createElement(vm.$options.components['Icon'], {
+        name: vm['icon'],
+        color: vm['styles'].notificationIcon.color,
+        size: 30,
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+    }) : null, !vm['loading'] ? __react__vue__createElement(vm.$options.components['Spacer'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+    }) : null, !vm['loading'] ? __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle({
+            flex: 1
+        }, undefined, undefined))
+    }, vm['title'] !== '' ? __react__vue__createElement(vm.$options.components['Text'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].notificationTitle, undefined, undefined))
+    }, __react__vue__toString(vm['title'])) : null, __react__vue__createElement(vm.$options.components['Text'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].notificationText, undefined, undefined))
+    }, __react__vue__toString(vm['label']))) : null, vm['loading'] ? __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].loadingContainer, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['ActivityIndicator'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+    })) : null);
+};
+
+const __react__vue__css = {}
+
+const __react__vue__ComponentBuilded = __react__vue__buildNativeComponent(__react__vue__render, __react__vue__options, {Component: __react__vue__Component, PropTypes: __react__vue__PropType, Vue: __react__vue__Vue, ReactNative: __react__vue__ReactNative, css: __react__vue__css})
+
+export default __react__vue__observer(__react__vue__ComponentBuilded) />
+`;

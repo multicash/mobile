@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render pin keyboard renders correctly 1`] = `
+<import __react__vue__Vue, { observer as __react__vue__observer } from 'vue-native-core'
+import __react__vue__ReactNative from 'react-native'
+import __react__vue__PropType from 'prop-types'
+import { buildNativeComponent as __react__vue__buildNativeComponent } from 'vue-native-helper'
+import { bindNativeClass as __react__vue__bindClass,bindNativeStyle as __react__vue__bindStyle,mergeNativeStyleAndNativeClass as __react__vue__mergeNativeStyleAndNativeClass,mergeProps as __react__vue__mergeProps,renderList as __react__vue__renderList,event as __react__vue__event } from 'vue-native-helper'
+import {
+      createElement as __react__vue__createElement,
+      Component as __react__vue__Component
+    } from 'react'
+
+import ReactNativeBiometrics from 'react-native-biometrics'
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
+
+const AUTH_CHARACTER = 'auth'
+const DEL_CHARACTER = 'del'
+const KEYBOARD_LAYOUT = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [AUTH_CHARACTER, 0, DEL_CHARACTER]
+]
+const __react__vue__options =  {
+  name: 'PinKeyboard',
+
+  props: {
+    value: {
+      type: Array,
+      required: true
+    },
+
+    biometricUnlockable: {
+      type: Boolean,
+      default: false
+    },
+
+    biometryType: {
+      type: String,
+      default: null
+    },
+
+    maxLength: {
+      type: Number,
+      default: 4
+    }
+  },
+
+  computed: {
+    biometryTypeIcon () {
+      if (!this.biometricUnlockable) {
+        return false
+      }
+
+      switch (this.biometryType) {
+        case ReactNativeBiometrics.FaceID:
+          return require('@/assets/face-id.png')
+        case ReactNativeBiometrics.Biometrics:
+          return require('@/assets/fingerprint.png')
+        case ReactNativeBiometrics.TouchID:
+          return require('@/assets/touch-id.png')
+        default:
+          return false
+      }
+    },
+
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    },
+
+    keyboardLayout () {
+      return KEYBOARD_LAYOUT
+    }
+  },
+
+  methods: {
+    keyDown (charater) {
+      ReactNativeHapticFeedback.trigger('impactLight', {
+        enableVibrateFallback: true,
+        ignoreAndroidSystemSettings: false
+      })
+
+      const index = Object.keys(this.value).length
+      const value = this.value
+
+      switch (charater) {
+        case DEL_CHARACTER:
+          delete value[index - 1]
+          break
+        case AUTH_CHARACTER:
+          this.$emit('auth-requested')
+          break
+        default:
+          if (value.filter(v => v !== undefined).length >= this.maxLength) {
+            return
+          }
+
+          value[index] = charater
+          break
+      }
+
+      this.$emit('input', value)
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme) => {
+  return {
+    keyboardContainer: {
+      flex: 1,
+      width: '100%',
+      maxWidth: 300,
+      maxHeight: 350,
+      marginHorizontal: 50
+    },
+
+    keyboardRow: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    },
+
+    biometryTypeIcon: {
+      width: 40,
+      height: 40,
+      resizeMode: 'contain'
+    }
+  }
+}
+
+const __react__vue__render = function render(vm) {
+    return __react__vue__createElement(vm.$options.components['View'], __react__vue__mergeProps.call(this, this.props.__react__vue__nativeEvents, {
+        ref: ref => {
+            this.setRootRef(ref);
+            this.props['__react__vue__setRef'] && this.props['__react__vue__setRef'](ref);
+        },
+        style: __react__vue__mergeNativeStyleAndNativeClass(__react__vue__bindClass.call(this, {
+            parentClass: this.props.style
+        }), __react__vue__bindStyle(vm['styles'].keyboardContainer, undefined, undefined))
+    }), __react__vue__renderList(vm['keyboardLayout'], function(characters, i) {
+        return __react__vue__createElement(vm.$options.components['View'], {
+            key: i,
+            style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].keyboardRow, undefined, undefined))
+        }, __react__vue__renderList(characters, function(character) {
+            return !(character === 'auth' && !vm['biometryTypeIcon']) ? __react__vue__createElement(vm.$options.components['KeyboardKey'], {
+                key: character,
+                label: character,
+                onKeydown: () => vm['keyDown'](character),
+                style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined),
+                '__react__vue__customEventkeydown': __react__vue__event(function($event) {
+                    vm['keyDown'](character);
+                }.bind(this))
+            }, character === 'auth' && vm['biometryTypeIcon'] ? __react__vue__createElement(vm.$options.components['Image'], {
+                source: vm['biometryTypeIcon'],
+                style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].biometryTypeIcon, undefined, undefined))
+            }) : character === 'del' ? __react__vue__createElement(vm.$options.components['Icon'], {
+                name: "backspace",
+                style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+            }) : null) : __react__vue__createElement(vm.$options.components['View'], {
+                key: character,
+                style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle({
+                    flex: 0.3
+                }, undefined, undefined))
+            });
+        }.bind(this)));
+    }.bind(this)));
+};
+
+const __react__vue__css = {}
+
+const __react__vue__ComponentBuilded = __react__vue__buildNativeComponent(__react__vue__render, __react__vue__options, {Component: __react__vue__Component, PropTypes: __react__vue__PropType, Vue: __react__vue__Vue, ReactNative: __react__vue__ReactNative, css: __react__vue__css})
+
+export default __react__vue__observer(__react__vue__ComponentBuilded) />
+`;

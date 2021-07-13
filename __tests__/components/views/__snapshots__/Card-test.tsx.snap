@@ -59,7 +59,7 @@ const __react__vue__ComponentBuilded = __react__vue__buildNativeComponent(__reac
 export default __react__vue__observer(__react__vue__ComponentBuilded) />
 `;
 
-exports[`Render card component with background color renders correctly 1`] = `
+exports[`Render card component renders correctly with background color 1`] = `
 <import __react__vue__Vue, { observer as __react__vue__observer } from 'vue-native-core'
 import __react__vue__ReactNative from 'react-native'
 import __react__vue__PropType from 'prop-types'

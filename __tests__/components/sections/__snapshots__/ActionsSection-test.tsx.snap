@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render actions section renders correctly 1`] = `
+<import __react__vue__Vue, { observer as __react__vue__observer } from 'vue-native-core'
+import __react__vue__ReactNative from 'react-native'
+import __react__vue__PropType from 'prop-types'
+import { buildNativeComponent as __react__vue__buildNativeComponent } from 'vue-native-helper'
+import { bindNativeClass as __react__vue__bindClass,bindNativeStyle as __react__vue__bindStyle,mergeNativeStyleAndNativeClass as __react__vue__mergeNativeStyleAndNativeClass,mergeProps as __react__vue__mergeProps,event as __react__vue__event } from 'vue-native-helper'
+import {
+      createElement as __react__vue__createElement,
+      Component as __react__vue__Component
+    } from 'react'
+
+import NfcManager from 'react-native-nfc-manager'
+import { isEmulatorSync, isCameraPresentSync } from 'react-native-device-info'
+const __react__vue__options =  {
+  name: 'ActionsSection',
+
+  data () {
+    return {
+      hasCamera: isCameraPresentSync,
+      hasNfcSupported: isEmulatorSync
+    }
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    }
+  },
+
+  created () {
+    NfcManager.isSupported().then(isSupported => {
+      if (!isEmulatorSync) {
+        this.hasNfcSupported = isSupported
+      }
+    })
+  }
+}
+
+const stylesStore = (isDarkScheme) => {
+  return {
+    actions: {
+      margin: 30,
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between'
+    },
+
+    actionsSecondary: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'row'
+    },
+
+    nfcImage: {
+      width: 25,
+      height: 25,
+      resizeMode: 'contain',
+      tintColor: isDarkScheme ? 'white' : 'black'
+    }
+  }
+}
+
+const __react__vue__render = function render(vm) {
+    return __react__vue__createElement(vm.$options.components['ViewSection'], __react__vue__mergeProps.call(this, this.props.__react__vue__nativeEvents, {
+        ref: ref => {
+            this.setRootRef(ref);
+            this.props['__react__vue__setRef'] && this.props['__react__vue__setRef'](ref);
+        },
+        title: "Actions",
+        style: __react__vue__mergeNativeStyleAndNativeClass(__react__vue__bindClass.call(this, {
+            parentClass: this.props.style
+        }), __react__vue__bindStyle(undefined, undefined, undefined))
+    }), __react__vue__createElement(vm.$options.components['ScrollView'], {
+        horizontal: true,
+        showsHorizontalScrollIndicator: false,
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle({
+            margin: -30
+        }, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].actions, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['ActionButton'], {
+        title: "Pay",
+        icon: require('@/assets/send.png'),
+        onOnPress: () => vm['$emit']('pay'),
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined),
+        '__react__vue__customEventon-press': __react__vue__event(function($event) {
+            vm['$emit']('pay');
+        }.bind(this))
+    }), __react__vue__createElement(vm.$options.components['Spacer'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+    }), __react__vue__createElement(vm.$options.components['ActionButton'], {
+        title: "Receive",
+        icon: require('@/assets/receive.png'),
+        onOnPress: () => vm['$emit']('receive'),
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined),
+        '__react__vue__customEventon-press': __react__vue__event(function($event) {
+            vm['$emit']('receive');
+        }.bind(this))
+    }), __react__vue__createElement(vm.$options.components['Spacer'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+    }), __react__vue__createElement(vm.$options.components['ActionButton'], {
+        title: "Top up",
+        icon: require('@/assets/add-dollar.png'),
+        type: "success",
+        onOnPress: () => vm['$emit']('topUp'),
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined),
+        '__react__vue__customEventon-press': __react__vue__event(function($event) {
+            vm['$emit']('topUp');
+        }.bind(this))
+    }), __react__vue__createElement(vm.$options.components['Spacer'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+    }), __react__vue__createElement(vm.$options.components['ActionButton'], {
+        title: "Invest",
+        icon: require('@/assets/duration-finance.png'),
+        type: "warning",
+        onOnPress: () => vm['$emit']('invest'),
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined),
+        '__react__vue__customEventon-press': __react__vue__event(function($event) {
+            vm['$emit']('invest');
+        }.bind(this))
+    }), __react__vue__createElement(vm.$options.components['Spacer'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+    }), __react__vue__createElement(vm.$options.components['ActionButton'], {
+        title: "Change",
+        icon: require('@/assets/dollar-bitcoin-exchange.png'),
+        type: "secondary",
+        onOnPress: () => vm['$emit']('change'),
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined),
+        '__react__vue__customEventon-press': __react__vue__event(function($event) {
+            vm['$emit']('change');
+        }.bind(this))
+    }))), __react__vue__createElement(vm.$options.components['Spacer'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+    }), __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].actionsSecondary, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['SecondaryRoundButton'], {
+        icon: "qr-code",
+        title: "",
+        onOnPress: () => vm['$emit']('scanQR'),
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined),
+        '__react__vue__customEventon-press': __react__vue__event(function($event) {
+            vm['$emit']('scanQR');
+        }.bind(this))
+    }), vm['hasNfcSupported'] ? __react__vue__createElement(vm.$options.components['Spacer'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+    }) : null, vm['hasNfcSupported'] ? __react__vue__createElement(vm.$options.components['SecondaryRoundButton'], {
+        onOnPress: () => vm['$emit']('scanNFC'),
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined),
+        '__react__vue__customEventon-press': __react__vue__event(function($event) {
+            vm['$emit']('scanNFC');
+        }.bind(this))
+    }, __react__vue__createElement(vm.$options.components['Image'], {
+        source: require('@/assets/nfc-logo.png'),
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].nfcImage, undefined, undefined))
+    })) : null));
+};
+
+const __react__vue__css = {}
+
+const __react__vue__ComponentBuilded = __react__vue__buildNativeComponent(__react__vue__render, __react__vue__options, {Component: __react__vue__Component, PropTypes: __react__vue__PropType, Vue: __react__vue__Vue, ReactNative: __react__vue__ReactNative, css: __react__vue__css})
+
+export default __react__vue__observer(__react__vue__ComponentBuilded) />
+`;

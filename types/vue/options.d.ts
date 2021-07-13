@@ -118,7 +118,7 @@ export interface ComponentOptions<
   serverPrefetch?(this: V): Promise<void>;
 
   directives?: { [key: string]: DirectiveFunction | DirectiveOptions };
-  components?: { [key: string]: Component<any, any, any, any> | AsyncComponent<any, any, any, any> | React.Component<any, any, any> };
+  components?: { [key: string]: Component<any, any, any, any> | AsyncComponent<any, any, any, any> | React.Component<any, any> | any };
   transitions?: { [key: string]: object };
   filters?: { [key: string]: Function };
 

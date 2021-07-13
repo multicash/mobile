@@ -9,10 +9,8 @@ describe('Render card component', () => {
     const tree = renderer.create(<Card />).toJSON()
     expect(tree).toMatchSnapshot()
   })
-})
 
-describe('Render card component with background color', () => {
-  it('renders correctly', () => {
+  it('renders correctly with background color', () => {
     const tree = renderer.create(<Card backgroundColor="blue" />).toJSON()
     expect(tree).toMatchSnapshot()
   })

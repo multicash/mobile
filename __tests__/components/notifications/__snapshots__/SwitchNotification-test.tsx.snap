@@ -1,0 +1,190 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render switch notification renders correctly 1`] = `
+<import __react__vue__Vue, { observer as __react__vue__observer } from 'vue-native-core'
+import __react__vue__ReactNative from 'react-native'
+import __react__vue__PropType from 'prop-types'
+import { buildNativeComponent as __react__vue__buildNativeComponent } from 'vue-native-helper'
+import { bindNativeClass as __react__vue__bindClass,bindNativeStyle as __react__vue__bindStyle,mergeNativeStyleAndNativeClass as __react__vue__mergeNativeStyleAndNativeClass,mergeProps as __react__vue__mergeProps,_toString as __react__vue__toString,renderSlot as __react__vue__renderSlot } from 'vue-native-helper'
+import {
+      createElement as __react__vue__createElement,
+      Component as __react__vue__Component
+    } from 'react'
+
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback'
+const __react__vue__options =  {
+  name: 'SwitchNotification',
+
+  props: {
+    value: {
+      type: Boolean,
+      default: false
+    },
+
+    label: {
+      type: String,
+      default: ''
+    },
+
+    type: {
+      type: String,
+      default: 'default'
+    },
+
+    alwaysShowExtra: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme, this.type)
+    }
+  },
+
+  methods: {
+    onPress () {
+      ReactNativeHapticFeedback.trigger('impactLight', {
+        enableVibrateFallback: true,
+        ignoreAndroidSystemSettings: false
+      })
+
+      this.$emit('input', !this.value)
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme, type) => {
+  const typeColors = {
+
+    default: {
+      switchNotification: {
+        backgroundColor: isDarkScheme ? '#191919' : 'white'
+      },
+      switchNotificationText: {
+        color: isDarkScheme ? '#d4d4d4' : '#3b3b3b'
+      },
+      switchTrackColor: {
+        false: isDarkScheme ? '#3e3e3e' : '#dddddd',
+        true: '#32b680'
+      }
+    },
+
+    primary: {
+      switchNotification: {
+        backgroundColor: '#00b0ee'
+      },
+      switchNotificationText: {
+        color: 'white'
+      },
+      switchTrackColor: {
+        false: '#bce2ff',
+        true: '#06d27e'
+      }
+    },
+
+    success: {
+      switchNotification: {
+        backgroundColor: '#00ae5a'
+      },
+      switchNotificationText: {
+        color: 'white'
+      },
+      switchTrackColor: {
+        false: '#9fe5c1',
+        true: '#00ff99'
+      }
+    },
+
+    warning: {
+      switchNotification: {
+        backgroundColor: '#ffdd57'
+      },
+      switchNotificationText: {
+        color: '#3b3b3b'
+      },
+      switchTrackColor: {
+        false: '#e5d59f',
+        true: '#32b680'
+      }
+    },
+
+    danger: {
+      switchNotification: {
+        backgroundColor: '#f14668'
+      },
+      switchNotificationText: {
+        color: 'white'
+      },
+      switchTrackColor: {
+        false: '#ffb6c4',
+        true: '#32b680'
+      }
+    }
+
+  }
+
+  return {
+    switchNotification: {
+      backgroundColor: typeColors[type].switchNotification.backgroundColor,
+      borderRadius: 10,
+      padding: 15,
+      marginBottom: 10
+    },
+
+    switchNotificationDefaultContainer: {
+      flexDirection: 'row',
+      alignItems: 'center'
+    },
+
+    switchNotificationExtraContainer: {
+      marginTop: 10
+    },
+
+    switchNotificationText: {
+      color: typeColors[type].switchNotificationText.color,
+      flex: 1
+    },
+
+    switchTrackColor: typeColors[type].switchTrackColor
+  }
+}
+
+const __react__vue__render = function render(vm) {
+    const __react__vue__slotSet = __react__vue__renderSlot.call(this, [], this.props.children);
+    return __react__vue__createElement(vm.$options.components['Pressable'], __react__vue__mergeProps.call(this, this.props.__react__vue__nativeEvents, {
+        ref: ref => {
+            this.setRootRef(ref);
+            this.props['__react__vue__setRef'] && this.props['__react__vue__setRef'](ref);
+        },
+        onPress: vm['onPress'],
+        style: __react__vue__mergeNativeStyleAndNativeClass(__react__vue__bindClass.call(this, {
+            parentClass: this.props.style
+        }), __react__vue__bindStyle(undefined, undefined, undefined))
+    }), __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].switchNotification, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].switchNotificationDefaultContainer, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['Switch'], {
+        value: vm['value'],
+        onChange: () => vm['$emit']('input', !vm['value']),
+        trackColor: vm['styles'].switchTrackColor,
+        thumbColor: "#ffffff",
+        ios_backgroundColor: vm['styles'].switchTrackColor[false],
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+    }), __react__vue__createElement(vm.$options.components['Spacer'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+    }), __react__vue__createElement(vm.$options.components['Text'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].switchNotificationText, undefined, undefined))
+    }, __react__vue__toString(vm['label']))), (vm['value'] || vm['alwaysShowExtra']) && vm['$slots'].default ? __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].switchNotificationExtraContainer, undefined, undefined))
+    }, __react__vue__slotSet(undefined, {})) : null));
+};
+
+const __react__vue__css = {}
+
+const __react__vue__ComponentBuilded = __react__vue__buildNativeComponent(__react__vue__render, __react__vue__options, {Component: __react__vue__Component, PropTypes: __react__vue__PropType, Vue: __react__vue__Vue, ReactNative: __react__vue__ReactNative, css: __react__vue__css})
+
+export default __react__vue__observer(__react__vue__ComponentBuilded) />
+`;

@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render wallets section renders correctly 1`] = `
+<import __react__vue__Vue, { observer as __react__vue__observer } from 'vue-native-core'
+import __react__vue__ReactNative from 'react-native'
+import __react__vue__PropType from 'prop-types'
+import { buildNativeComponent as __react__vue__buildNativeComponent } from 'vue-native-helper'
+import { bindNativeClass as __react__vue__bindClass,bindNativeStyle as __react__vue__bindStyle,mergeNativeStyleAndNativeClass as __react__vue__mergeNativeStyleAndNativeClass,mergeProps as __react__vue__mergeProps,event as __react__vue__event,renderList as __react__vue__renderList } from 'vue-native-helper'
+import {
+      createElement as __react__vue__createElement,
+      Component as __react__vue__Component
+    } from 'react'
+
+
+const __react__vue__options =  {
+  name: 'WalletsSection',
+
+  computed: {
+    styles () {
+      return stylesStore(this.isDarkScheme)
+    }
+  }
+}
+
+const stylesStore = (isDarkScheme) => {
+  return {
+    flexGrow: {},
+
+    wallets: {
+      margin: -30
+    },
+
+    walletsContainer: {
+      margin: 30,
+      flexDirection: 'row'
+    },
+
+    actionsContainer: {
+      flexDirection: 'row'
+    },
+
+    actionButton: {
+      marginLeft: 10
+    }
+  }
+}
+
+const __react__vue__render = function render(vm) {
+    return __react__vue__createElement(vm.$options.components['ViewSection'], __react__vue__mergeProps.call(this, this.props.__react__vue__nativeEvents, {
+        ref: ref => {
+            this.setRootRef(ref);
+            this.props['__react__vue__setRef'] && this.props['__react__vue__setRef'](ref);
+        },
+        title: "Accounts",
+        style: __react__vue__mergeNativeStyleAndNativeClass(__react__vue__bindClass.call(this, {
+            parentClass: this.props.style
+        }), __react__vue__bindStyle(vm['styles'].flexGrow, undefined, undefined))
+    }), __react__vue__createElement(vm.$options.components['View'], {
+        dataSlot: "options",
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].actionsContainer, undefined, undefined))
+    }, vm['orderedWallets'].length > 1 ? __react__vue__createElement(vm.$options.components['SecondaryActionButton'], {
+        icon: "albums-outline",
+        title: "",
+        onOnPress: () => vm['$emit']('order-wallets'),
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].actionButton, undefined, undefined)),
+        '__react__vue__customEventon-press': __react__vue__event(function($event) {
+            vm['$emit']('order-wallets');
+        }.bind(this))
+    }) : null, __react__vue__createElement(vm.$options.components['SecondaryActionButton'], {
+        icon: "add-outline",
+        title: "",
+        onOnPress: () => vm['$emit']('add-wallet'),
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].actionButton, undefined, undefined)),
+        '__react__vue__customEventon-press': __react__vue__event(function($event) {
+            vm['$emit']('add-wallet');
+        }.bind(this))
+    })), __react__vue__createElement(vm.$options.components['ScrollView'], {
+        horizontal: true,
+        showsHorizontalScrollIndicator: false,
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].wallets, undefined, undefined))
+    }, __react__vue__createElement(vm.$options.components['View'], {
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].walletsContainer, undefined, undefined))
+    }, __react__vue__renderList(vm['orderedWallets'], function(wallet, i) {
+        return __react__vue__createElement(vm.$options.components['WalletCard'], {
+            key: wallet.identifier,
+            value: wallet,
+            containerContentStyle: "space-between",
+            onWalletSelected: () => vm['$emit']('wallet-selected', arguments[0]),
+            style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle({
+                marginRight: i === vm['orderedWallets'].length - 1 ? 0 : 20
+            }, undefined, undefined)),
+            '__react__vue__customEventwallet-selected': __react__vue__event(function($event) {
+                vm['$emit']('wallet-selected', arguments[0]);
+            }.bind(this))
+        });
+    }.bind(this)))));
+};
+
+const __react__vue__css = {}
+
+const __react__vue__ComponentBuilded = __react__vue__buildNativeComponent(__react__vue__render, __react__vue__options, {Component: __react__vue__Component, PropTypes: __react__vue__PropType, Vue: __react__vue__Vue, ReactNative: __react__vue__ReactNative, css: __react__vue__css})
+
+export default __react__vue__observer(__react__vue__ComponentBuilded) />
+`;

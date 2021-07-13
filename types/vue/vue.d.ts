@@ -35,6 +35,7 @@ import { PluginFunction, PluginObject } from './plugin'
 import { Store } from 'vuex'
 import AuthManager from '@/core/authentication/AuthManager'
 import WalletManager from '@/core/wallet/WalletManager'
+import { ReactElement } from 'react'
 
 export interface CreateElement {
   (tag?: string | Component<any, any, any, any> | AsyncComponent<any, any, any, any> | (() => Component), children?: VNodeChildren): VNode;
