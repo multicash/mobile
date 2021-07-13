@@ -15,12 +15,12 @@
 <!--along with this program.  If not, see <https://www.gnu.org/licenses/>.-->
 
 <template>
-  <view-background no-padding>
-    <modal-navigation
-      title="Order accounts"
-      has-close-button
-      @on-dismiss="navigation.goBack()"
-    />
+  <modal-view
+    no-padding
+    title="Order accounts"
+    has-close-button
+    @on-dismiss="navigation.goBack()"
+  >
     <header-view
       :style="{ marginTop: 10 }"
       title="Order accounts"
@@ -28,14 +28,15 @@
       :image-background="require('@/assets/sorting.png')"
       :image-foreground="require('@/assets/wallet.png')"
     />
+
     <view :style="styles.defaultContainer">
-      <action-notification
-        title="Default account"
-        label="Select your default account by pressing longer on one of the accounts below"
-      >
-        <text :style="styles.defaultContainerWallet">{{ defaultWalletName }}</text>
-      </action-notification>
+      <selector
+        name="Default Account"
+        :value="defaultWalletName"
+        @on-press="selectDefaultAccount"
+      />
     </view>
+
     <draggable-flat-list
       :style="styles.container"
       :data="walletsList"
@@ -43,17 +44,20 @@
       :keyExtractor="item => `draggable-item-${item.identifier}`"
       :onDragEnd="({ data }) => setState({ data })"
     />
-  </view-background>
+  </modal-view>
 </template>
 
 <script>
 import React from 'react'
-import { StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { TouchableWithoutFeedback } from 'react-native'
 import { ListItem, Avatar } from 'react-native-elements'
 import DraggableFlatList from 'react-native-draggable-flatlist'
 import { mapActions, mapGetters } from 'vuex'
 import { resolveIcon } from '@/core/assets/walletIcons'
 import { text, subtitle } from '@/core/support/styles'
+import Messages from '@/core/logging/Messages'
+
+const Log = global.Logger.extend('WALLET')
 
 export default {
   name: 'OrderWalletsView',
@@ -98,7 +102,7 @@ export default {
           onLongPress={() => this.setDefaultWallet(item.identifier)}
         >
           <ListItem
-            style={this.orderedWallets.length - 1 === index ? undefined : this.styles.item}
+            style={this.styles.item}
             containerStyle={isActive ? this.styles.itemContentDragged : this.styles.itemContent}
             key={index}
           >
@@ -131,6 +135,23 @@ export default {
 
     setState (state) {
       this.updateWalletOrder(state.data.map(wallet => wallet.identifier))
+    },
+
+    selectDefaultAccount () {
+      const unsubscribe = this.navigation.addListener('focus', () => {
+        if (this.route.params && this.route.params.account) {
+          this.setDefaultWallet(this.route.params.account.identifier)
+
+          Log.info(Messages.wallet('Default account set', this.route.params.account))
+        }
+
+        this.navigation.removeListener('focus', unsubscribe)
+      })
+
+      this.navigation.navigate('orderWallets.accounts', {
+        goBack: true,
+        returnView: 'orderWallets'
+      })
     }
   }
 }
@@ -141,18 +162,21 @@ const stylesStore = (isDarkScheme) => {
       paddingTop: 10
     },
     item: {
-      borderBottomColor: isDarkScheme ? '#505155' : '#dfe1ee',
-      borderBottomWidth: StyleSheet.hairlineWidth
+      paddingHorizontal: 15,
+      marginVertical: 5
     },
     itemContent: {
-      backgroundColor: isDarkScheme ? '#2c2e36' : '#ffffff'
+      backgroundColor: isDarkScheme ? '#2c2e36' : '#ffffff',
+      borderRadius: 10,
+      overflow: 'hidden'
     },
     itemContentDragged: {
       shadowColor: isDarkScheme ? 'black' : '#c0c0ff',
       shadowRadius: 10,
       shadowOpacity: 0.5,
       elevation: 10,
-      backgroundColor: isDarkScheme ? '#555767' : '#f3f3f3'
+      backgroundColor: isDarkScheme ? '#555767' : '#f3f3f3',
+      borderRadius: 10
     },
     itemTitle: {
       color: text(isDarkScheme).color
@@ -176,13 +200,8 @@ const stylesStore = (isDarkScheme) => {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      paddingHorizontal: 10,
+      paddingHorizontal: 15,
       paddingTop: 10
-    },
-    defaultContainerWallet: {
-      color: isDarkScheme ? '#0bbcda' : '#00ade7',
-      fontWeight: '700',
-      fontSize: 15
     }
   }
 }

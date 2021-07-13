@@ -42,6 +42,7 @@ import HomeView from '@/views/home/HomeView.vue'
 import ScanQRView from '@/views/home/ScanQRView.vue'
 import SupportView from '@/views/settings/SupportView.vue'
 import OrderWalletsView from '@/views/wallet/OrderWalletsView.vue'
+import AccountsView from '@/views/wallet/AccountsView.vue'
 import WhatsNewView from '@/views/home/WhatsNewView.vue'
 
 enableScreens()
@@ -112,6 +113,10 @@ export const AppNavigator = () => {
       <Stack.Screen
         name="orderWallets"
         component={OrderWalletsView as any}
+      />
+      <Stack.Screen
+        name="orderWallets.accounts"
+        component={AccountsView as any}
       />
       <Stack.Screen
         name="add"
