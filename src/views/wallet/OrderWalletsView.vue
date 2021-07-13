@@ -81,7 +81,10 @@ export default {
           identifier: wallet.identifier,
           title: wallet.name,
           subtitle: this.formatAmountFromSatoshis(wallet.totalAmount, wallet.coin),
-          leftAvatar: { source: resolveIcon(wallet.icon), size: 40 },
+          leftAvatar: {
+            source: resolveIcon(wallet.icon),
+            size: 40
+          },
           isDefault: this.getDefaultWallet === wallet.identifier
         }
       })
@@ -95,7 +98,12 @@ export default {
   methods: {
     ...mapActions(['updateWalletOrder', 'setDefaultWallet']),
 
-    renderList ({ item, index, drag, isActive }) {
+    renderList ({
+      item,
+      index,
+      drag,
+      isActive
+    }) {
       return (
         <TouchableWithoutFeedback
           onPressIn={drag}
@@ -163,19 +171,35 @@ const stylesStore = (isDarkScheme) => {
     },
     item: {
       paddingHorizontal: 15,
-      marginVertical: 5
+      marginVertical: 5,
+      height: 80
     },
     itemContent: {
       backgroundColor: isDarkScheme ? '#2c2e36' : '#ffffff',
       borderRadius: 10,
-      overflow: 'hidden'
+      paddingVertical: 30,
+      transform: [
+        { perspective: 600 },
+        { rotateX: '-15deg' }
+      ],
+      shadowColor: 'black',
+      shadowRadius: 5,
+      shadowOpacity: 0.1,
+      shadowOffsetY: 30,
+      elevation: 10
     },
     itemContentDragged: {
+      transform: [
+        { perspective: 600 },
+        { rotateX: '-10deg' },
+        { translateY: -5 }
+      ],
       shadowColor: isDarkScheme ? 'black' : '#c0c0ff',
       shadowRadius: 10,
       shadowOpacity: 0.5,
+      paddingVertical: 30,
       elevation: 10,
-      backgroundColor: isDarkScheme ? '#555767' : '#f3f3f3',
+      backgroundColor: isDarkScheme ? '#555767' : '#f3f5f8',
       borderRadius: 10
     },
     itemTitle: {
