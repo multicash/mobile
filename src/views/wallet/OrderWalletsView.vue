@@ -38,6 +38,7 @@
     </view>
 
     <draggable-flat-list
+      :contentContainerStyle="styles.containerStyle"
       :style="styles.container"
       :data="walletsList"
       :renderItem="renderList"
@@ -69,7 +70,8 @@ export default {
 
     defaultWalletName () {
       if (this.getDefaultWallet) {
-        return this.$walletManager.getWallet(this.getDefaultWallet).name
+        const wallet = this.$walletManager.getWallet(this.getDefaultWallet)
+        return wallet ? wallet.name : 'No wallet selected'
       }
 
       return 'No wallet selected'
@@ -167,12 +169,15 @@ export default {
 const stylesStore = (isDarkScheme) => {
   return {
     container: {
-      paddingTop: 10
+      paddingTop: 10,
+      flex: 1
+    },
+    containerStyle: {
+      flex: 1
     },
     item: {
       paddingHorizontal: 15,
-      marginVertical: 5,
-      height: 80
+      height: 90
     },
     itemContent: {
       backgroundColor: isDarkScheme ? '#2c2e36' : '#ffffff',
@@ -186,19 +191,14 @@ const stylesStore = (isDarkScheme) => {
       shadowRadius: 5,
       shadowOpacity: 0.1,
       shadowOffsetY: 30,
-      elevation: 10
+      elevation: 15
     },
     itemContentDragged: {
-      transform: [
-        { perspective: 600 },
-        { rotateX: '-10deg' },
-        { translateY: -5 }
-      ],
-      shadowColor: isDarkScheme ? 'black' : '#c0c0ff',
+      shadowColor: 'black',
       shadowRadius: 10,
       shadowOpacity: 0.5,
       paddingVertical: 30,
-      elevation: 10,
+      elevation: 20,
       backgroundColor: isDarkScheme ? '#555767' : '#f3f5f8',
       borderRadius: 10
     },
