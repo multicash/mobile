@@ -17,6 +17,9 @@
 */
 
 import * as React from 'react'
+import AddView from '@/views/invest/AddView.vue'
+import InvestmentView from '@/views/invest/InvestmentView.vue'
+import StatisticsView from '@/views/invest/StatisticsView.vue'
 import OverviewView from '@/views/invest/OverviewView.vue'
 import { enableScreens } from 'react-native-screens'
 import { createNativeStackNavigator } from 'react-native-screens/native-stack'
@@ -39,6 +42,18 @@ export default () => {
       <Stack.Screen
         name="overview"
         component={OverviewView as any}
+      />
+      <Stack.Screen
+        name="add"
+        component={AddView as any}
+      />
+      <Stack.Screen
+        name="investment"
+        component={InvestmentView as any}
+      />
+      <Stack.Screen
+        name="statistics"
+        component={StatisticsView as any}
       />
     </Stack.Navigator>
   )

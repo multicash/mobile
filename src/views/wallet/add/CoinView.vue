@@ -52,7 +52,7 @@ export default {
           subtitle: coin.ticker,
           leftAvatar: { source: resolveIcon(coin.ticker) },
           onPress: () => {
-            this.coin = coin.ticker
+            this.coin = coin.ticker.toLowerCase()
             this.proceed()
           }
         }
@@ -76,7 +76,7 @@ export default {
     proceed () {
       let view = this.route.params.restore ? 'preferences' : 'tag'
 
-      if (this.coin !== 'MCX') {
+      if (this.coin.toUpperCase() !== 'MCX') {
         view = 'preferences'
       }
 

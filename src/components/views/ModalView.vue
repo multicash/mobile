@@ -23,7 +23,11 @@
         :has-close-button="hasCloseButton"
         :title="title"
         @on-dismiss="$emit('on-dismiss')"
-      />
+      >
+        <view v-if="$slots['navigation-right']" slot="right">
+          <slot name="navigation-right"/>
+        </view>
+      </modal-navigation>
     </slot>
     <view-background
       ref="scrollView"

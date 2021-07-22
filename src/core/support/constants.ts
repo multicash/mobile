@@ -19,7 +19,7 @@
 import {
   TAGS_API,
   RATES_API,
-  WALLET_SERVICE_API,
+  MWS_ENDPOINT,
   NODE_API,
   PAY_LINK,
   BLOCK_EXPLORER,
@@ -33,7 +33,7 @@ import {
 export default {
   tagsApi: TAGS_API || 'https://tag.multicash.io/api',
   ratesApi: RATES_API || 'https://rates.multicash.io/api',
-  walletServiceApi: WALLET_SERVICE_API || 'https://wallet.multicash.io/api',
+  walletServiceApi: MWS_ENDPOINT || 'https://wallet.multicash.io/api',
   nodeApi: NODE_API || 'https://node.multicash.io/api',
   payLink: PAY_LINK || 'https://pay.multicash.io',
   blockExplorer: BLOCK_EXPLORER || 'https://data.multicash.io',

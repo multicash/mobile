@@ -66,6 +66,7 @@ export default class WalletManager {
         this.wallets.push(wallet)
         Log.info(`Opened wallet (coin: ${walletConfig.coin.toUpperCase()}, network: ${walletConfig.network.toUpperCase()}, id: ${walletConfig.identifier})`)
       } catch (e) {
+        Log.error(e)
         Log.error(`Opening wallet failed (coin: ${walletConfig.coin.toUpperCase()}, network: ${walletConfig.network.toUpperCase()}, id: ${walletConfig.identifier})`)
       }
     }

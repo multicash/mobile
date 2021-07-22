@@ -16,7 +16,7 @@
 
 <template>
   <view :style="styles.wordsGrid">
-    <view :style="styles.wordContainer" v-for="(word, i) in words" :key="word">
+    <view :style="styles.wordContainer" v-for="(word, i) in words" :key="word + i">
       <view :style="styles.wordNumber">
         <text :style="styles.number">{{ i + 1 }}</text>
       </view>

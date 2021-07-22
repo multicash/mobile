@@ -51,6 +51,7 @@ export default {
               title: currency.code,
               subtitle: currency.name,
               checked: selectedCurrency === currency.code,
+              noChevron: true,
               onPress: () => {
                 this.navigation.navigate(this.route.params.returnView, { currency })
               }
