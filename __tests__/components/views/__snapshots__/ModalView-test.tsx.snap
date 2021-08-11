@@ -67,7 +67,7 @@ const styleStore = (isDarkScheme) => {
 }
 
 const __react__vue__render = function render(vm) {
-    const __react__vue__slotSet = __react__vue__renderSlot.call(this, ["header"], this.props.children);
+    const __react__vue__slotSet = __react__vue__renderSlot.call(this, ["header", "navigation-right"], this.props.children);
     return __react__vue__createElement(vm.$options.components['View'], __react__vue__mergeProps.call(this, this.props.__react__vue__nativeEvents, {
         ref: ref => {
             this.setRootRef(ref);
@@ -88,7 +88,10 @@ const __react__vue__render = function render(vm) {
         '__react__vue__customEventon-dismiss': __react__vue__event(function($event) {
             vm['$emit']('on-dismiss');
         }.bind(this))
-    }) : null], __react__vue__createElement(vm.$options.components['ViewBackground'], {
+    }, vm['$slots']['navigation-right'] ? __react__vue__createElement(vm.$options.components['View'], {
+        dataSlot: "right",
+        style: __react__vue__mergeNativeStyleAndNativeClass(undefined, undefined)
+    }, __react__vue__slotSet("navigation-right", {})) : null) : null], __react__vue__createElement(vm.$options.components['ViewBackground'], {
         ref: ref => {
             this.setRef(ref, "scrollView", false);
         },

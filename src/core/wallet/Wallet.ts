@@ -65,7 +65,7 @@ export default class Wallet {
       return await this.status()
     } catch (e) {
       return new Promise((resolve, reject) => {
-        this.client.createWallet(name, copayerName, m, n, options, (error: Error|null, secret: string|null) => {
+        this.client.createWallet(name, copayerName, m, n, options, (error: Error | null, secret: string | null) => {
           if (error) {
             return reject(error)
           }
@@ -78,12 +78,14 @@ export default class Wallet {
 
   public open (): Promise<Info> {
     return new Promise((resolve, reject) => {
-      this.client.openWallet({}, (error: Error|null, info: Info|null) => {
+      this.client.openWallet({}, (error: Error | null, info: Info | null) => {
         if (error || info === null) {
           return reject(error)
         }
 
-        this.info = info
+        if (typeof info === 'object') {
+          this.info = info
+        }
 
         Log.info(Messages.wallet('Opened', this))
         resolve(info)
@@ -93,7 +95,7 @@ export default class Wallet {
 
   public status (): Promise<Info> {
     return new Promise((resolve, reject) => {
-      this.client.getStatus({ includeExtendedInfo: true }, (error: Error|null, info: Info|null) => {
+      this.client.getStatus({ includeExtendedInfo: true }, (error: Error | null, info: Info | null) => {
         if (error || info === null) {
           return reject(error)
         }
@@ -108,7 +110,7 @@ export default class Wallet {
 
   public fetchBalance (): Promise<Balance> {
     return new Promise((resolve, reject) => {
-      this.client.getBalance(null, (error: Error|null, balance: Balance|null) => {
+      this.client.getBalance(null, (error: Error | null, balance: Balance | null) => {
         if (error || balance === null) {
           return reject(error)
         }
@@ -121,7 +123,7 @@ export default class Wallet {
 
   public scan (): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      this.client.startScan(null, (error: Error|null) => {
+      this.client.startScan(null, (error: Error | null) => {
         if (error) {
           return reject(error)
         }
@@ -134,7 +136,7 @@ export default class Wallet {
 
   public fetchTxHistory (): Promise<Tx[]> {
     return new Promise((resolve, reject) => {
-      this.client.getTxHistory({ includeExtendedInfo: true }, (error: Error|null, txs: Tx[]) => {
+      this.client.getTxHistory({ includeExtendedInfo: true }, (error: Error | null, txs: Tx[]) => {
         if (error) {
           return reject(error)
         }
@@ -153,7 +155,7 @@ export default class Wallet {
 
   public createTxProposal (proposal: TxProposal): Promise<TxProposalResponse> {
     return new Promise((resolve, reject) => {
-      this.client.createTxProposal(proposal, (error: Error|null, txp: TxProposalResponse|null) => {
+      this.client.createTxProposal(proposal, (error: Error | null, txp: TxProposalResponse | null) => {
         if (error || txp === null) {
           return reject(error)
         }
@@ -166,7 +168,7 @@ export default class Wallet {
 
   public publishTxProposal (proposal: TxProposalResponse): Promise<TxProposalResponse> {
     return new Promise((resolve, reject) => {
-      this.client.publishTxProposal({ txp: proposal }, (error: Error|null, txp: TxProposalResponse|null) => {
+      this.client.publishTxProposal({ txp: proposal }, (error: Error | null, txp: TxProposalResponse | null) => {
         if (error || txp === null) {
           return reject(error)
         }
@@ -193,7 +195,7 @@ export default class Wallet {
 
   public broadcastTxProposal (proposal: TxProposalResponse): Promise<TxProposalResponse> {
     return new Promise((resolve, reject) => {
-      this.client.broadcastTxProposal(proposal, (error: Error|null, txp: TxProposalResponse|null) => {
+      this.client.broadcastTxProposal(proposal, (error: Error | null, txp: TxProposalResponse | null) => {
         if (error || txp === null) {
           return reject(error)
         }
@@ -206,7 +208,7 @@ export default class Wallet {
 
   public createAddress (): Promise<AddressInfo> {
     return new Promise((resolve, reject) => {
-      this.client.createAddress({}, (error: Error|null, addressInfo: AddressInfo|null) => {
+      this.client.createAddress({}, (error: Error | null, addressInfo: AddressInfo | null) => {
         if (error || addressInfo === null) {
           return reject(error)
         }
@@ -221,7 +223,7 @@ export default class Wallet {
 
   public getMainAddresses (options: object): Promise<AddressInfo[]> {
     return new Promise((resolve, reject) => {
-      this.client.getMainAddresses(options, (error: Error|null, addresses: AddressInfo[]) => {
+      this.client.getMainAddresses(options, (error: Error | null, addresses: AddressInfo[]) => {
         if (error) {
           return reject(error)
         }
@@ -259,7 +261,7 @@ export default class Wallet {
 
   public getSendMaxInfo (returnInputs: boolean = false): Promise<SendMaxInfo> {
     return new Promise((resolve, reject) => {
-      this.client.getSendMaxInfo({ returnInputs }, (error: Error|null, info: SendMaxInfo|null) => {
+      this.client.getSendMaxInfo({ returnInputs }, (error: Error | null, info: SendMaxInfo | null) => {
         if (error || info === null) {
           return reject(error)
         }

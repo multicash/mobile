@@ -93,7 +93,7 @@ export default {
     this.tag = this.route.params.tag
 
     if (this.route.params.restore) {
-      this.tag = '12345678'
+      this.tag = ''
     }
   },
 

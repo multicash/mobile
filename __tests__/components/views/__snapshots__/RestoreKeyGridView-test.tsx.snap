@@ -78,7 +78,7 @@ const __react__vue__render = function render(vm) {
         }), __react__vue__bindStyle(vm['styles'].wordsGrid, undefined, undefined))
     }), __react__vue__renderList(vm['words'], function(word, i) {
         return __react__vue__createElement(vm.$options.components['View'], {
-            key: word,
+            key: word + i,
             style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].wordContainer, undefined, undefined))
         }, __react__vue__createElement(vm.$options.components['View'], {
             style: __react__vue__mergeNativeStyleAndNativeClass(undefined, __react__vue__bindStyle(vm['styles'].wordNumber, undefined, undefined))

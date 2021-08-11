@@ -97,11 +97,13 @@ export default {
 
     proceed () {
       if (this.successfullyRestored) {
+        const walletConfig = this.$walletManager.getTempWallet(this.route.params.identifier)
+
+        walletConfig.restoreKey = this.words.join(' ')
+        walletConfig.tag = `@dummytag${(Math.random() * 1000).toFixed(0)}`
+
         this.navigation.navigate('confirm', {
-          walletConfig: {
-            ...this.route.params.walletConfig,
-            restoreKey: this.words.join(' ')
-          }
+          identifier: walletConfig.identifier
         })
       }
 
