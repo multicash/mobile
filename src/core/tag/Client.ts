@@ -30,8 +30,8 @@ export default class Client implements ClientInterface {
     this.tagsApi = tagsApi
   }
 
-  public address (tag: string): Promise<string> {
-    return fetch(`${this.tagsApi}/v1/tags/${tag}`, {
+  public address (tag: string, network: string = 'mainnet'): Promise<string> {
+    return fetch(`${this.tagsApi}/${network}/tags/${tag}`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
@@ -51,8 +51,8 @@ export default class Client implements ClientInterface {
       })
   }
 
-  public exists (tag: string): Promise<boolean> {
-    return fetch(`${this.tagsApi}/v1/tags/exists`, {
+  public exists (tag: string, network: string = 'mainnet'): Promise<boolean> {
+    return fetch(`${this.tagsApi}/${network}/tags/exists`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -74,8 +74,8 @@ export default class Client implements ClientInterface {
       })
   }
 
-  public register (tag: string, xpubKey: string): Promise<RegisteredTag> {
-    return fetch(`${this.tagsApi}/v1/tags`, {
+  public register (tag: string, xpubKey: string, network: string = 'mainnet'): Promise<RegisteredTag> {
+    return fetch(`${this.tagsApi}/${network}/tags`, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',

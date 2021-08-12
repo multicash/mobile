@@ -19,7 +19,7 @@
 import RegisteredTag from '@/core/tag/models/RegisteredTag'
 
 export default interface ClientInterface {
-  exists (tag: string): Promise<boolean>
-  register (tag: string, xpubKey: string): Promise<RegisteredTag>
-  address (tag: string): Promise<string>
+  exists (tag: string, network: string): Promise<boolean>
+  register (tag: string, xpubKey: string, network: string): Promise<RegisteredTag>
+  address (tag: string, network: string): Promise<string>
 }
