@@ -16,16 +16,12 @@
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-declare module '@env' {
-  export const MCXTAGS_API: string
-  export const MCXRATES_API: string
-  export const MCXLITE_API: string
-  export const MCXPAY_ENDPOINT: string
-  export const BLOCK_EXPLORER: string
-  export const TERMS_OF_USE: string
-  export const DEFAULT_COIN: string
-  export const DEFAULT_NETWORK: string
-  export const DEFAULT_CURRENCY_CODE: string
-  export const PAPER_KEY_LENGTH: number
-  export const MWS_CLIENT: string
+import { PluginFunction, VueConstructor } from '@/types/vue'
+import Client from '@/core/tag/Client'
+import constants from '@/core/support/constants'
+
+const plugin: PluginFunction<any> = function (vue: VueConstructor, options: any): void {
+  vue.prototype.$tagManager = new Client(constants.tagsApi)
 }
+
+export default plugin

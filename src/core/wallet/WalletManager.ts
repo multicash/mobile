@@ -188,7 +188,7 @@ export default class WalletManager {
     })
 
     const multicoreClient = new Client({
-      baseUrl: walletConfig.apiEndpoint || constants.walletServiceApi,
+      baseUrl: walletConfig.apiEndpoint || constants.liteApi,
       verbose: false
     })
 

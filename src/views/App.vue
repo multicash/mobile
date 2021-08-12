@@ -49,6 +49,7 @@ import store from '@/store'
 import AuthManager from '@/plugins/AuthManager'
 import EventBus from '@/plugins/EventBus'
 import WalletManager from '@/plugins/WalletManager'
+import TagManager from '@/plugins/TagManager'
 import { createNativeStackNavigator } from 'react-native-screens/native-stack'
 import { enableScreens } from 'react-native-screens'
 
@@ -59,6 +60,7 @@ const StackScreen = Stack.Screen
 
 Vue.use(Vuelidate)
 Vue.use(WalletManager, { store })
+Vue.use(TagManager)
 Vue.use(EventBus)
 Vue.use(AuthManager)
 

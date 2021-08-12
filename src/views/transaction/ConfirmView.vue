@@ -176,7 +176,7 @@ export default {
 
         const wallet = this.$walletManager.getWallet(this.transaction.to.identifier)
         const amount = this.getFormattedCrypto(this.transaction.amount, 'MCX')
-        let url = `${Constants.payLink}/?id=${this.id}&address=${wallet.address}&tag=${wallet.tag}&amount=${this.transaction.amount}`
+        let url = `${Constants.payEndpoint}/?id=${this.id}&address=${wallet.address}&tag=${wallet.tag}&amount=${this.transaction.amount}`
 
         if (this.transaction.label !== '' && this.transaction.label !== null) {
           url += '&label=' + encode(this.transaction.label)

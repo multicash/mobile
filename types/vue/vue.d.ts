@@ -36,6 +36,7 @@ import { Store } from 'vuex'
 import AuthManager from '@/core/authentication/AuthManager'
 import WalletManager from '@/core/wallet/WalletManager'
 import { ReactElement } from 'react'
+import Client from '@/core/tag/Client'
 
 export interface CreateElement {
   (tag?: string | Component<any, any, any, any> | AsyncComponent<any, any, any, any> | (() => Component), children?: VNodeChildren): VNode;
@@ -47,6 +48,7 @@ export interface Vue {
   $authManager: AuthManager
   $eventBus: Vue
   $walletManager: WalletManager
+  $tagManager: Client
 
   readonly $el: Element;
   readonly $options: ComponentOptions<Vue>;

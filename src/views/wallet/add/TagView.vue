@@ -59,7 +59,7 @@
         </view>
       </view>
 
-      <view v-if="(tag !== '' && $v.$invalid) || fetchingTagStatus">
+      <view v-if="(tag !== '' && ($v.$invalid || exists)) || fetchingTagStatus">
         <spacer  />
         <notification
           type="danger"
@@ -97,7 +97,8 @@ export default {
     return {
       tag: '',
       touchMap: null,
-      fetchingTagStatus: false
+      fetchingTagStatus: false,
+      exists: false
     }
   },
 
@@ -110,11 +111,11 @@ export default {
       return Platform.OS === 'ios' ? 'padding' : null
     },
 
-    isUnique () {
-      return false
-    },
-
     invalidTagLabel () {
+      if (this.exists) {
+        return 'The chosen tag is already taken.'
+      }
+
       if (!this.$v.tag.minLength) {
         return 'The chosen tag is too short, we need minimal 6 characters.'
       }
@@ -158,12 +159,24 @@ export default {
     delayTouch ($v) {
       this.fetchingTagStatus = true
       $v.$reset()
+
+      if (!this.tag) {
+        this.fetchingTagStatus = false
+
+        return
+      }
+
       if (this.touchMap) {
         clearTimeout(this.touchMap)
       }
+
       this.touchMap = setTimeout(() => {
-        this.fetchingTagStatus = false
-      }, 500)
+        this.$tagManager.exists(`@${this.tag}`).then(exists => {
+          this.exists = exists
+        }).finally(() => {
+          this.fetchingTagStatus = false
+        })
+      }, 1500)
     }
   }
 }

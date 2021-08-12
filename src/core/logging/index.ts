@@ -35,7 +35,7 @@ const defaultConfig: configLoggerType = {
   printLevel: true,
   printDate: false,
   enabled: true,
-  enabledExtensions: ['APP', 'AUTH', 'WALLET', 'WM', 'IMPORT', 'EXPORT']
+  enabledExtensions: ['APP', 'AUTH', 'WALLET', 'WM', 'IMPORT', 'EXPORT', 'TAG']
 }
 
 const loggerInstance = logger.createLogger(defaultConfig)

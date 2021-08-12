@@ -119,7 +119,7 @@ export default {
         icon: this.icon.name,
         coin: this.coin,
         network: constants.defaultNetwork,
-        apiEndpoint: constants.walletServiceApi,
+        apiEndpoint: constants.liteApi,
         singleAddress: false,
         restoreKey: ''
       })

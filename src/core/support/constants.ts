@@ -17,11 +17,10 @@
 */
 
 import {
-  TAGS_API,
-  RATES_API,
-  MWS_ENDPOINT,
-  NODE_API,
-  PAY_LINK,
+  MCXTAGS_API,
+  MCXRATES_API,
+  MCXLITE_API,
+  MCXPAY_ENDPOINT,
   BLOCK_EXPLORER,
   TERMS_OF_USE,
   DEFAULT_CURRENCY_CODE,
@@ -31,11 +30,10 @@ import {
 } from '@env'
 
 export default {
-  tagsApi: TAGS_API || 'https://tag.multicash.io/api',
-  ratesApi: RATES_API || 'https://rates.multicash.io/api',
-  walletServiceApi: MWS_ENDPOINT || 'https://wallet.multicash.io/api',
-  nodeApi: NODE_API || 'https://node.multicash.io/api',
-  payLink: PAY_LINK || 'https://pay.multicash.io',
+  tagsApi: MCXTAGS_API || 'https://tags.multicash.io/api',
+  ratesApi: MCXRATES_API || 'https://rates.multicash.io/api',
+  liteApi: MCXLITE_API || 'https://lite.multicash.io/api',
+  payEndpoint: MCXPAY_ENDPOINT || 'https://pay.multicash.io',
   blockExplorer: BLOCK_EXPLORER || 'https://data.multicash.io',
   termsOfUse: TERMS_OF_USE || 'https://multicash.io/wallets/terms',
   feePerKb: 100000,

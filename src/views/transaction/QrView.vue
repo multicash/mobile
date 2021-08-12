@@ -101,7 +101,7 @@ export default {
     },
 
     qrValue () {
-      let value = `${Constants.payLink}/?id=${this.id}&address=${this.targetWallet.address}&tag=${this.targetWallet.tag}&amount=${this.route.params.transaction.amount}`
+      let value = `${Constants.payEndpoint}/?id=${this.id}&address=${this.targetWallet.address}&tag=${this.targetWallet.tag}&amount=${this.route.params.transaction.amount}`
 
       if (this.label !== '') {
         value += '&label=' + encode(this.label)
