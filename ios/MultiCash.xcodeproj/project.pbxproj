@@ -865,10 +865,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MultiCash/MultiCash.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(APP_BUILD)";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 92Y5W9233T;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -900,7 +899,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(APP_BUILD)";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 92Y5W9233T;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = MultiCash/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
