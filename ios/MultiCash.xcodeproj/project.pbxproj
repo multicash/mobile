@@ -416,7 +416,7 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 92Y5W9233T;
 						LastSwiftMigration = 1120;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -864,9 +864,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MultiCash/MultiCash.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(APP_BUILD)";
 				DEVELOPMENT_TEAM = 92Y5W9233T;
 				ENABLE_BITCODE = NO;
@@ -882,7 +882,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.MultiCash.Wallet;
 				PRODUCT_NAME = MultiCash;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "MultiCash Development";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -897,8 +897,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MultiCash/MultiCash.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: MultiCash LLC (92Y5W9233T)";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(APP_BUILD)";
 				DEVELOPMENT_TEAM = 92Y5W9233T;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -912,7 +912,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.MultiCash.Wallet;
 				PRODUCT_NAME = MultiCash;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "MultiCash App Store";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
