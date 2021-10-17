@@ -30,7 +30,7 @@ import {
 } from '@env'
 
 export default {
-  tagsApi: MCXTAGS_API || 'https://tags.multicash.io/api',
+  tagsApi: MCXTAGS_API || 'https://staging.tags.multicash.io/api',
   ratesApi: MCXRATES_API || 'https://rates.multicash.io/api',
   liteApi: MCXLITE_API || 'https://lite.multicash.io/api',
   payEndpoint: MCXPAY_ENDPOINT || 'https://pay.multicash.io',

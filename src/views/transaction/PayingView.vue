@@ -72,9 +72,12 @@ export default {
   },
 
   created () {
-    setTimeout(() => {
-      this.payed = true
-    }, 1000)
+    const params = this.route.params
+    this.$tagManager.address(params.transaction.to.tagOrAddress).then(address => {
+      setTimeout(() => {
+        this.payed = true
+      }, 1000)
+    })
   },
 
   computed: {
