@@ -1,7 +1,7 @@
 {
   "name": "multicash",
   "description": "The MultiCash Mobile app provides all that MultiCash has to over on both Android and iOS",
-  "version": "0.31.2",
+  "version": "0.31.3",
   "private": true,
   "author": "MultiCash LLC",
   "license": "GPL-3.0+",
